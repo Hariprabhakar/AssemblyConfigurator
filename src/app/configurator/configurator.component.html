@@ -1,0 +1,33 @@
+<div class="dashboard-wrap">
+  <app-create-assembly></app-create-assembly>
+  <!-- <div class="header create-assembly">
+    <div>
+      <mat-form-field class="assembly-field" appearance="outline" floatLabel="always">
+        <input matInput type="text" placeholder="Assembly">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="select-group" appearance="outline">
+        <mat-label>Select group</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let device of devices" [value]="device.value">
+            {{device.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="abbr-field" appearance="outline" floatLabel="always">
+        <input matInput type="text" placeholder="Abbreviation">
+      </mat-form-field>
+    </div>
+    <div class="edit-btn">
+      <button mat-flat-button color="primary">EDIT</button>
+    </div>
+
+  </div> -->
+  <div class="filter-section">
+    <app-category></app-category>
+    <app-category-components></app-category-components>
+  </div>
+</div>

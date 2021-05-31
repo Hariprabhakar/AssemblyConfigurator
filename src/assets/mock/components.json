@@ -1,0 +1,20 @@
+[
+	{
+		"id": 1,
+		"name": "4in Square Mudring",
+		"tag": "4SM",
+		"phase": "ROUGH",
+		"qty": 1,
+		"Uom": "Ea",
+		"categoryId": 1
+	},
+	{
+		"id": 2,
+		"name": "4in Deep Square Special Box",
+		"tag": "4DSSB",
+		"phase": "ROUGH",
+		"qty": 1,
+		"Uom": "Ea",
+		"categoryId": 1
+	}
+]

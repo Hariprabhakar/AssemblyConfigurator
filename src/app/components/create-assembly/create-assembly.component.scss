@@ -1,0 +1,26 @@
+.create-assembly {
+  padding: 10px 10px;
+  display: flex;
+
+  & > div {
+    padding-right: 10px;
+  }
+
+  .assembly-field,
+  .select-group {
+    width: 250px;
+  }
+
+  .abbr-field {
+    width: 100px;
+  }
+
+  .edit-btn {
+    padding: 10px 20px;
+
+    button {
+      border-radius: 20px;
+      padding: 0 25px;
+    }
+  }
+}

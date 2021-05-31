@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Connector"
+  },
+  {
+    "id": 2,
+    "name": "Coupling"
+  },
+  {
+    "id": 3,
+    "name": "Conduit"
+  },
+  {
+    "id": 4,
+    "name": "Pigtail"
+  },
+  {
+    "id": 5,
+    "name": "Wire nuts"
+  },
+  {
+    "id": 6,
+    "name": "Trim plate"
+  },
+  {
+    "id": 7,
+    "name": "Junction box"
+  },
+  {
+    "id": 8,
+    "name": "Receptacle"
+  },
+  {
+    "id": 9,
+    "name": "Data Jack"
+  },
+  {
+    "id": 10,
+    "name": "Switch"
+  }
+]

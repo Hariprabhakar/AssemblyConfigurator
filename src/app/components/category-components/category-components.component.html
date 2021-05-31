@@ -1,0 +1,57 @@
+<div class="list-components">
+    <div class="filter-search">
+      <div class="label">Filter</div>
+      <div class="ac-input">
+        <input type="text" (keyup)="filterComponent($event)" placeholder="Search by part name, size, material etc">
+        <div class="search-icon">
+          <mat-icon>search</mat-icon>
+        </div>
+      </div>
+    </div>
+    <div class="table">
+      <table mat-table [dataSource]="componentDataSource">
+
+        <ng-container matColumnDef="image">
+          <th mat-header-cell *matHeaderCellDef> Image </th>
+          <td mat-cell *matCellDef="let element"></td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="component">
+          <th mat-header-cell *matHeaderCellDef> Component </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="tag">
+          <th mat-header-cell *matHeaderCellDef> TAG </th>
+          <td mat-cell *matCellDef="let element"> {{element.tag}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="phase">
+          <th mat-header-cell *matHeaderCellDef> PHASE </th>
+          <td mat-cell *matCellDef="let element"> {{element.phase}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="udm">
+          <th mat-header-cell *matHeaderCellDef> UDM </th>
+          <td mat-cell *matCellDef="let element"> {{element.Uom}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="add">
+          <th mat-header-cell *matHeaderCellDef> ADD </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-mini-fab color="primary">
+              <mat-icon>add</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <div class="req-component">Don't find the right part? <a href="javascript:void(0)"> Request New Component</a>
+      </div>
+    </div>
+  </div>
