@@ -1,15 +1,26 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '~@angular/material' as mat;
+// Plus imports for other components in your app.
 
-$assemblyconfig-primary: mat.define-palette(mat.$amber-palette, A400);
-$assemblyconfig-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-$assemblyconfig-warn: mat.define-palette(mat.$red-palette);
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+// $assemblyconfig-primary: mat.define-palette(mat.$amber-palette, A400);
+// $assemblyconfig-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+// $assemblyconfig-warn: mat.define-palette(mat.$red-palette);
 
-$assemblyconfig-theme: mat.define-light-theme((
-  color: (
-    primary: $assemblyconfig-primary,
-    accent: $assemblyconfig-accent,
-    warn: $assemblyconfig-warn,
-  )
-));
+// $assemblyconfig-theme: mat.define-light-theme(
+//   (
+//     color: (
+//       primary: $assemblyconfig-primary,
+//       accent: $assemblyconfig-accent,
+//       warn: $assemblyconfig-warn,
+//     ),
+//   )
+// );
+// @include mat.all-component-themes($assemblyconfig-theme);
 
 $dark-primary: mat.define-palette(mat.$amber-palette, A400);
 $dark-accent: mat.define-palette(mat.$amber-palette, A200, A100, A400);
@@ -23,5 +34,4 @@ $dark-theme: mat.define-dark-theme(
     ),
   )
 );
-
-@include mat.all-component-themes($assemblyconfig-theme);
+@include mat.all-component-themes($dark-theme);

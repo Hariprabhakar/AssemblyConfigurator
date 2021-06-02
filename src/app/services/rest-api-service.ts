@@ -61,6 +61,9 @@ export class RestApiService {
     if ( !env.mockEnabled) {
       // const env = appConfig.config.env;
       url = `${environment.url}${serviceName}`;
+      if ( urlParams ){
+        url = `${url}?${urlParams}`
+      }
       reqMethodName = methodName;
     }  else {
       url = `${environment.url}${serviceName}.json`;

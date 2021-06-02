@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CreateAssemblyComponent } from '../components/create-assembly/create-assembly.component';
-import { ConfiguratorComponent } from './configurator.component';
+import { CreateAssemblyComponent } from './create-assembly.component';
 import { CategoryComponent } from '../components/category/category.component';
 import { CategoryComponentsComponent } from '../components/category-components/category-components.component';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,11 +13,13 @@ import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
+import { CreateAssemblyRoutingModule } from './create-assembly-routing.module';
+import { EditAssemblyComponent } from '../components/edit-assembly/edit-assembly.component';
 
 
 
 @NgModule({
-  declarations: [ConfiguratorComponent, CreateAssemblyComponent, CategoryComponent, CategoryComponentsComponent],
+  declarations: [CreateAssemblyComponent, EditAssemblyComponent, CategoryComponent, CategoryComponentsComponent],
   imports: [
     CommonModule,
     MatCheckboxModule,
@@ -30,9 +31,10 @@ import { FormsModule } from '@angular/forms';
     MatDividerModule,
     MatListModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
+    CreateAssemblyRoutingModule,
   ],
   exports: [ MatCheckboxModule, MatButtonModule, MatTableModule, MatInputModule, MatSelectModule, MatFormFieldModule
     , MatDividerModule, MatListModule, MatIconModule, FormsModule ],
 })
-export class ConfiguratorModule { }
+export class CreateAssemblyModule { }

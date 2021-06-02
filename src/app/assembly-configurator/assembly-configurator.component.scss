@@ -1,0 +1,14 @@
+.assembly-config-cont{
+    display: flex;
+    .right-pane{
+        background-color: #151515;
+    }
+}
+
+::ng-deep .circle-check {
+    & .mat-checkbox-background,
+    .mat-checkbox-frame,
+    & .mat-pseudo-checkbox {
+      border-radius: 70% !important;
+    }
+  }

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-create-assembly',
-  templateUrl: './create-assembly.component.html',
-  styleUrls: ['./create-assembly.component.scss']
+  selector: 'app-edit-assembly',
+  templateUrl: './edit-assembly.component.html',
+  styleUrls: ['./edit-assembly.component.scss']
 })
-export class CreateAssemblyComponent implements OnInit {
+export class EditAssemblyComponent implements OnInit {
 
   public devices: any = [
     {value: 'device1', viewValue: 'In-wall devices'},

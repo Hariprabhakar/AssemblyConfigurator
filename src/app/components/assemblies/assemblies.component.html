@@ -1,0 +1,36 @@
+<div class="list-components">
+    <div class="filter-search">
+        <div class="header">Assemblies</div>
+        <div class="search-wrap">
+            <div class="label">
+                <mat-checkbox> Hide default assemblies </mat-checkbox>
+            </div>
+            <div class="ac-input">
+                <input type="text" (keyup)="filterComponent($event)" placeholder="Search" />
+                <div class="search-icon">
+                    <mat-icon [inline]="true">search</mat-icon>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="assembly-lists">
+        <mat-list>
+            <mat-list-item *ngFor="let assembly of assembliesData">
+                <div class="assembly-list-wrap">
+                    <div class="img-cont">
+                        <div class="assembly-image"></div>
+                        <div class="assembly-icon"></div>
+                    </div>                   
+                    <div class="assembly-name">
+                        {{assembly.name}}
+                    </div>
+                    <div class="action-btn">
+                        <button mat-icon-button color="primary">
+                            <mat-icon>queue</mat-icon>
+                          </button>
+                    </div>
+                </div>
+            </mat-list-item>
+           </mat-list>
+    </div>
+</div>

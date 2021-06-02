@@ -1,0 +1,16 @@
+
+<div class="list-wrap">
+    <div class="search-category ac-input">
+      <input type="text" placeholder="Group" [(ngModel)]="searchValue" (ngModelChange)="filterCategory()">
+      <div class="search">
+        <mat-icon inline="true">search</mat-icon>
+      </div>
+    </div>
+    <div class="category-lists circle-check">
+      <mat-selection-list>
+        <mat-list-option checkboxPosition="before" *ngFor="let group of groupList">
+          {{group.name}}
+        </mat-list-option>
+      </mat-selection-list>
+    </div>
+  </div>
