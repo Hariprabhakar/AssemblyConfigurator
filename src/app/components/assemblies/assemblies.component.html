@@ -1,12 +1,13 @@
 <div class="list-components">
+    <div class="ac-loader" *ngIf="showLoader"><mat-spinner [diameter]="40"></mat-spinner></div>
     <div class="filter-search">
         <div class="header">Assemblies</div>
         <div class="search-wrap">
             <div class="label">
-                <mat-checkbox> Hide default assemblies </mat-checkbox>
+                <mat-checkbox (change)="toggleHide($event)"> Hide default assemblies </mat-checkbox>
             </div>
             <div class="ac-input">
-                <input type="text" (keyup)="filterComponent($event)" placeholder="Search" />
+                <input type="text" [(ngModel)]="searchValue" (keyup)="filterAssembly($event)" placeholder="Search" />
                 <div class="search-icon">
                     <mat-icon [inline]="true">search</mat-icon>
                 </div>
@@ -19,14 +20,17 @@
                 <div class="assembly-list-wrap">
                     <div class="img-cont">
                         <div class="assembly-image"></div>
-                        <div class="assembly-icon"></div>
+                        <div class="assembly-icon">
+                            <img *ngIf="assembly?.icon" [src]='assembly.icon' alt=" " />
+                            <div *ngIf="!assembly?.icon" class="default-icon">{{assembly.name | slice:0:1}}</div>
+                        </div>
                     </div>                   
                     <div class="assembly-name">
                         {{assembly.name}}
                     </div>
                     <div class="action-btn">
-                        <button mat-icon-button color="primary">
-                            <mat-icon>queue</mat-icon>
+                        <button mat-icon-button class="duplicate-icon" color="primary">
+                            <mat-icon [inline]="true">queue</mat-icon>
                           </button>
                     </div>
                 </div>

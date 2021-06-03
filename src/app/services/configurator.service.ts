@@ -24,7 +24,23 @@ export class ConfiguratorService {
   }
 
   public getAssemblies(companyId: number, familyId: number, defaultAssemblies: boolean, customAssemblies: boolean){
-    const QueryParam = 'companyId=' + companyId + '&familyId=' + familyId + '&hideDefault=' + defaultAssemblies + '&showCustom=' + customAssemblies + '&pageIndex=0&pageSize=0';
-    return this.restApiService.get('Assemblies', '', 'QueryParam');
+    let queryParam: string;
+    if (customAssemblies){
+      queryParam = 'companyId=' + companyId + '&hideDefault=' + defaultAssemblies + '&showCustom=' + customAssemblies + '&pageIndex=0&pageSize=0';
+    } else {
+      queryParam = 'companyId=' + companyId + '&familyId=' + familyId + '&hideDefault=' + defaultAssemblies + '&showCustom=' + customAssemblies + '&pageIndex=0&pageSize=0';
+    }
+    
+    return this.restApiService.get('Assemblies', '', queryParam);
+  }
+
+  getImages(companyId: number = 1, familyId: number, defaultAssemblies: boolean, customAssemblies: boolean) {
+    let queryParam: string;
+    if (customAssemblies){
+      queryParam = 'companyId=' + companyId + '&hideDefault=' + defaultAssemblies + '&showCustom=' + customAssemblies + '&pageIndex=0&pageSize=0';
+    } else {
+      queryParam = 'companyId=' + companyId + '&familyId=' + familyId + '&hideDefault=' + defaultAssemblies + '&showCustom=' + customAssemblies + '&pageIndex=0&pageSize=0';
+    }
+    return this.restApiService.get('Assemblies/Images', '', queryParam);
   }
 }

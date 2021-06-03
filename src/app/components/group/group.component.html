@@ -1,16 +1,26 @@
-
 <div class="list-wrap">
-    <div class="search-category ac-input">
-      <input type="text" placeholder="Group" [(ngModel)]="searchValue" (ngModelChange)="filterCategory()">
-      <div class="search">
-        <mat-icon inline="true">search</mat-icon>
-      </div>
-    </div>
-    <div class="category-lists circle-check">
-      <mat-selection-list>
-        <mat-list-option checkboxPosition="before" *ngFor="let group of groupList">
-          {{group.name}}
-        </mat-list-option>
-      </mat-selection-list>
+  <div class="ac-loader" *ngIf="showLoader">
+    <mat-spinner [diameter]="40"></mat-spinner>
+  </div>
+  <div class="search-category ac-input">
+    <input type="text" placeholder="Group" [(ngModel)]="searchValue" (ngModelChange)="filterCategory()" />
+    <div class="search">
+      <mat-icon inline="true">search</mat-icon>
     </div>
   </div>
+  <div class="category-lists circle-check">
+    <mat-selection-list #selectedGroup>
+      <mat-list-option checkboxPosition="before" *ngFor="let group of groupList" [value]="group">
+        {{ group.name }}
+      </mat-list-option>
+    </mat-selection-list>
+  </div>
+  <div class="create-btn-wrapper">
+    <div class="create-template secondary-btn">
+      <button mat-flat-button color="primary">Create template</button>
+    </div>
+    <div create="create-assembly">
+      <button mat-flat-button color="primary" [routerLink]="'/create-assembly'">Create a new assembly</button>
+    </div>
+  </div>
+</div>

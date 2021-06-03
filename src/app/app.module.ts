@@ -11,7 +11,6 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { AssemblyConfiguratorModule } from './assembly-configurator/assembly-configurator.module';
 
-
 @NgModule({
   declarations: [
     AppComponent,

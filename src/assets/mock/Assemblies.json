@@ -1,0 +1,31 @@
+[
+    {
+        "id": 467,
+        "name": "Assembly 1gaa"
+    },
+    {
+        "id": 475,
+        "name": "Assembly 2g",
+        "abbreviation": "2G"
+    },
+    {
+        "id": 500,
+        "name": "Assembly Fa-2",
+        "abbreviation": "FA2"
+    },
+    {
+        "id": 502,
+        "name": "Assembly Fa-3",
+        "abbreviation": "FA3"
+    },
+    {
+        "id": 506,
+        "name": "Assembly Fa-4",
+        "abbreviation": "FA4"
+    },
+    {
+        "id": 508,
+        "name": "Assembly Ns",
+        "abbreviation": "NS"
+    }
+]

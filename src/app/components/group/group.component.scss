@@ -1,6 +1,7 @@
 .list-wrap {
     width: 180px;
     background-color: #151515;
+    position: relative;
   }
   
   
@@ -24,7 +25,7 @@
   }
   
   .category-lists{
-    height: calc( 100vh - 132px);
+    height: calc( 100vh - 220px);
     overflow: hidden auto;
     background-color: #242424;
   
@@ -47,7 +48,7 @@
     border: 1px solid #4a4a4a;
     color: #b5b5b5;
     height: 44px;
-    font-size: 11px;
+    font-size: 12px;
   }
   
   .mat-list-base {
@@ -59,3 +60,19 @@
     background: #151515;
   }
   
+  .create-btn-wrapper{
+    background: #1f1f1f;
+    border: 1px solid #4a4a4a;
+    padding: 10px 10px;
+    .create-template{
+      margin-bottom: 8px;
+    }
+    button{
+      font-size: 10px;
+      height: 30px;
+      line-height: 30px;
+      border-radius: 25px;
+      width: 160px;
+      text-transform: uppercase;
+    }
+  } 

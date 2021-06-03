@@ -1,6 +1,7 @@
 .list-wrap {
-  width: 200px;
-  background-color: #232323;
+  width: 180px;
+  background-color: #151515;
+  position: relative;
 }
 
 
@@ -8,21 +9,25 @@
   padding: 10px;
   position: relative;
   color: #979797;
+  height: 46px;
+  box-sizing: border-box;
 
   input {
-    width: 175px;
+    width: 138px;
   }
 
   .search {
     position: absolute;
     right: 8px;
-    top: 22px;
+    top: 12px;
+    font-size: 20px;
   }
 }
 
 .category-lists{
-  height: calc( 100vh - 225px);
+  height: calc( 100vh - 189px);
   overflow: hidden auto;
+  background-color: #242424;
 
   &::-webkit-scrollbar {
     width: 10px;
@@ -40,7 +45,10 @@
 
 .mat-list-base .mat-list-item,
 .mat-list-base .mat-list-option {
-  border: 1px solid #3a3a3a;
+  border: 1px solid #4a4a4a;
+  color: #b5b5b5;
+  height: 44px;
+  font-size: 12px;
 }
 
 .mat-list-base {
@@ -51,3 +59,6 @@ mat-list-option[aria-selected="true"],
 mat-list-option:hover {
   background: #151515;
 }
+
+
+

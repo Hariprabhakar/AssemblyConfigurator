@@ -1,4 +1,4 @@
 <div class="assembly-config-cont">
-    <div class="left-pane"><app-group></app-group></div>
-    <div class="right-pane"><app-assemblies></app-assemblies></div>
+    <div class="left-pane"><app-group (groupChanged)="ongroupChanged($event)"></app-group></div>
+    <div class="right-pane"><app-assemblies [groupId]="groupValue" ></app-assemblies></div>
 </div>

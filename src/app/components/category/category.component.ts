@@ -11,13 +11,16 @@ export class CategoryComponent implements OnInit {
   private categories: any;
   public categoryList: any;
   public searchValue: any;
+  public showLoader: boolean;
 
   constructor(private configuratorService: ConfiguratorService) { }
 
   ngOnInit(): void {
+    this.showLoader = true;
     this.configuratorService.getCategories().subscribe((res) => {
       this.categories = res;
       this.categoryList = res;
+      this.showLoader = false;
     })
   }
 

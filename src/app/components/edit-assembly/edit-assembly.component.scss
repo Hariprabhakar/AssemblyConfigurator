@@ -16,11 +16,27 @@
   }
 
   .edit-btn {
-    padding: 10px 20px;
+   padding: 0;
 
     button {
       border-radius: 20px;
       padding: 0 25px;
+      width: 110px;
     }
   }
+
+  .input-wrap{
+    font-size: 12px;
+    ::ng-deep .mat-form-field-flex > .mat-form-field-infix { border: 0}
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-label { margin-top:-15px; }
+  }
+  .select-wrap{
+    font-size: 12px;
+    ::ng-deep .mat-form-field-flex > .mat-form-field-infix { border: 0}
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-label { margin-top:7px; }
+    ::ng-deep .mat-form-field-appearance-outline .mat-empty.mat-form-field-label { margin-top:0px; }
+
+  }
 }
+
+

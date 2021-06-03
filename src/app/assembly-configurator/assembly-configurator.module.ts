@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -21,8 +21,9 @@ import { MatButtonModule } from '@angular/material/button';
     MatIconModule,
     FormsModule,
     MatCheckboxModule,
-    MatButtonModule
+    MatButtonModule,
+    MatProgressSpinnerModule
   ],
-  exports: [ MatListModule, MatIconModule, FormsModule, MatCheckboxModule, MatButtonModule ]
+  exports: [ MatListModule, MatIconModule, FormsModule, MatCheckboxModule, MatButtonModule, MatProgressSpinnerModule ]
 })
 export class AssemblyConfiguratorModule { }
