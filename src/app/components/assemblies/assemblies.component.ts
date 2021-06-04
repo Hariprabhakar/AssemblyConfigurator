@@ -8,8 +8,8 @@ import { ConfiguratorService } from 'src/app/services/configurator.service';
 })
 export class AssembliesComponent implements OnInit {
   @Input() groupId: number;
-  public familyId: any = 1;
-  public companyId: any = 1;
+  public familyId: any;
+  public companyId: any;
   public searchValue: any;
 
   public assembliesData: any[] = [];
@@ -23,7 +23,7 @@ export class AssembliesComponent implements OnInit {
   constructor( private configuratorService: ConfiguratorService ) { }
 
   ngOnInit(): void {
-  
+  this.companyId = this.configuratorService.companyId;
   }
 
   ngOnChanges(changes: SimpleChanges) {

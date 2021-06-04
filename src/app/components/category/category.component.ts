@@ -34,8 +34,8 @@ export class CategoryComponent implements OnInit {
   }
 
   public filterCategory() {
-    this.categoryList = this.categories.filter((category: { name: (string | undefined)[]; }) => {
-      return category.name.indexOf(this.searchValue) >= 0;
+    this.categoryList = this.categories.filter((category: any) => {
+      return category['name'].toLowerCase().indexOf(this.searchValue.toLowerCase()) >= 0;
     });
   }
 

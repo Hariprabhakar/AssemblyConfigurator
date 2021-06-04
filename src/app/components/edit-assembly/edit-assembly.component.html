@@ -1,9 +1,9 @@
 <div class="header">
-  <form [formGroup]="createAssemblyFrom">
+  <form [formGroup]="createAssemblyFrom" autocomplete="off" >
     <div class="create-assembly">
       <div class="input-wrap">
         <mat-form-field class="assembly-field" appearance="outline" floatLabel="always">
-          <input formControlName="assemblyName" [readonly]="submitted" matInput type="text"  placeholder="Assembly">
+          <input formControlName="name" (focusout)="createSuggestion($event)" [readonly]="submitted" matInput type="text"  placeholder="Assembly">
         </mat-form-field>
       </div>
       <div class="select-wrap">
@@ -18,8 +18,15 @@
       </div>
       <div class="input-wrap">
         <mat-form-field class="abbr-field" appearance="outline" floatLabel="always">
-          <input formControlName="abbrevation" [readonly]="submitted" matInput type="text" placeholder="Abbreviation">
+          <input formControlName="abbreviation" [readonly]="submitted" matInput type="text" placeholder="Abbreviation">
         </mat-form-field>
+      </div>
+      <div class="suggestion" *ngIf="showSuggestion">
+        Suggestion - 
+        <ng-container *ngFor="let suggestion of suggestions">
+          <span [ngClass]="{'not-available': !suggestion.isAvailable, 'suggestion-value': true}" (click)="fillAbbr(suggestion.abbreviation)" >{{suggestion.abbreviation}}</span>
+        </ng-container>
+        
       </div>
       <div class="edit-btn">
         <button mat-flat-button color="primary" *ngIf="!submitted" (click)="onSubmit()" [disabled]="createAssemblyFrom.invalid" >Save</button>

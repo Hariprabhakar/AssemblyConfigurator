@@ -15,14 +15,12 @@ export class CategoryComponentsComponent implements OnInit {
   constructor(private configuratorService: ConfiguratorService) { }
 
   ngOnInit(): void {
-    this.configuratorService.getComponents().subscribe((res: any) => {
-      this.componentDataSource = new MatTableDataSource(res);
-    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if(changes.categoryValue && changes.categoryValue.currentValue){
-      this.configuratorService.getComponents().subscribe((res: any) => {
+      const id = changes.categoryValue.currentValue.id;
+      this.configuratorService.getComponents(this.configuratorService.companyId, id).subscribe((res: any) => {
         this.componentDataSource = new MatTableDataSource(res);
       });
     }    
