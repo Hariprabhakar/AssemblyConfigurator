@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ConfiguratorService } from 'src/app/services/configurator.service';
 
@@ -8,9 +8,10 @@ import { ConfiguratorService } from 'src/app/services/configurator.service';
   styleUrls: ['./category-components.component.scss']
 })
 export class CategoryComponentsComponent implements OnInit {
-
-  displayedColumns: string[] = ['image', 'component', 'tag', 'phase', 'udm', 'add'];
-  componentDataSource: any;
+   @Input() public categoryValue: number;
+  public displayedColumns: string[] = ['image', 'component', 'tag', 'phase', 'udm', 'add'];
+  public componentDataSource: any;
+  
   constructor(private configuratorService: ConfiguratorService) { }
 
   ngOnInit(): void {
@@ -18,6 +19,14 @@ export class CategoryComponentsComponent implements OnInit {
       this.componentDataSource = new MatTableDataSource(res);
     });
   }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if(changes.categoryValue && changes.categoryValue.currentValue){
+      this.configuratorService.getComponents().subscribe((res: any) => {
+        this.componentDataSource = new MatTableDataSource(res);
+      });
+    }    
+}
 
   filterComponent(event: any){
     const filterValue = (event.target as HTMLInputElement).value;

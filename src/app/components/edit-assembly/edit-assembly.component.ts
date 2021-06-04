@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-assembly',
@@ -7,14 +8,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditAssemblyComponent implements OnInit {
 
-  public devices: any = [
-    {value: 'device1', viewValue: 'In-wall devices'},
-    {value: 'device2', viewValue: 'In-wall devices'},
-    {value: 'device3', viewValue: 'In-wall devices'}
-  ];
-  constructor() { }
+  @Input() public families: any;
+  @Output() assemblyDataAdded = new EventEmitter();
+
+  public createAssemblyFrom: FormGroup;
+  public submitted = false;
+
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.createAssemblyFrom = this.formBuilder.group({
+      familyId: ['', Validators.required],
+      assemblyName: ['', Validators.required],
+      abbrevation: ['', Validators.required],
+    });
   }
+
+  public onSubmit(): void {
+    if (this.createAssemblyFrom.invalid) {
+      return;
+    }
+    this.submitted = true;
+    this.assemblyDataAdded.emit();
+  }
+
+  public enableForm() {
+    this.submitted = false;
+    this.assemblyDataAdded.emit();
+  }
+
 
 }

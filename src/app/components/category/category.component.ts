@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { MatSelectionList, MatSelectionListChange } from '@angular/material/list';
 import { ConfiguratorService } from '../../services/configurator.service';
 
 @Component({
@@ -12,6 +13,8 @@ export class CategoryComponent implements OnInit {
   public categoryList: any;
   public searchValue: any;
   public showLoader: boolean;
+  @Output() categoryChanged = new EventEmitter();
+  @ViewChild(MatSelectionList) selectedCategory: MatSelectionList;
 
   constructor(private configuratorService: ConfiguratorService) { }
 
@@ -21,6 +24,12 @@ export class CategoryComponent implements OnInit {
       this.categories = res;
       this.categoryList = res;
       this.showLoader = false;
+      this.selectedCategory.selectionChange.subscribe((grp: MatSelectionListChange) => {          
+        
+        this.selectedCategory.deselectAll();
+        grp.option.selected = true;
+        this.categoryChanged.emit(grp.option.value);
+    });
     })
   }
 

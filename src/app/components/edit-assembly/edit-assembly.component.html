@@ -1,26 +1,31 @@
-<div class="header create-assembly">
-  <div class="input-wrap">
-    <mat-form-field class="assembly-field" appearance="outline" floatLabel="always">
-      <input matInput type="text" placeholder="Assembly">
-    </mat-form-field>
-  </div>
-  <div class="select-wrap">
-    <mat-form-field class="select-group" appearance="outline">
-      <mat-label>Select group</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let device of devices" [value]="device.value">
-          {{device.viewValue}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div class="input-wrap">
-    <mat-form-field class="abbr-field" appearance="outline" floatLabel="always">
-      <input matInput type="text" placeholder="Abbreviation">
-    </mat-form-field>
-  </div>
-  <div class="edit-btn">
-    <button mat-flat-button color="primary">EDIT</button>
-  </div>
-
+<div class="header">
+  <form [formGroup]="createAssemblyFrom">
+    <div class="create-assembly">
+      <div class="input-wrap">
+        <mat-form-field class="assembly-field" appearance="outline" floatLabel="always">
+          <input formControlName="assemblyName" [readonly]="submitted" matInput type="text"  placeholder="Assembly">
+        </mat-form-field>
+      </div>
+      <div class="select-wrap">
+        <mat-form-field class="select-group" [ngClass]="submitted ? 'read-only' : ''" appearance="outline">
+          <mat-label>Select group</mat-label>
+          <mat-select formControlName="familyId">
+            <mat-option *ngFor="let family of families" [value]="family.id">
+              {{family.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="input-wrap">
+        <mat-form-field class="abbr-field" appearance="outline" floatLabel="always">
+          <input formControlName="abbrevation" [readonly]="submitted" matInput type="text" placeholder="Abbreviation">
+        </mat-form-field>
+      </div>
+      <div class="edit-btn">
+        <button mat-flat-button color="primary" *ngIf="!submitted" (click)="onSubmit()" [disabled]="createAssemblyFrom.invalid" >Save</button>
+        <button mat-flat-button color="primary" *ngIf="submitted" (click)="enableForm()"  >EDIT</button>
+      </div>
+    </div>
+ 
+</form>
 </div>

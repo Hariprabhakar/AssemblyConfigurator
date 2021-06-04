@@ -1,7 +1,33 @@
 table {
   width: 100%;
-  border: 2px solid #3a3a3a;
+  border: 2px solid #4a4a4a;
   border-bottom: 1px;
+  border-left: 1px;
+  tr.mat-row, tr.mat-footer-row,
+  tr.mat-header-row  {
+    height: 36px;
+  }
+
+  .fab-icon {
+    width: 20px;
+    height: 20px;
+    line-height: 14px;
+    font-size: 14px;
+
+    &::ng-deep .mat-button-wrapper{
+        line-height: 14px;
+        padding: 0;
+
+         .mat-icon {
+          font-size: 20px;
+          padding-right: 6px;
+          padding-top: 1px;
+         }
+   }
+}
+th.mat-header-cell:last-of-type, td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type{
+  padding: 0 10px;
+}
 }
 
 .mat-column {
@@ -11,9 +37,11 @@ table {
   &-phase,
   &-udm,
   &-add {
-    border-right: 1px solid #3a3a3a;
+    border-right: 1px solid #4a4a4a;
     padding: 0 12px;
-    text-align: center;
+    text-align: justify;
+    font-size: 12px;
+    color: #787878;
   }
 }
 
@@ -28,36 +56,43 @@ table {
 .list-components {
     min-width: 600px;
     .req-component {
-      padding: 15px 10px;
+      padding: 7px 10px;
       background-color: #151515;
-      border: 2px solid #3a3a3a;
+      border: 2px solid #4a4a4a;
       border-top: none;
+      color: #bbb7b4;
+      font-size: 13px;
     }
   }
   
 .filter-search {
   display: flex;
   justify-content: flex-end;
-  padding: 11px 20px;
 
   .label {
-    padding: 10px;
+    padding: 11.5px;
     color: #ffc400;
+    display: flex;
+    .filter-icon{
+      font-size: 20px;
+    }
   }
 
   input {
-    border: 1px solid #3a3a3a;
+    border: 1px solid #4a4a4a;
     min-height: 30px;
     padding-left: 5px;
-    width: 250px;
+    width: 280px;
     padding-right: 30px;
     font-size: 14px;
   }
 
   .ac-input {
     position: relative;
+    margin: 5px 23px 5px 0;
 
     .search-icon {
+      font-size: 20px;
       position: absolute;
       top: 6px;
       right: 3px;
@@ -66,8 +101,3 @@ table {
   }
 }
 
-.mat-mini-fab {
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
-}

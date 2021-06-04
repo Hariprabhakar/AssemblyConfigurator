@@ -12,7 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateAssemblyRoutingModule } from './create-assembly-routing.module';
 import { EditAssemblyComponent } from '../components/edit-assembly/edit-assembly.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -34,9 +34,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatIconModule,
     FormsModule,
     CreateAssemblyRoutingModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    ReactiveFormsModule
   ],
   exports: [ MatCheckboxModule, MatButtonModule, MatTableModule, MatInputModule, MatSelectModule, MatFormFieldModule
-    , MatDividerModule, MatListModule, MatIconModule, FormsModule, MatProgressSpinnerModule ],
+    , MatDividerModule, MatListModule, MatIconModule, FormsModule, MatProgressSpinnerModule, ReactiveFormsModule ],
 })
 export class CreateAssemblyModule { }

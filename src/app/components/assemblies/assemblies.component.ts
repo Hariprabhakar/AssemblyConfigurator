@@ -35,9 +35,7 @@ export class AssembliesComponent implements OnInit {
       }
       this.familyId = changes.groupId.currentValue.id;
       this.getAssemblies();
-    }
-    console.log(changes);
-    
+    }    
 }
 
   getAssemblies() {

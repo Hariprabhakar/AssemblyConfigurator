@@ -1,7 +1,8 @@
 <div class="dashboard-wrap">
-  <app-edit-assembly></app-edit-assembly>
+  <app-edit-assembly [families]="families" (assemblyDataAdded)="removeOverlay()"></app-edit-assembly>
   <div class="filter-section">
-    <app-category></app-category>
-    <app-category-components></app-category-components>
+    <app-category (categoryChanged)="onCategoryChanged($event)"></app-category>
+    <app-category-components [categoryValue]="categoryValue"></app-category-components>
   </div>
+  <div *ngIf="showOverlay" class="overlay"></div>
 </div>
