@@ -4,9 +4,9 @@ import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 
-export interface options{
-    headers: HttpHeaders;
-    body?: object;
+export interface options {
+  headers: HttpHeaders;
+  body?: object;
 }
 
 
@@ -31,63 +31,73 @@ export class RestApiService {
 
 
   // HttpClient API post() method
-  public post < T >(serviceName: string, params: any, urlParams: any) {
+  public post<T>(serviceName: string, params: any, urlParams: any) {
     return this.invokeApiCall('POST', serviceName, params, urlParams);
   }
 
-   // HttpClient API get() method
-   public get < T >(serviceName: string, params: any, urlParams: any) {
+  // HttpClient API get() method
+  public get<T>(serviceName: string, params: any, urlParams: any) {
     return this.invokeApiCall('GET', serviceName, params, urlParams);
   }
 
+  // HttpClient API get() method
+  public put<T>(serviceName: string, params: any, urlParams: any) {
+    return this.invokeApiCall('PUT', serviceName, params, urlParams);
+  }
+
+  // HttpClient API get() method
+  public patch<T>(serviceName: string, params: any, urlParams: any) {
+    return this.invokeApiCall('PATCH', serviceName, params, urlParams);
+  }
+
   /** invoke api call */
-  public invokeApiCall <T>(methodName: string, serviceName: any, serviceParams: any, urlParams: any) {
+  public invokeApiCall<T>(methodName: string, serviceName: any, serviceParams: any, urlParams: any) {
     // const httparams = new HttpParams().set('params', serviceParams);
     const env = environment;
     let url;
     let reqMethodName;
-    const options: options= {
+    const options: options = {
       headers: this.httpOptions.headers,
       body: {}
     };
 
-    if ( methodName !== 'GET') {
+    if (methodName !== 'GET') {
       options.body = serviceParams;
     } else {
       delete options.body;
     }
 
     /** check mock enabled and set env, request method  */
-    if ( !env.mockEnabled) {
+    if (!env.mockEnabled) {
       // const env = appConfig.config.env;
       url = `${environment.url}${serviceName}`;
-      if ( urlParams ){
+      if (urlParams) {
         url = `${url}?${urlParams}`
       }
       reqMethodName = methodName;
-    }  else {
+    } else {
       url = `${environment.url}${serviceName}.json`;
       reqMethodName = 'GET';
     }
 
     return this.httpClient.request(reqMethodName, url, options)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    );
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
   }
 
   // Error handling
   handleError(error: any) {
-     let errorMessage = '';
-     if (error.error instanceof ErrorEvent) {
-       // Get client-side error
-       errorMessage = error.error.message;
-     } else {
-       // Get server-side error
-       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-     }
-     return throwError(errorMessage);
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // Get client-side error
+      errorMessage = error.error.message;
+    } else {
+      // Get server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    return throwError(errorMessage);
   }
 
 }

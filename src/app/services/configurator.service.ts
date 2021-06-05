@@ -67,8 +67,14 @@ export class ConfiguratorService {
     return this.restApiService.post('Assemblies/is-avail-abbr', reqObj, '');
   }
 
-  public createAssembly(reqObj: any){
-    return this.restApiService.post('Assemblies/'+ this.companyId, reqObj, '');
+  public createAssembly(reqObj: any, isUpdate: boolean){
+    if(isUpdate){
+      return this.restApiService.put('Assemblies/' + this.companyId, reqObj, '');
+    } else {
+      const queryParam = 'companyId=' + this.companyId;
+      return this.restApiService.post('Assemblies/', reqObj, queryParam);
+    }
+    
   }
 
 

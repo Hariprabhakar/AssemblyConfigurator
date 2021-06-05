@@ -17,6 +17,7 @@ export class EditAssemblyComponent implements OnInit {
   private prevAssemblyName: string;
   public suggestions: any;
   public showSuggestion: boolean;
+  private assemblyId: number;
 
   constructor(private formBuilder: FormBuilder, private configuratorService: ConfiguratorService) { }
 
@@ -84,16 +85,16 @@ export class EditAssemblyComponent implements OnInit {
   }
 
   private createAssembly() {
-    this.configuratorService.createAssembly(this.createAssemblyFrom.value).subscribe((res)=>{
+    const isUpdate: boolean = this.assemblyId ? true : false;
+
+    this.configuratorService.createAssembly(this.createAssemblyFrom.value, isUpdate).subscribe((res: any)=>{
+      this.assemblyId = res['id'];
       this.submitted = true;
       this.showSuggestion = false;
       this.assemblyDataAdded.emit();
       this.configuratorService.setAssemblyData(res);
     },
     (error) => {
-      this.submitted = true;
-      this.showSuggestion = false;
-      this.assemblyDataAdded.emit();
       console.log(error);
     });
   }
