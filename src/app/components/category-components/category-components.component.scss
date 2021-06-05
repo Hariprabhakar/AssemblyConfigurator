@@ -1,34 +1,47 @@
-table {
-  width: 100%;
-  border: 2px solid #4a4a4a;
-  border-bottom: 1px;
-  border-left: 1px;
-  tr.mat-row, tr.mat-footer-row,
-  tr.mat-header-row  {
-    height: 36px;
+.table{
+  max-width: 600px;
+  table {
+    width: 100%;
+    
+    border: 2px solid #4a4a4a;
+    border-bottom: 1px;
+    border-left: 1px;
+    table-layout: fixed;
+    tr.mat-row, tr.mat-footer-row,
+    tr.mat-header-row  {
+      height: 36px;
+    }
+  
+    th, td {
+      overflow: hidden;
+      width:auto;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  
+    .fab-icon {
+      width: 20px;
+      height: 20px;
+      line-height: 14px;
+      font-size: 14px;
+  
+      &::ng-deep .mat-button-wrapper{
+          line-height: 14px;
+          padding: 0;
+  
+           .mat-icon {
+            font-size: 20px;
+            padding-right: 6px;
+            padding-top: 1px;
+           }
+     }
   }
-
-  .fab-icon {
-    width: 20px;
-    height: 20px;
-    line-height: 14px;
-    font-size: 14px;
-
-    &::ng-deep .mat-button-wrapper{
-        line-height: 14px;
-        padding: 0;
-
-         .mat-icon {
-          font-size: 20px;
-          padding-right: 6px;
-          padding-top: 1px;
-         }
-   }
+  th.mat-header-cell:last-of-type, td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type{
+    padding: 0 10px;
+  }
+  }
 }
-th.mat-header-cell:last-of-type, td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type{
-  padding: 0 10px;
-}
-}
+
 
 .mat-column {
   &-image,
@@ -42,6 +55,21 @@ th.mat-header-cell:last-of-type, td.mat-cell:last-of-type, td.mat-footer-cell:la
     text-align: justify;
     font-size: 12px;
     color: #787878;
+  }
+  &-udm{
+    width: 50px !important;
+  }
+  &-tag, &-phase, &-image{
+    width: 65px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &-component{
+    width: 200px !important;
+  }
+  &-add{
+    width: 50px !important;
+    text-align: center;
   }
 }
 
@@ -101,4 +129,3 @@ th.mat-header-cell:last-of-type, td.mat-cell:last-of-type, td.mat-footer-cell:la
     }
   }
 }
-
