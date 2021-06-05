@@ -7,7 +7,7 @@ import { ConfiguratorService } from './services/configurator.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'assemblyconfig';
+  title = 'assemblyconfigurator';
 
   constructor( private configuratorService: ConfiguratorService ) { }
 

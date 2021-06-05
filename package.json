@@ -1,10 +1,10 @@
 {
-  "name": "assemblyconfig",
-  "version": "0.0.0",
+  "name": "assemblyconfigurator",
+  "version": "0.1.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "ng serve -o --port=4200",
+    "build": "ng build --base-href \"/assemblyconfigurator/\" --prod",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
