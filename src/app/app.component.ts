@@ -14,7 +14,6 @@ export class AppComponent {
   ngOnInit(): void {
     const urlParams = new URLSearchParams(window.location.search);
     const myParam = urlParams.get('companyId');
-    console.log(myParam);
     if(myParam) {
       this.configuratorService.setCompanyId(parseInt(myParam));
     } 

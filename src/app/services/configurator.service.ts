@@ -77,5 +77,17 @@ export class ConfiguratorService {
     
   }
 
+  public addTagToComponent(id: any, tagName: any){
+    const queryParam = 'tag=' + tagName; 
+    return this.restApiService.post('Components/create-tag/' + id, {}, queryParam).subscribe((res) => {
+      console.log(res);
+    })
+  }
+
+  public updatePhase(id: any, phase: any){
+    const queryParam = 'phase=' + phase; 
+    return this.restApiService.patch('Components/update-phase/' + id, {}, queryParam);
+  }
+
 
 }
