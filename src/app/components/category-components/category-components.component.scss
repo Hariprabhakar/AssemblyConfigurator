@@ -1,9 +1,11 @@
+app-category-components {
+  background-color: #151515;
+}
 .table {
-  max-width: 600px;
   table {
     width: 100%;
-
     border: 2px solid #4a4a4a;
+    border-right: none;
     border-bottom: 1px;
     border-left: 1px;
     table-layout: fixed;
@@ -25,16 +27,14 @@
       width: 20px;
       height: 20px;
       line-height: 14px;
-      font-size: 14px;
+      font-size: 15px;
 
       &::ng-deep .mat-button-wrapper {
         line-height: 14px;
         padding: 0;
 
         .mat-icon {
-          font-size: 20px;
-          padding-right: 6px;
-          padding-top: 1px;
+          padding-right: 1px;
         }
       }
     }
@@ -43,10 +43,15 @@
     td.mat-footer-cell:last-of-type {
       padding: 0 10px;
     }
+    th.mat-header-cell:first-of-type,
+    td.mat-cell:first-of-type,
+    td.mat-footer-cell:first-of-type {
+      padding-left: 10px;
+    }
   }
 
   .tag-modal {
-    position: absolute;
+    position: fixed;
     width: 196px;
     height: 250px;
     background: #000;
@@ -70,11 +75,12 @@
       font-size: 12px;
       .btn-wrap {
         position: absolute;
-        bottom: 5px;
+        bottom: 10px;
         right: 7px;
         button {
           border-radius: 30px;
           height: 30px;
+          line-height: 32px;
         }
       }
     }
@@ -86,23 +92,19 @@
   &-component,
   &-tag,
   &-phase,
-  &-udm,
+  &-uom,
   &-add {
     border-right: 1px solid #4a4a4a;
-    padding: 0 12px;
+    padding: 0 8px;
     text-align: justify;
     font-size: 12px;
     color: #787878;
   }
-  &-udm {
+  &-uom {
     width: 50px !important;
   }
-  &-tag,
-  &-phase,
-  &-image {
-    width: 65px !important;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  &-add {
+    border-right: 0;
   }
   &-component {
     width: 200px !important;
@@ -110,6 +112,11 @@
   &-add {
     width: 50px !important;
     text-align: center;
+  }
+  &-phase {
+    padding-left: 5px;
+    background-color: #4a4a4a;
+    border: 1px solid #2b2b2b;
   }
 }
 
@@ -122,11 +129,12 @@
 }
 
 .list-components {
-  min-width: 600px;
+  position: relative;
   .req-component {
     padding: 7px 10px;
     background-color: #151515;
     border: 2px solid #4a4a4a;
+    border-right: none;
     border-top: none;
     color: #bbb7b4;
     font-size: 13px;
@@ -170,7 +178,39 @@
   }
 }
 
-.phase-input input{
-  color: #787878;
-  font-size: 12px;
+.phase-input {
+  width: 100%;
+  display: inline-block;
+  text-overflow: ellipsis;
+  input {
+    width: 100%;
+    color: #787878;
+    font-size: 12px;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 1099px) {
+  .mat-column {
+    &-component {
+      width: 100px !important;
+    }
+  }
+  .filter-search {
+    input {
+      width: 250px;
+    }
+  }
+}
+@media screen and (max-width: 992px) {
+  .mat-column {
+    &-component {
+      width: auto !important;
+    }
+  }
+  .filter-search {
+    input {
+      width: 100px;
+    }
+  }
 }

@@ -1,6 +1,7 @@
 .create-assembly {
   padding: 10px 10px;
   display: flex;
+  align-items: center;
 
   & > div {
     padding-right: 10px;
@@ -17,12 +18,16 @@
 
   .edit-btn {
     padding: 0;
+    height: 30px;
+    line-height: 30px;
 
     button {
       border-radius: 20px;
       padding: 0 25px;
       width: 110px;
       font-size: 13px;
+      height: 30px;
+    line-height: 30px;
     }
   }
 
@@ -34,6 +39,9 @@
     ::ng-deep .mat-form-field-appearance-outline .mat-form-field-label {
       margin-top: -15px;
     }
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix{
+      padding: 12px 0px 8px 0px;
+    }
   }
   .select-wrap {
     font-size: 12px;
@@ -42,6 +50,9 @@
     }
     ::ng-deep .mat-form-field-appearance-outline .mat-form-field-label {
       margin-top: 7px;
+    }
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix{
+      padding: 12px 0px 8px 0px;
     }
     ::ng-deep
       .mat-form-field-appearance-outline

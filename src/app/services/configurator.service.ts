@@ -7,7 +7,7 @@ import { RestApiService } from './rest-api-service';
 })
 export class ConfiguratorService {
 
-  private _companyId:number = 1;
+  private _companyId:number;
   private _assemblyData: any;
 
   constructor(private restApiService: RestApiService) { }
@@ -67,9 +67,9 @@ export class ConfiguratorService {
     return this.restApiService.post('Assemblies/is-avail-abbr', reqObj, '');
   }
 
-  public createAssembly(reqObj: any, isUpdate: boolean){
-    if(isUpdate){
-      return this.restApiService.put('Assemblies/' + this.companyId, reqObj, '');
+  public createAssembly(reqObj: any, isUpdate: boolean, assemblyId: any){
+    if(isUpdate && assemblyId){
+      return this.restApiService.put('Assemblies/' + assemblyId, reqObj, '');
     } else {
       const queryParam = 'companyId=' + this.companyId;
       return this.restApiService.post('Assemblies/', reqObj, queryParam);
@@ -79,9 +79,7 @@ export class ConfiguratorService {
 
   public addTagToComponent(id: any, tagName: any){
     const queryParam = 'tag=' + tagName; 
-    return this.restApiService.post('Components/create-tag/' + id, {}, queryParam).subscribe((res) => {
-      console.log(res);
-    })
+    return this.restApiService.post('Components/create-tag/' + id, {}, queryParam);
   }
 
   public updatePhase(id: any, phase: any){

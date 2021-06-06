@@ -1,7 +1,5 @@
 .list-components {
-  min-width: 500px;
   position: relative;
-  max-width: 45%;
   .req-component {
     padding: 15px 10px;
     background-color: #151515;
@@ -12,9 +10,12 @@
 
 .filter-search {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   padding: 5px 10px;
   border: 1px solid #4a4a4a;
+  border-top: none;
+  border-right: none;
 
   .header {
     font-size: 14px;
@@ -22,6 +23,7 @@
   }
   .search-wrap {
     display: flex;
+    flex-wrap: wrap;
   }
   .label {
     padding: 5px 10px 0 0;
@@ -111,7 +113,7 @@
     }
     .action-btn {
       margin-left: auto;
-      .duplicate-icon{
+      .duplicate-icon {
         font-size: 20px;
       }
     }

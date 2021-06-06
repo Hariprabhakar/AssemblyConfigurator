@@ -21,7 +21,7 @@
           <input formControlName="abbreviation" [readonly]="submitted" matInput type="text" placeholder="Abbreviation">
         </mat-form-field>
       </div>
-      <div class="suggestion" *ngIf="showSuggestion">
+      <div class="suggestion" *ngIf="showSuggestion && createAssemblyFrom.value.name">
         Suggestion - 
         <ng-container *ngFor="let suggestion of suggestions">
           <span [ngClass]="{'not-available': !suggestion.isAvailable, 'suggestion-value': true}" (click)="fillAbbr(suggestion.abbreviation)" >{{suggestion.abbreviation}}</span>

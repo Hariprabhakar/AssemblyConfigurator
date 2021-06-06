@@ -50,6 +50,7 @@
   color: #b5b5b5;
   height: 44px;
   font-size: 12px;
+  border-left: none;
 }
 
 .mat-list-base {
@@ -61,5 +62,15 @@ mat-list-option:hover {
   background: #151515;
 }
 
+@media screen and (max-width: 1099px) {
+  .list-wrap {
+    width: 125px;
+  }
+}
+@media screen and (max-width: 992px) {
+  .list-wrap {
+    width: 100px;
+  }
 
+}
 

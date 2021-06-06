@@ -87,7 +87,7 @@ export class EditAssemblyComponent implements OnInit {
   private createAssembly() {
     const isUpdate: boolean = this.assemblyId ? true : false;
 
-    this.configuratorService.createAssembly(this.createAssemblyFrom.value, isUpdate).subscribe((res: any)=>{
+    this.configuratorService.createAssembly(this.createAssemblyFrom.value, isUpdate, this.assemblyId).subscribe((res: any)=>{
       this.assemblyId = res['id'];
       this.submitted = true;
       this.showSuggestion = false;

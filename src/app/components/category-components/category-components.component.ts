@@ -10,7 +10,7 @@ import { ConfiguratorService } from 'src/app/services/configurator.service';
 export class CategoryComponentsComponent implements OnInit {
    @Input() public categoryValue: number;
    @ViewChild('tagModal', { read: ElementRef, static: false }) tagModal: ElementRef
-  public displayedColumns: string[] = ['image', 'component', 'tag', 'phase', 'udm', 'add'];
+  public displayedColumns: string[] = ['image', 'component', 'tag', 'phase', 'uom', 'add'];
   public componentDataSource: any;
   public tagModalPosition = {
     left: '',
@@ -21,9 +21,11 @@ export class CategoryComponentsComponent implements OnInit {
   public currentTagList: any;
   public tagValue: any;
   private selectedComponentId: number;
-  public editPhase: boolean = false;
   private currentPhaseVal: any;
-  
+  public editableRowIndex: any;
+  public showLoader:boolean;
+  private recentEditedPhase: string;
+
   constructor(private configuratorService: ConfiguratorService) { }
 
   ngOnInit(): void {
@@ -32,9 +34,11 @@ export class CategoryComponentsComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges) {
     if(changes.categoryValue && changes.categoryValue.currentValue){
       const id = changes.categoryValue.currentValue.id;
+      this.showLoader = true;
       this.configuratorService.getComponents(this.configuratorService.companyId, id).subscribe((res: any) => {
         this.componentDataSource = new MatTableDataSource(res);
-        this.editPhase = false;
+        this.editableRowIndex = -1;
+        this.showLoader = false;
       });
     }    
 }
@@ -78,30 +82,40 @@ export class CategoryComponentsComponent implements OnInit {
   }
 
   public addTag(){
-    this.configuratorService.addTagToComponent(this.selectedComponentId,this.tagValue);
+    if(this.tagValue) {
+      this.configuratorService.addTagToComponent(this.selectedComponentId,this.tagValue).subscribe((res: any) => {
+        this.componentDataSource.data.forEach((element: any) => {
+          if(element.id == res['componentId']){
+            element.tag = element.tag? element.tag + ','+ res.tag : res.tag;
+          }
+          this.showAddTag = false;
+        });
+      });
+    }
+
   }
 
   public clearTagVal() {
     this.tagValue = '';
   }
 
-  public enableEditPhase(){
-    this.editPhase = true;
-  }
-
   public updatePhase(event: any){
-   const phaseVal = event.target.value;
-   this.editPhase = false;
-   if(phaseVal !== '' && phaseVal !== this.currentPhaseVal){
-     this.configuratorService.updatePhase(this.selectedComponentId, phaseVal).subscribe((res) => {
-       console.log(res);
-       
-     })
-   }
+    if(this.recentEditedPhase !== event.target.value){
+      this.recentEditedPhase = event.target.value;
+
+      if(this.recentEditedPhase !== '' && this.recentEditedPhase !== this.currentPhaseVal){
+        this.configuratorService.updatePhase(this.selectedComponentId, this.recentEditedPhase).subscribe((res) => {
+          console.log(res);
+          this.editableRowIndex = -1;
+          
+        })
+      }
+    }
   }
 
-  public phaseClicked(row: any){
+  public phaseClicked(row: any, rowIndex: number){
     this.currentPhaseVal = row.phase;
     this.selectedComponentId = row.id;
+    this.editableRowIndex = rowIndex;
   }
 }

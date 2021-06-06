@@ -1,8 +1,17 @@
+.page-wrap{
+  display: flex;
+}
 .assembly-config-cont{
   padding: 0 15px;
-    display: flex;
+    
+    width: 50%;
+    .assembly-config-wrap{
+      display: flex;
+      border: 1px solid #4a4a4a;
+    }
     .right-pane{
         background-color: #151515;
+        flex-grow: 100;
     }
 }
 
