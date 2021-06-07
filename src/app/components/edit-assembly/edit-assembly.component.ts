@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ConfiguratorService } from 'src/app/services/configurator.service';
+import { ToastService } from 'src/app/shared/services/toast.service';
 
 @Component({
   selector: 'app-edit-assembly',
@@ -19,7 +20,7 @@ export class EditAssemblyComponent implements OnInit {
   public showSuggestion: boolean;
   private assemblyId: number;
 
-  constructor(private formBuilder: FormBuilder, private configuratorService: ConfiguratorService) { }
+  constructor(private formBuilder: FormBuilder, private configuratorService: ConfiguratorService, private toastService: ToastService) { }
 
   ngOnInit(): void {
     this.createAssemblyFrom = this.formBuilder.group({
@@ -79,7 +80,7 @@ export class EditAssemblyComponent implements OnInit {
       this.showSuggestion = true;    
     },
     (error) => {
-      console.log(error);
+      this.toastService.openSnackBar(error);
     }
     );
   }
@@ -95,7 +96,7 @@ export class EditAssemblyComponent implements OnInit {
       this.configuratorService.setAssemblyData(res);
     },
     (error) => {
-      console.log(error);
+      this.toastService.openSnackBar(error);
     });
   }
 

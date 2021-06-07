@@ -76,15 +76,17 @@ export class RestApiService {
       reqMethodName = 'GET';
     }
 
-    return this.httpClient.request(reqMethodName, url, options).pipe(retry(1), catchError(this.handleError));
+    return this.httpClient.request(reqMethodName, url, options).pipe(retry(0), catchError(this.handleError));
   }
 
   // Error handling
   handleError(error: any) {
     let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-      // Get client-side error
-      errorMessage = error.error.message;
+    if (error.error) {
+      errorMessage = error.error.message + '\n';
+      error.error.errors.forEach((element: any) => {
+        errorMessage += `${element.message}\n`;
+      });
     } else {
       // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfiguratorService } from '../services/configurator.service';
+import { ToastService } from '../shared/services/toast.service';
 
 
 @Component({
@@ -13,12 +14,15 @@ export class CreateAssemblyComponent implements OnInit {
   public families: any;
   public showOverlay: boolean;
   
-  constructor( private configuratorService: ConfiguratorService) { }
+  constructor( private configuratorService: ConfiguratorService, private toastService: ToastService) { }
 
   ngOnInit(): void {
     this.showOverlay = true;
     this.configuratorService.getFamilies().subscribe((res: any) => {
       this.families = res;
+    },
+    (error: any) => {
+      this.toastService.openSnackBar(error);
     });
     
   }

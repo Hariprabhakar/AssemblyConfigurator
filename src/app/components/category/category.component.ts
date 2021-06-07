@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MatSelectionList, MatSelectionListChange } from '@angular/material/list';
+import { ToastService } from 'src/app/shared/services/toast.service';
 import { ConfiguratorService } from '../../services/configurator.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class CategoryComponent implements OnInit {
   @Output() categoryChanged = new EventEmitter();
   @ViewChild(MatSelectionList) selectedCategory: MatSelectionList;
 
-  constructor(private configuratorService: ConfiguratorService) { }
+  constructor(private configuratorService: ConfiguratorService, private toastService: ToastService) { }
 
   ngOnInit(): void {
     this.showLoader = true;
@@ -24,13 +25,16 @@ export class CategoryComponent implements OnInit {
       this.categories = res;
       this.categoryList = res;
       this.showLoader = false;
-      this.selectedCategory.selectionChange.subscribe((grp: MatSelectionListChange) => {          
-        
+      this.selectedCategory.selectionChange.subscribe((grp: MatSelectionListChange) => {
         this.selectedCategory.deselectAll();
         grp.option.selected = true;
         this.categoryChanged.emit(grp.option.value);
-    });
-    })
+      });
+    },
+      (error: any) => {
+        this.toastService.openSnackBar(error);
+      }
+    );
   }
 
   public filterCategory() {

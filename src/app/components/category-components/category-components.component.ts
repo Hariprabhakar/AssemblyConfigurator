@@ -1,6 +1,7 @@
 import { Component, ElementRef, HostListener, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ConfiguratorService } from 'src/app/services/configurator.service';
+import { ToastService } from 'src/app/shared/services/toast.service';
 
 @Component({
   selector: 'app-category-components',
@@ -26,7 +27,7 @@ export class CategoryComponentsComponent implements OnInit {
   public showLoader:boolean;
   private recentEditedPhase: string;
 
-  constructor(private configuratorService: ConfiguratorService) { }
+  constructor(private configuratorService: ConfiguratorService, private toastService: ToastService) { }
 
   ngOnInit(): void {
   }
@@ -39,6 +40,9 @@ export class CategoryComponentsComponent implements OnInit {
         this.componentDataSource = new MatTableDataSource(res);
         this.editableRowIndex = -1;
         this.showLoader = false;
+      },
+      (error: any) => {
+        this.toastService.openSnackBar(error);
       });
     }    
 }
@@ -90,6 +94,9 @@ export class CategoryComponentsComponent implements OnInit {
           }
           this.showAddTag = false;
         });
+      },
+      (error: any) => {
+        this.toastService.openSnackBar(error);
       });
     }
 
@@ -108,7 +115,10 @@ export class CategoryComponentsComponent implements OnInit {
           console.log(res);
           this.editableRowIndex = -1;
           
-        })
+        },
+        (error: any) => {
+          this.toastService.openSnackBar(error);
+        });
       }
     }
   }

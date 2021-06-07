@@ -10,6 +10,8 @@ import { LayoutComponent } from './shared/components/layout/layout.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { AssemblyConfiguratorModule } from './assembly-configurator/assembly-configurator.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ToastService } from './shared/services/toast.service';
 
 @NgModule({
   declarations: [
@@ -24,10 +26,11 @@ import { AssemblyConfiguratorModule } from './assembly-configurator/assembly-con
     BrowserAnimationsModule,
     HttpClientModule,
     CreateAssemblyModule,
-    AssemblyConfiguratorModule
+    AssemblyConfiguratorModule,
+    MatSnackBarModule
       ],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
-  exports: [CreateAssemblyModule, HttpClientModule, AssemblyConfiguratorModule],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, ToastService],
+  exports: [CreateAssemblyModule, HttpClientModule, AssemblyConfiguratorModule, MatSnackBarModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
