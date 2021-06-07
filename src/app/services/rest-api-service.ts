@@ -9,13 +9,11 @@ export interface options {
   body?: object;
 }
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class RestApiService {
-
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   /*========================================
     CRUD Methods for consuming RESTful API
@@ -27,8 +25,6 @@ export class RestApiService {
       'Content-Type': 'application/json'
     })
   };
-
-
 
   // HttpClient API post() method
   public post<T>(serviceName: string, params: any, urlParams: any) {
@@ -72,7 +68,7 @@ export class RestApiService {
       // const env = appConfig.config.env;
       url = `${environment.url}${serviceName}`;
       if (urlParams) {
-        url = `${url}?${urlParams}`
+        url = `${url}?${urlParams}`;
       }
       reqMethodName = methodName;
     } else {
@@ -80,11 +76,7 @@ export class RestApiService {
       reqMethodName = 'GET';
     }
 
-    return this.httpClient.request(reqMethodName, url, options)
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      );
+    return this.httpClient.request(reqMethodName, url, options).pipe(retry(1), catchError(this.handleError));
   }
 
   // Error handling
@@ -99,5 +91,4 @@ export class RestApiService {
     }
     return throwError(errorMessage);
   }
-
 }

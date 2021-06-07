@@ -6,56 +6,55 @@ import { RestApiService } from './rest-api-service';
   providedIn: 'root'
 })
 export class ConfiguratorService {
-
-  private _companyId:number;
+  private _companyId!: number;
   private _assemblyData: any;
 
-  constructor(private restApiService: RestApiService) { }
+  constructor(private restApiService: RestApiService) {}
 
   setCompanyId(id: number) {
     this._companyId = id;
   }
-  
-  public get companyId() : number {
+
+  public get companyId(): number {
     return this._companyId;
   }
-  
-  public setAssemblyData(assebmlyData: any){
+
+  public setAssemblyData(assebmlyData: any) {
     this._assemblyData = assebmlyData;
   }
 
-  public get assemblyData() : any {
+  public get assemblyData(): any {
     return this._assemblyData;
   }
 
-  public getCategories(){
+  public getCategories() {
     return this.restApiService.get('categories', '', '');
     //return this.http.get('../../assets/categories.json')
   }
 
-  public getComponents(companyId: number, categoryId: number, includeImage: boolean = true ){
+  public getComponents(companyId: number, categoryId: number, includeImage: boolean = true) {
     const queryParam = 'companyId=' + companyId + '&categoryId=' + categoryId + '&includeImage=' + includeImage + '&pageIndex=0&pageSize=0';
     return this.restApiService.get('components', '', queryParam);
   }
 
-  public getFamilies(){
+  public getFamilies() {
     return this.restApiService.get('Families', '', 'pageIndex=0&pageSize=0');
   }
 
-  public getAssemblies(companyId: number, familyId: number, defaultAssemblies: boolean, customAssemblies: boolean){
+  public getAssemblies(companyId: number, familyId: number, defaultAssemblies: boolean, customAssemblies: boolean) {
     let queryParam: string;
-    if (customAssemblies){
+    if (customAssemblies) {
       queryParam = 'companyId=' + companyId + '&hideDefault=' + defaultAssemblies + '&showCustom=' + customAssemblies + '&pageIndex=0&pageSize=0';
     } else {
       queryParam = 'companyId=' + companyId + '&familyId=' + familyId + '&hideDefault=' + defaultAssemblies + '&showCustom=' + customAssemblies + '&pageIndex=0&pageSize=0';
     }
-    
+
     return this.restApiService.get('Assemblies', '', queryParam);
   }
 
   public getImages(companyId: number, familyId: number, defaultAssemblies: boolean, customAssemblies: boolean) {
     let queryParam: string;
-    if (customAssemblies){
+    if (customAssemblies) {
       queryParam = 'companyId=' + companyId + '&hideDefault=' + defaultAssemblies + '&showCustom=' + customAssemblies + '&pageIndex=0&pageSize=0';
     } else {
       queryParam = 'companyId=' + companyId + '&familyId=' + familyId + '&hideDefault=' + defaultAssemblies + '&showCustom=' + customAssemblies + '&pageIndex=0&pageSize=0';
@@ -63,29 +62,26 @@ export class ConfiguratorService {
     return this.restApiService.get('Assemblies/Images', '', queryParam);
   }
 
-  public getSuggestions(reqObj: any){
+  public getSuggestions(reqObj: any) {
     return this.restApiService.post('Assemblies/is-avail-abbr', reqObj, '');
   }
 
-  public createAssembly(reqObj: any, isUpdate: boolean, assemblyId: any){
-    if(isUpdate && assemblyId){
+  public createAssembly(reqObj: any, isUpdate: boolean, assemblyId: any) {
+    if (isUpdate && assemblyId) {
       return this.restApiService.put('Assemblies/' + assemblyId, reqObj, '');
     } else {
       const queryParam = 'companyId=' + this.companyId;
       return this.restApiService.post('Assemblies/', reqObj, queryParam);
     }
-    
   }
 
-  public addTagToComponent(id: any, tagName: any){
-    const queryParam = 'tag=' + tagName; 
-    return this.restApiService.post('Components/create-tag/' + id, {}, queryParam);
+  public addTagToComponent(id: any, tagName: any) {
+    const queryParam = 'tag=' + tagName;
+    return this.restApiService.post('Components/' + id + '/create-tag/', {}, queryParam);
   }
 
-  public updatePhase(id: any, phase: any){
-    const queryParam = 'phase=' + phase; 
-    return this.restApiService.patch('Components/update-phase/' + id, {}, queryParam);
+  public updatePhase(id: any, phase: any) {
+    const queryParam = 'phase=' + phase;
+    return this.restApiService.patch('Components/' + id + '/update-phase/', {}, queryParam);
   }
-
-
 }
