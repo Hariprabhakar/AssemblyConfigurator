@@ -43,6 +43,7 @@ export class CategoryComponentsComponent implements OnInit {
       },
       (error: any) => {
         this.toastService.openSnackBar(error);
+        this.showLoader = false;
       });
     }    
 }

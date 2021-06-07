@@ -34,6 +34,7 @@ export class GroupComponent implements OnInit {
     },
     (error: any) => {
       this.toastService.openSnackBar(error);
+      this.showLoader = false;
     });
 
     

@@ -49,6 +49,7 @@ export class AssembliesComponent implements OnInit {
     },
       (error: any) => {
         this.toastService.openSnackBar(error);
+        this.showLoader = false;
       }
     );
   }
