@@ -16,6 +16,7 @@ export class AppComponent {
     const myParam = urlParams.get('companyId');
     if(myParam) {
       this.configuratorService.setCompanyId(parseInt(myParam));
+      sessionStorage.setItem('companyId',myParam);
     } 
   }
 

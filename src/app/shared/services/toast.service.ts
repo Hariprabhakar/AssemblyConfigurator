@@ -9,10 +9,11 @@ export class ToastService {
   constructor(private snackBar: MatSnackBar) { }
 
   public openSnackBar(message: string, action: string = 'OK') {
-    this.snackBar.open(message, action, {
+    this.snackBar.open(message, '', {
       horizontalPosition: 'end',
       verticalPosition: 'top',
-      panelClass: 'error-snackbar'
+      panelClass: 'error-snackbar',
+      duration: 5000
     });
   }
 

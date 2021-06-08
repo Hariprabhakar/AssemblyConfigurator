@@ -26,6 +26,9 @@ export class CategoryComponentsComponent implements OnInit {
   public editableRowIndex: any;
   public showLoader:boolean;
   private recentEditedPhase: string;
+  private recentEditedTag: string;
+  public currentTagVal: any;
+  public editableTagIndex: any;
 
   constructor(private configuratorService: ConfiguratorService, private toastService: ToastService) { }
 
@@ -53,27 +56,27 @@ export class CategoryComponentsComponent implements OnInit {
     this.componentDataSource.filter = filterValue.trim().toLowerCase();    
   }
   
-  public showTagModal(event: any, row: any){
-   let top;
-    this.selectedComponentId = row.id;
-    if(row.tag){
-      this.currentTagList = row.tag.split(',');
-    } else {
-      this.currentTagList = [];
-    }
+  // public showTagModal(event: any, row: any){
+  //  let top;
+  //   this.selectedComponentId = row.id;
+  //   if(row.tag){
+  //     this.currentTagList = row.tag.split(',');
+  //   } else {
+  //     this.currentTagList = [];
+  //   }
     
-    this.showAddTag = true;
-    this.tagFlag = true;
-    top = event.pageY - event.offsetY;
-    const topMargin = window.innerHeight - top;
-    if( topMargin < 280){
-      const diff = 280 - topMargin;
-      top = top - diff;
-    }
-    this.tagModalPosition.left = event.pageX - event.offsetX + 'px';
-    this.tagModalPosition.top = top + 'px';
+  //   this.showAddTag = true;
+  //   this.tagFlag = true;
+  //   top = event.pageY - event.offsetY;
+  //   const topMargin = window.innerHeight - top;
+  //   if( topMargin < 280){
+  //     const diff = 280 - topMargin;
+  //     top = top - diff;
+  //   }
+  //   this.tagModalPosition.left = event.pageX - event.offsetX + 'px';
+  //   this.tagModalPosition.top = top + 'px';
     
-  }
+  // }
 
   @HostListener('document:click', ['$event'])
   clickout(event: any) {
@@ -124,9 +127,30 @@ export class CategoryComponentsComponent implements OnInit {
     }
   }
 
+  public updateTag(event: any){
+    if(this.recentEditedTag !== event.target.value){
+      this.recentEditedTag = event.target.value;
+
+      if(this.recentEditedTag !== '' && this.recentEditedTag !== this.currentTagVal){
+        this.configuratorService.addTagToComponent(this.selectedComponentId,this.recentEditedTag).subscribe((res: any) => {
+          this.editableTagIndex = -1;
+        },
+        (error: any) => {
+          this.toastService.openSnackBar(error);
+        });
+      }
+    }
+  }
+
   public phaseClicked(row: any, rowIndex: number){
     this.currentPhaseVal = row.phase;
     this.selectedComponentId = row.id;
     this.editableRowIndex = rowIndex;
+  }
+
+  public tagClicked(row: any, rowIndex: number){
+    this.currentTagVal = row.tag;
+    this.selectedComponentId = row.id;
+    this.editableTagIndex = rowIndex;
   }
 }

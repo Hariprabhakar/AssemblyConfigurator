@@ -9,7 +9,13 @@ export class ConfiguratorService {
   private _companyId!: number;
   private _assemblyData: any;
 
-  constructor(private restApiService: RestApiService) {}
+  constructor(private restApiService: RestApiService) {
+    const sessionCompany = sessionStorage.getItem('companyId');
+    if ( sessionCompany !== null) {
+      this._companyId = parseInt(sessionCompany);
+    }
+
+  }
 
   setCompanyId(id: number) {
     this._companyId = id;

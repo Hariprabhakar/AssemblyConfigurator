@@ -16,8 +16,9 @@ export class LayoutComponent implements OnInit {
     .subscribe(params => {
       if(params.companyId) {
         this.configuratorService.setCompanyId(parseInt(params.companyId));
+        sessionStorage.setItem('companyId', params.companyId);
       }
-    })
+    }) 
   }
 
 }

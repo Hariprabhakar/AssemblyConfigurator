@@ -52,6 +52,7 @@
   }
 }
 .assembly-lists {
+  height: calc(100vh - 135px);
   overflow: hidden auto;
   &::-webkit-scrollbar {
     width: 10px;
