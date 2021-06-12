@@ -30,7 +30,7 @@ import { ToastService } from './shared/services/toast.service';
     MatSnackBarModule
       ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, ToastService],
-  exports: [CreateAssemblyModule, HttpClientModule, AssemblyConfiguratorModule, MatSnackBarModule],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

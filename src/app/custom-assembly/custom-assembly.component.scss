@@ -1,0 +1,159 @@
+.custom-assembly-wrap {
+  .assembly-section {
+    .assembly-detail-section {
+      display: flex;
+
+      .primary-img {
+        width: 180px;
+        height: 180px;
+        background-color: #818181;
+        position: relative;
+        flex: 0 0 180px;
+
+        .upload-img-btn button {
+          position: absolute;
+          transform: translate(-50%, -50%);
+          top: 50%;
+          left: 50%;
+          width: 150px;
+          font-size: 11px;
+        }
+      }
+
+      .assembly-info {
+        display: flex;
+        position: relative;
+        width: 100%;
+        .icon-wrap {
+          .icon {
+            padding: 5px 5px 0;
+            display: flex;
+            .icon-shape {
+              height: 34px;
+              width: 34px;
+              border-radius: 20px;
+              border: 2px solid #454545;
+            }
+            .caret {
+              color: #747474;
+            }
+          }
+          width: 71px;
+          height: 71px;
+          margin: 6px;
+          background-color: #262626;
+          .icon-text {
+            font-size: 9px;
+            color: #787878;
+            text-align: center;
+            line-height: 10px;
+            padding: 5px 5px;
+          }
+        }
+        .assembly-details {
+          font-size: 14px;
+          color: #787878;
+          padding: 8px 13px;
+          & > div {
+            padding: 5px 0;
+          }
+        }
+        .component-controls {
+          width: 100%;
+          position: absolute;
+          bottom: 0px;
+          height: 40px;
+          padding-left: 3px;
+          display: flex;
+          border: 1px solid #4a4a4a;
+          border-bottom: none;
+          .view-select {
+            width: 50%;
+            align-items: center;
+            justify-content: flex-end;
+            display: flex;
+            padding: 0 10px;
+            border-right: 1px solid #4a4a4a;
+            color: #ffc400;
+          }
+          .component-search {
+            width: 50%;
+            position: relative;
+            display: flex;
+            input {
+              width: 100%;
+              padding-right: 36px;
+              padding-left: 10px;
+              font-size: 12px;
+            }
+            .search {
+              position: absolute;
+              top: 7px;
+              right: 10px;
+              font-size: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .component-section {
+    position: relative;
+    height: calc(100vh - 328px);
+    .table {
+      table {
+        width: 100%;
+        border: 2px solid #4a4a4a;
+        border-right: none;
+        border-bottom: 1px;
+        border-left: 1px;
+        table-layout: fixed;
+        .mat-column {
+          &-image,
+          &-component,
+          &-tag,
+          &-phase,
+          &-uom,
+          &-qty,
+          &-sn {
+            border-right: 1px solid #4a4a4a;
+            padding: 0 8px;
+            text-align: justify;
+            font-size: 12px;
+            color: #787878;
+          }
+        }
+        tr.mat-row,
+        tr.mat-footer-row,
+        tr.mat-header-row {
+          height: 36px;
+        }
+        tr.mat-header-row {
+          text-transform: uppercase;
+        }
+      }
+    }
+    .footer {
+      position: absolute;
+      height: 40px;
+      background-color: #1f1f1f;
+      width: 100%;
+      bottom: 0;
+      padding-right: 15px;
+      .save-btn-wrap {
+        float: right;
+        padding-top: 5px;
+        button {
+          border-radius: 20px;
+          width: 100px;
+          height: 30px;
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}
+
+.mat-table {
+  background-color: #151515;
+}
