@@ -2,6 +2,8 @@ import { Component, ElementRef, HostListener, Input, OnInit, SimpleChanges, View
 import { MatTableDataSource } from '@angular/material/table';
 import { ConfiguratorService } from 'src/app/services/configurator.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
+import {MatDialog} from '@angular/material/dialog';
+import { JunctionboxModalComponent } from '../junctionbox-modal/junctionbox-modal.component';
 
 @Component({
   selector: 'app-category-components',
@@ -30,10 +32,19 @@ export class CategoryComponentsComponent implements OnInit {
   public currentTagVal: any;
   public editableTagIndex: any;
 
-  constructor(private configuratorService: ConfiguratorService, private toastService: ToastService) { }
+  constructor(private configuratorService: ConfiguratorService, private toastService: ToastService,  public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(JunctionboxModalComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
 
   ngOnChanges(changes: SimpleChanges) {
     if(changes.categoryValue && changes.categoryValue.currentValue){

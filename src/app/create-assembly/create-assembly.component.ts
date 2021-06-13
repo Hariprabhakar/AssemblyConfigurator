@@ -18,6 +18,7 @@ export class CreateAssemblyComponent implements OnInit {
   ngOnInit(): void {
     this.showOverlay = true;
     this.configuratorService.getFamilies().subscribe((res: any) => {
+      console.log('families List', res);
       this.families = res;
     },
     (error: any) => {

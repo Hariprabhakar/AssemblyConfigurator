@@ -12,6 +12,8 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { AssemblyConfiguratorModule } from './assembly-configurator/assembly-configurator.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ToastService } from './shared/services/toast.service';
+import {MatDialogModule} from '@angular/material/dialog';
+import { JunctionboxModalComponent } from './components/junctionbox-modal/junctionbox-modal.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { ToastService } from './shared/services/toast.service';
     LayoutComponent,
     HeaderComponent,
     FooterComponent,
+    JunctionboxModalComponent    
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,8 @@ import { ToastService } from './shared/services/toast.service';
     HttpClientModule,
     CreateAssemblyModule,
     AssemblyConfiguratorModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
       ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, ToastService],
   exports: [],
