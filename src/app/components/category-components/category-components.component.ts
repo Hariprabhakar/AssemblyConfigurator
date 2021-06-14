@@ -4,6 +4,7 @@ import { ConfiguratorService } from 'src/app/services/configurator.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import {MatDialog} from '@angular/material/dialog';
 import { JunctionboxModalComponent } from '../junctionbox-modal/junctionbox-modal.component';
+import { AssemblyIconModalComponent } from '../assembly-icon-modal/assembly-icon-modal.component';
 
 @Component({
   selector: 'app-category-components',
@@ -38,8 +39,15 @@ export class CategoryComponentsComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(JunctionboxModalComponent);
-
+    const dialogRef = this.dialog.open(JunctionboxModalComponent, {
+     backdropClass: 'backdropBackground'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+  openAssembly() {
+    const dialogRef = this.dialog.open(AssemblyIconModalComponent);
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });

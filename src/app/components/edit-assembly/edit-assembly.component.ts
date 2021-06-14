@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ConfiguratorService } from 'src/app/services/configurator.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-edit-assembly',
@@ -20,7 +22,7 @@ export class EditAssemblyComponent implements OnInit {
   public showSuggestion: boolean;
   private assemblyId: number;
 
-  constructor(private formBuilder: FormBuilder, private configuratorService: ConfiguratorService, private toastService: ToastService) { }
+  constructor(private formBuilder: FormBuilder, private configuratorService: ConfiguratorService, private toastService: ToastService,  public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.createAssemblyFrom = this.formBuilder.group({

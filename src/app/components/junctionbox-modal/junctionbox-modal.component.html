@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>Select System and Connection type</h2>
 <mat-dialog-actions align="end"> 
-    <button class="close-button" mat-flat-button color="primary" [mat-dialog-close]="true" >X</button>   
+    <button class="close-button" mat-flat-button [mat-dialog-close]="true" ><span><img src="../../../assets/images/Shape.png"></span></button>   
 </mat-dialog-actions> 
 <div class="clearfix"></div>
 <mat-dialog-content class="mat-typography">
@@ -12,7 +12,7 @@
             <div class="select-wrap fl">
                 <label>System</label>
                 <mat-form-field class="select-group" appearance="outline">
-                <mat-label>Select System</mat-label>
+                <mat-label class="matLable">Select System</mat-label>
                 <mat-select multiple formControlName="fil1">
                     <mat-option value="selected">Option1</mat-option>
                     <mat-option value="Option2">Option2</mat-option>
@@ -22,7 +22,7 @@
             <div class="select-wrap fr">               
                 <label class="fr">Connection Type</label>
                 <mat-form-field class="select-group fr" appearance="outline">
-                    <mat-label>MC CableGyr</mat-label>
+                    <mat-label class="matLable">MC CableGyr</mat-label>
                     <mat-select formControlName="fil2">
                         
                             <mat-option value="option3">Option3</mat-option>

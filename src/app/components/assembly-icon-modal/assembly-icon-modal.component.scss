@@ -1,12 +1,14 @@
 .clearfix{float: none; clear: both;}
+.w100{width: 100%; float: left}
 h2 {  
    font-size: 14px;
-    font-weight: 100 !important;
+    font-weight: 500 !important;
     margin: 0 0 5px;
     float: left;
+    line-height: 0.1;
 }
 h3{
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 100;
     margin: 0 0 0px;
 }
@@ -34,10 +36,10 @@ label{
   
     .assembly-field,
     .select-group {
-      width: 170px;     
+      width: 100%;     
     }
     .select-group {
-        width: 170px;     
+        width: 100%;     
       }
   
     .abbr-field {
@@ -74,7 +76,7 @@ label{
     .fl{float:left}
     .fr{float:right}
     .select-wrap {
-      width: 50%;  
+      width: 100%;  
       font-size: 12px;     
       ::ng-deep .mat-form-field-flex > .mat-form-field-infix {
         border: 0;
@@ -116,18 +118,9 @@ label{
       }
     }
   }
-  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-start {
-    border-radius: 0px !important;
-  }
-  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-end {
-    border-radius: 0px !important;
-  }
-  .cdk-overlay-pane{width: 610px !important;}
-  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-    background-color: 
-    #282828
-  }
-  .mat-typography{height: 170px; width: 415px;}
+
+  .cdk-overlay-pane{width: 610px !important;} 
+  .mat-typography{width: 415px; background-color: #3E3E3E; padding: 0 10px;}
   .select-picklist{width: 100%}
   .mat-dialog-actions{padding:0; min-height: 0;}
   .close-button{    
@@ -139,7 +132,46 @@ label{
     padding: 0;
 }
 .matLable{font-size: 10px; opacity: 0.53;}
-  
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+  line-height: 4;
+  font-size: 10px;
+}
+.radio-btn{width: 100%;
+  float: left;
+  padding: 8px 10px;
+  background-color: #444444; 
+  margin-bottom: 8px;
+  font-size: 10px;
+}
+.assem-grp{margin-top: 8px;}
+.sym-txt{margin-top: 10px; font-size: 12px;
+  label{margin-bottom: 8px; font-size: 10px;}
+}
+.sym-shape{margin-top: 10px; font-size: 12px;
+  label{margin-bottom: 0px; font-size: 10px;}  
+}
+.symbol-selector{width:100%; float:left;
+  .sym-txt{
+    width:47%; float:left;    
+    mat-label{font-size: 10px; opacity: 0.37;}
+    mat-form-field{width: 90%; float:left}
+  }
+  .sym-shape{
+    width:47%; float:left;
+    mat-label{font-size: 10px;}
+  }
+  mat-form-field{width: 100%; float:left}
+}
+.backdropBackground {
+  /* your css needs */
+background-color: #000!important;}
+mat-radio-button{font-size: 12px; font-weight: 100;}
+.exist-assem{width: 90% !important; float:left}
+.addbtn{float: right; margin-top: 15px}
+.addbtn1{margin-top:40px; float: right;}
+.addfinal{font-weight: 500;}
+ 
 @media(max-width: 768px){
     .select-group{float:left !important}
     .mat-typography{width: 100%; height: auto; margin: 0; padding:0;}
