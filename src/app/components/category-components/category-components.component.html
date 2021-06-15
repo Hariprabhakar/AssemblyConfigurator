@@ -68,8 +68,8 @@
       <ng-container matColumnDef="add">
         <th mat-header-cell *matHeaderCellDef> Add </th>       
         <td mat-cell *matCellDef="let element">         
-          <button class="fab-icon" mat-mini-fab color="primary">
-            <mat-icon [inline]="true" (click)="isDialogOpen()">add</mat-icon>            
+          <button class="fab-icon" mat-mini-fab color="primary" (click)="addComponent(element)">
+            <mat-icon [inline]="true">add</mat-icon>            
           </button>         
         </td>
       </ng-container>

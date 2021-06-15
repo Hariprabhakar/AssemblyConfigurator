@@ -15,19 +15,21 @@
                 <mat-form-field class="select-group" appearance="outline">
                 <mat-label class="matLable">Select System</mat-label>
                 <mat-select multiple formControlName="systemName">
-                    <mat-option value="selected">Option1</mat-option>
-                    <mat-option value="Option2">Option2</mat-option>
+                    <mat-option value="selected">Power</mat-option>
+                    <mat-option value="Option2">Power</mat-option>
                 </mat-select>
                 </mat-form-field>
             </div>
             <div class="select-wrap fr">               
                 <label class="fr">Connection Type</label>
                 <mat-form-field class="select-group fr" appearance="outline">
-                    <mat-label class="matLable">MC CableGyr</mat-label>
+                    <mat-label class="matLable">Select Connection Type</mat-label>
                     <mat-select formControlName="connectionFill">
                         
-                            <mat-option value="option3">Option3</mat-option>
-                            <mat-option value="Option4">Option4</mat-option>
+                            <mat-option value="option3">3/4" EMT</mat-option>
+                            <mat-option value="Option4">1" EMT</mat-option>
+                            <mat-option value="option3">1-1/2" EMT</mat-option>
+                            <mat-option value="Option4">MC Cable</mat-option>
                         
                     </mat-select>
                 </mat-form-field>               
@@ -36,7 +38,7 @@
         <div class="clearfix"></div>
         <div class="edit-btn">
             <mat-dialog-actions align="end"> 
-                <button mat-flat-button color="primary" [mat-dialog-close]="true" >Add</button>   
+                <button mat-flat-button color="primary" [mat-dialog-close]="JunctionBoxFrom" >Add</button>   
             </mat-dialog-actions>     
         </div>
     </div> 

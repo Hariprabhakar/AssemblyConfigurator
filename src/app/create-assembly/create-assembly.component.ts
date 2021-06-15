@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ConfiguratorService } from '../services/configurator.service';
 import { ToastService } from '../shared/services/toast.service';
 
@@ -12,6 +12,7 @@ export class CreateAssemblyComponent implements OnInit {
   public categoryValue: any;
   public families: any;
   public showOverlay: boolean;
+  public selectedComponent: any;
   
   constructor( private configuratorService: ConfiguratorService, private toastService: ToastService) { }
 
@@ -34,6 +35,11 @@ export class CreateAssemblyComponent implements OnInit {
 
   public removeOverlay() {
     this.showOverlay = !this.showOverlay;
+  }
+
+  public addComponent(event: any){
+    this.selectedComponent = event;
+    console.log(event);
   }
 
 }

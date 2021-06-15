@@ -4,12 +4,12 @@
     <div class="filter-section">
       <div class="create-assembly-wrap">
         <div class="left-pane"><app-category (categoryChanged)="onCategoryChanged($event)"></app-category></div>
-      <div class="right-pane"><app-category-components [categoryValue]="categoryValue"></app-category-components></div>    
+      <div class="right-pane"><app-category-components [categoryValue]="categoryValue" (selectedComponent)="addComponent($event)"></app-category-components></div>    
       </div>
     </div>
     <div class="page-right-pane">
       <div class="right-container">
-        <app-custom-assembly></app-custom-assembly>
+        <app-custom-assembly [selectedComponent]="selectedComponent"></app-custom-assembly>
       </div>
     </div>
 
