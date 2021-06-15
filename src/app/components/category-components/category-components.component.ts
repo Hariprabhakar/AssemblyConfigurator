@@ -32,21 +32,25 @@ export class CategoryComponentsComponent implements OnInit {
   private recentEditedTag: string;
   public currentTagVal: any;
   public editableTagIndex: any;
+  public isJunctionBox: boolean;
 
-  constructor(private configuratorService: ConfiguratorService, private toastService: ToastService,  public dialog: MatDialog) { }
+  constructor(private configuratorService: ConfiguratorService, private toastService: ToastService,  public dialog: MatDialog) { 
+    this.isJunctionBox = false;
+  }
 
   ngOnInit(): void {
+  
   }
 
   openDialog() {
     const dialogRef = this.dialog.open(JunctionboxModalComponent, {
-     backdropClass: 'backdropBackground'
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+      backdropClass: 'backdropBackground'
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
   }
-  openAssembly() {
+  openAssembly() { // Can be moved to right place
     const dialogRef = this.dialog.open(AssemblyIconModalComponent);
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -55,7 +59,14 @@ export class CategoryComponentsComponent implements OnInit {
 
 
   ngOnChanges(changes: SimpleChanges) {
+    console.log('ngOnChanges', this.categoryValue);
     if(changes.categoryValue && changes.categoryValue.currentValue){
+      if (changes.categoryValue.currentValue.id === 9) { // Junctionbox id is 7 and for mocking its kept of Data Jack
+        this.isJunctionBox = true;
+      } else {
+        this.isJunctionBox = false;
+      }
+      
       const id = changes.categoryValue.currentValue.id;
       this.showLoader = true;
       this.configuratorService.getComponents(this.configuratorService.companyId, id).subscribe((res: any) => {
@@ -68,6 +79,18 @@ export class CategoryComponentsComponent implements OnInit {
         this.showLoader = false;
       });
     }    
+}
+
+/**/
+isDialogOpen() {
+  const getAssemblyData = this.configuratorService.getAssemblyData();
+  console.log('getAssemblyData', getAssemblyData);  
+   if (getAssemblyData !== undefined && getAssemblyData?.familyId && getAssemblyData.familyId === 2) {
+     this.openDialog();
+   } else if(this.isJunctionBox) {
+     this.openDialog();
+   }
+
 }
 
   filterComponent(event: any){

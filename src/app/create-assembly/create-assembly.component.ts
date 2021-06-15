@@ -29,6 +29,7 @@ export class CreateAssemblyComponent implements OnInit {
 
   onCategoryChanged(val: any){
     this.categoryValue = val;
+    console.log('in parent', this.categoryValue);
   }
 
   public removeOverlay() {

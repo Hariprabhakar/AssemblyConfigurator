@@ -2,7 +2,7 @@
   <div class="ac-loader" *ngIf="showLoader">
     <mat-spinner [diameter]="40"></mat-spinner>
   </div>
-  <button class="btn" (click)="openAssembly()">Assembly Icon</button>
+  <!-- <button class="btn" (click)="openAssembly()">Assembly Icon</button> -->
   <div class="filter-search">
     <div class="label">
       <div>
@@ -69,7 +69,7 @@
         <th mat-header-cell *matHeaderCellDef> Add </th>       
         <td mat-cell *matCellDef="let element">         
           <button class="fab-icon" mat-mini-fab color="primary">
-            <mat-icon [inline]="true" (click)="openDialog()">add</mat-icon>            
+            <mat-icon [inline]="true" (click)="isDialogOpen()">add</mat-icon>            
           </button>         
         </td>
       </ng-container>

@@ -6,14 +6,15 @@
 <mat-dialog-content class="mat-typography">
   <h3>Component Name</h3>
   <div class="valid">4in x 2-1/8 Deep square special box</div>
-  <form autocomplete="off" >
+
+<form  [formGroup]="JunctionBoxFrom" autocomplete="off" >
     <div class="create-assembly">  
         <div class="select-picklist">
             <div class="select-wrap fl">
                 <label>System</label>
                 <mat-form-field class="select-group" appearance="outline">
                 <mat-label class="matLable">Select System</mat-label>
-                <mat-select multiple formControlName="fil1">
+                <mat-select multiple formControlName="systemName">
                     <mat-option value="selected">Option1</mat-option>
                     <mat-option value="Option2">Option2</mat-option>
                 </mat-select>
@@ -23,7 +24,7 @@
                 <label class="fr">Connection Type</label>
                 <mat-form-field class="select-group fr" appearance="outline">
                     <mat-label class="matLable">MC CableGyr</mat-label>
-                    <mat-select formControlName="fil2">
+                    <mat-select formControlName="connectionFill">
                         
                             <mat-option value="option3">Option3</mat-option>
                             <mat-option value="Option4">Option4</mat-option>
