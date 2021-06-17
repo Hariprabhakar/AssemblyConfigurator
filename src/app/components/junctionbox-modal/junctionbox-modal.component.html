@@ -7,7 +7,7 @@
   <h3>Component Name</h3>
   <div class="valid">4in x 2-1/8 Deep square special box</div>
 
-<form  autocomplete="off" >
+<form  [formGroup]="JunctionBoxFrom" autocomplete="off" >
     <div class="create-assembly">  
         <div class="select-picklist">
             <div class="select-wrap fl">
@@ -15,8 +15,8 @@
                 <mat-form-field class="select-group" appearance="outline">
                 <mat-label class="matLable">Select System</mat-label>
                 <mat-select multiple formControlName="systemName">
-                    <mat-option value="selected">Power</mat-option>
-                    <mat-option value="Option2">Power</mat-option>
+                    <mat-option value="power1">Power</mat-option>
+                    <mat-option value="power2">Power</mat-option>
                 </mat-select>
                 </mat-form-field>
             </div>
@@ -24,12 +24,12 @@
                 <label class="fr">Connection Type</label>
                 <mat-form-field class="select-group fr" appearance="outline">
                     <mat-label class="matLable">Select Connection Type</mat-label>
-                    <mat-select formControlName="connectionFill">
+                    <mat-select  multiple formControlName="connectionFill">
                         
-                            <mat-option value="option3">3/4" EMT</mat-option>
-                            <mat-option value="Option4">1" EMT</mat-option>
-                            <mat-option value="option3">1-1/2" EMT</mat-option>
-                            <mat-option value="Option4">MC Cable</mat-option>
+                            <mat-option value="3by4emt">3/4" EMT</mat-option>
+                            <mat-option value="1emt">1" EMT</mat-option>
+                            <mat-option value="1to1by2emt">1-1/2" EMT</mat-option>
+                            <mat-option value="mccable">MC Cable</mat-option>
                         
                     </mat-select>
                 </mat-form-field>               
@@ -38,7 +38,7 @@
         <div class="clearfix"></div>
         <div class="edit-btn">
             <mat-dialog-actions align="end"> 
-                <button mat-flat-button color="primary" [mat-dialog-close]="JunctionBoxFrom" >Add</button>   
+                <button mat-flat-button color="primary"  (click)="onSubmit()">Add</button>   
             </mat-dialog-actions>     
         </div>
     </div> 
