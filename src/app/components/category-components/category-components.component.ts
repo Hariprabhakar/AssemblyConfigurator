@@ -4,7 +4,8 @@ import { ConfiguratorService } from 'src/app/services/configurator.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import { MatDialog } from '@angular/material/dialog';
 import { JunctionboxModalComponent } from '../junctionbox-modal/junctionbox-modal.component';
-import { AssemblyIconModalComponent } from '../assembly-icon-modal/assembly-icon-modal.component';
+
+
 
 @Component({
   selector: 'app-category-components',
@@ -53,13 +54,7 @@ export class CategoryComponentsComponent implements OnInit {
       this.selectedComponent.emit(this.recentElement);
     });
   }
-  openAssembly() { // Can be moved to right place
-    const dialogRef = this.dialog.open(AssemblyIconModalComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
-
+ 
 
   ngOnChanges(changes: SimpleChanges) {
     console.log('ngOnChanges', this.categoryValue);

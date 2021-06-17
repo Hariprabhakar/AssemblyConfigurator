@@ -3,10 +3,10 @@
         <div class="assembly-detail-section">
             <div class="primary-img">
                 <div class="upload-img-btn secondary-btn">
-                    <button mat-flat-button color="primary">Upload Assembly Image</button>
+                    <button mat-flat-button color="primary" (click)="uploadFile()">Upload Assembly Image</button>
                 </div>
             </div>
-            <div class="assembly-info">
+            <div class="assembly-info" (click)="openAssembly()">
                 <div class="icon-wrap">
                     <div class="icon">
                         <div class="icon-shape"></div>
@@ -14,7 +14,8 @@
                             <mat-icon>arrow_drop_down</mat-icon>
                         </div>
                     </div>
-                    <div class="icon-text">Select Assembly Icon</div>
+                    <div class="icon-text" >Select Assembly Icon</div>
+                   
                 </div>
                 <div class="assembly-details">
                     <div class="assembly-name">Tim’s Assembly 1</div>

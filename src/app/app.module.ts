@@ -14,8 +14,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ToastService } from './shared/services/toast.service';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatFileUploadModule } from 'angular-material-fileupload';
 import { JunctionboxModalComponent } from './components/junctionbox-modal/junctionbox-modal.component';
 import { AssemblyIconModalComponent } from './components/assembly-icon-modal/assembly-icon-modal.component';
+import { FileChooseModalComponent } from './components/file-choose-modal/file-choose-modal.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { AssemblyIconModalComponent } from './components/assembly-icon-modal/ass
     HeaderComponent,
     FooterComponent,
     JunctionboxModalComponent,
-    AssemblyIconModalComponent    
+    AssemblyIconModalComponent,    
+    FileChooseModalComponent    
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ import { AssemblyIconModalComponent } from './components/assembly-icon-modal/ass
     AssemblyConfiguratorModule,
     MatSnackBarModule,
     MatDialogModule,
-    MatRadioModule
+    MatRadioModule,
+    MatFileUploadModule
       ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, ToastService],
   exports: [],
