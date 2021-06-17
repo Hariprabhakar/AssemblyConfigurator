@@ -26,8 +26,8 @@ import { FileChooseModalComponent } from './components/file-choose-modal/file-ch
     HeaderComponent,
     FooterComponent,
     JunctionboxModalComponent,
-    AssemblyIconModalComponent,    
-    FileChooseModalComponent    
+    AssemblyIconModalComponent,   
+    FileChooseModalComponent     
   ],
   imports: [
     BrowserModule,

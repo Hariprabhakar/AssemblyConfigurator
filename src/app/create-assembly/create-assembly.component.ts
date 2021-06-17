@@ -21,6 +21,7 @@ export class CreateAssemblyComponent implements OnInit {
     this.configuratorService.getFamilies().subscribe((res: any) => {
       console.log('families List', res);
       this.families = res;
+      this.setFamilies();
     },
     (error: any) => {
       this.toastService.openSnackBar(error);
@@ -40,6 +41,13 @@ export class CreateAssemblyComponent implements OnInit {
   public addComponent(event: any){
     this.selectedComponent = event;
     console.log(event);
+  }
+
+  private setFamilies(){
+    let family: any = {};
+    this.families.forEach((familyItem: any) => {
+      family[familyItem.id] = familyItem.name;
+    });
   }
 
 }

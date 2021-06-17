@@ -45,12 +45,18 @@ export class CategoryComponentsComponent implements OnInit {
 
   }
 
-  openDialog() {
+  openDialog(element: any) {
     const dialogRef = this.dialog.open(JunctionboxModalComponent, {
-      backdropClass: 'backdropBackground'
+      backdropClass: 'backdropBackground',
+      data: {
+        componentName: element.name,
+        isJunctionBox: this.isJunctionBox
+      }
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
+      this.recentElement.connection = result.connection;
+      this.recentElement.system = result.systemName;
       this.selectedComponent.emit(this.recentElement);
     });
   }
@@ -89,9 +95,9 @@ export class CategoryComponentsComponent implements OnInit {
     this.recentElement = element;
     const getAssemblyData = this.configuratorService.getAssemblyData();
     if (getAssemblyData !== undefined && getAssemblyData?.familyId && getAssemblyData.familyId === 2) {
-      this.openDialog();
+      this.openDialog(element);
     } else if (this.isJunctionBox) {
-      this.openDialog();
+      this.openDialog(element);
     } else {
       this.selectedComponent.emit(element);
     }

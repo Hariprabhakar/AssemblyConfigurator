@@ -5,7 +5,7 @@
 <div class="clearfix"></div>
 <mat-dialog-content class="mat-typography">
   <h3>Component Name</h3>
-  <div class="valid">4in x 2-1/8 Deep square special box</div>
+  <div class="valid">{{data.componentName}}</div>
 
 <form  [formGroup]="JunctionBoxFrom" autocomplete="off" >
     <div class="create-assembly">  
@@ -13,10 +13,12 @@
             <div class="select-wrap fl">
                 <label>System</label>
                 <mat-form-field class="select-group" appearance="outline">
-                <mat-label class="matLable">Select System</mat-label>
-                <mat-select multiple formControlName="systemName">
-                    <mat-option value="power1">Power</mat-option>
-                    <mat-option value="power2">Power</mat-option>
+                <!-- <mat-label class="matLable">Select System</mat-label> -->
+                <mat-select [multiple]="isJunctionBoxGroup" formControlName="systemName">
+                    <mat-option value="power">Power</mat-option>
+                    <mat-option value="Data">Data</mat-option>
+                    <mat-option value="Lighting">Lighting</mat-option>
+                    <mat-option value="Firealarm">Fire Alarm</mat-option>
                 </mat-select>
                 </mat-form-field>
             </div>
@@ -24,7 +26,7 @@
                 <label class="fr">Connection Type</label>
                 <mat-form-field class="select-group fr" appearance="outline">
                     <mat-label class="matLable">Select Connection Type</mat-label>
-                    <mat-select  multiple formControlName="connectionFill">
+                    <mat-select  [multiple]="isJunctionBoxGroup" formControlName="connection">
                         
                             <mat-option value="3by4emt">3/4" EMT</mat-option>
                             <mat-option value="1emt">1" EMT</mat-option>

@@ -141,19 +141,27 @@
             font-size: 12px;
             color: #787878;
           }
-          &-uom, &-image {
+          &-uom,
+          &-image {
             width: 50px !important;
           }
           &-component {
-            width: 200px !important;
+            width: 250px !important;
           }
           &-qty {
             width: 50px !important;
+            padding-left: 5px;
+            background-color: #4a4a4a;
+            border: 1px solid #2b2b2b;
+            input{
+              width: 50px;
+            }
           }
           &-sn {
             width: 40px !important;
           }
-          &-phase, &-tag {
+          &-phase,
+          &-tag {
             width: 70px !important;
           }
         }
@@ -193,5 +201,23 @@
 }
 
 .mat-header-cell {
-  background: #151515;
+  background: #151515 !important;
+}
+
+.jbox-action{
+  display: flex;
+  padding: 5px 0px;
+  .jbox-connector, .jbox-system{
+    display: flex;
+    .chip{
+      background-color: #151515;
+      border-radius: 20px;
+      padding: 1px 10px;
+    }
+  }
+
+}
+
+.jbox-connector{
+  padding-right: 15px;
 }

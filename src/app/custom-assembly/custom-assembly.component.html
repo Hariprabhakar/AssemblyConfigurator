@@ -1,105 +1,118 @@
 <div class="custom-assembly-wrap">
-    <div class="assembly-section">
-        <div class="assembly-detail-section">
-            <div class="primary-img">
-                <div class="upload-img-btn secondary-btn">
-                    <button mat-flat-button color="primary" (click)="uploadFile()">Upload Assembly Image</button>
-                </div>
-            </div>
-            <div class="assembly-info" (click)="openAssembly()">
-                <div class="icon-wrap">
-                    <div class="icon">
-                        <div class="icon-shape"></div>
-                        <div class="caret">
-                            <mat-icon>arrow_drop_down</mat-icon>
-                        </div>
-                    </div>
-                    <div class="icon-text" >Select Assembly Icon</div>
-                   
-                </div>
-                <div class="assembly-details">
-                    <div class="assembly-name">Tim’s Assembly 1</div>
-                    <div class="assembly-group">Group: In-wall devices </div>
-                    <div class="system-names">System:</div>
-                    <div class="connection-type">Connection Type:</div>
-                </div>
-                <div class="component-controls">
-                    <div class="view-select">
-                        <mat-icon>grid_view_fill</mat-icon>
-                    </div>
-                    <div class="component-search ac-input">
-                        <input type="text" placeholder="Search by part name, Size, Material etc" />
-                        <div class="search">
-                            <mat-icon inline="true">search</mat-icon>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="assembly-section">
+    <div class="assembly-detail-section">
+      <div class="primary-img">
+        <div class="upload-img-btn secondary-btn">
+          <button mat-flat-button color="primary" (click)="uploadFile()">Upload Assembly Image</button>
         </div>
-        <div class="component-section">
-            <div class="table">
-                <table mat-table [dataSource]="componentTableData">
-                    <ng-container matColumnDef="sn">
-                        <th mat-header-cell *matHeaderCellDef> SN </th>
-                        <td mat-cell *matCellDef="let element">
-                        </td>
-                      </ng-container>
+      </div>
+      <div class="assembly-info" (click)="openAssembly()">
+        <div class="icon-wrap">
+          <div class="icon">
+            <div class="icon-shape"></div>
+            <div class="caret">
+              <mat-icon>arrow_drop_down</mat-icon>
+            </div>
+          </div>
+          <div class="icon-text">Select Assembly Icon</div>
 
-                    <ng-container matColumnDef="image">
-                      <th mat-header-cell *matHeaderCellDef> Image </th>
-                      <td mat-cell *matCellDef="let element"></td>
-                    </ng-container>
-              
-              
-                    <ng-container matColumnDef="component">
-                      <th mat-header-cell *matHeaderCellDef> Component </th>
-                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                    </ng-container>
-              
-              
-                    <!-- <ng-container matColumnDef="tag">
+        </div>
+        <div class="assembly-details">
+          <div class="assembly-name">{{assemblydata?.name}}</div>
+          <div class="assembly-group">Group: {{groupName}} </div>
+          <div class="system-names">System:</div>
+          <div class="connection-type">Connection Type:</div>
+        </div>
+        <div class="component-controls">
+          <div class="view-select">
+            <mat-icon>grid_view_fill</mat-icon>
+          </div>
+          <div class="component-search ac-input">
+            <input type="text" placeholder="Search by part name, Size, Material etc" />
+            <div class="search">
+              <mat-icon inline="true">search</mat-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="component-section">
+      <div class="table">
+        <table mat-table [dataSource]="componentTableData">
+          <ng-container matColumnDef="sn">
+            <th mat-header-cell *matHeaderCellDef> SN </th>
+            <td mat-cell *matCellDef="let element;let i = index;">{{i + 1}}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="image">
+            <th mat-header-cell *matHeaderCellDef> Image </th>
+            <td mat-cell *matCellDef="let element"></td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="component">
+            <th mat-header-cell *matHeaderCellDef> Component </th>
+            <td mat-cell *matCellDef="let element">
+              <div>{{element.name}}</div>
+              <div class="jbox-action" *ngIf="element.connection && element.system">
+                <div class="jbox-connector">
+                  <div>connenctor:</div>
+                  <div class="chip">{{element.connection}}</div>
+                </div>
+                <div class="jbox-system">
+                  <div>system:</div>
+                  <div class="chip">{{element.system}}</div>
+                </div>
+              </div>
+
+            </td>
+          </ng-container>
+
+
+          <!-- <ng-container matColumnDef="tag">
                         <th mat-header-cell *matHeaderCellDef> Tag </th>
                         <td mat-cell *matCellDef="let element" (click)="showTagModal($event, element)" [matTooltip]="element.tag ? element.tag : 'Add Tag'">  {{element.tag ? element.tag : 'Add Tag'}} </td>
                       </ng-container> -->
-              
-                    <ng-container matColumnDef="tag">
-                      <th mat-header-cell *matHeaderCellDef> Tag </th>
-                      <td mat-cell *matCellDef="let element;let i = index;">
-                        <span>{{element.tag}}</span>
-                      </td>
-                    </ng-container>
-              
-              
-                    <ng-container matColumnDef="phase">
-                      <th mat-header-cell *matHeaderCellDef> Phase </th>
-                      <td mat-cell *matCellDef="let element;let i = index;"
-                        >
-                        <span>{{element.phase}}</span>
-                      </td>
-                    </ng-container>
-                    <ng-container matColumnDef="qty">
-                        <th mat-header-cell *matHeaderCellDef> QTY </th>
-                        <td mat-cell *matCellDef="let element">
-                        </td>
-                      </ng-container>
-              
-                    <ng-container matColumnDef="uom">
-                      <th mat-header-cell *matHeaderCellDef> UOM </th>
-                      <td mat-cell *matCellDef="let element"> {{element.Uom}} </td>
-                    </ng-container>
-              
-                    
-              
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                  </table>
-            </div>
-            <div class="footer">
-                <div class="save-btn-wrap">
-                    <button mat-flat-button color="primary">SAVE</button>
-                </div>
-            </div>
-        </div>
 
+          <ng-container matColumnDef="tag">
+            <th mat-header-cell *matHeaderCellDef> Tag </th>
+            <td mat-cell *matCellDef="let element;let i = index;">
+              <span>{{element.tag}}</span>
+            </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="phase">
+            <th mat-header-cell *matHeaderCellDef> Phase </th>
+            <td mat-cell *matCellDef="let element;let i = index;">
+              <span>{{element.phase}}</span>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="qty">
+            <th mat-header-cell *matHeaderCellDef> QTY </th>
+            <td mat-cell *matCellDef="let element">
+              <span class="ac-input"><input type="number" min="0" [(ngModel)]="element.qty" /></span>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="uom">
+            <th mat-header-cell *matHeaderCellDef> UOM </th>
+            <td mat-cell *matCellDef="let element"> {{element.Uom}} </td>
+          </ng-container>
+
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+      <div class="footer">
+        <div class="save-btn-wrap">
+          <button mat-flat-button color="primary" (click)="saveAssembly()">SAVE</button>
+        </div>
+      </div>
     </div>
+
+  </div>
 </div>
