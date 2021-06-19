@@ -18,20 +18,58 @@ export class CustomAssemblyComponent implements OnInit {
   public componentTableData: any;
   public assemblydata: any;
   public groupName: any;
-  constructor( public dialog: MatDialog, private configuratorService: ConfiguratorService) { }
+  public imag64BitUrl: String;
+  public imageObj: any;
+  public imageThubList: any;
+  constructor( public dialog: MatDialog, private configuratorService: ConfiguratorService) {
+    this.imag64BitUrl = '';
+    this.imageObj = {};
+    this.imageThubList = [];
+   }
 
   ngOnInit(): void {
     this.componentsData = [];
     //this.assemblydata = this.configuratorService.getAssemblyData();
     //this.groupName = this.configuratorService.getSelectedGroupName();
   }
-  uploadFile() { // Can be moved to right place
-    const dialogRef = this.dialog.open(FileChooseModalComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+
+  
+  openFileChooseModal() { // Can be moved to right place
+    const fileChoose = this.dialog.open(FileChooseModalComponent, {
+      data: this.imageObj});
+    fileChoose.afterClosed().subscribe(result => {
+      if (Object.keys(result).length !== 0) {
+        if (Object.keys(this.imageObj).length !== 0) {
+          this.imageObj.inputText = result.inputText;
+          this.imageObj.imageList.push(result.imageList[0]);
+        } else {
+          this.imageObj = result;
+        }
+        
+        const firstImage = this.imageObj.imageList.filter((image:any) => image.id == 1); 
+        this.imag64BitUrl = firstImage[0].fileName;
+        const thumbImage = this.imageObj.imageList.filter((image:any) => image.id != 1); 
+        if (thumbImage.length !== 0) {
+          this.imageThubList = thumbImage;
+        }
+       
+
+        console.log('this.imageList', this.imageObj);
+      }
     });
   }
   
+  deleteImage(event: any) {
+   const modifiedImg = this.imageObj.imageList.filter((image:any) => image.id !== 1 && image.id !== event); 
+   this.imageThubList = modifiedImg;
+   const firstImage = this.imageObj.imageList.filter((image:any) => image.id == 1); 
+   const updatdeJSON: any = [] // To avoid side effect
+   Array.prototype.push.apply(updatdeJSON, firstImage); 
+   Array.prototype.push.apply(updatdeJSON, modifiedImg); 
+   this.imageObj.imageList = updatdeJSON
+    console.log('firstImage', firstImage);
+    console.log(' this.imageObj.imageList',  this.imageObj.imageList);
+  }
 
   openAssembly() { // Can be moved to right place
     const dialogRef = this.dialog.open(AssemblyIconModalComponent);

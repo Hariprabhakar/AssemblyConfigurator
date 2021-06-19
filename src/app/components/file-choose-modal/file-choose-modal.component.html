@@ -7,25 +7,27 @@
   <h3>Component Name</h3>
   <div class="valid">4in x 2-1/8 Deep square special box</div>
 
-<form  autocomplete="off" >
+<form [formGroup]="FileChooseFrom" autocomplete="off" >
     <div class="create-assembly">  
         <div class="select-picklist">
             <div class="select-wrap fl">
                 <label>System</label>
                 <mat-form-field appearance="outline">
-                    <mat-label>Input</mat-label>
-                    <input matInput>
+                    <mat-label >Input</mat-label>
+                    <input formControlName="inputText" matInput>
                 </mat-form-field>                
             </div>
             <div class="select-wrap fr">             
                 <label for="singleFile">Upload file</label>
-                <input id="singleFile" type="file"/>               
+             
+                <input id="singleFile" formControlName="fileupload" type="file" accept="image/*"
+                (change)="handleFileInput($event)">             
             </div> 
         </div>
         <div class="clearfix"></div>
         <div class="edit-btn">
             <mat-dialog-actions align="end"> 
-                <button mat-flat-button color="primary" [mat-dialog-close]="true" >Upload</button>   
+                <button mat-flat-button color="primary" (click)="onSubmit()">Upload</button>   
             </mat-dialog-actions>     
         </div>
     </div> 

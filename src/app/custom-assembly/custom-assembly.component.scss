@@ -1,10 +1,14 @@
+.clearfix{float: none; clear: both;}
 .assembly-info{
   cursor: pointer;
+}
+.upload-img-btn{width: 100%; height: 100%; float:left;
+  img{width: 100%; height: 100%; padding: 10px;}
 }
 .custom-assembly-wrap {
   .assembly-section {
     .assembly-detail-section {
-      display: flex;
+      display: flex;   
 
       .primary-img {
         width: 180px;
@@ -22,20 +26,24 @@
           font-size: 11px;
         }
       }
+      .icon{
+        text-align: center;
+      }
 
-      .assembly-info {
-        display: flex;
+      .assembly-info {       
         position: relative;
         width: 100%;
         .icon-wrap {
-          .icon {
-            padding: 5px 5px 0;
-            display: flex;
+          float:left;
+         .icon {
+            padding: 5px 5px 0;            
             .icon-shape {
               height: 34px;
               width: 34px;
               border-radius: 20px;
               border: 2px solid #454545;
+              float: none;
+              margin: 0 auto;
             }
             .caret {
               color: #747474;
@@ -54,6 +62,7 @@
           }
         }
         .assembly-details {
+          float:left;
           font-size: 14px;
           color: #787878;
           padding: 8px 13px;
@@ -63,7 +72,7 @@
         }
         .component-controls {
           width: 100%;
-          position: absolute;
+          /*position: absolute;*/
           bottom: 0px;
           height: 40px;
           padding-left: 3px;
@@ -100,6 +109,16 @@
       }
     }
   }
+  .add-img-btn, .delete-img-btn{margin-left: 8px; float:left; position: relative;}
+  .delete-btn{position: absolute; right: 0; bottom: 0;}
+  .add-img-btn button{border-radius: 0; min-width: unset; width: 48px; height: 40px;    padding: 0;
+    background-color: #9D9D9D !important;}
+  .add-delete-btn{width: 100%; float: left}
+  .delete-img-btn button{border-radius: 0; min-width: unset; width: 48px; height: 40px;    padding: 0;
+      background-color: #9D9D9D !important; text-align: end;
+      .delete-btn{vertical-align: bottom;}
+      &::ng-deep .mat-button-wrapper{text-align: center; width: 100%; height: 100%; float: left;}
+    }
   .component-section {
     position: relative;
     height: calc(100vh - 328px);
@@ -221,3 +240,11 @@
 .jbox-connector{
   padding-right: 15px;
 }
+.shape-icon{width: 90%;
+  height: 100%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 5px;
+}
+
+.upload-img-btn button {line-height: 1.2em;}

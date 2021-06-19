@@ -3,12 +3,13 @@
     <div class="assembly-detail-section">
       <div class="primary-img">
         <div class="upload-img-btn secondary-btn">
-          <button mat-flat-button color="primary" (click)="uploadFile()">Upload Assembly Image</button>
-        </div>
-      </div>
-      <div class="assembly-info" (click)="openAssembly()">
+          <button mat-flat-button color="primary" *ngIf="!imag64BitUrl" (click)="openFileChooseModal()">Upload Assembly Image</button>
+          <img *ngIf="imag64BitUrl" src="{{imag64BitUrl}}" alt="Profile" />
+        </div>        
+      </div>     
+      <div class="assembly-info" >
         <div class="icon-wrap">
-          <div class="icon">
+          <div class="icon" (click)="openAssembly()">
             <div class="icon-shape"></div>
             <div class="caret">
               <mat-icon>arrow_drop_down</mat-icon>
@@ -17,12 +18,29 @@
           <div class="icon-text">Select Assembly Icon</div>
 
         </div>
-        <div class="assembly-details">
+        <div class="assembly-details">       
           <div class="assembly-name">{{assemblydata?.name}}</div>
           <div class="assembly-group">Group: {{groupName}} </div>
           <div class="system-names">System:</div>
           <div class="connection-type">Connection Type:</div>
         </div>
+        <div class="clearfix"></div>
+        <div class="add-delete-btn">
+
+          <div class="delete-img-btn secondary-btn" *ngFor="let image of imageThubList">
+            <button mat-flat-button color="primary"><img class="shape-icon" src="{{image.fileName}}"><img (click)="deleteImage(image.id)" class="delete-btn" src="../../assets/images/deletebtn.png"></button>            
+          </div>
+          <!--  <div class="delete-img-btn secondary-btn">
+            <button mat-flat-button color="primary"><img src="../../assets/images/deletebtn.png"></button>            
+          </div>
+          <div class="delete-img-btn secondary-btn">
+            <button mat-flat-button color="primary"><img src="../../assets/images/deletebtn.png"></button>             
+          </div> -->
+          <div class="add-img-btn secondary-btn" *ngIf=" (!imageObj.imageList) || (imageObj?.imageList && imageObj?.imageList.length < 4)"  (click)="openFileChooseModal()">
+            <button mat-flat-button color="primary"  class="delete-btn-img"><img src="../../assets/images/addImageIcon.png"></button>            
+          </div>
+        </div>
+        <div class="clearfix"></div>
         <div class="component-controls">
           <div class="view-select">
             <mat-icon>grid_view_fill</mat-icon>
@@ -34,7 +52,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>     
     </div>
     <div class="component-section">
       <div class="table">
