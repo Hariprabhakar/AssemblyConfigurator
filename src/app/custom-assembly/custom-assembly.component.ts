@@ -21,6 +21,7 @@ export class CustomAssemblyComponent implements OnInit {
   public imag64BitUrl: String;
   public imageObj: any;
   public imageThubList: any;
+  public selectedItem: any;
   constructor( public dialog: MatDialog, private configuratorService: ConfiguratorService) {
     this.imag64BitUrl = '';
     this.imageObj = {};
@@ -31,44 +32,69 @@ export class CustomAssemblyComponent implements OnInit {
     this.componentsData = [];
     //this.assemblydata = this.configuratorService.getAssemblyData();
     //this.groupName = this.configuratorService.getSelectedGroupName();
+    // this.openFileChooseModal();
+  }
+
+  imageSelection(fileName64Bit:any, activeItem:any) {
+    this.imag64BitUrl = fileName64Bit;
+    this.selectedItem = activeItem;
   }
 
   
   openFileChooseModal() { // Can be moved to right place
     const fileChoose = this.dialog.open(FileChooseModalComponent, {
-      data: this.imageObj});
+      data: this.imageThubList});
     fileChoose.afterClosed().subscribe(result => {
-      if (Object.keys(result).length !== 0) {
-        if (Object.keys(this.imageObj).length !== 0) {
-          this.imageObj.inputText = result.inputText;
-          this.imageObj.imageList.push(result.imageList[0]);
-        } else {
-          this.imageObj = result;
-        }
+
+      if (result.length !== 0) {
+        this.imageThubList = result;
+        this.selectedItem = this.imageThubList[0];
+        this.imag64BitUrl = this.imageThubList[0].fileName64Bit;
+      }
+
+
+      // if (Object.keys(result).length !== 0) {
+      //   if (Object.keys(this.imageObj).length !== 0) {
+      //     this.imageObj.inputText = result.inputText;
+      //     this.imageObj.imageList.push(result.imageList[0]);
+      //   } else {
+      //     this.imageObj = result;
+      //   }
         
-        const firstImage = this.imageObj.imageList.filter((image:any) => image.id == 1); 
-        this.imag64BitUrl = firstImage[0].fileName;
-        const thumbImage = this.imageObj.imageList.filter((image:any) => image.id != 1); 
-        if (thumbImage.length !== 0) {
-          this.imageThubList = thumbImage;
-        }
+      //   const firstImage = this.imageObj.imageList.filter((image:any) => image.id == 1); 
+      //   this.imag64BitUrl = firstImage[0].fileName;
+      //   const thumbImage = this.imageObj.imageList.filter((image:any) => image.id != 1); 
+      //   if (thumbImage.length !== 0) {
+      //     this.imageThubList = thumbImage;
+      //   }
        
 
-        console.log('this.imageList', this.imageObj);
-      }
+      //   console.log('this.imageList', this.imageObj);
+      // }
     });
   }
   
-  deleteImage(event: any) {
-   const modifiedImg = this.imageObj.imageList.filter((image:any) => image.id !== 1 && image.id !== event); 
-   this.imageThubList = modifiedImg;
-   const firstImage = this.imageObj.imageList.filter((image:any) => image.id == 1); 
-   const updatdeJSON: any = [] // To avoid side effect
-   Array.prototype.push.apply(updatdeJSON, firstImage); 
-   Array.prototype.push.apply(updatdeJSON, modifiedImg); 
-   this.imageObj.imageList = updatdeJSON
-    console.log('firstImage', firstImage);
-    console.log(' this.imageObj.imageList',  this.imageObj.imageList);
+  deleteImage(index: any) {
+    this.imageThubList = this.imageThubList.filter((value:any, key:any) => key !== index);
+    if (index != 0) {
+      this.selectedItem = this.imageThubList[index-1];
+      this.imag64BitUrl = this.imageThubList[index-1].fileName64Bit;
+    } else {
+      this.selectedItem = this.imageThubList[0];
+      this.imag64BitUrl = this.imageThubList[0].fileName64Bit;
+    }
+    
+  //  const modifiedImg = this.imageObj.imageList.filter((image:any) => image.id !== 1 && image.id !== event); 
+  //  this.imageThubList = modifiedImg;
+  //  const firstImage = this.imageObj.imageList.filter((image:any) => image.id == 1); 
+  //  const updatdeJSON: any = [] // To avoid side effect
+  //  Array.prototype.push.apply(updatdeJSON, firstImage); 
+  //  Array.prototype.push.apply(updatdeJSON, modifiedImg); 
+  //  this.imageObj.imageList = updatdeJSON
+  //   console.log('firstImage', firstImage);
+  //   console.log(' this.imageObj.imageList',  this.imageObj.imageList);
+
+
   }
 
   openAssembly() { // Can be moved to right place

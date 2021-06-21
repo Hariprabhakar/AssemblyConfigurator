@@ -2,7 +2,7 @@
 .assembly-info{
   cursor: pointer;
 }
-.upload-img-btn{width: 100%; height: 100%; float:left;
+.upload-img-btn{width: 100%; height: 100%; float:left; 
   img{width: 100%; height: 100%; padding: 10px;}
 }
 .custom-assembly-wrap {
@@ -24,6 +24,8 @@
           left: 50%;
           width: 150px;
           font-size: 11px;
+          border: 1px solid #ffc400 !important;
+          color: #ffc400 !important;
         }
       }
       .icon{
@@ -248,3 +250,7 @@
 }
 
 .upload-img-btn button {line-height: 1.2em;}
+.borderHighlighter {
+      border: 1px solid #ffc400 !important;
+    color: #ffc400 !important;
+}

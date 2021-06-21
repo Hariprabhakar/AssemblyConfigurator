@@ -127,6 +127,7 @@ label{
     background-color: 
     #282828
   }
+  ::ng-deep .mat-form-field-wrapper{padding:0 !important}
   .mat-typography{height: auto; width: 415px;}
   .select-picklist{width: 100%}
   .mat-dialog-actions{padding:0; min-height: 0;}
@@ -151,3 +152,69 @@ label{
     }
 }
  
+
+.maxfileerror {    margin-top: 10px;
+  color: #e84c4c;}
+
+  .maxfileinfo{color: #ffc400;}
+
+  .group-new {background: #585757;
+    padding: 10px;}
+    .example-form-field {
+      width: 200px;
+    }
+  .file-icon{float:left;}
+  .file-list{float:left; width: 100%;}
+  .file-name{float:left;}
+  .close-btn{height: 20px !important; line-height: 20px !important;}
+  .file-icon, .close-btn{width: 30px;}
+  .file-name{width: 60%}
+  .for-file{ margin-bottom: 10px;}
+  .choose-btn{
+      float:left; 
+      position:absolute; 
+      z-index:0;
+      margin-top: 10px;
+      padding: 5px 10px;
+      font-weight: bold;
+
+  }
+.uploadfile{
+opacity: 0; //Not visible
+font-size: 0;
+//Button dimensions
+width: 90px; 
+height: 37px; 
+float: left; 
+
+
+}
+
+.close-button{    
+  min-width: 25px;
+  max-height: 25px;
+  border-radius: 15px;
+  font-size: 12px;
+  line-height: 27px;
+  padding: 0;
+}
+
+.cls-btn {
+  width: 10px;
+  height: 10px;
+
+}
+
+.for-new-files {
+  margin-bottom: 10px;
+}
+
+.example-full-width.mat-form-field-invalid{
+  border: 1px solid red;
+  padding: 0;
+  margin: 0!important; 
+}
+
+.example-full-width.mat-form-field-invalid .mat-form-field-wrapper{
+  margin: 0; 
+}
