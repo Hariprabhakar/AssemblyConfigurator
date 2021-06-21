@@ -1,0 +1,64 @@
+<h2 mat-dialog-title>Select System and Connection type</h2>
+<mat-dialog-actions align="end"> 
+    <button class="close-button" mat-flat-button [mat-dialog-close]="true" ><span><img src="../../../assets/images/Shape.png"></span></button>   
+</mat-dialog-actions> 
+<div class="clearfix"></div>
+<mat-dialog-content class="mat-typography">
+  <h3>Component Name</h3>
+  <div class="valid">4in x 2-1/8 Deep square special box</div>
+
+<form [formGroup]="FileChooseFrom" autocomplete="off" >
+    <div class="create-assembly">  
+        <div class="select-picklist">
+            <div *ngIf="showSelectedFiles">
+                <h2 mat-dialog-title class="maxfileinfo">Your uploaded files</h2>
+                <div class="select-wrap fl group-new for-file" *ngFor="let file of data">                
+                    <div class="file-list">                    
+                        <mat-icon aria-hidden="false" class="file-icon" aria-label="Example home icon">file_copy</mat-icon>
+                        <div class="file-name">{{file.fileName}}</div> 
+                        <mat-dialog-actions align="end"> 
+                            <button class="close-button" mat-flat-button [mat-dialog-close]="true" ><span><img class="cls-btn" src="../../../assets/images/close.png"></span></button>   
+                        </mat-dialog-actions> 
+                    </div>
+                </div> 
+            </div>   
+            <div *ngIf="showUplodingFiles" formArrayName="items">
+                <h2 mat-dialog-title class="maxfileinfo">You can upload {{filesToUpload}} more file</h2>
+                <div class="select-wrap fl group-new for-new-files" *ngFor="let item of items.controls; let i = index">                
+                    <!-- <div class="file-name">{{uploadedFiles[i].name}}</div>  -->
+                    <mat-dialog-actions align="end"> 
+                        <button class="close-button" mat-flat-button [mat-dialog-close]="true" ><span><img class="cls-btn" src="../../../assets/images/close.png"></span></button>   
+                    </mat-dialog-actions>                    
+                    <!--mat-form-field class="example-full-width">
+                        <mat-label >Input</mat-label>
+                        <input formControlName="inputText" matInput>                   
+                    </mat-form-field-->  
+                    <label>System</label>
+                    
+                    <mat-form-field id="Systems" class="example-full-width" appearance="outline">                  
+                        <input matInput placeholder="Input"  [formControlName]="i">                  
+                    </mat-form-field>  
+
+                    
+          
+                                            
+                </div> 
+            </div>
+            <div class="select-wrap fr" *ngIf="filesToUpload > 0">             
+                <!-- <button #multipleFile class="btn btn-light choose-btn">Choose Files</button> -->
+                <div >
+                    <input  multiple formControlName="fileupload" type="file" accept="image/*"
+                    (change)="handleFileInput($event)"/>             
+                    <div class="maxfileerror" *ngIf="isMaxFileError">{{maxFileError}}</div>
+                </div>
+            </div> 
+        </div>
+        <div class="clearfix"></div>
+        <div class="edit-btn">
+            <mat-dialog-actions align="end"> 
+                <button mat-flat-button color="primary" (click)="onSubmit()">Upload</button>   
+            </mat-dialog-actions>     
+        </div>
+    </div> 
+</form>
+</mat-dialog-content>

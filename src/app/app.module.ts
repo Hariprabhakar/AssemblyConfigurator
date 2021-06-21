@@ -12,6 +12,12 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { AssemblyConfiguratorModule } from './assembly-configurator/assembly-configurator.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ToastService } from './shared/services/toast.service';
+import {MatDialogModule} from '@angular/material/dialog';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatFileUploadModule } from 'angular-material-fileupload';
+import { JunctionboxModalComponent } from './components/junctionbox-modal/junctionbox-modal.component';
+import { AssemblyIconModalComponent } from './components/assembly-icon-modal/assembly-icon-modal.component';
+import { FileChooseModalComponent } from './components/file-choose-modal/file-choose-modal.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +25,9 @@ import { ToastService } from './shared/services/toast.service';
     LayoutComponent,
     HeaderComponent,
     FooterComponent,
+    JunctionboxModalComponent,
+    AssemblyIconModalComponent,   
+    FileChooseModalComponent     
   ],
   imports: [
     BrowserModule,
@@ -27,10 +36,13 @@ import { ToastService } from './shared/services/toast.service';
     HttpClientModule,
     CreateAssemblyModule,
     AssemblyConfiguratorModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule,
+    MatRadioModule,
+    MatFileUploadModule
       ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, ToastService],
-  exports: [CreateAssemblyModule, HttpClientModule, AssemblyConfiguratorModule, MatSnackBarModule],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

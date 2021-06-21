@@ -1,7 +1,11 @@
-import { Component, ElementRef, HostListener, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, OnInit, Output, SimpleChanges, ViewChild, EventEmitter } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ConfiguratorService } from 'src/app/services/configurator.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
+import { MatDialog } from '@angular/material/dialog';
+import { JunctionboxModalComponent } from '../junctionbox-modal/junctionbox-modal.component';
+
+
 
 @Component({
   selector: 'app-category-components',
@@ -9,8 +13,9 @@ import { ToastService } from 'src/app/shared/services/toast.service';
   styleUrls: ['./category-components.component.scss']
 })
 export class CategoryComponentsComponent implements OnInit {
-   @Input() public categoryValue: number;
-   @ViewChild('tagModal', { read: ElementRef, static: false }) tagModal: ElementRef
+  @Input() public categoryValue: number;
+  @ViewChild('tagModal', { read: ElementRef, static: false }) tagModal: ElementRef
+  @Output() selectedComponent = new EventEmitter();
   public displayedColumns: string[] = ['image', 'component', 'tag', 'phase', 'uom', 'add'];
   public componentDataSource: any;
   public tagModalPosition = {
@@ -24,19 +29,48 @@ export class CategoryComponentsComponent implements OnInit {
   private selectedComponentId: number;
   private currentPhaseVal: any;
   public editableRowIndex: any;
-  public showLoader:boolean;
+  public showLoader: boolean;
   private recentEditedPhase: string;
   private recentEditedTag: string;
   public currentTagVal: any;
   public editableTagIndex: any;
+  public isJunctionBox: boolean;
+  private recentElement: any;
 
-  constructor(private configuratorService: ConfiguratorService, private toastService: ToastService) { }
-
-  ngOnInit(): void {
+  constructor(private configuratorService: ConfiguratorService, private toastService: ToastService, public dialog: MatDialog) {
+    this.isJunctionBox = false;
   }
 
+  ngOnInit(): void {
+
+  }
+
+  openDialog(element: any) {
+    const dialogRef = this.dialog.open(JunctionboxModalComponent, {
+      backdropClass: 'backdropBackground',
+      data: {
+        componentName: element.name,
+        isJunctionBox: this.isJunctionBox
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      this.recentElement.connection = result.connection;
+      this.recentElement.system = result.systemName;
+      this.selectedComponent.emit(this.recentElement);
+    });
+  }
+ 
+
   ngOnChanges(changes: SimpleChanges) {
-    if(changes.categoryValue && changes.categoryValue.currentValue){
+    console.log('ngOnChanges', this.categoryValue);
+    if (changes.categoryValue && changes.categoryValue.currentValue) {
+      if (changes.categoryValue.currentValue.id === 9) { // Junctionbox id is 7 and for mocking its kept of Data Jack
+        this.isJunctionBox = true;
+      } else {
+        this.isJunctionBox = false;
+      }
+
       const id = changes.categoryValue.currentValue.id;
       this.showLoader = true;
       this.configuratorService.getComponents(this.configuratorService.companyId, id).subscribe((res: any) => {
@@ -44,18 +78,32 @@ export class CategoryComponentsComponent implements OnInit {
         this.editableRowIndex = -1;
         this.showLoader = false;
       },
-      (error: any) => {
-        this.toastService.openSnackBar(error);
-        this.showLoader = false;
-      });
-    }    
-}
-
-  filterComponent(event: any){
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.componentDataSource.filter = filterValue.trim().toLowerCase();    
+        (error: any) => {
+          this.toastService.openSnackBar(error);
+          this.showLoader = false;
+        });
+    }
   }
-  
+
+
+  filterComponent(event: any) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.componentDataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  addComponent(element: any) {
+    this.recentElement = element;
+    const getAssemblyData = this.configuratorService.getAssemblyData();
+    if (getAssemblyData !== undefined && getAssemblyData?.familyId && getAssemblyData.familyId === 2) {
+      this.openDialog(element);
+    } else if (this.isJunctionBox) {
+      this.openDialog(element);
+    } else {
+      this.selectedComponent.emit(element);
+    }
+
+  }
+
   // public showTagModal(event: any, row: any){
   //  let top;
   //   this.selectedComponentId = row.id;
@@ -64,7 +112,7 @@ export class CategoryComponentsComponent implements OnInit {
   //   } else {
   //     this.currentTagList = [];
   //   }
-    
+
   //   this.showAddTag = true;
   //   this.tagFlag = true;
   //   top = event.pageY - event.offsetY;
@@ -75,33 +123,33 @@ export class CategoryComponentsComponent implements OnInit {
   //   }
   //   this.tagModalPosition.left = event.pageX - event.offsetX + 'px';
   //   this.tagModalPosition.top = top + 'px';
-    
+
   // }
 
   @HostListener('document:click', ['$event'])
   clickout(event: any) {
-    if(!(this.tagModal && this.tagModal.nativeElement.contains(event.target))) {
+    if (!(this.tagModal && this.tagModal.nativeElement.contains(event.target))) {
       if (!this.tagFlag) {
         this.showAddTag = false;
         this.clearTagVal();
       }
       this.tagFlag = false;
-    } 
+    }
   }
 
-  public addTag(){
-    if(this.tagValue) {
-      this.configuratorService.addTagToComponent(this.selectedComponentId,this.tagValue).subscribe((res: any) => {
+  public addTag() {
+    if (this.tagValue) {
+      this.configuratorService.addTagToComponent(this.selectedComponentId, this.tagValue).subscribe((res: any) => {
         this.componentDataSource.data.forEach((element: any) => {
-          if(element.id == res['componentId']){
-            element.tag = element.tag? element.tag + ','+ res.tag : res.tag;
+          if (element.id == res['componentId']) {
+            element.tag = element.tag ? element.tag + ',' + res.tag : res.tag;
           }
           this.showAddTag = false;
         });
       },
-      (error: any) => {
-        this.toastService.openSnackBar(error);
-      });
+        (error: any) => {
+          this.toastService.openSnackBar(error);
+        });
     }
 
   }
@@ -110,45 +158,45 @@ export class CategoryComponentsComponent implements OnInit {
     this.tagValue = '';
   }
 
-  public updatePhase(event: any){
-    if(this.recentEditedPhase !== event.target.value){
+  public updatePhase(event: any) {
+    if (this.recentEditedPhase !== event.target.value) {
       this.recentEditedPhase = event.target.value;
 
-      if(this.recentEditedPhase !== '' && this.recentEditedPhase !== this.currentPhaseVal){
+      if (this.recentEditedPhase !== '' && this.recentEditedPhase !== this.currentPhaseVal) {
         this.configuratorService.updatePhase(this.selectedComponentId, this.recentEditedPhase).subscribe((res) => {
           console.log(res);
           this.editableRowIndex = -1;
-          
+
         },
-        (error: any) => {
-          this.toastService.openSnackBar(error);
-        });
+          (error: any) => {
+            this.toastService.openSnackBar(error);
+          });
       }
     }
   }
 
-  public updateTag(event: any){
-    if(this.recentEditedTag !== event.target.value){
+  public updateTag(event: any) {
+    if (this.recentEditedTag !== event.target.value) {
       this.recentEditedTag = event.target.value;
 
-      if(this.recentEditedTag !== '' && this.recentEditedTag !== this.currentTagVal){
-        this.configuratorService.addTagToComponent(this.selectedComponentId,this.recentEditedTag).subscribe((res: any) => {
+      if (this.recentEditedTag !== '' && this.recentEditedTag !== this.currentTagVal) {
+        this.configuratorService.addTagToComponent(this.selectedComponentId, this.recentEditedTag).subscribe((res: any) => {
           this.editableTagIndex = -1;
         },
-        (error: any) => {
-          this.toastService.openSnackBar(error);
-        });
+          (error: any) => {
+            this.toastService.openSnackBar(error);
+          });
       }
     }
   }
 
-  public phaseClicked(row: any, rowIndex: number){
+  public phaseClicked(row: any, rowIndex: number) {
     this.currentPhaseVal = row.phase;
     this.selectedComponentId = row.id;
     this.editableRowIndex = rowIndex;
   }
 
-  public tagClicked(row: any, rowIndex: number){
+  public tagClicked(row: any, rowIndex: number) {
     this.currentTagVal = row.tag;
     this.selectedComponentId = row.id;
     this.editableTagIndex = rowIndex;

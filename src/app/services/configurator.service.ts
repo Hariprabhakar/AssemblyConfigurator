@@ -29,7 +29,12 @@ export class ConfiguratorService {
     this._assemblyData = assebmlyData;
   }
 
-  public get assemblyData(): any {
+  
+
+  // public get assemblyData(): any {
+  //   return this._assemblyData;
+  // }
+  public getAssemblyData(): any {
     return this._assemblyData;
   }
 

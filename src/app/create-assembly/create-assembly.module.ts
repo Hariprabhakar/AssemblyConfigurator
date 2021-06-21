@@ -17,6 +17,7 @@ import { CreateAssemblyRoutingModule } from './create-assembly-routing.module';
 import { EditAssemblyComponent } from '../components/edit-assembly/edit-assembly.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { CustomAssemblyModule } from '../custom-assembly/custom-assembly.module';
 
 
 @NgModule({
@@ -36,9 +37,10 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     CreateAssemblyRoutingModule,
     MatProgressSpinnerModule,
     ReactiveFormsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    CustomAssemblyModule
   ],
   exports: [ MatCheckboxModule, MatButtonModule, MatTableModule, MatInputModule, MatSelectModule, MatFormFieldModule
-    , MatDividerModule, MatListModule, MatIconModule, FormsModule, MatProgressSpinnerModule, ReactiveFormsModule , MatTooltipModule],
+    , MatDividerModule, MatListModule, MatIconModule, FormsModule, MatProgressSpinnerModule, ReactiveFormsModule , MatTooltipModule, CustomAssemblyModule],
 })
 export class CreateAssemblyModule { }

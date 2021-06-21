@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { CustomAssemblyModule } from '../custom-assembly/custom-assembly.module';
 
 
 @NgModule({
@@ -22,8 +23,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     FormsModule,
     MatCheckboxModule,
     MatButtonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    CustomAssemblyModule
   ],
-  exports: [ MatListModule, MatIconModule, FormsModule, MatCheckboxModule, MatButtonModule, MatProgressSpinnerModule ]
+  exports: [ MatListModule, MatIconModule, FormsModule, MatCheckboxModule, MatButtonModule, MatProgressSpinnerModule, CustomAssemblyModule ]
 })
 export class AssemblyConfiguratorModule { }

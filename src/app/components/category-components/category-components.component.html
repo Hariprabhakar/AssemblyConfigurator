@@ -2,6 +2,7 @@
   <div class="ac-loader" *ngIf="showLoader">
     <mat-spinner [diameter]="40"></mat-spinner>
   </div>
+  <!-- <button class="btn" (click)="openAssembly()">Assembly Icon</button> -->
   <div class="filter-search">
     <div class="label">
       <div>
@@ -17,7 +18,7 @@
         <mat-icon [inline]=true>search</mat-icon>
       </div>
     </div>
-  </div>
+  </div>  
   <div class="table">
     <table mat-table [dataSource]="componentDataSource">
 
@@ -60,16 +61,16 @@
       </ng-container>
 
       <ng-container matColumnDef="uom">
-        <th mat-header-cell *matHeaderCellDef> Uom </th>
+        <th mat-header-cell *matHeaderCellDef> UOM </th>
         <td mat-cell *matCellDef="let element"> {{element.Uom}} </td>
       </ng-container>
 
       <ng-container matColumnDef="add">
-        <th mat-header-cell *matHeaderCellDef> Add </th>
-        <td mat-cell *matCellDef="let element">
-          <button class="fab-icon" mat-mini-fab color="primary">
-            <mat-icon [inline]="true">add</mat-icon>
-          </button>
+        <th mat-header-cell *matHeaderCellDef> Add </th>       
+        <td mat-cell *matCellDef="let element">         
+          <button class="fab-icon" mat-mini-fab color="primary" (click)="addComponent(element)">
+            <mat-icon [inline]="true">add</mat-icon>            
+          </button>         
         </td>
       </ng-container>
 
@@ -104,3 +105,10 @@
 
   </div>
 </div>
+
+
+<!-- 
+  <button class="btn" (click)="openAssembly()">Assembly Icon</button> 
+  this button click display the assembly icon popup 
+  AssemblyIconModalComponent component contains the assembly icon code
+-->

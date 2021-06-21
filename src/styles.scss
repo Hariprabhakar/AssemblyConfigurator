@@ -92,8 +92,10 @@ a {
 .secondary-btn{
   button{
     background: transparent !important;
-    border: 1px solid #ffc400 !important;
-    color: #ffc400 !important;
+    // border: 1px solid #ffc400 !important;
+    // color: #ffc400 !important;
+    border-radius: 20px;
+    height: 30px;
   }
 
 }
@@ -132,3 +134,8 @@ a {
   color: #fff;
   white-space: pre-line;
 }
+.assem-grp .mat-form-field-wrapper{padding-bottom:0 !important}
+.sym-txt .mat-form-field-flex{background-color: #282828;}
+.mat-form-field-appearance-outline .mat-form-field-outline-start, .mat-form-field-appearance-outline .mat-form-field-outline-end, .mat-form-field-appearance-outline .mat-form-field-outline-gap{border: none !important}
+
+
