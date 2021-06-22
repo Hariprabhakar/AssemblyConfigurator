@@ -30,9 +30,6 @@ export class CustomAssemblyComponent implements OnInit {
 
   ngOnInit(): void {
     this.componentsData = [];
-    //this.assemblydata = this.configuratorService.getAssemblyData();
-    //this.groupName = this.configuratorService.getSelectedGroupName();
-    // this.openFileChooseModal();
   }
 
   imageSelection(fileName64Bit:any, activeItem:any) {
@@ -45,32 +42,18 @@ export class CustomAssemblyComponent implements OnInit {
     const fileChoose = this.dialog.open(FileChooseModalComponent, {
       data: this.imageThubList});
     fileChoose.afterClosed().subscribe(result => {
-
-      if (result.length !== 0) {
-        this.imageThubList = result;
-        this.selectedItem = this.imageThubList[0];
-        this.imag64BitUrl = this.imageThubList[0].fileName64Bit;
+      if (result !== true) {
+        const isArray = Array.isArray(result);
+        if (isArray && result.length !== 0) {
+          this.imageThubList = result;
+          this.selectedItem = this.imageThubList[0];
+          this.imag64BitUrl = this.imageThubList[0].fileName64Bit;
+        } else {
+          this.imageThubList = [];
+          this.deleteImage(0);
+        }
       }
-
-
-      // if (Object.keys(result).length !== 0) {
-      //   if (Object.keys(this.imageObj).length !== 0) {
-      //     this.imageObj.inputText = result.inputText;
-      //     this.imageObj.imageList.push(result.imageList[0]);
-      //   } else {
-      //     this.imageObj = result;
-      //   }
-        
-      //   const firstImage = this.imageObj.imageList.filter((image:any) => image.id == 1); 
-      //   this.imag64BitUrl = firstImage[0].fileName;
-      //   const thumbImage = this.imageObj.imageList.filter((image:any) => image.id != 1); 
-      //   if (thumbImage.length !== 0) {
-      //     this.imageThubList = thumbImage;
-      //   }
-       
-
-      //   console.log('this.imageList', this.imageObj);
-      // }
+  
     });
   }
   
@@ -79,21 +62,14 @@ export class CustomAssemblyComponent implements OnInit {
     if (index != 0) {
       this.selectedItem = this.imageThubList[index-1];
       this.imag64BitUrl = this.imageThubList[index-1].fileName64Bit;
+    } else if(this.imageThubList.length === 0) {
+      this.selectedItem = this.imageThubList[0];
+      // this.imag64BitUrl = this.imageThubList[0].fileName64Bit;
+      this.imag64BitUrl = '';
     } else {
       this.selectedItem = this.imageThubList[0];
       this.imag64BitUrl = this.imageThubList[0].fileName64Bit;
     }
-    
-  //  const modifiedImg = this.imageObj.imageList.filter((image:any) => image.id !== 1 && image.id !== event); 
-  //  this.imageThubList = modifiedImg;
-  //  const firstImage = this.imageObj.imageList.filter((image:any) => image.id == 1); 
-  //  const updatdeJSON: any = [] // To avoid side effect
-  //  Array.prototype.push.apply(updatdeJSON, firstImage); 
-  //  Array.prototype.push.apply(updatdeJSON, modifiedImg); 
-  //  this.imageObj.imageList = updatdeJSON
-  //   console.log('firstImage', firstImage);
-  //   console.log(' this.imageObj.imageList',  this.imageObj.imageList);
-
 
   }
 
