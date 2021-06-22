@@ -26,7 +26,6 @@ export class FileChooseModalComponent implements OnInit {
       };
       this.maxFileError = '';
       this.isMaxFileError = false;
-      this.uploadedFiles = [];
       this.showSelectedFiles = false;
       this.showUplodingFiles = true;
       this.tempUploads = [];
@@ -69,16 +68,15 @@ export class FileChooseModalComponent implements OnInit {
       const maxfileLength = 3 - ((this.data.length || 0) + (this.tempUploads.length || 0));
       if (fileLength < (maxfileLength + 1)) {
           this.isMaxFileError = false;
-          this.uploadedFiles = event.target.files;
-          for (let i = 0; i < event.target.files.length; i++) {
-              console.log('in loop');
-              this.items.push(this.formBuilder.control('', Validators.required));
-          }
           const finalData = await this.tobase64Handler(event.target.files);
           this.tempUploads = this.tempUploads.concat(finalData);
           console.log('FormData', this.FileChooseFrom);
           console.log('finalData', finalData);
           console.log('this.tempUploads', this.tempUploads);
+          for (let i = 0; i < event.target.files.length; i++) {
+            console.log('in loop');
+            this.items.push(this.formBuilder.control('', Validators.required));
+        }
       } else {
           this.maxFileError = 'User can upload only Maximum three files';
           this.isMaxFileError = true;

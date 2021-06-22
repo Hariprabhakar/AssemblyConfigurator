@@ -25,7 +25,7 @@
             <div *ngIf="showUplodingFiles" formArrayName="items">
                 <h2 mat-dialog-title class="maxfileinfo">Choose files to upload</h2>
                 <div class="select-wrap fl group-new for-new-files" *ngFor="let item of items.controls; let i = index">                
-                    <!-- <div class="file-name">{{uploadedFiles[i].name}}</div> -->
+                   <div class="file-name">{{tempUploads[i].fileName}}</div> 
                     <!-- <mat-dialog-actions align="end"> 
                         <button class="close-button" mat-flat-button (click)="closeTempFiles(item, i)" ><span><img class="cls-btn" src="../../../assets/images/close.png"></span></button>   
                     </mat-dialog-actions>                     -->
