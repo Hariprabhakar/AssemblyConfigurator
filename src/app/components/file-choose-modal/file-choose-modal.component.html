@@ -14,10 +14,13 @@
                 <h2 mat-dialog-title class="maxfileinfo">Your uploaded files</h2>
                 <div class="select-wrap fl group-new for-file" *ngFor="let file of data; let i = index">                
                     <div class="file-list">                    
-                        <mat-icon aria-hidden="false" class="file-icon" aria-label="Example home icon">file_copy</mat-icon>
+                        <!-- <mat-icon aria-hidden="false" class="file-icon" aria-label="Example home icon">file_copy</mat-icon> -->
+                        <div class="img-shape">
+                            <img src={{file.fileName64Bit}} />
+                        </div>
                         <div class="file-name">{{file.fileName}}</div> 
                         <mat-dialog-actions align="end"> 
-                            <button class="close-button" mat-flat-button (click)="closeUploadedFiles(file, i)" ><span><img class="cls-btn" src="../../../assets/images/close.png"></span></button>   
+                            <button class="close-button close-shape" mat-flat-button (click)="closeUploadedFiles(file, i)" ><span><img class="cls-btn" src="../../../assets/images/close.png"></span></button>   
                         </mat-dialog-actions> 
                     </div>
                 </div> 
@@ -25,6 +28,9 @@
             <div *ngIf="showUplodingFiles" formArrayName="items">
                 <h2 mat-dialog-title class="maxfileinfo">Choose files to upload</h2>
                 <div class="select-wrap fl group-new for-new-files" *ngFor="let item of items.controls; let i = index">                
+                    <div class="img-shape">
+                        <img src={{tempUploads[i].fileName64Bit}} />
+                    </div> 
                    <div class="file-name">{{tempUploads[i].fileName}}</div> 
                     <!-- <mat-dialog-actions align="end"> 
                         <button class="close-button" mat-flat-button (click)="closeTempFiles(item, i)" ><span><img class="cls-btn" src="../../../assets/images/close.png"></span></button>   
@@ -47,7 +53,7 @@
             <div class="select-wrap fr" >             
                 <!-- <button #multipleFile class="btn btn-light choose-btn">Choose Files</button> -->
                 <div >
-                    <input  multiple formControlName="fileupload" type="file" accept="image/*"
+                    <input multiple formControlName="fileupload" type="file" accept="image/*"
                     (change)="handleFileInput($event)"/>             
                     <div class="maxfileerror" *ngIf="isMaxFileError">{{maxFileError}}</div>
                 </div>
