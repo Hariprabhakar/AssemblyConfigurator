@@ -52,11 +52,13 @@
             </div>
             <div class="select-wrap fr" >             
                 <!-- <button #multipleFile class="btn btn-light choose-btn">Choose Files</button> -->
-                <div >
-                    <input multiple formControlName="fileupload" type="file" accept="image/*"
-                    (change)="handleFileInput($event)"/>             
+                <div>
+                    <input multiple formControlName="fileupload" class="file-input" type="file" accept="image/*"
+                    (change)="handleFileInput($event)" #fileUpload />             
                     <div class="maxfileerror" *ngIf="isMaxFileError">{{maxFileError}}</div>
                 </div>
+                <button mat-mini-fab class="upload-btn"
+                (click)="fileUpload.click()">Choose File</button>
             </div> 
         </div>
         <div class="clearfix"></div>
