@@ -138,9 +138,9 @@ a {
 .sym-txt .mat-form-field-flex{background-color: #282828;}
 .mat-form-field-appearance-outline .mat-form-field-outline-start, .mat-form-field-appearance-outline .mat-form-field-outline-end, .mat-form-field-appearance-outline .mat-form-field-outline-gap{border: none !important}
 .example-full-width.mat-form-field-invalid .mat-form-field-wrapper{
-  border: 1px solid red;
+  border: 1px solid rgb(175, 124, 124);
   padding: 0;
   margin: 0!important; 
 }
 
-
+.upload-btn span.mat-button-wrapper{line-height: 0;}

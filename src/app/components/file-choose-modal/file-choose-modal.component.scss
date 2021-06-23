@@ -162,8 +162,8 @@ label{
 .maxfileerror, .primaryImgNotSet {    margin-top: 10px;
   color: #e84c4c;}
 
-  .maxfileinfo{color: #ffc400; margin-top:0px;}
-  .maxfileinfo1{color: #ffc400; margin-top:10px;}
+  .maxfileinfo{color: #ffc400; margin-top:5px;}
+  .maxfileinfo1{color: #ffc400; margin-top:15px; margin-bottom: 10px;}
 
   .group-new {background: #585757;
     padding: 10px;}
@@ -247,6 +247,7 @@ float: left;
   .edit-icon{font-size: 18px; float: left;}
   .select-primary{float:left; line-height: 1.8; height: auto; width: auto; font-size: 12px;}
   .primary-select{width: 180px; float: right;}
-  .loaded-files{width: 100%; float: left; margin-bottom: 15px; margin-top:10px}
+  .loaded-files{width: 100%; float: left; margin-bottom: 5px; margin-top:30px}
   .radio-btn{line-height: 3.5; float: left}
+  .upload-btn{height: 30px; font-size: 12px; line-height: 1;}
   
