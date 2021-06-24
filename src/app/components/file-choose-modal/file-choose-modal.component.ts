@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ChangeDetectorRef } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 @Component({
@@ -23,7 +23,7 @@ export class FileChooseModalComponent implements OnInit {
       items: this.formBuilder.array([]),
   });
   public showEditPrimaryImage: boolean;
-  constructor(public fileChoose: MatDialogRef < FileChooseModalComponent > , @Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder, ) {
+  constructor(public fileChoose: MatDialogRef < FileChooseModalComponent > , @Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder, private cd: ChangeDetectorRef) {
       this.fileObj = {
           imageList: [],
           inputText: '',
@@ -140,10 +140,15 @@ export class FileChooseModalComponent implements OnInit {
               console.log('key', key);
               console.log('value', value);
           });
-          finalData = finalData.concat(this.data);
-          console.log('finalvalue', finalData);
-          console.log('this.data', this.data);
-          this.data = finalData;
+        //  finalData = finalData.concat(this.data);
+        // finalData = finalData.concat(this.data);
+        //   console.log('finalvalue', finalData);
+        //   console.log('this.data', this.data);
+        //   this.data = finalData;
+        finalData.forEach((value:any, key:any) => {
+          this.data.push(value);
+        });
+
           this.updateViews();
           this.showAddBtn = false;
           this.FileChooseFrom.reset();
@@ -163,12 +168,15 @@ export class FileChooseModalComponent implements OnInit {
   public closeUploadedFiles(file: any, index: number) {
       this.maxFileError = "";
       this.data = this.data.filter((value: any, key: number) => key !== index);
-      this.updateViews();
-  }
+      this.cd.markForCheck();
 
-  public closeTempFiles(file: any, index: number) {
-    this.tempUploads = this.tempUploads.filter((value: any, key: number) => key !== index);
-    this.updateViews();
+     
+     // this.data = this.data.splice(index, 1);;
+      // this.data.forEach((value:any, key:any) => {
+      //   this.data.push(value);
+      // });
+
+      this.updateViews();
   }
 
   public closeBtnClick() {
@@ -176,27 +184,31 @@ export class FileChooseModalComponent implements OnInit {
 
     let isPrimarySet = this.data.filter((value: any, key: number) => value.isPrimary === true);
     isPrimarySet = isPrimarySet.length !== 0 ? true : false;
-    if (!isPrimarySet) {
-      this.primaryImgNotSet = "Please set primary image";
-      this.isPrimaryImgNotSet = true;
-    } else {
-      this.fileChoose.close(this.data);
-    }
+      if (!isPrimarySet) {
+        this.primaryImgNotSet = "Please set primary image";
+        this.isPrimaryImgNotSet = true;
+      } else {
+        this.fileChoose.close(this.data);
+      } 
+      
+  
+    
     this.showAddBtn = false;
   }
 
   public updateViews(){
-    let isPrimarySet = this.data.filter((value: any, key: number) => value.isPrimary === true);
-    isPrimarySet = isPrimarySet.length !== 0 ? true : false;
+    // let isPrimarySet = this.data.filter((value: any, key: number) => value.isPrimary === true);
+    // isPrimarySet = isPrimarySet.length !== 0 ? true : false;
     if(this.data.length === 1) {
       this.showSelectedFiles = true;
-      this.data[0].isPrimary = true;
+     // this.data[0].isPrimary = true;
       this.showEditPrimaryImage = false;
     } else if (this.data.length !== 0) {
       this.showSelectedFiles = true;
-      this.showEditPrimaryImage = isPrimarySet ? false : true;
-    } else {
-      this.showEditPrimaryImage = false;
+      // this.showEditPrimaryImage = isPrimarySet ? false : true;
+    // } else {
+    //   this.showEditPrimaryImage = false;
+    // }
     }
   }
 

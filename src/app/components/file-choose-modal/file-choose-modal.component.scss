@@ -172,10 +172,13 @@ label{
     }
   .file-icon{float:left;}
   .file-list{float:left; width: 100%;}
-  .file-name{float:left; line-height: 3.5;}
+  .file-name{float:left; line-height: 3.5;  white-space: nowrap;
+    width: 85px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 5px;}
   .close-btn{height: 20px !important; line-height: 20px !important;}
   .file-icon, .close-btn{width: 30px;}
-  .file-name{width: 40%}
   .for-file{ margin-bottom: 10px; height: 60px}
   .choose-btn{
       float:left; 
@@ -242,7 +245,7 @@ float: left;
   .file-name-primary{float: left;
     line-height: 3.5;
     font-weight: 500;
-    color: #ffc400;}
+    color: #ffc400;    }
   .edit-icon-fun{float: right; width:100%; line-height: 1; height: 20px;}
   .edit-icon{font-size: 18px; float: left;}
   .select-primary{float:left; line-height: 1.8; height: auto; width: auto; font-size: 12px;}
