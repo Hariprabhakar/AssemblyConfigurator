@@ -74,7 +74,6 @@ export class EditAssemblyComponent implements OnInit {
 
   private validateSuggestions(suggArr: string[]) {
     const reqObj = {
-      "companyId": this.configuratorService.companyId,
       "abbreviations": suggArr
     }
     this.configuratorService.getSuggestions(reqObj).subscribe((res: any) => {

@@ -55,9 +55,11 @@ export class CategoryComponentsComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
-      this.recentElement.connection = result.connection;
-      this.recentElement.system = result.systemName;
-      this.selectedComponent.emit(this.recentElement);
+      if (result) {
+        this.recentElement.connection = result.connection;
+        this.recentElement.system = result.systemName;
+        this.selectedComponent.emit(this.recentElement);
+      }
     });
   }
  
@@ -163,7 +165,10 @@ export class CategoryComponentsComponent implements OnInit {
       this.recentEditedPhase = event.target.value;
 
       if (this.recentEditedPhase !== '' && this.recentEditedPhase !== this.currentPhaseVal) {
-        this.configuratorService.updatePhase(this.selectedComponentId, this.recentEditedPhase).subscribe((res) => {
+        const phaseObj = {
+          phase: this.recentEditedPhase
+        };
+        this.configuratorService.updatePhase(this.selectedComponentId, phaseObj).subscribe((res) => {
           console.log(res);
           this.editableRowIndex = -1;
 
@@ -180,7 +185,10 @@ export class CategoryComponentsComponent implements OnInit {
       this.recentEditedTag = event.target.value;
 
       if (this.recentEditedTag !== '' && this.recentEditedTag !== this.currentTagVal) {
-        this.configuratorService.addTagToComponent(this.selectedComponentId, this.recentEditedTag).subscribe((res: any) => {
+        const tag = {
+          tag: this.recentEditedTag
+        }
+        this.configuratorService.addTagToComponent(this.selectedComponentId, tag).subscribe((res: any) => {
           this.editableTagIndex = -1;
         },
           (error: any) => {

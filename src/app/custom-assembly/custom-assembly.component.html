@@ -10,7 +10,8 @@
       <div class="assembly-info" >
         <div class="icon-wrap">
           <div class="icon" (click)="openAssembly()">
-            <div class="icon-shape"></div>
+            <div *ngIf="!iconSrc" class="icon-shape"></div>
+            <div *ngIf="iconSrc" class="icon-base64"><img [src]="iconSrc"></div>
             <div class="caret">
               <mat-icon>arrow_drop_down</mat-icon>
             </div>
@@ -47,7 +48,7 @@
             <mat-icon>grid_view_fill</mat-icon>
           </div>
           <div class="component-search ac-input">
-            <input type="text" placeholder="Search by part name, Size, Material etc" />
+            <input (keyup)="filterComponent($event)"  type="text" placeholder="Search by part name, Size, Material etc" />
             <div class="search">
               <mat-icon inline="true">search</mat-icon>
             </div>
@@ -76,12 +77,30 @@
               <div>{{element.name}}</div>
               <div class="jbox-action" *ngIf="element.connection && element.system">
                 <div class="jbox-connector">
-                  <div>connenctor:</div>
-                  <div class="chip">{{element.connection}}</div>
+                  <div class="label">connenctor:</div>
+                  <div class="chip">
+                    <span *ngIf="checkArray(element.connection)">{{element.connection[0]}} <span *ngIf="element.connection?.length > 1">+ {{element.connection.length - 1}}</span></span>
+                    <span *ngIf="!checkArray(element.connection)">{{element.connection}}</span>
+                    <div class="action-icons" (click)="editConnectionSystem(element)">
+                      <span inline="true" class="material-icons-outlined">
+                        border_color
+                        </span>
+                      <span inline="true" class="material-icons-outlined">delete</span>
+                    </div>
+                  </div>
                 </div>
                 <div class="jbox-system">
-                  <div>system:</div>
-                  <div class="chip">{{element.system}}</div>
+                  <div class="label">system:</div>
+                  <div class="chip">
+                    <span *ngIf="checkArray(element.system)">{{element.system[0]}} <span *ngIf="element.system?.length > 1"> + {{element.system.length - 1}}</span></span>
+                    <span *ngIf="!checkArray(element.system)">{{element.system}}</span>
+                    <div class="action-icons" (click)="editConnectionSystem(element)">
+                      <span inline="true" class="material-icons-outlined">
+                        border_color
+                        </span>
+                      <span inline="true" class="material-icons-outlined">delete</span>
+                    </div>
+                  </div>
                 </div>
               </div>
 

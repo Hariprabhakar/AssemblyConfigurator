@@ -27,7 +27,7 @@
       width: 110px;
       font-size: 13px;
       height: 30px;
-    line-height: 30px;
+      line-height: 30px;
     }
   }
 
@@ -36,11 +36,17 @@
     ::ng-deep .mat-form-field-flex > .mat-form-field-infix {
       border: 0;
     }
-    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-label {
-      margin-top: -15px;
+    ::ng-deep .mat-form-field-appearance-outline .mat-empty.mat-form-field-label {
+      margin-top: 0px;
     }
-    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix{
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
       padding: 12px 0px 8px 0px;
+    }
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-label {
+      margin-top: 7px;
+    }
+    ::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label, .mat-form-field-appearance-outline.mat-form-field-can-float .mat-input-server:focus + .mat-form-field-label-wrapper .mat-form-field-label{
+      margin-top: 7px !important;
     }
   }
   .select-wrap {
@@ -51,36 +57,33 @@
     ::ng-deep .mat-form-field-appearance-outline .mat-form-field-label {
       margin-top: 7px;
     }
-    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix{
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
       padding: 12px 0px 8px 0px;
     }
-    ::ng-deep
-      .mat-form-field-appearance-outline
-      .mat-empty.mat-form-field-label {
+    ::ng-deep .mat-form-field-appearance-outline .mat-empty.mat-form-field-label {
       margin-top: 0px;
     }
     .read-only {
       pointer-events: none;
     }
-  
   }
   .mat-flat-button.mat-primary.mat-button-disabled {
     background-color: #ffc400;
     color: #000;
     opacity: 0.4;
   }
-  .suggestion{
+  .suggestion {
     font-size: 12px;
-    .suggestion-value{
+    .suggestion-value {
       display: inline-block;
       padding: 10px 5px;
     }
-    .not-available{
+    .not-available {
       color: #a74618;
       pointer-events: none;
     }
 
-    :not(.not-available){
+    :not(.not-available) {
       cursor: pointer;
     }
   }

@@ -21,7 +21,12 @@ export class JunctionboxModalComponent implements OnInit {
   ngOnInit(): void {
   console.log(this.data);
   const assemblyData = this.configuratorService.getAssemblyData();
-  this.isJunctionBoxGroup = assemblyData['familyId'] == 2;
+  //this.isJunctionBoxGroup = assemblyData['familyId'] == 2;
+  this.isJunctionBoxGroup = true;
+  this.JunctionBoxFrom.patchValue({
+    systemName: this.data.system,
+    connection: this.data.connection
+  });
 
   }
   public onSubmit(): void {
@@ -30,6 +35,10 @@ export class JunctionboxModalComponent implements OnInit {
        this.dialogRef.close(this.JunctionBoxFrom.value);
     }
     
+  }
+
+  public close(){
+    this.dialogRef.close(false);
   }
 }
 // function Inject(MAT_DIALOG_DATA: any) {

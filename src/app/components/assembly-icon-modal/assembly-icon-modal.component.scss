@@ -24,6 +24,10 @@ label{
     float: left;
     margin: 0 0 3px;
 }
+.custom-shape{
+  height: 35px;
+    background-color: #282828;
+}
 .create-assembly {
     padding: 0;   
     align-items: center;
@@ -47,9 +51,19 @@ label{
     }
   
     .edit-btn {
-      padding: 0;
+      padding: 10px 0 0 0;
       height: 30px;
       line-height: 30px;
+      .preview-btn{
+        margin-right: 10px;
+        .secondary-btn{
+          background: transparent !important;
+          border: 1px solid #ffc400 !important;
+          color: #ffc400 !important;
+          border-radius: 20px;
+          height: 30px;
+        }
+      }
   
       button {
         border-radius: 20px;
@@ -119,6 +133,14 @@ label{
     }
   }
 
+  .choose-existing-wrap{
+    display: flex;
+    justify-content: space-between;
+    .select-existing-icon{
+      flex: 0 0 90%;
+    }
+  }
+
   .cdk-overlay-pane{width: 610px !important;} 
   .mat-typography{width: 415px; background-color: #3E3E3E; padding: 0 10px;}
   .select-picklist{width: 100%}
@@ -152,6 +174,9 @@ label{
   label{margin-bottom: 0px; font-size: 10px;}  
 }
 .symbol-selector{width:100%; float:left;
+  ::deep .mat-form-field-wrapper{
+    padding-bottom: 0px;
+  }
   .sym-txt{
     width:47%; float:left;    
     mat-label{font-size: 10px; opacity: 0.37;}
@@ -167,7 +192,6 @@ label{
   /* your css needs */
 background-color: #000!important;}
 mat-radio-button{font-size: 12px; font-weight: 100;}
-.exist-assem{width: 90% !important; float:left}
 .addbtn{float: right; margin-top: 15px}
 .addbtn1{margin-top:40px; float: right;}
 .addfinal{font-weight: 500;}
@@ -182,4 +206,17 @@ mat-radio-button{font-size: 12px; font-weight: 100;}
         font-size: 14px;
     }
 }
- 
+
+.icon-preview{
+  padding: 10px 0;
+  background-color: #282828;
+  clear: both;
+  text-align: center;
+}
+.error-msg{
+  color: #e84c4c;
+}
+.inline-icon-select{
+  width: 15px;
+  background-color: #ffc400;
+}

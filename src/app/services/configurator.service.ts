@@ -74,7 +74,7 @@ export class ConfiguratorService {
   }
 
   public getSuggestions(reqObj: any) {
-    return this.restApiService.post('Assemblies/is-avail-abbr', reqObj, '');
+    return this.restApiService.post(`Assemblies/${this.companyId}/is-avail-abbr`, reqObj, '');
   }
 
   public createAssembly(reqObj: any, isUpdate: boolean, assemblyId: any) {
@@ -82,17 +82,15 @@ export class ConfiguratorService {
       return this.restApiService.put('Assemblies/' + assemblyId, reqObj, '');
     } else {
       const queryParam = 'companyId=' + this.companyId;
-      return this.restApiService.post('Assemblies/', reqObj, queryParam);
+      return this.restApiService.post(`Assemblies/${this.companyId}`, reqObj, '');
     }
   }
 
-  public addTagToComponent(id: any, tagName: any) {
-    const queryParam = 'tag=' + tagName;
-    return this.restApiService.post('Components/' + id + '/create-tag/', {}, queryParam);
+  public addTagToComponent(id: any, reqObj: any) {
+    return this.restApiService.patch('Components/' + id + '/update-tag/', reqObj, '');
   }
 
-  public updatePhase(id: any, phase: any) {
-    const queryParam = 'phase=' + phase;
-    return this.restApiService.patch('Components/' + id + '/update-phase/', {}, queryParam);
+  public updatePhase(id: any, phaseObj: any) {
+    return this.restApiService.patch('Components/' + id + '/update-phase/', phaseObj, '');
   }
 }

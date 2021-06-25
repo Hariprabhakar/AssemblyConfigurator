@@ -1,14 +1,24 @@
-.clearfix{float: none; clear: both;}
-.assembly-info{
+.clearfix {
+  float: none;
+  clear: both;
+}
+.assembly-info {
   cursor: pointer;
 }
-.upload-img-btn{width: 100%; height: 100%; float:left; 
-  img{width: 100%; height: 100%; padding: 10px;}
+.upload-img-btn {
+  width: 100%;
+  height: 100%;
+  float: left;
+  img {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+  }
 }
 .custom-assembly-wrap {
   .assembly-section {
     .assembly-detail-section {
-      display: flex;   
+      display: flex;
 
       .primary-img {
         width: 193px;
@@ -29,17 +39,24 @@
           color: #ffc400 !important;
         }
       }
-      .icon{
+      .icon {
         text-align: center;
+        .icon-base64{
+          width: 50px;
+          img{
+            width: 100%;
+          }
+        }
       }
 
-      .assembly-info {       
+      .assembly-info {
         position: relative;
         width: 100%;
         .icon-wrap {
-          float:left;
-         .icon {
-            padding: 5px 5px 0;            
+          float: left;
+          .icon {
+            padding: 5px 5px 0;
+            display: flex;
             .icon-shape {
               height: 34px;
               width: 34px;
@@ -65,7 +82,7 @@
           }
         }
         .assembly-details {
-          float:left;
+          float: left;
           font-size: 14px;
           color: #787878;
           padding: 8px 13px;
@@ -113,19 +130,50 @@
       }
     }
   }
-  .add-img-btn, .delete-img-btn{margin-left: 0px; float:left; position: relative;}
-  .delete-btn{position: absolute; right: 0; bottom: 0;}
-  .add-img-btn button{border-radius: 0; min-width: unset; width: 48px; height: 40px;    padding: 0;
-    background-color: #9D9D9D !important;}
-  .add-delete-btn{width: 100%; float: left}
-  .delete-img-btn button{border-radius: 0; min-width: unset; width: 48px; height: 40px;    padding: 0;
-      background-color: #9D9D9D !important; text-align: end;
-      .delete-btn{vertical-align: bottom;}
-      &::ng-deep .mat-button-wrapper{text-align: center; width: 100%; height: 100%; float: left;}
+  .add-img-btn,
+  .delete-img-btn {
+    margin-left: 8px;
+    float: left;
+    position: relative;
+  }
+  .delete-btn {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+  .add-img-btn button {
+    border-radius: 0;
+    min-width: unset;
+    width: 48px;
+    height: 40px;
+    padding: 0;
+    background-color: #9d9d9d !important;
+  }
+  .add-delete-btn {
+    width: 100%;
+    float: left;
+  }
+  .delete-img-btn button {
+    border-radius: 0;
+    min-width: unset;
+    width: 48px;
+    height: 40px;
+    padding: 0;
+    background-color: #9d9d9d !important;
+    text-align: end;
+    .delete-btn {
+      vertical-align: bottom;
     }
+    &::ng-deep .mat-button-wrapper {
+      text-align: center;
+      width: 100%;
+      height: 100%;
+      float: left;
+    }
+  }
   .component-section {
     position: relative;
-    height: calc(100vh - 328px);
+    height: calc(100vh - 347px);
 
     .table {
       position: relative;
@@ -169,15 +217,15 @@
             width: 50px !important;
           }
           &-component {
-            width: 250px !important;
+            min-width: 250px !important;
           }
           &-qty {
             width: 50px !important;
             padding-left: 5px;
             background-color: #4a4a4a;
             border: 1px solid #2b2b2b;
-            input{
-              width: 50px;
+            input {
+              width: 40px;
             }
           }
           &-sn {
@@ -227,32 +275,49 @@
   background: #151515 !important;
 }
 
-.jbox-action{
+.jbox-action {
   display: flex;
   padding: 5px 0px;
-  .jbox-connector, .jbox-system{
+  font-size: 11px;
+  .jbox-connector,
+  .jbox-system {
     display: flex;
-    .chip{
+    .label {
+      padding-right: 5px;
+    }
+    .action-icons {
+      color: #ffc400;
+      padding: 0 3px;
+      display: flex;
+      span {
+        font-size: 10px;
+      }
+    }
+    .chip {
       background-color: #151515;
       border-radius: 20px;
-      padding: 1px 10px;
+      padding: 1px 5px;
+      display: flex;
+      align-items: center;
     }
   }
-
 }
 
-.jbox-connector{
-  padding-right: 15px;
+.jbox-connector {
+  padding-right: 8px;
 }
-.shape-icon{width: 90%;
+.shape-icon {
+  width: 90%;
   height: 100%;
   margin: 0 auto;
   text-align: center;
   padding: 5px;
 }
 
-.upload-img-btn button {line-height: 1.2em;}
+.upload-img-btn button {
+  line-height: 1.2em;
+}
 .borderHighlighter {
-      border: 1px solid #ffc400 !important;
-    color: #ffc400 !important;
+  border: 1px solid #ffc400 !important;
+  color: #ffc400 !important;
 }

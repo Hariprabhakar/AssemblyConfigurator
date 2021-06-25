@@ -2,7 +2,8 @@
   <form [formGroup]="createAssemblyFrom" autocomplete="off" >
     <div class="create-assembly">
       <div class="input-wrap">
-        <mat-form-field class="assembly-field" appearance="outline" floatLabel="always">
+        <mat-form-field class="assembly-field" appearance="outline">
+          <mat-label>Assembly</mat-label>
           <input formControlName="name" (focusout)="createSuggestion($event)" [readonly]="submitted" matInput type="text"  placeholder="Assembly">
         </mat-form-field>
       </div>
@@ -17,7 +18,8 @@
         </mat-form-field>
       </div>
       <div class="input-wrap">
-        <mat-form-field class="abbr-field" appearance="outline" floatLabel="always">
+        <mat-form-field class="abbr-field" appearance="outline">
+          <mat-label>Abbreviation</mat-label>
           <input formControlName="abbreviation" [readonly]="submitted" matInput type="text" placeholder="Abbreviation">
         </mat-form-field>
       </div>

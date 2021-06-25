@@ -64,6 +64,16 @@ mat-list-option:hover {
   background: #1f1f1f;
   border: 1px solid #4a4a4a;
   padding: 10px 10px;
+  .secondary-btn{
+    button{
+      background: transparent !important;
+      border: 1px solid #ffc400 !important;
+      color: #ffc400 !important;
+      border-radius: 20px;
+      height: 30px;
+    }
+  
+  }
   .create-template {
     margin-bottom: 8px;
   }

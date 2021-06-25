@@ -4,8 +4,8 @@
 </mat-dialog-actions> 
 <div class="clearfix"></div>
 <mat-dialog-content class="mat-typography">
-  <!-- <h3>Component Name</h3>
-  <div class="valid">4in x 2-1/8 Deep square special box</div> -->
+  <!-- <h3>Assembly Name</h3> -->
+  <div class="valid"></div>
 
 <form [formGroup]="FileChooseFrom" autocomplete="off" >
     <div class="create-assembly">  
@@ -30,8 +30,8 @@
                         <div class="file-name">{{file.fileName}}</div> 
                         <mat-radio-group aria-labelledby="example-radio-group-label" name="primaryBtn[i]"    class="example-radio-group">
                         <mat-radio-button (change)="radioChange(i)" [checked]="file.isPrimary" name="primaryBtn[i]" class="radio-btn" [value]="i">
-                            <div *ngIf="file.isPrimary">Default</div>
-                            <div *ngIf="!file.isPrimary">Set As Primary Image</div>
+                            <!-- <div *ngIf="file.isPrimary">Default</div> -->
+                            <div>Is Primary</div>
                         </mat-radio-button>
                     </mat-radio-group>
                         <!-- <div *ngIf="file.isPrimary && !showEditPrimaryImage" class="file-name-primary">Primary</div>                          -->
