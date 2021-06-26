@@ -95,6 +95,6 @@ export class ConfiguratorService {
   }
 
   public getAssemblyComponent(id: number) {
-    return this.restApiService.get(`/assemblies/${id}/get-components`, '', '');
+    return this.restApiService.get(`assemblies/${id}/get-components`, '', '');
   }
 }

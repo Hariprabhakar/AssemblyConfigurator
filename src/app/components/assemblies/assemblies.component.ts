@@ -88,7 +88,8 @@ export class AssembliesComponent implements OnInit {
   public getAssemblyDetails(id:any) {
     if (id) {
       this.configuratorService.getAssemblyComponent(id).subscribe(res => {
-
+        const assemblyInfo = res;
+        this.assemblyDetails.emit(assemblyInfo);
       },
         (error: any) => {
           const assemblyInfo = {
