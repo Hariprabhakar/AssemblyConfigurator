@@ -16,6 +16,7 @@ export class CustomAssemblyComponent implements OnInit {
   public displayedColumns: string[] = ['sn', 'image', 'component', 'tag', 'phase', 'qty', 'uom'];
   public componentDataSource: any;
   @Input() public selectedComponent: any;
+  @Input() public assemblyDetailsReadOnly: any;
   public componentsData: any;
   public componentTableData: any;
   public assemblydata: any;
@@ -33,6 +34,7 @@ export class CustomAssemblyComponent implements OnInit {
 
   ngOnInit(): void {
     this.componentsData = [];
+    
   }
 
   imageSelection(fileName64Bit: any, activeItem: any) {
@@ -117,13 +119,32 @@ export class CustomAssemblyComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.selectedComponent && changes.selectedComponent.currentValue) {
-      const isComponentDuplicate: boolean = this.componentsData.some((component: any) => {
-        return component.id == changes.selectedComponent.currentValue.id;
-      });
-      if (!isComponentDuplicate) {
-        this.componentsData.push({ ...changes.selectedComponent.currentValue, qty: 1 });
+
+      console.log('onchangeselectedComponent', changes.selectedComponent);
+      console.log('assemblyDetailsReadOnly', this.assemblyDetailsReadOnly);
+      if (this.assemblyDetailsReadOnly) {
+        const images = changes.selectedComponent.currentValue.assembly.images;
+        this.imageThubList = images;
+        this.selectedItem = images[0];
+        this.imag64BitUrl = images[0].fileName64Bit;
+        this.componentsData = [];
+        const qty = changes.selectedComponent.currentValue.assembly.components[0].qty;
+        this.componentsData.push({ ...changes.selectedComponent.currentValue.assembly.components[0], qty: qty });
         this.componentTableData = new MatTableDataSource(this.componentsData);
+      } else {
+        console.log('this.componentsData', this.componentsData);
+        const isComponentDuplicate: boolean = this.componentsData.some((component: any) => {
+          return component.id == changes.selectedComponent.currentValue.id;
+        });
+        if (!isComponentDuplicate) {
+          this.componentsData.push({ ...changes.selectedComponent.currentValue, qty: 1 });
+          this.componentTableData = new MatTableDataSource(this.componentsData);
+          console.log('this.componentTableData', this.componentTableData);
+        }
       }
+
+      
+
     }
   }
 

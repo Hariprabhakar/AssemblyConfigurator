@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ConfiguratorService } from '../services/configurator.service';
 @Component({
   selector: 'app-assembly-configurator',
   templateUrl: './assembly-configurator.component.html',
@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AssemblyConfiguratorComponent implements OnInit {
   public groupValue: any;
-  constructor() { }
+  public selectedComponent: any;
+  public assemblyDetails: any;
+  constructor(public configuratorService: ConfiguratorService,) { }
 
   ngOnInit(): void {
   }
@@ -15,4 +17,10 @@ export class AssemblyConfiguratorComponent implements OnInit {
   ongroupChanged(val: any){
     this.groupValue = val;
   }
+  
+  public getAssemblyDetails(data: any){
+    this.assemblyDetails = data;
+    console.log('assemblyDetails', this.assemblyDetails);
+  }
+
 }

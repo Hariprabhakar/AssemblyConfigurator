@@ -122,7 +122,8 @@ export class FileChooseModalComponent implements OnInit {
 
   // Function converts file to base64 formate 
   public async getBase64ConvertedData(files: any) {
-    const finalData = await this.tobase64Handler(files);
+    const finalData:any = await this.tobase64Handler(files);
+    console.log('finalData', finalData);
     this.tempUploads = this.tempUploads.concat(finalData);
   }
 
@@ -277,6 +278,7 @@ export class FileChooseModalComponent implements OnInit {
         this.primaryImgNotSet = "Please set primary image";
         this.isPrimaryImgNotSet = true;
       } else {
+        console.log('FinalDataPassed', this.data);
         this.fileChoose.close(this.data);
       } 
     this.showAddBtn = false;

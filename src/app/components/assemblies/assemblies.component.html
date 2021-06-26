@@ -29,7 +29,7 @@
                         {{assembly.name}}
                     </div>
                     <div class="action-btn">
-                        <button mat-icon-button class="duplicate-icon" color="primary">
+                        <button mat-icon-button class="duplicate-icon" color="primary" (click)="getAssemblyDetails(assembly?.id)">
                             <mat-icon [inline]="true">queue</mat-icon>
                           </button>
                     </div>

@@ -2,11 +2,15 @@
   <div class="assembly-section">
     <div class="assembly-detail-section">
       <div class="primary-img">
-        <div class="upload-img-btn secondary-btn">
+        <div class="upload-img-btn secondary-btn" *ngIf="!assemblyDetailsReadOnly">
           <img src="../../assets/images/maximize.png" *ngIf="imag64BitUrl" (click)="openZoomImg()" class="img-max-btn">
           <button mat-flat-button color="primary" *ngIf="!imag64BitUrl" (click)="openFileChooseModal()">Upload Assembly Image</button>
           <img *ngIf="imag64BitUrl" src="{{imag64BitUrl}}" alt="Profile" />
-        </div>        
+        </div>    
+        <div class="upload-img-btn secondary-btn" *ngIf="assemblyDetailsReadOnly">
+          <img src="../../assets/images/maximize.png" (click)="openZoomImg()" class="img-max-btn">
+          <img *ngIf="imag64BitUrl" src="{{imag64BitUrl}}" alt="Profile" />
+        </div>     
       </div>     
       <div class="assembly-info" >
         <div class="icon-wrap">
@@ -31,7 +35,7 @@
         <div class="add-delete-btn">
 
           <div class="delete-img-btn secondary-btn"  *ngFor="let image of imageThubList; let index = index"  >
-            <button mat-flat-button color="primary"  [ngClass]="{'borderHighlighter': selectedItem == image}"><img (click)="imageSelection(image.fileName64Bit, image)" class="shape-icon" src="{{image.fileName64Bit}}"><img (click)="deleteImage(index)" class="delete-btn" src="../../assets/images/deletebtn.png"></button>            
+            <button mat-flat-button color="primary"  [ngClass]="{'borderHighlighter': selectedItem == image}"><img (click)="imageSelection(image.fileName64Bit, image)" class="shape-icon" src="{{image.fileName64Bit}}"><img *ngIf="!assemblyDetailsReadOnly" (click)="deleteImage(index)" class="delete-btn" src="../../assets/images/deletebtn.png"></button>            
           </div>
           <!--  <div class="delete-img-btn secondary-btn">
             <button mat-flat-button color="primary"><img src="../../assets/images/deletebtn.png"></button>            
@@ -40,9 +44,11 @@
             <button mat-flat-button color="primary"><img src="../../assets/images/deletebtn.png"></button>             
           </div> -->
           <div class="add-img-btn secondary-btn" [ngClass]="{'borderHighlighter' : imageThubList.length == 0}" *ngIf=" (imageThubList.length < 5)"  (click)="openFileChooseModal()">
-            <button mat-flat-button color="primary"  class="delete-btn-img"><img src="../../assets/images/addImageIcon.png"></button>            
+            <button *ngIf="!assemblyDetailsReadOnly" mat-flat-button color="primary"  class="delete-btn-img"><img src="../../assets/images/addImageIcon.png"></button>            
           </div>
         </div>
+
+        
         <div class="clearfix"></div>
         <div class="component-controls">
           <div class="view-select">
@@ -82,7 +88,7 @@
                   <div class="chip">
                     <span *ngIf="checkArray(element.connection)">{{element.connection[0]}} <span *ngIf="element.connection?.length > 1">+ {{element.connection.length - 1}}</span></span>
                     <span *ngIf="!checkArray(element.connection)">{{element.connection}}</span>
-                    <div class="action-icons" (click)="editConnectionSystem(element)">
+                    <div class="action-icons" (click)="!assemblyDetailsReadOnly && editConnectionSystem(element)">
                       <span inline="true" class="material-icons-outlined">
                         border_color
                         </span>
@@ -95,7 +101,7 @@
                   <div class="chip">
                     <span *ngIf="checkArray(element.system)">{{element.system[0]}} <span *ngIf="element.system?.length > 1"> + {{element.system.length - 1}}</span></span>
                     <span *ngIf="!checkArray(element.system)">{{element.system}}</span>
-                    <div class="action-icons" (click)="editConnectionSystem(element)">
+                    <div class="action-icons" (click)="!assemblyDetailsReadOnly && editConnectionSystem(element)">
                       <span inline="true" class="material-icons-outlined">
                         border_color
                         </span>

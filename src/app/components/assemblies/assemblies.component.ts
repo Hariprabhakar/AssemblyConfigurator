@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, Output, SimpleChanges, EventEmitter } from '@angular/core';
 import { ConfiguratorService } from 'src/app/services/configurator.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 
@@ -9,6 +9,7 @@ import { ToastService } from 'src/app/shared/services/toast.service';
 })
 export class AssembliesComponent implements OnInit {
   @Input() groupId: number;
+  @Output() assemblyDetails = new EventEmitter();
   public familyId: any;
   public companyId: any;
   public searchValue: any;
@@ -20,6 +21,7 @@ export class AssembliesComponent implements OnInit {
   public customAssemblies = false;
   public showLoader: boolean;
   public ImagesData: any;
+
 
   constructor(private configuratorService: ConfiguratorService, private toastService: ToastService) { }
 
@@ -82,6 +84,44 @@ export class AssembliesComponent implements OnInit {
     this.getAssemblies();
   }
 
+  
+  public getAssemblyDetails(id:any) {
+    if (id) {
+      this.configuratorService.getAssemblyComponent(id).subscribe(res => {
 
+      },
+        (error: any) => {
+          const assemblyInfo = {
+            "assembly": {
+              "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAE3SURBVHgBpZTNcYMwEIVXGrgnFcRnDvxUEFJBUkLSgTsAV5B0EHdiuQJQBbY7sAsA/JYRHhlL+O8dELDLt087KwR5VFXVC5YvKeUbP7dtq7HUWZZtXfnCAciFEAVuc3JLdV33MwbKEWQOyGoCwuJCG+SWThAHkPBLN4pd2zBhIDOu4vlmidge25m7gnj/gW0qaej/5K+sTKO9zvr1ihtO/AZITBWDq1d2lNKTwoh8BrgkINoO/rDUwzPcrAdnlgO+zy3WLBjT8eGBHPPF27OK7cfxAAk7BGxHhZ1wS48Qq7lHip5U0zRamlFX9LgUM/o5QvMWE4kprL/7gnzueD01R2td4GVJdwgFyiRJFmege2E25ALEwqSn5vDmHobC7JVxHK/PwJ7k/iAzbPixQdswDFUURTtX/hFoGohs24G34AAAAABJRU5ErkJggg==",
+              "images": [{
+                "inputText": "Front",
+                "fileName64Bit": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAE3SURBVHgBpZTNcYMwEIVXGrgnFcRnDvxUEFJBUkLSgTsAV5B0EHdiuQJQBbY7sAsA/JYRHhlL+O8dELDLt087KwR5VFXVC5YvKeUbP7dtq7HUWZZtXfnCAciFEAVuc3JLdV33MwbKEWQOyGoCwuJCG+SWThAHkPBLN4pd2zBhIDOu4vlmidge25m7gnj/gW0qaej/5K+sTKO9zvr1ihtO/AZITBWDq1d2lNKTwoh8BrgkINoO/rDUwzPcrAdnlgO+zy3WLBjT8eGBHPPF27OK7cfxAAk7BGxHhZ1wS48Qq7lHip5U0zRamlFX9LgUM/o5QvMWE4kprL/7gnzueD01R2td4GVJdwgFyiRJFmege2E25ALEwqSn5vDmHobC7JVxHK/PwJ7k/iAzbPixQdswDFUURTtX/hFoGohs24G34AAAAABJRU5ErkJggg==",
+                "isPrimary": true
+              }],
+              "components": [{
+                "sequence": 1,
+                "id": 45,
+                "componentName": "abc",
+                "symbol": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAE3SURBVHgBpZTNcYMwEIVXGrgnFcRnDvxUEFJBUkLSgTsAV5B0EHdiuQJQBbY7sAsA/JYRHhlL+O8dELDLt087KwR5VFXVC5YvKeUbP7dtq7HUWZZtXfnCAciFEAVuc3JLdV33MwbKEWQOyGoCwuJCG+SWThAHkPBLN4pd2zBhIDOu4vlmidge25m7gnj/gW0qaej/5K+sTKO9zvr1ihtO/AZITBWDq1d2lNKTwoh8BrgkINoO/rDUwzPcrAdnlgO+zy3WLBjT8eGBHPPF27OK7cfxAAk7BGxHhZ1wS48Qq7lHip5U0zRamlFX9LgUM/o5QvMWE4kprL/7gnzueD01R2td4GVJdwgFyiRJFmege2E25ALEwqSn5vDmHobC7JVxHK/PwJ7k/iAzbPixQdswDFUURTtX/hFoGohs24G34AAAAABJRU5ErkJggg==",
+                "tag": "NSB",
+                "phase": "ROUGH-IN",
+                "name": "4inx2 1/8in Deep Box Assembly",
+                "qty": 3,
+                "uom": "Ea",
+                "systems": ["Power", "Data"],
+                "connectionTypes": [1, 2]
+              }]
+            }
+          };
+          this.assemblyDetails.emit(assemblyInfo);
+        }
+      );
+    } else {
+      console.log('Some thing went wrong');
+    }
 
+  }
+
+  
 }
