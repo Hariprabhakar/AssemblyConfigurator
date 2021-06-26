@@ -42,7 +42,7 @@
                 </div> 
  
             </div>   
-            <div *ngIf="showUplodingFiles" formArrayName="items">
+            <div formArrayName="items">
                 <h2 mat-dialog-title class="maxfileinfo1">Choose files to Add</h2>
                 <div class="select-wrap fl group-new for-new-files" *ngFor="let item of items.controls; let i = index">                
                     <div class="img-shape">
@@ -67,9 +67,9 @@
             <div class="select-wrap fr" >             
                 <!-- <button #multipleFile class="btn btn-light choose-btn">Choose Files</button> -->
                 <div>
-                    <input multiple formControlName="fileupload" class="file-input" type="file" accept="image/*"
+                    <input multiple formControlName="fileupload" class="file-input" type="file" accept="image/x-png,image/gif,image/jpeg,image/jpg,image/tif"
                     (change)="handleFileInput($event)" #fileUpload />             
-                    <div class="maxfileerror" *ngIf="isMaxFileError">{{maxFileError}}</div>
+                   
                     
                 </div>
                 <button mat-mini-fab class="upload-btn"
@@ -79,7 +79,15 @@
         </div>
       
         <div class="clearfix"></div>
+        <div class="maxfileerror" *ngIf="isMaxFileError">{{maxFileError}}</div>
         <div class="primaryImgNotSet" *ngIf="isPrimaryImgNotSet">{{primaryImgNotSet}}</div>
+        <div *ngIf="maxImageSizeExceeded">
+            <div class="primaryImgNotSet" *ngFor="let fileName of maxLimitExieedFiles">{{fileName}} File Size exceeds 2MB</div>
+        </div>
+        <div *ngIf="isInValidFileExtension">
+            <div class="primaryImgNotSet" *ngFor="let fileName of inValidFileExtension">{{fileName}} File Extension is not supported</div>
+        </div>
+
         <div class="edit-btn">
             <mat-dialog-actions align="center" class="click-add-img" *ngIf="showAddBtn"> 
                 <button mat-flat-button color="primary"  (click)="onSubmit()">Add Image</button>   

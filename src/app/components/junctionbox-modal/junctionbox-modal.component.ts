@@ -10,8 +10,8 @@ import { ConfiguratorService } from 'src/app/services/configurator.service';
 })
 export class JunctionboxModalComponent implements OnInit {
   public JunctionBoxFrom: FormGroup = this.formBuilder.group({
-    systemName: ['', Validators.required],
-    connection: ['', Validators.required]
+    systemName: [''],
+    connection: ['']
   });
   constructor(private formBuilder: FormBuilder, public dialogRef: MatDialogRef<JunctionboxModalComponent>,  @Inject(MAT_DIALOG_DATA) public data: any, private configuratorService: ConfiguratorService) { }
 

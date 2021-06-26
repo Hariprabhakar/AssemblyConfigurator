@@ -1,0 +1,183 @@
+.zooming-img{
+    text-align: center;
+    max-height: 445px; margin-top: 35px; max-height: 360px;
+    img{max-width: 100%; /*height: 100%;*/background: #818181; max-height: 360px;}
+}
+.clearfix{float: none; clear: both;}
+
+.create-assembly {
+    padding: 0;   
+    align-items: center;
+    width: 100%;
+    float:left;  
+  
+    .click-add-img{float:left}
+    mat-form-field{width: 100%}
+    .input-wrap {
+      font-size: 12px;
+      ::ng-deep .mat-form-field-flex > .mat-form-field-infix {
+        border: 0;
+      }
+      ::ng-deep .mat-form-field-appearance-outline .mat-form-field-label {
+        margin-top: -15px;
+      }
+      ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix{
+        padding: 12px 0px 8px 0px;
+      }
+    }
+    .fl{float:left}
+    .fr{float:right}
+    .select-wrap {
+      width: 100%;  
+      font-size: 12px;     
+      ::ng-deep .mat-form-field-flex > .mat-form-field-infix {
+        border: 0;
+      }
+      ::ng-deep .mat-form-field-appearance-outline .mat-form-field-label {
+        margin-top: 7px;
+      }
+      ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix{
+        padding: 12px 0px 8px 0px;
+      }
+      ::ng-deep
+        .mat-form-field-appearance-outline
+        .mat-empty.mat-form-field-label {
+        margin-top: 0px;
+      }
+      .read-only {
+        pointer-events: none;
+      }
+    
+    }
+    .mat-dialog-actions{
+        height: 445px;
+    }
+    .mat-flat-button.mat-primary.mat-button-disabled {
+      background-color: #ffc400;
+      color: #000;
+      opacity: 0.4;
+    }
+
+  }
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-start {
+    border-radius: 0px !important;
+  }
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-end {
+    border-radius: 0px !important;
+  }
+  .cdk-overlay-pane{width: 610px !important;}
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    background-color: 
+    #282828
+  }
+  ::ng-deep .mat-form-field-wrapper{padding:0 !important}
+  .mat-typography{height: auto; width: 415px;}
+
+  .mat-dialog-actions{padding:0; min-height: 0;}
+  .close-button{    
+    min-width: 25px;
+    max-height: 25px;
+    border-radius: 15px;
+    font-size: 12px;
+    line-height: 27px;
+    padding: 0;
+}
+.matLable{font-size: 10px; opacity: 0.53;}
+
+ 
+
+.maxfileerror, .primaryImgNotSet {    margin-top: 10px;
+  color: #e84c4c;}
+
+  .maxfileinfo{color: #ffc400; margin-top:5px;}
+  .maxfileinfo1{color: #ffc400; margin-top:15px; margin-bottom: 10px;}
+
+  .group-new {background: #585757;
+    padding: 10px;}
+    .example-form-field {
+      width: 200px;
+    }
+  .file-icon{float:left;}
+  .file-list{float:left; width: 100%;}
+  .file-name{float:left; line-height: 3.5;  white-space: nowrap;
+    width: 85px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 5px;}
+  .close-btn{height: 20px !important; line-height: 20px !important;}
+  .file-icon, .close-btn{width: 30px;}
+  .for-file{ margin-bottom: 10px; height: 60px}
+  .choose-btn{
+      float:left; 
+      position:absolute; 
+      z-index:0;
+      margin-top: 10px;
+      padding: 5px 10px;
+      font-weight: bold;
+
+  }
+.uploadfile{
+opacity: 0; //Not visible
+font-size: 0;
+//Button dimensions
+width: 90px; 
+height: 37px; 
+float: left; 
+
+
+}
+
+.close-button{    
+  min-width: 25px;
+  max-height: 25px;
+  border-radius: 15px;
+  font-size: 12px;
+  line-height: 27px;
+  padding: 0;
+}
+
+.cls-btn {
+  width: 10px;
+  height: 10px;
+
+}
+
+.for-new-files {
+  margin-bottom: 10px;
+}
+
+.example-full-width.mat-form-field-invalid .mat-form-field-wrapper{
+  border: 1px solid red;
+  padding: 0;
+  margin: 0!important; 
+}
+
+.example-full-width.mat-form-field-invalid .mat-form-field-wrapper{
+  margin: 0; 
+}
+.img-shape{float: left; width: 48px;
+  height: 40px; margin-right: 10px; background-color: #9D9D9D !important;
+  img{width:100%; height: 100%; padding: 5px;}
+}
+.close-shape{margin-top: 8px;}
+.file-input {
+  display: none;
+}
+.upload-btn{background-color: #fff;
+  width: auto;
+  border-radius: 0;
+  padding: 0 10px;
+  font-weight: bold;}
+
+  .file-name-primary{float: left;
+    line-height: 3.5;
+    font-weight: 500;
+    color: #ffc400;    }
+  .edit-icon-fun{float: right; width:100%; line-height: 1; height: 20px;}
+  .edit-icon{font-size: 18px; float: left;}
+  .select-primary{float:left; line-height: 1.8; height: auto; width: auto; font-size: 12px;}
+  .primary-select{width: 180px; float: right;}
+  .loaded-files{width: 100%; float: left; margin-bottom: 5px; margin-top:30px}
+  .radio-btn{line-height: 3.5; float: left}
+  .upload-btn{height: 30px; font-size: 12px; line-height: 1;}
+  
