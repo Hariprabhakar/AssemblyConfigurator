@@ -18,6 +18,7 @@ import { MatFileUploadModule } from 'angular-material-fileupload';
 import { JunctionboxModalComponent } from './components/junctionbox-modal/junctionbox-modal.component';
 import { AssemblyIconModalComponent } from './components/assembly-icon-modal/assembly-icon-modal.component';
 import { FileChooseModalComponent } from './components/file-choose-modal/file-choose-modal.component';
+import { AssemblyZoomImageModalComponent } from './components/assembly-zoom-image-modal/assembly-zoom-image-modal.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { FileChooseModalComponent } from './components/file-choose-modal/file-ch
     FooterComponent,
     JunctionboxModalComponent,
     AssemblyIconModalComponent,   
-    FileChooseModalComponent     
+    FileChooseModalComponent, AssemblyZoomImageModalComponent     
   ],
   imports: [
     BrowserModule,
@@ -43,6 +44,7 @@ import { FileChooseModalComponent } from './components/file-choose-modal/file-ch
       ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, ToastService],
   exports: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AssemblyIconModalComponent]
 })
 export class AppModule { }

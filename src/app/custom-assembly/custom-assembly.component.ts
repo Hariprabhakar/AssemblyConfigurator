@@ -3,6 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { FileChooseModalComponent } from '../components/file-choose-modal/file-choose-modal.component';
 import { AssemblyIconModalComponent } from '../components/assembly-icon-modal/assembly-icon-modal.component';
+import { AssemblyZoomImageModalComponent } from '../components/assembly-zoom-image-modal/assembly-zoom-image-modal.component';
 import { ConfiguratorService } from '../services/configurator.service';
 import { JunctionboxModalComponent } from '../components/junctionbox-modal/junctionbox-modal.component';
 @Component({
@@ -45,7 +46,7 @@ export class CustomAssemblyComponent implements OnInit {
       data: this.imageThubList
     });
     fileChoose.afterClosed().subscribe(result => {
-      if (result) {
+      if (result !== true) {
         const isArray = Array.isArray(result);
         if (isArray && result.length !== 0) {
           this.imageThubList = result;
@@ -102,6 +103,16 @@ export class CustomAssemblyComponent implements OnInit {
       if(result) {
         this.iconSrc = result;
       }      
+    });
+  }
+  openZoomImg() { // Can be moved to right place
+    const dialogRef = this.dialog.open(AssemblyZoomImageModalComponent, {
+      height: '445px',
+      data: {addPosition: this.imag64BitUrl}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      
+      console.log(`Dialog result: ${result}`);
     });
   }
 
