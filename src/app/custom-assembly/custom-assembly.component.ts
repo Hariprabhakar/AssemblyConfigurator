@@ -119,18 +119,8 @@ export class CustomAssemblyComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.selectedComponent && changes.selectedComponent.currentValue) {
-
-      console.log('onchangeselectedComponent', changes.selectedComponent);
-      console.log('assemblyDetailsReadOnly', this.assemblyDetailsReadOnly);
       if (this.assemblyDetailsReadOnly) {
-        const images = changes.selectedComponent.currentValue.assembly.images;
-        this.imageThubList = images;
-        this.selectedItem = images[0];
-        this.imag64BitUrl = images[0].fileName64Bit;
-        this.componentsData = [];
-        const qty = changes.selectedComponent.currentValue.assembly.components[0].qty;
-        this.componentsData.push({ ...changes.selectedComponent.currentValue.assembly.components[0], qty: qty });
-        this.componentTableData = new MatTableDataSource(this.componentsData);
+        this.updateRightPanel(changes);
       } else {
         console.log('this.componentsData', this.componentsData);
         const isComponentDuplicate: boolean = this.componentsData.some((component: any) => {
@@ -142,10 +132,22 @@ export class CustomAssemblyComponent implements OnInit {
           console.log('this.componentTableData', this.componentTableData);
         }
       }
-
-      
-
     }
+  }
+
+    /** Function to update the data for assembly-configurator Ready only Mode
+   * @memberOf CustomAssemblyComponent
+   */
+  public updateRightPanel(changes:any) {
+    const images = changes.selectedComponent.currentValue?.images;
+    if (images && images.length !== 0) {
+      this.imageThubList = images;
+      this.selectedItem = images[0];
+      this.imag64BitUrl = images[0].fileName64Bit;
+    }
+    this.componentsData = [];
+    this.componentsData = changes.selectedComponent.currentValue.components;
+    this.componentTableData = new MatTableDataSource(this.componentsData);
   }
 
   saveAssembly() {

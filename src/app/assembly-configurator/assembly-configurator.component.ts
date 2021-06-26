@@ -17,7 +17,10 @@ export class AssemblyConfiguratorComponent implements OnInit {
   ongroupChanged(val: any){
     this.groupValue = val;
   }
-  
+
+  /** Function to get data from app-assemblies component and will be passed in app-custom-assembly component
+   * @memberOf AssemblyConfiguratorComponent
+   */
   public getAssemblyDetails(data: any){
     this.assemblyDetails = data;
     console.log('assemblyDetails', this.assemblyDetails);

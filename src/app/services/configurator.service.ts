@@ -94,6 +94,11 @@ export class ConfiguratorService {
     return this.restApiService.patch('Components/' + id + '/update-phase/', phaseObj, '');
   }
 
+  /** Invokes ​'/assemblies​/{id}​/get-components' Get assembly components service call
+   * GET Methods 
+   * {url params} Assembly id
+   * @memberOf ConfiguratorService
+   */
   public getAssemblyComponent(id: number) {
     return this.restApiService.get(`assemblies/${id}/get-components`, '', '');
   }

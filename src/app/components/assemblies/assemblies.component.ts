@@ -84,7 +84,9 @@ export class AssembliesComponent implements OnInit {
     this.getAssemblies();
   }
 
-  
+  /** Function to invoke Assembly Details by Id
+   * @memberOf AssembliesComponent
+   */
   public getAssemblyDetails(id:any) {
     if (id) {
       this.configuratorService.getAssemblyComponent(id).subscribe(res => {
@@ -92,6 +94,8 @@ export class AssembliesComponent implements OnInit {
         this.assemblyDetails.emit(assemblyInfo);
       },
         (error: any) => {
+          // Mock data for testing will be removed
+          console.log('Error in getAssemblyDetails service call');
           const assemblyInfo = {
             "assembly": {
               "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAE3SURBVHgBpZTNcYMwEIVXGrgnFcRnDvxUEFJBUkLSgTsAV5B0EHdiuQJQBbY7sAsA/JYRHhlL+O8dELDLt087KwR5VFXVC5YvKeUbP7dtq7HUWZZtXfnCAciFEAVuc3JLdV33MwbKEWQOyGoCwuJCG+SWThAHkPBLN4pd2zBhIDOu4vlmidge25m7gnj/gW0qaej/5K+sTKO9zvr1ihtO/AZITBWDq1d2lNKTwoh8BrgkINoO/rDUwzPcrAdnlgO+zy3WLBjT8eGBHPPF27OK7cfxAAk7BGxHhZ1wS48Qq7lHip5U0zRamlFX9LgUM/o5QvMWE4kprL/7gnzueD01R2td4GVJdwgFyiRJFmege2E25ALEwqSn5vDmHobC7JVxHK/PwJ7k/iAzbPixQdswDFUURTtX/hFoGohs24G34AAAAABJRU5ErkJggg==",
