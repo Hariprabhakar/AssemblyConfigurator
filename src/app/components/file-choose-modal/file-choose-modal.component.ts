@@ -226,7 +226,7 @@ export class FileChooseModalComponent implements OnInit {
           this.clearMaxFileSizeError();
           this.clearInvalidFileExtensionError();
           let finalData: any = [];
-          this.tempUploads.forEach((value: any, key: any) => {
+          this.tempUploads.forEach((value: any, key: number) => {
               const obj = {
                   fileName: '',
                   fileName64Bit: '',
@@ -301,7 +301,7 @@ export class FileChooseModalComponent implements OnInit {
    * @memberOf FileChooseModalComponent Component
    */
   public radioChange(index:number) {
-    this.data.forEach((value: any, key: any) => {
+    this.data.forEach((value: any, key: number) => {
         if (index === key) {
           this.data[key].isPrimary = true;
         } else {

@@ -111,7 +111,6 @@ export class CustomAssemblyComponent implements OnInit {
       data: {addPosition: this.imag64BitUrl}
     });
     dialogRef.afterClosed().subscribe(result => {
-      
       console.log(`Dialog result: ${result}`);
     });
   }
