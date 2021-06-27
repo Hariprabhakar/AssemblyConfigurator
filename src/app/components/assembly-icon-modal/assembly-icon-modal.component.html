@@ -28,9 +28,13 @@
                                         <mat-label class="matLable">Choose from existing Assembly</mat-label>
                                         <mat-select  name="existingAssemblyName" [(ngModel)]="existingAssembly">
                                             <mat-option *ngFor="let assembly of assembliesData" [value]="assembly.id">
-                                                {{assembly.name}}
                                                 <div class="icon-img" *ngIf="assembly.icon"><img src="data:image/jpeg;base64,{{assembly.icon}}" /></div>
-                                                <div class="icon-img" *ngIf="!assembly.icon">- No Icon</div>
+                                                <div class="icon-img" *ngIf="!assembly.icon">
+                                                    <span style="font-size: 12px;" class="material-icons-outlined">
+                                                        image_not_supported
+                                                        </span>
+                                                </div>
+                                                {{assembly.name}}                                                
                                             </mat-option>
                                         </mat-select>                                
                                      </mat-form-field>
@@ -38,9 +42,9 @@
                                         Please select Assembly Name
                                     </div>
                                  </div>                             
-                                 <div class="addbtn">
+                                 <!-- <div class="addbtn">
                                      <img src="../../../assets/images/addIcon.png">
-                                 </div>
+                                 </div> -->
                              </div>
                         </div>
                         <div class="radio-btn symbol-selector">
@@ -75,9 +79,9 @@
 
                                 </div> -->
                              </div>
-                             <div class="addbtn1">
+                             <!-- <div class="addbtn1">
                                 <img src="../../../assets/images/addIcon.png">
-                            </div>
+                            </div> -->
                        </div>   
                     </mat-radio-group>             
             </div>

@@ -23,6 +23,7 @@ export class GroupComponent implements OnInit {
     this.showLoader = true;
     this.configuratorService.getFamilies().subscribe((res: any) => {
       this.groups = [{id: null, name: 'Custom Assemblies'}, ...res ];
+      this.configuratorService.setGroups(res);
       this.groupList = [...this.groups];
       this.showLoader = false;
       this.selectedGroup.selectionChange.subscribe((grp: MatSelectionListChange) => {          

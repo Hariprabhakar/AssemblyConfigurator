@@ -15,13 +15,17 @@
         </div>
     </div>
     <div class="assembly-lists">
-        <mat-list>
-            <mat-list-item *ngFor="let assembly of assembliesData">
+        <mat-selection-list [multiple]="false" (selectionChange)="getAssemblyDetails($event)">
+            <mat-list-option *ngFor="let assembly of assembliesData" [value]='assembly.id'>
                 <div class="assembly-list-wrap">
                     <div class="img-cont">
                         <div class="assembly-image"></div>
                         <div class="assembly-icon">
-                            <img *ngIf="assembly?.icon" [src]='assembly.icon' alt=" " />
+                            <span *ngIf="assembly?.icon">
+                                <img *ngIf="!assembly.icon.includes('base64')" src="data:image/jpeg;base64,{{assembly.icon}}" alt=" " />                            
+                                <img *ngIf="assembly.icon.includes('base64')" src="{{assembly.icon}}" alt=" " />
+                            </span>
+                            
                             <div *ngIf="!assembly?.icon" class="default-icon">{{assembly.name | slice:0:1}}</div>
                         </div>
                     </div>                   
@@ -29,12 +33,12 @@
                         {{assembly.name}}
                     </div>
                     <div class="action-btn">
-                        <button mat-icon-button class="duplicate-icon" color="primary" (click)="getAssemblyDetails(assembly?.id)">
+                        <button mat-icon-button class="duplicate-icon" color="primary">
                             <mat-icon [inline]="true">queue</mat-icon>
                           </button>
                     </div>
                 </div>
-            </mat-list-item>
-           </mat-list>
+            </mat-list-option>
+           </mat-selection-list>
     </div>
 </div>

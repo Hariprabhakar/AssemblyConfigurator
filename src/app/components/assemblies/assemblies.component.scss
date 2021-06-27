@@ -124,3 +124,9 @@
 .mat-list-base .mat-list-option {
   height: 66px;
 }
+
+@media(max-width: 1056px){
+  .assembly-lists {
+    height: calc(100vh - 165px);
+  }
+}

@@ -4,6 +4,7 @@ import { ConfiguratorService } from 'src/app/services/configurator.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import { MatDialog } from '@angular/material/dialog';
 import { JunctionboxModalComponent } from '../junctionbox-modal/junctionbox-modal.component';
+import { Subscription } from 'rxjs';
 
 
 
@@ -36,13 +37,21 @@ export class CategoryComponentsComponent implements OnInit {
   public editableTagIndex: any;
   public isJunctionBox: boolean;
   private recentElement: any;
+  private isJunctionBoxGroup: any;
+  private assemblysubscription: Subscription;
 
   constructor(private configuratorService: ConfiguratorService, private toastService: ToastService, public dialog: MatDialog) {
     this.isJunctionBox = false;
+    this.isJunctionBoxGroup = false;
   }
 
   ngOnInit(): void {
 
+    this.assemblysubscription = this.configuratorService.currentAssemblyValue.subscribe((data: any) => {
+      if(data.familyId === 2){
+        this.isJunctionBoxGroup = true;
+      } 
+    });
   }
 
   openDialog(element: any) {
@@ -57,8 +66,8 @@ export class CategoryComponentsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
       if (result) {
-        this.recentElement.connection = result.connection;
-        this.recentElement.system = result.systemName;
+        this.recentElement.connectionTypes = result.connection;
+        this.recentElement.systems = result.systemName;
         this.recentElement.isJunctionBox = this.isJunctionBox;
         this.selectedComponent.emit(this.recentElement);
       }
@@ -69,7 +78,7 @@ export class CategoryComponentsComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges) {
     console.log('ngOnChanges', this.categoryValue);
     if (changes.categoryValue && changes.categoryValue.currentValue) {
-      if (changes.categoryValue.currentValue.id === 1) { // Junctionbox id is 7 and for mocking its kept of Data Jack
+      if (changes.categoryValue.currentValue.id === 7 || this.isJunctionBoxGroup) { // Junctionbox id is 7 and for mocking its kept of Data Jack
         this.isJunctionBox = true;
       } else {
         this.isJunctionBox = false;

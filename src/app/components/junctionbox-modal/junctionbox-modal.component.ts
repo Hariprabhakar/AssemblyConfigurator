@@ -19,6 +19,10 @@ export class JunctionboxModalComponent implements OnInit {
 
   public isJunctionBoxGroup: any;
   public connectionTypes = [{
+    name: '1/2" EMT',
+    value: '1/2" EMT'
+  },
+  {
     name: '3/4" EMT',
     value: '3/4" EMT'
   },
@@ -27,8 +31,12 @@ export class JunctionboxModalComponent implements OnInit {
     value: '1" EMT'
   },
   {
-    name: '1 - 1 / 2" EMT',
-    value: '1-1 / 2" EMT'
+    name: '1 1/4" EMT',
+    value: '1 1/4" EMT'
+  },
+  {
+    name: '1 1/2" EMT',
+    value: '1 1/2" EMT'
   },
   {
     name: 'MC Cable',
@@ -38,8 +46,8 @@ export class JunctionboxModalComponent implements OnInit {
   ngOnInit(): void {
   console.log(this.data);
   const assemblyData = this.configuratorService.getAssemblyData();
-  //this.isJunctionBoxGroup = assemblyData['familyId'] == 2;
-  this.isJunctionBoxGroup = false;
+  this.isJunctionBoxGroup = assemblyData['familyId'] == 2;
+  // this.isJunctionBoxGroup = false;
   if (!this.data.isAdd) {
     if (this.isJunctionBoxGroup) {
       this.JunctionBoxFrom.patchValue({

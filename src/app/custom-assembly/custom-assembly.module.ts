@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     MatIconModule,
     MatTableModule,
     MatButtonModule,
-    FormsModule
+    FormsModule,
+    MatTooltipModule
   ],
   exports: [CustomAssemblyComponent]
 })

@@ -12,7 +12,7 @@
   .assembly-section {
     .assembly-detail-section {
       display: flex;
-
+      min-height: 210px;
       .primary-img {
         width: 193px;
         height: 181px;
@@ -76,6 +76,7 @@
           }
         }
         .assembly-details {
+          min-height: 136px;
           float: left;
           font-size: 14px;
           color: #787878;
@@ -171,7 +172,7 @@
 
     .table {
       position: relative;
-      height: calc(100vh - 368px);
+      height: calc(100vh - 397px);
       overflow: hidden auto;
       &::-webkit-scrollbar {
         width: 10px;
@@ -238,6 +239,13 @@
         tr.mat-header-row {
           text-transform: uppercase;
         }
+        th,
+        td {
+          overflow: hidden;
+          width: auto;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
       }
     }
     .footer {
@@ -297,7 +305,7 @@
   }
 }
 
-.jbox-connector {
+.jbox-system {
   padding-right: 8px;
 }
 .shape-icon {
@@ -326,4 +334,30 @@
 }
 .edit-icon, .delete-icon {
   cursor: pointer;
+}
+
+.read-only.custom-assembly-wrap{
+  .add-delete-btn{
+    min-height: 42px;
+  }
+  .component-section {
+    height: calc(100vh - 300px);
+    .table{
+      height: calc(100vh - 340px);
+    }
+  }
+  .icon{
+    width: 70px !important;
+  }
+  .icon-shape{
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 70px !important;
+    line-height: 55px;
+    font-size: 20px;
+  }
+  .icon-base64{
+    width: 60px !important;
+    height: 60px !important;
+  }
 }

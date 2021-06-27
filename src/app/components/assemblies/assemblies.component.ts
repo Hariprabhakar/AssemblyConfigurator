@@ -21,6 +21,9 @@ export class AssembliesComponent implements OnInit {
   public customAssemblies = false;
   public showLoader: boolean;
   public ImagesData: any;
+  private selectedAssemblyData: any;
+  private iconSrc: string = '';
+   
 
 
   constructor(private configuratorService: ConfiguratorService, private toastService: ToastService) { }
@@ -47,7 +50,7 @@ export class AssembliesComponent implements OnInit {
       this.assembliesOriginalData = res;
       this.assembliesData = [...this.assembliesOriginalData];
       this.showLoader = false;
-      this.getImages();
+      // this.getImages();
     },
       (error: any) => {
         this.toastService.openSnackBar(error);
@@ -87,13 +90,25 @@ export class AssembliesComponent implements OnInit {
   /** Function to invoke Assembly Details by Id
    * @memberOf AssembliesComponent
    */
-  public getAssemblyDetails(id:any) {
-    if (id) {
+  public getAssemblyDetails(event:any) {
+    let id = event.option.value;
+    if (event.option.value) {
       this.configuratorService.getAssemblyComponent(id).subscribe(res => {
         const assemblyInfo = res;
-        this.assemblyDetails.emit(assemblyInfo);
+        this.selectedAssemblyData = {...res};
+        this.assembliesOriginalData.forEach((assembly: any) => {
+          if(assembly.id === id){
+            if(assembly.icon){
+              this.iconSrc = assembly.icon;
+            } else {
+              this.iconSrc = '';
+            }
+          }
+        });
+        this.getAssemblyById(id);
       },
         (error: any) => {
+          this.toastService.openSnackBar(error);
           // Mock data for testing will be removed
           console.log('Error in getAssemblyDetails service call');
           const assemblyInfo = {
@@ -119,13 +134,24 @@ export class AssembliesComponent implements OnInit {
               }]
             }
           };
-          this.assemblyDetails.emit(assemblyInfo);
+          // this.assemblyDetails.emit(assemblyInfo);
         }
       );
     } else {
       console.log('Some thing went wrong');
     }
 
+  }
+
+  public getAssemblyById(id: number) {
+    this.configuratorService.getAssemblyById(id).subscribe((res: any) => {
+      const groupName = this.configuratorService.getGroupNameById(res.familyId);
+      this.selectedAssemblyData = {...this.selectedAssemblyData, ...res, groupName, icon:this.iconSrc};
+      this.assemblyDetails.emit(this.selectedAssemblyData);
+    },
+    (error: any) => {
+      this.toastService.openSnackBar(error);
+    });
   }
 
   

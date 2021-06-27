@@ -12,6 +12,7 @@ export class ConfiguratorService {
   private groupName = new BehaviorSubject('');
   public currentAssemblyValue = this.asemblyDataSubject$.asObservable();
   public groupNameObservable = this.groupName.asObservable();
+  public groups: any;
 
   constructor(private restApiService: RestApiService) {
     const sessionCompany = sessionStorage.getItem('companyId');
@@ -44,7 +45,21 @@ export class ConfiguratorService {
 
   }
 
-  
+  public setGroups(groups: any) {
+    this.groups = groups;
+  }
+
+  public getGroupNameById(groupId: any) {
+    let groupName;
+    if(this.groups) {
+      this.groups.forEach((group: any) => {
+        if(group.id == groupId) {
+          groupName = group.name;
+        }
+      });
+    }
+    return groupName;
+  }
 
   // public get assemblyData(): any {
   //   return this._assemblyData;
@@ -119,5 +134,9 @@ export class ConfiguratorService {
   }
   public saveAssemblyComponents(reqObj: any, assemblyId: number) {
     return this.restApiService.post(`assemblies/${assemblyId}/save-components`, reqObj, '');
+  }
+
+  public getAssemblyById(assemblyId: number) {
+    return this.restApiService.get(`assemblies/${assemblyId}`, '', '');
   }
 }

@@ -8,6 +8,7 @@ import { ConfiguratorService } from '../services/configurator.service';
 import { JunctionboxModalComponent } from '../components/junctionbox-modal/junctionbox-modal.component';
 import { Subscription } from 'rxjs';
 import { ToastService } from '../shared/services/toast.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-custom-assembly',
   templateUrl: './custom-assembly.component.html',
@@ -42,7 +43,8 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
     images: [],
     components: []
   }
-  constructor(public dialog: MatDialog, private configuratorService: ConfiguratorService, private toastService: ToastService) {
+  constructor(public dialog: MatDialog, private configuratorService: ConfiguratorService, 
+    private toastService: ToastService, private router:Router) {
     this.imag64BitUrl = '';
     this.imageObj = [];
 
@@ -52,13 +54,15 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.componentsData = [];
     this.groupName = '';
-    this.assemblydata = undefined;
-    this.assemblysubscription = this.configuratorService.currentAssemblyValue.subscribe((data: any) => {
-      this.assemblydata = data;
-    });
-    this.groupsubscription = this.configuratorService.groupNameObservable.subscribe((groupName: any) => {
-      this.groupName = groupName;
-    });
+    this.assemblydata = {};
+    if (!this.assemblyDetailsReadOnly) {
+      this.assemblysubscription = this.configuratorService.currentAssemblyValue.subscribe((data: any) => {
+        this.assemblydata = data;
+      });
+      this.groupsubscription = this.configuratorService.groupNameObservable.subscribe((groupName: any) => {
+        this.groupName = groupName;
+      });
+    }
   }
 
   imageSelection(fileName64Bit: any, activeItem: any) {
@@ -146,13 +150,15 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
     });
   }
   openZoomImg() { // Can be moved to right place
-    const dialogRef = this.dialog.open(AssemblyZoomImageModalComponent, {
-      height: '445px',
-      data: { addPosition: this.imag64BitUrl }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+    if (this.imag64BitUrl) {
+      const dialogRef = this.dialog.open(AssemblyZoomImageModalComponent, {
+        height: '445px',
+        data: { addPosition: this.imag64BitUrl }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -169,28 +175,30 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
         if (!isComponentDuplicate) {
           const currentValue = changes.selectedComponent.currentValue;
          
-          const isSystemArr = this.checkArray(currentValue.connection);
-          const isConnectionArr = this.checkArray(currentValue.connection);
+          const isSystemArr = this.checkArray(currentValue.systems);
+          const isConnectionArr = this.checkArray(currentValue.connectionTypes);
           if (isSystemArr || isConnectionArr) {
-            if (currentValue.connection) {
-              this.selectedConnections = [...this.selectedConnections, ...currentValue.connection]
+            if (currentValue.connectionTypes) {
+              this.selectedConnections = [...this.selectedConnections, ...currentValue.connectionTypes]
             }
-            if (currentValue.system) {
-              this.selectedSystem = [...this.selectedSystem, ...currentValue.system]
+            if (currentValue.systems) {
+              this.selectedSystem = [...this.selectedSystem, ...currentValue.systems]
             }
           } 
           else {
-            if (currentValue.connection) {
-              currentValue.connection = [currentValue.connection];
+            if (currentValue.connectionTypes) {
+              currentValue.connectionTypes = [currentValue.connectionTypes];
             }
-            if (currentValue.system) {
-              currentValue.system = [currentValue.system];
+            if (currentValue.systems) {
+              currentValue.systems = [currentValue.systems];
             }
           }
           this.componentsData.push({ ...currentValue, qty: 1 });
+          this.componentTableData = new MatTableDataSource(this.componentsData);
+          this.selectedConnections = this.getUniqueSystemConnection('connectionTypes');
+          this.selectedSystem = this.getUniqueSystemConnection('systems');
           this.selectedConnections = [...new Set(this.selectedConnections)];
           this.selectedSystem = [...new Set(this.selectedSystem)];
-          this.componentTableData = new MatTableDataSource(this.componentsData);
         } 
         // else {
         //   console.log('this.componentsData', this.componentsData);
@@ -211,14 +219,20 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
    * @memberOf CustomAssemblyComponent
    */
   public updateRightPanel(changes:any) {
-    const images = changes.selectedComponent.currentValue?.images;
+    const currentValue = changes.selectedComponent.currentValue;
+    const images = currentValue?.images;
     if (images && images.length !== 0) {
       this.imageThubList = images;
       this.selectedItem = images[0];
       this.imag64BitUrl = images[0].fileName64Bit;
     }
+    this.groupName = currentValue.groupName;
+    this.assemblydata.id = currentValue.id
+    this.assemblydata.name = currentValue.name;
+    this.assemblydata.familyId = currentValue.familyId;
+    this.iconSrc = currentValue.icon;
     this.componentsData = [];
-    this.componentsData = changes.selectedComponent.currentValue.components;
+    this.componentsData = currentValue.components;
     this.componentTableData = new MatTableDataSource(this.componentsData);
   }
 
@@ -240,6 +254,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   private saveAssemblyComponents() {
     this.configuratorService.saveAssemblyComponents(this.saveAssemblyData, this.assemblydata.id).subscribe((res: any) => {
       console.log(res);
+      this.router.navigate(['/assembly-configurator']);
     },
       (error: any) => {
         this.toastService.openSnackBar(error);
@@ -251,18 +266,16 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   private buildComponents(): any {
     this.componentObj = [];
     this.componentTableData._data.value.forEach((component: any) => {
-      const componentData = {
-        id: component.id,
-        qty: component.qty,
-        uom: component.uom || '',
-        systems: [
-
-        ],
-        connectionTypes: [
-
-        ]
+      if (component.qty > 0) {
+        const componentData = {
+          id: component.id,
+          qty: component.qty,
+          uom: component.uom || '',
+          systems: component.systems || [],
+          connectionTypes: component.connectionTypes || []
+        }
+        this.componentObj.push(componentData);
       }
-      this.componentObj.push(componentData);
     });
     this.saveAssemblyData.components = this.componentObj;
   }
@@ -273,8 +286,8 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
       data: {
         componentName: element.name,
         isJunctionBox: true,
-        system: element.system,
-        connection: element.connection,
+        system: element.systems,
+        connection: element.connectionTypes,
         isAdd: false
       }
     });
@@ -298,26 +311,26 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
           // });
           // this.selectedSystem = [...this.selectedSystem, ...result.systemName]
           // this.selectedSystem = [...new Set(this.selectedSystem)];
-          element.connection = result.connection;
-          element.system = result.systemName;
+          element.connectionTypes = result.connection;
+          element.systems = result.systemName;
         } else {
-          element.connection = [result.connection];
-          element.system = [result.systemName];
+          element.connectionTypes = [result.connection];
+          element.systems = [result.systemName];
           // this.selectedSystem = [result.systemName];
           // this.selectedConnections = [result.connection];
         }
-        this.selectedConnections = this.getUniqueSystemConnection('connection');
-        this.selectedSystem = this.getUniqueSystemConnection('system');        
+        this.selectedConnections = this.getUniqueSystemConnection('connectionTypes');
+        this.selectedSystem = this.getUniqueSystemConnection('systems');        
       }
     });
   }
 
   public deleteConnectionSystem(element: any, name: string) {
     element[name] = [];
-    if(name === 'system') {
+    if(name === 'systems') {
       this.selectedSystem = this.getUniqueSystemConnection(name);
     }
-    if(name === 'connection') {
+    if(name === 'connectionTypes') {
       this.selectedConnections = this.getUniqueSystemConnection(name);
     }
     
@@ -350,8 +363,32 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy() {
-    this.assemblysubscription.unsubscribe();
-    this.groupsubscription.unsubscribe();
+    if(this.assemblysubscription) {
+      this.assemblysubscription.unsubscribe();
+    }
+    if (this.groupsubscription) {
+      this.groupsubscription.unsubscribe();
+    }    
+  }
+
+  public quantityChange(event: any) {
+    console.log(event.target.value);
+    const value = parseInt(event.target.value);
+    if(value === 0) {
+      
+    }
+  }
+
+  public checkArrayEmpty(value: string[]): boolean {
+    value.length == 1 
+    const isEmpty = value.some((val: string)=>{
+      return val == '';
+    });
+    if(value.length == 1 && isEmpty) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }
