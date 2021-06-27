@@ -25,6 +25,8 @@ export class AssemblyIconModalComponent implements OnInit {
   public isAssemblyNameError: boolean = false;
   public symbolTextError = false;
   public symbolShapeError = false;
+  public abbreviationError = false;
+  public abbreviation: string;
   public iconImages: any = [
     {
       name: 'Star',
@@ -63,7 +65,8 @@ export class AssemblyIconModalComponent implements OnInit {
   ngOnInit(): void {
     this.companyId = this.configuratorService.companyId;
     // this.familyId = this.configuratorService.getAssemblyData().familyId;
-    this.familyId = 5;
+    this.familyId = 1;
+    this.abbreviation = this.configuratorService.getAssemblyData()?.abbreviation;
     this.getAssemblies();
   }
 
@@ -80,7 +83,11 @@ export class AssemblyIconModalComponent implements OnInit {
   public preview() {
     switch (this.selectedValue) {
       case '1':
-        this.createDeviceIdIcon();
+        if (this.abbreviation) {
+          this.createDeviceIdIcon();
+        } else {
+          this.abbreviationError = true;
+        }        
         break;
       case '2':
         if (this.existingAssembly) {
@@ -107,11 +114,24 @@ export class AssemblyIconModalComponent implements OnInit {
   }
 
   private createDeviceIdIcon() {
-    this.createIcon('TA', 'circle');
+    this.createIcon(this.abbreviation, 'circle');
   }
 
   private chooseExistingIcon() {
+    console.log(this.existingAssembly);
+    let isAssemblyIcon = this.assembliesData.some((assembly: any) => {
+      if (assembly.id == this.existingAssembly && assembly.icon) {
+        this.imageSrc = 'data:image/jpeg;base64,' + assembly.icon;
+        return true;
+      } else {
+        return false;
+      }
+    });
 
+    if(this.addIcon && isAssemblyIcon) {
+      this.dialogRef.close(this.imageSrc);
+    }
+    this.addIcon = false;
   }
 
   private createWithShape() {
@@ -154,8 +174,8 @@ export class AssemblyIconModalComponent implements OnInit {
   }
 
   public closeModal() {
-    this.preview();
     this.addIcon = true;
+    this.preview();    
   }
 
   public cancelModal() {
@@ -167,5 +187,6 @@ export class AssemblyIconModalComponent implements OnInit {
      this.isAssemblyNameError = false;
      this.symbolTextError = false;
      this.symbolShapeError = false;
+     this.abbreviationError = false;
   }
 }

@@ -36,6 +36,7 @@
         text-align: center;
         .icon-base64{
           width: 50px;
+          display: flex;
           img{
             width: 100%;
           }
@@ -166,7 +167,7 @@
   }
   .component-section {
     position: relative;
-    height: calc(100vh - 347px);
+    height: calc(100vh - 358px);
 
     .table {
       position: relative;
@@ -322,4 +323,7 @@
   padding: 0 !important;
   position: absolute;
   right:0;
+}
+.edit-icon, .delete-icon {
+  cursor: pointer;
 }

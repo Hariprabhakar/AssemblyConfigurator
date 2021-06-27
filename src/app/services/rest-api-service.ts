@@ -83,10 +83,14 @@ export class RestApiService {
   handleError(error: any) {
     let errorMessage = '';
     if (error.error) {
-      errorMessage = error.error.message + '\n';
-      error.error.errors.forEach((element: any) => {
-        errorMessage += `${element.message}\n`;
-      });
+      if(error.error.errors) {
+        errorMessage = error.error.message + '\n';
+        error.error.errors.forEach((element: any) => {
+          errorMessage += `${element.message}\n`;
+        });
+      } else {
+        errorMessage = error.error.error;
+      }
     } else {
       // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;

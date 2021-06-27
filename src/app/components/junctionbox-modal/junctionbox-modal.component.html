@@ -15,6 +15,7 @@
                 <mat-form-field class="select-group" appearance="outline">
                 <!-- <mat-label class="matLable">Select System</mat-label> -->
                 <mat-select [multiple]="isJunctionBoxGroup" formControlName="systemName">
+                    <mat-option *ngIf="!isJunctionBoxGroup">None</mat-option>
                     <mat-option value="power">Power</mat-option>
                     <mat-option value="Data">Data</mat-option>
                     <mat-option value="Lighting">Lighting</mat-option>
@@ -27,12 +28,8 @@
                 <mat-form-field class="select-group fr" appearance="outline">
                     <mat-label class="matLable">Select Connection Type</mat-label>
                     <mat-select  [multiple]="isJunctionBoxGroup" formControlName="connection">
-                        
-                            <mat-option value="3by4emt">3/4" EMT</mat-option>
-                            <mat-option value="1emt">1" EMT</mat-option>
-                            <mat-option value="1to1by2emt">1-1/2" EMT</mat-option>
-                            <mat-option value="mccable">MC Cable</mat-option>
-                        
+                            <mat-option *ngIf="!isJunctionBoxGroup">None</mat-option>
+                            <mat-option *ngFor="let connectionType of connectionTypes" [value]="connectionType.value">{{connectionType.name}}</mat-option>                        
                     </mat-select>
                 </mat-form-field>               
             </div> 

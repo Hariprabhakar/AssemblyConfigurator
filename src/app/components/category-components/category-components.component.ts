@@ -50,7 +50,8 @@ export class CategoryComponentsComponent implements OnInit {
       backdropClass: 'backdropBackground',
       data: {
         componentName: element.name,
-        isJunctionBox: this.isJunctionBox
+        isJunctionBox: this.isJunctionBox,
+        isAdd: true
       }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -58,6 +59,7 @@ export class CategoryComponentsComponent implements OnInit {
       if (result) {
         this.recentElement.connection = result.connection;
         this.recentElement.system = result.systemName;
+        this.recentElement.isJunctionBox = this.isJunctionBox;
         this.selectedComponent.emit(this.recentElement);
       }
     });
@@ -67,7 +69,7 @@ export class CategoryComponentsComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges) {
     console.log('ngOnChanges', this.categoryValue);
     if (changes.categoryValue && changes.categoryValue.currentValue) {
-      if (changes.categoryValue.currentValue.id === 9) { // Junctionbox id is 7 and for mocking its kept of Data Jack
+      if (changes.categoryValue.currentValue.id === 1) { // Junctionbox id is 7 and for mocking its kept of Data Jack
         this.isJunctionBox = true;
       } else {
         this.isJunctionBox = false;

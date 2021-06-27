@@ -44,6 +44,7 @@ export class FileChooseModalComponent implements OnInit {
       this.maxLimitExieedFiles = [];
       this.isInValidFileExtension = false;
       this.inValidFileExtension = [];
+      fileChoose.disableClose = true;
 
   }
 

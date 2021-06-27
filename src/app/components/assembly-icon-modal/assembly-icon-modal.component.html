@@ -15,6 +15,9 @@
                     <mat-radio-group aria-label="Select an option" name="iconOptions" (change)="radioChange($event)" [(ngModel)]="selectedValue">
                         <div class="radio-btn">                            
                             <mat-radio-button value="1">Use DeviceId as Symbol</mat-radio-button>
+                            <div class="error-msg" *ngIf="abbreviationError">
+                               Abbreviation not available
+                            </div>
                         </div>  
                         <div class="radio-btn">
                              <mat-radio-button value="2">Choose Existing</mat-radio-button>
@@ -24,7 +27,11 @@
                                     <mat-form-field class="select-group assem-grp exist-assem" appearance="outline" style="background-color: #282828;">
                                         <mat-label class="matLable">Choose from existing Assembly</mat-label>
                                         <mat-select  name="existingAssemblyName" [(ngModel)]="existingAssembly">
-                                            <mat-option *ngFor="let assembly of assembliesData" [value]="assembly.id">{{assembly.name}}</mat-option>
+                                            <mat-option *ngFor="let assembly of assembliesData" [value]="assembly.id">
+                                                {{assembly.name}}
+                                                <div class="icon-img" *ngIf="assembly.icon"><img src="data:image/jpeg;base64,{{assembly.icon}}" /></div>
+                                                <div class="icon-img" *ngIf="!assembly.icon">- No Icon</div>
+                                            </mat-option>
                                         </mat-select>                                
                                      </mat-form-field>
                                      <div class="error-msg" *ngIf="isAssemblyNameError">
@@ -55,7 +62,7 @@
                                     <mat-label class="matLable">Select Shape</mat-label>
                                     <mat-select name="shape"  [(ngModel)]="selectedShape ">
                                         <mat-option *ngFor="let iconImage of iconImages" [value]="iconImage.value">
-                                            <img class="inline-icon-select" src="./../../.././assets/images/{{iconImage.value}}.svg" />
+                                            <img class="inline-icon-select" src="./../../.././assets/images/color-shapes/{{iconImage.value}}.svg" />
                                             {{iconImage.name}}
                                         </mat-option>
                                     </mat-select>

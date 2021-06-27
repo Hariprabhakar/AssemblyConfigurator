@@ -117,6 +117,9 @@ label{
       color: #000;
       opacity: 0.4;
     }
+    .mat-flat-button.secondary-btn.mat-button-disabled{
+      opacity: 0.4;
+    }
     .suggestion{
       font-size: 12px;
       .suggestion-value{
@@ -213,11 +216,22 @@ mat-radio-button{font-size: 12px; font-weight: 100;}
   background-color: #282828;
   clear: both;
   text-align: center;
+  img{
+    max-width: 100px;
+  }
 }
 .error-msg{
   color: #e84c4c;
 }
 .inline-icon-select{
   width: 15px;
-  background-color: #ffc400;
+}
+.icon-img{
+  display: inline-block;
+  width: 25px;
+  padding-left: 10px;
+
+  img{
+    width: 100%;
+  }
 }

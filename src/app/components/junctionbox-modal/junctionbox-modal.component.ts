@@ -13,22 +13,49 @@ export class JunctionboxModalComponent implements OnInit {
     systemName: [''],
     connection: ['']
   });
-  constructor(private formBuilder: FormBuilder, public dialogRef: MatDialogRef<JunctionboxModalComponent>,  @Inject(MAT_DIALOG_DATA) public data: any, private configuratorService: ConfiguratorService) { }
+  constructor(private formBuilder: FormBuilder, public dialogRef: MatDialogRef<JunctionboxModalComponent>,  @Inject(MAT_DIALOG_DATA) public data: any, private configuratorService: ConfiguratorService) {
+    dialogRef.disableClose = true;
+   }
 
   public isJunctionBoxGroup: any;
- 
+  public connectionTypes = [{
+    name: '3/4" EMT',
+    value: '3/4" EMT'
+  },
+  {
+    name: '1" EMT',
+    value: '1" EMT'
+  },
+  {
+    name: '1 - 1 / 2" EMT',
+    value: '1-1 / 2" EMT'
+  },
+  {
+    name: 'MC Cable',
+    value: 'MC Cable'
+  }];
   
   ngOnInit(): void {
   console.log(this.data);
   const assemblyData = this.configuratorService.getAssemblyData();
   //this.isJunctionBoxGroup = assemblyData['familyId'] == 2;
-  this.isJunctionBoxGroup = true;
-  this.JunctionBoxFrom.patchValue({
-    systemName: this.data.system,
-    connection: this.data.connection
-  });
+  this.isJunctionBoxGroup = false;
+  if (!this.data.isAdd) {
+    if (this.isJunctionBoxGroup) {
+      this.JunctionBoxFrom.patchValue({
+        systemName: this.data.system,
+        connection: this.data.connection
+      });
+    } else {
+      this.JunctionBoxFrom.patchValue({
+        systemName: this.data.system[0],
+        connection: this.data.connection[0]
+      });
+    }
+  }
 
   }
+
   public onSubmit(): void {
     if (this.JunctionBoxFrom.valid) {
        console.log('junctionbox', this.JunctionBoxFrom.value);

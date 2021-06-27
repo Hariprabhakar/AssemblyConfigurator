@@ -21,6 +21,7 @@ export class EditAssemblyComponent implements OnInit {
   public suggestions: any;
   public showSuggestion: boolean;
   private assemblyId: number;
+  public disableGroupDropdown: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private configuratorService: ConfiguratorService, private toastService: ToastService,  public dialog: MatDialog) { }
 
@@ -92,13 +93,23 @@ export class EditAssemblyComponent implements OnInit {
     this.configuratorService.createAssembly(this.createAssemblyFrom.value, isUpdate, this.assemblyId).subscribe((res: any)=>{
       this.assemblyId = res['id'];
       this.submitted = true;
+      this.disableGroupDropdown = true;
       this.showSuggestion = false;
       this.assemblyDataAdded.emit();
       this.configuratorService.setAssemblyData(res);
+      this.updateGroupName(res['familyId']);
     },
     (error) => {
       this.toastService.openSnackBar(error);
     });
   }
 
+  private updateGroupName(familyId: number) {
+    this.families.some((element: any) => {
+      if(element.id === familyId) {
+        this.configuratorService.currentGroupName(element.name);
+      }
+    });
+    
+  }
 }

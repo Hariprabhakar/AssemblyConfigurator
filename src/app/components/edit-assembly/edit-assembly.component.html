@@ -8,7 +8,7 @@
         </mat-form-field>
       </div>
       <div class="select-wrap">
-        <mat-form-field class="select-group" [ngClass]="submitted ? 'read-only' : ''" appearance="outline">
+        <mat-form-field class="select-group" [ngClass]="disableGroupDropdown ? 'read-only' : ''" appearance="outline">
           <mat-label>Select group</mat-label>
           <mat-select formControlName="familyId">
             <mat-option *ngFor="let family of families" [value]="family.id">

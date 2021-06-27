@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { RestApiService } from './rest-api-service';
 
 @Injectable({
@@ -8,12 +8,25 @@ import { RestApiService } from './rest-api-service';
 export class ConfiguratorService {
   private _companyId!: number;
   private _assemblyData: any;
+  private asemblyDataSubject$ = new  BehaviorSubject('');
+  private groupName = new BehaviorSubject('');
+  public currentAssemblyValue = this.asemblyDataSubject$.asObservable();
+  public groupNameObservable = this.groupName.asObservable();
 
   constructor(private restApiService: RestApiService) {
     const sessionCompany = sessionStorage.getItem('companyId');
     if ( sessionCompany !== null) {
       this._companyId = parseInt(sessionCompany);
     }
+
+  }
+
+  public currentAssemblyData(data: any) {
+    this.asemblyDataSubject$.next(data);
+  }
+
+  public currentGroupName(val: any) {
+    this.groupName.next(val);
 
   }
 
@@ -27,6 +40,8 @@ export class ConfiguratorService {
 
   public setAssemblyData(assebmlyData: any) {
     this._assemblyData = assebmlyData;
+    this.currentAssemblyData(assebmlyData);
+
   }
 
   
@@ -55,9 +70,9 @@ export class ConfiguratorService {
   public getAssemblies(companyId: number, familyId: number, defaultAssemblies: boolean, customAssemblies: boolean) {
     let queryParam: string;
     if (customAssemblies) {
-      queryParam = 'companyId=' + companyId + '&hideDefault=' + defaultAssemblies + '&showCustom=' + customAssemblies + '&pageIndex=0&pageSize=0';
+      queryParam = 'companyId=' + companyId + '&hideDefault=' +  defaultAssemblies + '&includeImage=true' +'&showCustom=' + customAssemblies + '&pageIndex=0&pageSize=0';
     } else {
-      queryParam = 'companyId=' + companyId + '&familyId=' + familyId + '&hideDefault=' + defaultAssemblies + '&showCustom=' + customAssemblies + '&pageIndex=0&pageSize=0';
+      queryParam = 'companyId=' + companyId + '&familyId=' + familyId + '&hideDefault='+ defaultAssemblies +'&includeImage=true' +  '&showCustom=' + customAssemblies + '&pageIndex=0&pageSize=0';
     }
 
     return this.restApiService.get('Assemblies', '', queryParam);
@@ -101,5 +116,8 @@ export class ConfiguratorService {
    */
   public getAssemblyComponent(id: number) {
     return this.restApiService.get(`assemblies/${id}/get-components`, '', '');
+  }
+  public saveAssemblyComponents(reqObj: any, assemblyId: number) {
+    return this.restApiService.post(`assemblies/${assemblyId}/save-components`, reqObj, '');
   }
 }
