@@ -13,13 +13,13 @@ export class CreateAssemblyComponent implements OnInit {
   public families: any;
   public showOverlay: boolean;
   public selectedComponent: any;
+  public isComponentLoader: boolean = false;
   
   constructor( private configuratorService: ConfiguratorService, private toastService: ToastService) { }
 
   ngOnInit(): void {
     this.showOverlay = true;
     this.configuratorService.getFamilies().subscribe((res: any) => {
-      console.log('families List', res);
       this.families = res;
       this.setFamilies();
     },
@@ -31,7 +31,6 @@ export class CreateAssemblyComponent implements OnInit {
 
   onCategoryChanged(val: any){
     this.categoryValue = val;
-    console.log('in parent', this.categoryValue);
   }
 
   public removeOverlay() {
@@ -39,8 +38,7 @@ export class CreateAssemblyComponent implements OnInit {
   }
 
   public addComponent(event: any){
-    this.selectedComponent = event;
-    console.log(event);
+    this.selectedComponent = {...event};
   }
 
   private setFamilies(){

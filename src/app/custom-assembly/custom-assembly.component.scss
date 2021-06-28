@@ -5,8 +5,15 @@
 .assembly-info {
   cursor: pointer;
 }
-.upload-img-btn{width: 100%; height: 100%; float:left; 
-  img{width: 100%; height: 100%; padding: 30px;}
+.upload-img-btn {
+  width: 100%;
+  height: 100%;
+  float: left;
+  img {
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+  }
 }
 .custom-assembly-wrap {
   .assembly-section {
@@ -34,10 +41,10 @@
       }
       .icon {
         text-align: center;
-        .icon-base64{
+        .icon-base64 {
           width: 50px;
           display: flex;
-          img{
+          img {
             width: 100%;
           }
         }
@@ -209,7 +216,7 @@
           }
           &-uom,
           &-image {
-            width: 50px !important;
+            width: 60px !important;
           }
           &-component {
             min-width: 250px !important;
@@ -301,6 +308,7 @@
       padding: 1px 5px;
       display: flex;
       align-items: center;
+      text-transform: lowercase;
     }
   }
 }
@@ -323,41 +331,97 @@
   border: 1px solid #ffc400 !important;
   color: #ffc400 !important;
 }
-.img-max-btn{
+.img-max-btn {
   width: 16px !important;
   height: 16px !important;
   float: right;
   margin: 5px;
   padding: 0 !important;
   position: absolute;
-  right:0;
+  right: 0;
 }
-.edit-icon, .delete-icon {
+.edit-icon,
+.delete-icon {
   cursor: pointer;
 }
+.edit-icon {
+  padding-right: 2px;
+}
+.delete-icon {
+  padding-left: 3px;
+}
 
-.read-only.custom-assembly-wrap{
-  .add-delete-btn{
+.read-only.custom-assembly-wrap {
+  .add-delete-btn {
     min-height: 42px;
   }
   .component-section {
     height: calc(100vh - 300px);
-    .table{
+    .table {
       height: calc(100vh - 340px);
     }
   }
-  .icon{
+  .icon {
     width: 70px !important;
   }
-  .icon-shape{
+  .icon-shape {
     width: 60px !important;
     height: 60px !important;
     border-radius: 70px !important;
     line-height: 55px;
     font-size: 20px;
   }
-  .icon-base64{
+  .icon-base64 {
     width: 60px !important;
     height: 60px !important;
+  }
+}
+
+@media (max-width: 1186px) {
+  .jbox-action {
+    flex-direction: column;
+  }
+}
+
+.connection-type,
+.system-names {
+  width: 370px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 1024px) {
+  .connection-type,
+  .system-names {
+    width: 200px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .connection-type,
+  .system-names {
+    width: 230px;
+  }
+}
+
+@media (max-width: 1300px) {
+  .connection-type,
+  .system-names {
+    width: 290px;
+  }
+}
+
+@media (max-width: 1370px) {
+  .connection-type,
+  .system-names {
+    width: 350px;
+  }
+}
+
+@media (max-width: 900px) {
+  .connection-type,
+  .system-names {
+    width: 65x;
   }
 }

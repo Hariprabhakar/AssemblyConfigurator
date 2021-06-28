@@ -6,6 +6,9 @@
     border: 2px solid #3a3a3a;
     border-top: none;
   }
+  ::ng-deep .mat-list-item-content:hover{
+    background-color: #2a2a2a;
+  }
 }
 
 .filter-search {
@@ -124,6 +127,7 @@
 .mat-list-base .mat-list-option {
   height: 66px;
 }
+
 
 @media(max-width: 1056px){
   .assembly-lists {

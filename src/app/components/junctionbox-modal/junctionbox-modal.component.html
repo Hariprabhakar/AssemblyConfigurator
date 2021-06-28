@@ -16,14 +16,7 @@
                 <mat-label class="matLable">Select System</mat-label>
                 <mat-select [multiple]="isJunctionBoxGroup" formControlName="systemName">
                     <mat-option *ngIf="!isJunctionBoxGroup">None</mat-option>
-                    <mat-option value="Power">Power</mat-option>
-                    <mat-option value="Data">Data</mat-option>
-                    <mat-option value="Lighting">Lighting</mat-option>
-                    <mat-option value="Fire Alarm">Fire Alarm</mat-option>
-                    <mat-option value="Communication">Communication</mat-option>
-                    <mat-option value="Security">Security</mat-option>
-                    <mat-option value="Mechanical">Mechanical</mat-option>
-                    <mat-option value="Telephone / POT">Telephone / POT</mat-option>
+                    <mat-option *ngFor="let system of systems" [value]="system.value">{{system.name}}</mat-option>
                 </mat-select>
                 </mat-form-field>
             </div>

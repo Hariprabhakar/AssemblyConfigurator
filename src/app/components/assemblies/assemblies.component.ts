@@ -23,8 +23,7 @@ export class AssembliesComponent implements OnInit {
   public ImagesData: any;
   private selectedAssemblyData: any;
   private iconSrc: string = '';
-   
-
+  @Output() isComponentLoader = new EventEmitter();
 
   constructor(private configuratorService: ConfiguratorService, private toastService: ToastService) { }
 
@@ -77,7 +76,13 @@ export class AssembliesComponent implements OnInit {
 
   filterAssembly(event: any) {
     this.assembliesData = this.assembliesOriginalData.filter((category: any) => {
-      return category['name'].toLowerCase().indexOf(this.searchValue.toLowerCase()) >= 0;
+      if(category['name'].toLowerCase().indexOf(this.searchValue.toLowerCase()) >= 0) {
+        return true;
+      } else if (category['abbreviation'] && category['abbreviation'].toLowerCase().indexOf(this.searchValue.toLowerCase()) >= 0) {
+        return true;
+      } else {
+        return false;
+      }
     });
   }
 
@@ -91,6 +96,7 @@ export class AssembliesComponent implements OnInit {
    * @memberOf AssembliesComponent
    */
   public getAssemblyDetails(event:any) {
+    this.isComponentLoader.emit(true);
     let id = event.option.value;
     if (event.option.value) {
       this.configuratorService.getAssemblyComponent(id).subscribe(res => {
@@ -109,32 +115,7 @@ export class AssembliesComponent implements OnInit {
       },
         (error: any) => {
           this.toastService.openSnackBar(error);
-          // Mock data for testing will be removed
-          console.log('Error in getAssemblyDetails service call');
-          const assemblyInfo = {
-            "assembly": {
-              "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAE3SURBVHgBpZTNcYMwEIVXGrgnFcRnDvxUEFJBUkLSgTsAV5B0EHdiuQJQBbY7sAsA/JYRHhlL+O8dELDLt087KwR5VFXVC5YvKeUbP7dtq7HUWZZtXfnCAciFEAVuc3JLdV33MwbKEWQOyGoCwuJCG+SWThAHkPBLN4pd2zBhIDOu4vlmidge25m7gnj/gW0qaej/5K+sTKO9zvr1ihtO/AZITBWDq1d2lNKTwoh8BrgkINoO/rDUwzPcrAdnlgO+zy3WLBjT8eGBHPPF27OK7cfxAAk7BGxHhZ1wS48Qq7lHip5U0zRamlFX9LgUM/o5QvMWE4kprL/7gnzueD01R2td4GVJdwgFyiRJFmege2E25ALEwqSn5vDmHobC7JVxHK/PwJ7k/iAzbPixQdswDFUURTtX/hFoGohs24G34AAAAABJRU5ErkJggg==",
-              "images": [{
-                "inputText": "Front",
-                "fileName64Bit": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAE3SURBVHgBpZTNcYMwEIVXGrgnFcRnDvxUEFJBUkLSgTsAV5B0EHdiuQJQBbY7sAsA/JYRHhlL+O8dELDLt087KwR5VFXVC5YvKeUbP7dtq7HUWZZtXfnCAciFEAVuc3JLdV33MwbKEWQOyGoCwuJCG+SWThAHkPBLN4pd2zBhIDOu4vlmidge25m7gnj/gW0qaej/5K+sTKO9zvr1ihtO/AZITBWDq1d2lNKTwoh8BrgkINoO/rDUwzPcrAdnlgO+zy3WLBjT8eGBHPPF27OK7cfxAAk7BGxHhZ1wS48Qq7lHip5U0zRamlFX9LgUM/o5QvMWE4kprL/7gnzueD01R2td4GVJdwgFyiRJFmege2E25ALEwqSn5vDmHobC7JVxHK/PwJ7k/iAzbPixQdswDFUURTtX/hFoGohs24G34AAAAABJRU5ErkJggg==",
-                "isPrimary": true
-              }],
-              "components": [{
-                "sequence": 1,
-                "id": 45,
-                "componentName": "abc",
-                "symbol": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAE3SURBVHgBpZTNcYMwEIVXGrgnFcRnDvxUEFJBUkLSgTsAV5B0EHdiuQJQBbY7sAsA/JYRHhlL+O8dELDLt087KwR5VFXVC5YvKeUbP7dtq7HUWZZtXfnCAciFEAVuc3JLdV33MwbKEWQOyGoCwuJCG+SWThAHkPBLN4pd2zBhIDOu4vlmidge25m7gnj/gW0qaej/5K+sTKO9zvr1ihtO/AZITBWDq1d2lNKTwoh8BrgkINoO/rDUwzPcrAdnlgO+zy3WLBjT8eGBHPPF27OK7cfxAAk7BGxHhZ1wS48Qq7lHip5U0zRamlFX9LgUM/o5QvMWE4kprL/7gnzueD01R2td4GVJdwgFyiRJFmege2E25ALEwqSn5vDmHobC7JVxHK/PwJ7k/iAzbPixQdswDFUURTtX/hFoGohs24G34AAAAABJRU5ErkJggg==",
-                "tag": "NSB",
-                "phase": "ROUGH-IN",
-                "name": "4inx2 1/8in Deep Box Assembly",
-                "qty": 3,
-                "uom": "Ea",
-                "systems": ["Power", "Data"],
-                "connectionTypes": [1, 2]
-              }]
-            }
-          };
-          // this.assemblyDetails.emit(assemblyInfo);
+          this.isComponentLoader.emit(false);
         }
       );
     } else {
@@ -148,9 +129,11 @@ export class AssembliesComponent implements OnInit {
       const groupName = this.configuratorService.getGroupNameById(res.familyId);
       this.selectedAssemblyData = {...this.selectedAssemblyData, ...res, groupName, icon:this.iconSrc};
       this.assemblyDetails.emit(this.selectedAssemblyData);
+      this.isComponentLoader.emit(false);
     },
     (error: any) => {
       this.toastService.openSnackBar(error);
+      this.isComponentLoader.emit(false);
     });
   }
 

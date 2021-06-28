@@ -9,6 +9,7 @@ export class AssemblyConfiguratorComponent implements OnInit {
   public groupValue: any;
   public selectedComponent: any;
   public assemblyDetails: any;
+  public isComponentLoader: boolean;
   constructor(public configuratorService: ConfiguratorService,) { }
 
   ngOnInit(): void {
@@ -23,7 +24,10 @@ export class AssemblyConfiguratorComponent implements OnInit {
    */
   public getAssemblyDetails(data: any){
     this.assemblyDetails = data;
-    console.log('assemblyDetails', this.assemblyDetails);
+  }
+
+  public isComponentLoading(isLoader: boolean){
+    this.isComponentLoader = isLoader;
   }
 
 }

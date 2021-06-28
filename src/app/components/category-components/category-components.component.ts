@@ -50,7 +50,9 @@ export class CategoryComponentsComponent implements OnInit {
     this.assemblysubscription = this.configuratorService.currentAssemblyValue.subscribe((data: any) => {
       if(data.familyId === 2){
         this.isJunctionBoxGroup = true;
-      } 
+      } else{
+        this.isJunctionBoxGroup = false;
+      }
     });
   }
 
@@ -64,7 +66,6 @@ export class CategoryComponentsComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
       if (result) {
         this.recentElement.connectionTypes = result.connection;
         this.recentElement.systems = result.systemName;
@@ -76,7 +77,6 @@ export class CategoryComponentsComponent implements OnInit {
  
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('ngOnChanges', this.categoryValue);
     if (changes.categoryValue && changes.categoryValue.currentValue) {
       if (changes.categoryValue.currentValue.id === 7 || this.isJunctionBoxGroup) { // Junctionbox id is 7 and for mocking its kept of Data Jack
         this.isJunctionBox = true;
@@ -180,7 +180,6 @@ export class CategoryComponentsComponent implements OnInit {
           phase: this.recentEditedPhase
         };
         this.configuratorService.updatePhase(this.selectedComponentId, phaseObj).subscribe((res) => {
-          console.log(res);
           this.editableRowIndex = -1;
 
         },

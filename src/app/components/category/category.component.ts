@@ -24,13 +24,11 @@ export class CategoryComponent implements OnInit {
     this.configuratorService.getCategories().subscribe((res) => {
       this.categories = res;
       this.categoryList = res;
-      console.log('this.categoryList', this.categoryList);
       this.showLoader = false;
       this.selectedCategory.selectionChange.subscribe((grp: MatSelectionListChange) => {
         this.selectedCategory.deselectAll();
         grp.option.selected = true;
         this.categoryChanged.emit(grp.option.value);
-        console.log('categoryChanged', grp.option.value);
       });
     },
       (error: any) => {

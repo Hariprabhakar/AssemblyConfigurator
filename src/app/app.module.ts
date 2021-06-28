@@ -19,6 +19,7 @@ import { JunctionboxModalComponent } from './components/junctionbox-modal/juncti
 import { AssemblyIconModalComponent } from './components/assembly-icon-modal/assembly-icon-modal.component';
 import { FileChooseModalComponent } from './components/file-choose-modal/file-choose-modal.component';
 import { AssemblyZoomImageModalComponent } from './components/assembly-zoom-image-modal/assembly-zoom-image-modal.component';
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { AssemblyZoomImageModalComponent } from './components/assembly-zoom-imag
     FooterComponent,
     JunctionboxModalComponent,
     AssemblyIconModalComponent,   
-    FileChooseModalComponent, AssemblyZoomImageModalComponent     
+    FileChooseModalComponent, AssemblyZoomImageModalComponent, ConfirmationModalComponent     
   ],
   imports: [
     BrowserModule,

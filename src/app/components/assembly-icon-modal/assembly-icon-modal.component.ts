@@ -118,7 +118,6 @@ export class AssemblyIconModalComponent implements OnInit {
   }
 
   private chooseExistingIcon() {
-    console.log(this.existingAssembly);
     let isAssemblyIcon = this.assembliesData.some((assembly: any) => {
       if (assembly.id == this.existingAssembly && assembly.icon) {
         this.imageSrc = 'data:image/jpeg;base64,' + assembly.icon;
@@ -139,8 +138,6 @@ export class AssemblyIconModalComponent implements OnInit {
   }
 
   createIcon(text: string, shape: string) {
-    console.log(this.selectedValue);
-    console.log(this.selectedShape);
 
     this.icon = document.createElement('canvas');
     let width: number = 100;    

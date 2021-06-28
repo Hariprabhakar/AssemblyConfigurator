@@ -42,9 +42,41 @@ export class JunctionboxModalComponent implements OnInit {
     name: 'MC Cable',
     value: 'MC Cable'
   }];
+
+  public systems = [{
+    name: 'Power',
+    value: 'Power'
+  },
+  {
+    name: 'Data',
+    value: 'Data'
+  },
+  {
+    name: 'Lighting',
+    value: 'Lighting'
+  },
+  {
+    name: 'Fire Alarm',
+    value: 'Fire Alarm'
+  },
+  {
+    name: 'Communication',
+    value: 'Communication'
+  },
+  {
+    name: 'Security',
+    value: 'Security'
+  },
+  {
+    name: 'Mechanical',
+    value: 'Mechanical'
+  },
+  {
+    name: 'Telephone / POT',
+    value: 'Telephone / POT'
+  }];
   
   ngOnInit(): void {
-  console.log(this.data);
   const assemblyData = this.configuratorService.getAssemblyData();
   this.isJunctionBoxGroup = assemblyData['familyId'] == 2;
   // this.isJunctionBoxGroup = false;
@@ -66,7 +98,6 @@ export class JunctionboxModalComponent implements OnInit {
 
   public onSubmit(): void {
     if (this.JunctionBoxFrom.valid) {
-       console.log('junctionbox', this.JunctionBoxFrom.value);
        this.dialogRef.close(this.JunctionBoxFrom.value);
     }
     

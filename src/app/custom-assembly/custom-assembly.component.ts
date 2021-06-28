@@ -9,6 +9,8 @@ import { JunctionboxModalComponent } from '../components/junctionbox-modal/junct
 import { Subscription } from 'rxjs';
 import { ToastService } from '../shared/services/toast.service';
 import { Router } from '@angular/router';
+import { ConfirmationModalComponent } from '../components/confirmation-modal/confirmation-modal.component';
+import { elementAt } from 'rxjs/operators';
 @Component({
   selector: 'app-custom-assembly',
   templateUrl: './custom-assembly.component.html',
@@ -20,6 +22,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   public componentDataSource: any;
   @Input() public selectedComponent: any;
   @Input() public assemblyDetailsReadOnly: any;
+  @Input() public showLoader: boolean;
   public componentsData: any;
   public componentTableData: any;
   public assemblydata: any;
@@ -34,6 +37,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   private assemblysubscription: Subscription;
   private groupsubscription: Subscription;
   private componentObj: any = [];
+  public saveLoader: boolean = false;
   private saveAssemblyData = {
     id: '',
     name: '',
@@ -143,7 +147,6 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   openAssembly() { // Can be moved to right place
     const dialogRef = this.dialog.open(AssemblyIconModalComponent);
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
       if (result) {
         this.iconSrc = result;
       }
@@ -156,7 +159,6 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
         data: { addPosition: this.imag64BitUrl }
       });
       dialogRef.afterClosed().subscribe(result => {
-        console.log(`Dialog result: ${result}`);
       });
     }
   }
@@ -166,8 +168,6 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
       if (this.assemblyDetailsReadOnly) {
         this.updateRightPanel(changes);
       } else {
-
-        console.log('this.componentsData', this.componentsData);
 
         const isComponentDuplicate: boolean = this.componentsData.some((component: any) => {
           return component.id == changes.selectedComponent.currentValue.id;
@@ -249,14 +249,16 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
     this.saveAssemblyData.name = this.assemblydata.name;
     this.saveAssemblyData.familyId = this.assemblydata.familyId;
     this.saveAssemblyComponents();
+    this.saveLoader = true;
   }
 
   private saveAssemblyComponents() {
     this.configuratorService.saveAssemblyComponents(this.saveAssemblyData, this.assemblydata.id).subscribe((res: any) => {
-      console.log(res);
+      this.saveLoader = false;
       this.router.navigate(['/assembly-configurator']);
     },
       (error: any) => {
+        this.saveLoader = false;
         this.toastService.openSnackBar(error);
         // this.showLoader = false;
       }
@@ -292,7 +294,6 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
       if (result) {
         if(this.checkArray(result.connection)){
           result.connection = result.connection || [];
@@ -371,12 +372,26 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
     }    
   }
 
-  public quantityChange(event: any) {
-    console.log(event.target.value);
+  public quantityChange(event: any, row: any) {
     const value = parseInt(event.target.value);
     if(value === 0) {
-      
+      const confirmationDialog = this.dialog.open(ConfirmationModalComponent);
+      confirmationDialog.afterClosed().subscribe(result => {
+        if (result === true) {
+          this.removeComponentData(row.id);
+        } else {
+          row.qty = 1;
+        }
+      });
     }
+  }
+
+  private removeComponentData(id: number) {
+    const componentData = this.componentsData.filter((component: any) => {
+      return component.id !== id;
+    });
+    this.componentsData = componentData;
+    this.componentTableData = new MatTableDataSource(this.componentsData);
   }
 
   public checkArrayEmpty(value: string[]): boolean {
