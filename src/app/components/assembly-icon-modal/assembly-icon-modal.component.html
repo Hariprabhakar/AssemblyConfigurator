@@ -3,10 +3,10 @@
     <h3 class="w100">Choose one of the three methods</h3>
 </div>    
 <mat-dialog-actions align="end"> 
-    <button class="close-button" mat-flat-button (click)="cancelModal()" ><span><img src="../../../assets/images/closeIcon.png"></span></button>   
+    <div class="close-button" (click)="cancelModal()" ><span><img src="../../../assets/images/closeIcon.png"></span></div>   
 </mat-dialog-actions> 
 <div class="clearfix"></div>
-<mat-dialog-content class="mat-typography">  
+<mat-dialog-content [class.preview]="imageSrc" class="mat-typography">  
   <div class="valid"></div>
   <form autocomplete="off" >
     <div class="create-assembly">  
