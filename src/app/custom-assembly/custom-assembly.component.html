@@ -55,9 +55,11 @@
           <div class="delete-img-btn secondary-btn">
             <button mat-flat-button color="primary"><img src="../../assets/images/deletebtn.png"></button>             
           </div> -->
-          <div class="add-img-btn secondary-btn" [ngClass]="{'borderHighlighter' : imageThubList.length == 0}" *ngIf=" (imageThubList.length < 5)"  (click)="openFileChooseModal()">
-            <button *ngIf="!assemblyDetailsReadOnly" mat-flat-button color="primary"  class="delete-btn-img"><img src="../../assets/images/addImageIcon.png"></button>            
-          </div>
+          <ng-container *ngIf="!assemblyDetailsReadOnly">
+            <div class="add-img-btn secondary-btn" [ngClass]="{'borderHighlighter' : imageThubList.length == 0}" *ngIf=" (imageThubList.length < 5)"  (click)="openFileChooseModal()">
+              <button *ngIf="!assemblyDetailsReadOnly" mat-flat-button color="primary"  class="delete-btn-img"><img src="../../assets/images/addImageIcon.png"></button>            
+            </div>
+          </ng-container>
         </div>
 
         

@@ -6,7 +6,7 @@
     border: 2px solid #3a3a3a;
     border-top: none;
   }
-  ::ng-deep .mat-list-item-content:hover{
+  ::ng-deep .mat-list-item-content:hover {
     background-color: #2a2a2a;
   }
 }
@@ -128,9 +128,20 @@
   height: 66px;
 }
 
-
-@media(max-width: 1056px){
+@media (max-width: 1174px) and (min-width: 1100px) {
   .assembly-lists {
     height: calc(100vh - 165px);
+  }
+}
+
+@media (max-width: 1056px) {
+  .assembly-lists {
+    height: calc(100vh - 165px);
+  }
+}
+
+@media (max-width: 861px) {
+  .assembly-lists {
+    height: calc(100vh - 195px);
   }
 }

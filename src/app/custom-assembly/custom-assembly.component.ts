@@ -236,6 +236,10 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
     this.componentsData = [];
     this.componentsData = currentValue.components;
     this.componentTableData = new MatTableDataSource(this.componentsData);
+    this.selectedConnections = this.getUniqueSystemConnection('connectionTypes');
+    this.selectedSystem = this.getUniqueSystemConnection('systems');
+    this.selectedConnections = [...new Set(this.selectedConnections)];
+    this.selectedSystem = [...new Set(this.selectedSystem)];
   }
 
   public saveAssembly() {
@@ -347,6 +351,9 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
       }
     });
     selectedItem = [...new Set(selectedItem)];
+    selectedItem = selectedItem.filter((item: any)=>{
+      return item != "";
+    });
     return selectedItem;
   }
 
