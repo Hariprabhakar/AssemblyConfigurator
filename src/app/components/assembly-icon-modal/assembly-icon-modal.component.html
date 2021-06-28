@@ -24,7 +24,7 @@
                              <div class="clearfix"></div>
                              <div class="choose-existing-wrap">
                                 <div class="select-existing-icon">
-                                    <mat-form-field class="select-group assem-grp exist-assem" appearance="outline" style="background-color: #282828;">
+                                    <mat-form-field class="select-group assem-grp exist-assem lih" appearance="outline" style="background-color: #282828;">
                                         <mat-label class="matLable">Choose from existing Assembly</mat-label>
                                         <mat-select  name="existingAssemblyName" [(ngModel)]="existingAssembly">
                                             <mat-option *ngFor="let assembly of assembliesData" [value]="assembly.id">
@@ -88,16 +88,17 @@
             <div class="icon-preview" *ngIf="imageSrc">
                 <img [src]="imageSrc">
             </div>      
-        </div>
-        <div class="clearfix"></div>
-        <div class="edit-btn">
-            <mat-dialog-actions align="end">
-                <div class="preview-btn">
-                    <button class="secondary-btn" (click)="preview()" [disabled]="enableAdd" mat-flat-button>PREVIEW</button>
-                </div>
-                <button mat-flat-button color="primary" (click)="closeModal()" [disabled]="enableAdd" class="addfinal" >ADD</button>   
-            </mat-dialog-actions>     
-        </div>
+        </div>          
     </div> 
+
+    <div class="clearfix"></div>    
+    <div class="edit-btn">
+        <mat-dialog-actions align="end">
+            <div class="preview-btn">
+                <button class="secondary-btn" (click)="preview()" [disabled]="enableAdd" mat-flat-button>PREVIEW</button>
+            </div>
+            <button mat-flat-button color="primary" (click)="closeModal()" [disabled]="enableAdd" class="addfinal" >ADD</button>   
+        </mat-dialog-actions>     
+    </div>
 </form>
 </mat-dialog-content>

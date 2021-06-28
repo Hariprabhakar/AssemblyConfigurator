@@ -145,7 +145,9 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   }
 
   openAssembly() { // Can be moved to right place
-    const dialogRef = this.dialog.open(AssemblyIconModalComponent);
+    const dialogRef = this.dialog.open(AssemblyIconModalComponent, {panelClass: 'my-panel',
+      backdropClass: 'backdropBackground'
+    });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.iconSrc = result;

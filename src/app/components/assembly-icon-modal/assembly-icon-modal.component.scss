@@ -11,6 +11,7 @@ h3{
     font-size: 12px;
     font-weight: 100;
     margin: 0 0 0px;
+    opacity: 0.6;
 }
 .valid{    
     color: #C9C9C9;
@@ -29,13 +30,15 @@ label{
     background-color: #282828;
 }
 .create-assembly {
-    padding: 0;   
+    padding-top: 10px !important;   
     align-items: center;
     width: 100%;
     float:left;
+    background-color: #3E3E3E;
+    padding: 0 10px;
   
     & > div {
-      padding-right: 10px;
+      padding-right: 0px;
     }
   
     .assembly-field,
@@ -50,43 +53,33 @@ label{
       width: 100px;
     }
   
-    .edit-btn {
-
-      padding: 10px 0 0 0;
-      height: 30px;
-      line-height: 30px;
+   
       .preview-btn{
+        display: none;
         margin-right: 10px;
-        .secondary-btn{
-          background: transparent !important;
-          border: 1px solid #ffc400 !important;
-          color: #ffc400 !important;
-          border-radius: 20px;
-          height: 30px;
-        }
-      }
-  
-      button {
-        border-radius: 20px;
-        padding: 0 25px;
-        width: 110px;
-        font-size: 13px;
-        height: 30px;
-      line-height: 30px;
-      }
+        
     }
-  
+   
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex{
+      margin-top:0;
+      height: 26px;
+    }
     .input-wrap {
       font-size: 12px;
       ::ng-deep .mat-form-field-flex > .mat-form-field-infix {
         border: 0;
       }
+    
       ::ng-deep .mat-form-field-appearance-outline .mat-form-field-label {
         margin-top: -15px;
       }
       ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix{
-        padding: 12px 0px 8px 0px;
+        padding: 0;
+        height: 26px;
       }
+    }
+    ::ng-deep .mat-form-field-label-wrapper{
+      top: -15px
     }
     .fl{float:left}
     .fr{float:right}
@@ -95,6 +88,10 @@ label{
       font-size: 12px;     
       ::ng-deep .mat-form-field-flex > .mat-form-field-infix {
         border: 0;
+      }
+      ::ng-deep .mat-form-field-appearance-outline .mat-form-field-wrapper{
+        height: 26px;
+        margin:0;
       }
       ::ng-deep .mat-form-field-appearance-outline .mat-form-field-label {
         margin-top: 7px;
@@ -146,7 +143,7 @@ label{
   }
 
   .cdk-overlay-pane{width: 610px !important;} 
-  .mat-typography{width: 415px; background-color: #3E3E3E; padding: 0 10px;}
+  .mat-typography{width: 415px; padding: 0px;}
   .select-picklist{width: 100%}
   .mat-dialog-actions{padding:0; min-height: 0;}
   .close-button{    
@@ -156,7 +153,9 @@ label{
     font-size: 12px;
     line-height: 27px;
     padding: 0;
+    background-color: transparent;
 }
+.lih{line-height: 2;}
 .matLable{font-size: 10px; opacity: 0.53;}
 .mat-radio-button ~ .mat-radio-button {
   margin-left: 16px;
@@ -169,6 +168,7 @@ label{
   background-color: #444444; 
   margin-bottom: 8px;
   font-size: 10px;
+  border-radius: 5px;
 }
 .assem-grp{margin-top: 8px;}
 .sym-txt{margin-top: 10px; font-size: 12px;
@@ -195,10 +195,10 @@ label{
 .backdropBackground {
   /* your css needs */
 background-color: #000!important;}
-mat-radio-button{font-size: 12px; font-weight: 100;}
+mat-radio-button{font-size: 12px; font-weight: 100; font-size: 10px;}
 .addbtn{float: right; margin-top: 15px}
 .addbtn1{margin-top:40px; float: right;}
-.addfinal{font-weight: 500;}
+
  
 @media(max-width: 768px){
     .select-group{float:left !important}
@@ -225,13 +225,35 @@ mat-radio-button{font-size: 12px; font-weight: 100;}
 }
 .inline-icon-select{
   width: 15px;
+  background-color: #ffc400;
 }
-.icon-img{
-  display: inline-block;
-  width: 25px;
-  padding-left: 10px;
+.edit-btn {
 
-  img{
-    width: 100%;
+  padding: 10px 15px 0 15px;
+  height: 30px;
+  line-height: 30px;
+  margin-top: 5px;
+  .secondary-btn{
+      background: transparent !important;
+      border: 1px solid #ffc400 !important;
+      color: #ffc400 !important;
+      border-radius: 20px;
+      height: 30px;
+      margin-right:10px;
+    }
+
+  button {
+    border-radius: 20px;
+    padding: 0 25px;
+    width: 110px;
+    font-size: 13px;
+    height: 30px;
+  line-height: 30px;
   }
-}
+ 
+  }
+  .addfinal{background-color: #FFC402 !important;
+    padding: 0px 15px !important;
+    width: 83px !important;
+    color: #000000 !important; font-weight: bold !important;}
+    
