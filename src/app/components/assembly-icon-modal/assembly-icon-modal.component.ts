@@ -186,4 +186,13 @@ export class AssemblyIconModalComponent implements OnInit {
      this.symbolShapeError = false;
      this.abbreviationError = false;
   }
+
+  public getExistingAssemblyName(id: number) {
+    if(this.assembliesData) {
+      const assemblydata = this.assembliesData.find((assembly: any)=>{
+        return assembly.id == id;
+      });
+      return assemblydata?.name;
+    }
+  }
 }

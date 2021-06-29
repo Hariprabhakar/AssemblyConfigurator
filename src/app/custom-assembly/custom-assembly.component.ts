@@ -369,7 +369,9 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
 
   public filterComponent(event: any) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.componentTableData.filter = filterValue.trim().toLowerCase();
+    if (this.componentTableData) {
+      this.componentTableData.filter = filterValue.trim().toLowerCase();
+    }
   }
 
   public ngOnDestroy() {
