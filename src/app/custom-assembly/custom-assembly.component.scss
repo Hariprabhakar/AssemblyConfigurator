@@ -381,6 +381,9 @@
   .jbox-action {
     flex-direction: column;
   }
+  .jbox-system {
+    padding-bottom: 5px;
+  }
 }
 
 .connection-type,
@@ -391,17 +394,19 @@
   text-overflow: ellipsis;
 }
 
-@media (max-width: 1024px) {
+
+
+@media (max-width: 1370px) {
   .connection-type,
   .system-names {
-    width: 200px;
+    width: 350px;
   }
 }
 
-@media (max-width: 1199px) {
+@media (max-width: 1320px) {
   .connection-type,
   .system-names {
-    width: 230px;
+    width: 340px;
   }
 }
 
@@ -412,16 +417,62 @@
   }
 }
 
-@media (max-width: 1370px) {
+@media (max-width: 1199px) {
   .connection-type,
   .system-names {
-    width: 350px;
+    width: 230px;
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1078px) {
   .connection-type,
   .system-names {
-    width: 65x;
+    width: 215px;
+  }
+}
+
+
+@media (max-width: 1048px) {
+  .connection-type,
+  .system-names {
+    width: 200px;
+  }
+}
+
+@media (max-width: 1018px) {
+  .connection-type,
+  .system-names {
+    width: 180px;
+  }
+}
+
+@media (max-width: 978px) {
+  .connection-type,
+  .system-names {
+    width: 160px;
+  }
+}
+
+@media (max-width: 938px) {
+  .connection-type,
+  .system-names,
+  .assembly-name,
+  .assembly-group {
+    width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media (max-width: 870px) {
+  .connection-type,
+  .system-names,
+  .assembly-name,
+  .assembly-group {
+    width: 65px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
