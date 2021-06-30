@@ -84,9 +84,14 @@
       display: flex;
       .assembly-image {
         width: 40px;
-        background-color: #dbdbdb;
         margin-right: 8px;
         margin-left: 8px;
+        img{
+          width: 100%;
+        }
+      }
+      .assembly-image.no-img {
+        background-color: #dbdbdb;
       }
       .assembly-icon {
         width: 27px;

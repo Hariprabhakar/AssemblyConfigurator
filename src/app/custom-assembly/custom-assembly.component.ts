@@ -221,12 +221,23 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
    * @memberOf CustomAssemblyComponent
    */
   public updateRightPanel(changes:any) {
+    this.imageThubList = [];
+    this.imag64BitUrl = '';
     const currentValue = changes.selectedComponent.currentValue;
     const images = currentValue?.images;
     if (images && images.length !== 0) {
-      this.imageThubList = images;
-      this.selectedItem = images[0];
-      this.imag64BitUrl = images[0].fileName64Bit;
+      images.forEach((image: any, idx: number) => {
+        let imgCopy = {
+          fileName64Bit: 'data:image/jpeg;base64,'+image.image,
+          isPrimary: image.isPrimary
+        }
+        this.imageThubList.push(imgCopy);
+        if(image.isPrimary){
+          this.selectedItem = this.imageThubList[idx];
+          this.imag64BitUrl ='data:image/jpeg;base64,'+image.image;
+        }
+      });
+      
     }
     this.groupName = currentValue.groupName;
     this.assemblydata.id = currentValue.id

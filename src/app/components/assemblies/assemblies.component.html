@@ -19,7 +19,11 @@
             <mat-list-option *ngFor="let assembly of assembliesData" [value]='assembly.id'>
                 <div class="assembly-list-wrap">
                     <div class="img-cont">
-                        <div class="assembly-image"></div>
+                        <div *ngIf="!assembly.primaryImage" class="assembly-image" [class.no-img]="!assembly.primaryImage"></div>
+                        <div *ngIf="assembly.primaryImage" class="assembly-image">
+                            <img *ngIf="!assembly.primaryImage.includes('base64')" src="data:image/jpeg;base64,{{assembly.primaryImage}}" alt=" " />                            
+                            <img *ngIf="assembly.primaryImage.includes('base64')" src="{{assembly.primaryImage}}" alt=" " />
+                        </div>
                         <div class="assembly-icon">
                             <span *ngIf="assembly?.icon">
                                 <img *ngIf="!assembly.icon.includes('base64')" src="data:image/jpeg;base64,{{assembly.icon}}" alt=" " />                            
