@@ -1,105 +1,97 @@
 <div class="assbly-icon-title">
-    <h2 mat-dialog-title class="w100">Assembly Icon</h2>
-    <h3 class="w100">Choose one of the three methods</h3>
-</div>    
-<mat-dialog-actions align="end"> 
-    <div class="close-button" (click)="cancelModal()" ><span><img src="../../../assets/images/closeIcon.png"></span></div>   
-</mat-dialog-actions> 
+  <h2 mat-dialog-title class="w100">Assembly Icon</h2>
+  <h3 class="w100">Choose one of the three methods</h3>
+</div>
+<mat-dialog-actions align="end">
+  <div class="close-button" (click)="cancelModal()">
+    <span><img src="assets/images/closeIcon.png" /></span>
+  </div>
+</mat-dialog-actions>
 <div class="clearfix"></div>
-<mat-dialog-content [class.preview]="imageSrc" class="mat-typography">  
+<mat-dialog-content [class.preview]="imageSrc" class="mat-typography">
   <div class="valid"></div>
-  <form autocomplete="off" >
-    <div class="create-assembly">  
-        <div class="select-picklist">
-            <div class="select-wrap fl">              
-                    <mat-radio-group aria-label="Select an option" name="iconOptions" (change)="radioChange($event)" [(ngModel)]="selectedValue">
-                        <div class="radio-btn">                            
-                            <mat-radio-button value="1">Use DeviceId as Symbol</mat-radio-button>
-                            <div class="error-msg" *ngIf="abbreviationError">
-                               Abbreviation not available
-                            </div>
-                        </div>  
-                        <div class="radio-btn">
-                             <mat-radio-button value="2">Choose Existing</mat-radio-button>
-                             <div class="clearfix"></div>
-                             <div class="choose-existing-wrap">
-                                <div class="select-existing-icon">
-                                    <mat-form-field class="select-group assem-grp exist-assem" appearance="outline" style="background-color: #282828;">
-                                        <mat-label class="matLable">Choose from existing Assembly</mat-label>
-                                        <mat-select  name="existingAssemblyName" [(ngModel)]="existingAssembly">
-                                            <mat-select-trigger>{{getExistingAssemblyName(existingAssembly)}}</mat-select-trigger>
-                                            <mat-option *ngFor="let assembly of assembliesData" [value]="assembly.id">
-                                                <div class="icon-img" *ngIf="assembly.icon"><img src="data:image/jpeg;base64,{{assembly.icon}}" /></div>
-                                                <div class="icon-img" *ngIf="!assembly.icon">
-                                                    <span style="font-size: 12px;" class="material-icons-outlined">
-                                                        image_not_supported
-                                                        </span>
-                                                </div>
-                                                {{assembly.name}}                                                
-                                            </mat-option>
-                                        </mat-select>                                
-                                     </mat-form-field>
-                                     <div class="error-msg" *ngIf="isAssemblyNameError">
-                                        Please select Assembly Name
-                                    </div>
-                                 </div>                             
-                                 <!-- <div class="addbtn">
-                                     <img src="../../../assets/images/addIcon.png">
-                                 </div> -->
-                             </div>
+  <form autocomplete="off">
+    <div class="create-assembly">
+      <div class="select-picklist">
+        <div class="select-wrap fl">
+          <mat-radio-group aria-label="Select an option" name="iconOptions" (change)="radioChange($event)" [(ngModel)]="selectedValue">
+            <div class="radio-btn">
+              <mat-radio-button value="1">Use DeviceId as Symbol</mat-radio-button>
+              <div class="error-msg" *ngIf="abbreviationError">Abbreviation not available</div>
+            </div>
+            <div class="radio-btn">
+              <mat-radio-button value="2">Choose Existing</mat-radio-button>
+              <div class="clearfix"></div>
+              <div class="choose-existing-wrap">
+                <div class="select-existing-icon">
+                  <mat-form-field class="select-group assem-grp exist-assem" appearance="outline" style="background-color: #282828">
+                    <mat-label class="matLable">Choose from existing Assembly</mat-label>
+                    <mat-select name="existingAssemblyName" [(ngModel)]="existingAssembly">
+                      <mat-select-trigger>{{ getExistingAssemblyName(existingAssembly) }}</mat-select-trigger>
+                      <mat-option *ngFor="let assembly of assembliesData" [value]="assembly.id">
+                        <div class="icon-img" *ngIf="assembly.icon"><img src="data:image/jpeg;base64,{{ assembly.icon }}" /></div>
+                        <div class="icon-img" *ngIf="!assembly.icon">
+                          <span style="font-size: 12px" class="material-icons-outlined"> image_not_supported </span>
                         </div>
-                        <div class="radio-btn symbol-selector">
-                            <mat-radio-button value="3">Create Custom Symbol</mat-radio-button>
-                            <div class="clearfix"></div>
-                            <div class="sym-txt">
-                                <label>Symbol Text</label>
-                                <mat-form-field appearance="outline">
-                                    <mat-label>eg: AA or ED etc</mat-label>
-                                    <input matInput name="iconName" [(ngModel)]="iconText">
-                                </mat-form-field>
-                                <div class="error-msg" *ngIf="symbolTextError">
-                                    Please provide symbol text
-                                </div>
-                            </div> 
-                            <div class="sym-shape">
-                                <label>Symbol Shape</label>
-                                <mat-form-field class="select-group assem-grp  exist-assem" appearance="outline" style="background-color: #282828;">
-                                    <mat-label class="matLable">Select Shape</mat-label>
-                                    <mat-select name="shape"  [(ngModel)]="selectedShape ">
-                                        <mat-option *ngFor="let iconImage of iconImages" [value]="iconImage.value">
-                                            <img class="inline-icon-select" src="./../../.././assets/images/color-shapes/{{iconImage.value}}.svg" />
-                                            {{iconImage.name}}
-                                        </mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                                <div class="error-msg" *ngIf="symbolShapeError">
-                                    Please select shape
-                                </div>
-                                <!-- <div class="custom-shape">
-                                        
+                        {{ assembly.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <div class="error-msg" *ngIf="isAssemblyNameError">Please select Assembly Name</div>
+                </div>
+                <!-- <div class="addbtn">
+                                     <img src="assets/images/addIcon.png">
+                                 </div> -->
+              </div>
+            </div>
+            <div class="radio-btn symbol-selector">
+              <mat-radio-button value="3">Create Custom Symbol</mat-radio-button>
+              <div class="clearfix"></div>
+              <div class="sym-txt">
+                <label>Symbol Text</label>
+                <mat-form-field appearance="outline">
+                  <mat-label>eg: AA or ED etc</mat-label>
+                  <input matInput name="iconName" [(ngModel)]="iconText" />
+                </mat-form-field>
+                <div class="error-msg" *ngIf="symbolTextError">Please provide symbol text</div>
+              </div>
+              <div class="sym-shape">
+                <label>Symbol Shape</label>
+                <mat-form-field class="select-group assem-grp exist-assem" appearance="outline" style="background-color: #282828">
+                  <mat-label class="matLable">Select Shape</mat-label>
+                  <mat-select name="shape" [(ngModel)]="selectedShape">
+                    <mat-option *ngFor="let iconImage of iconImages" [value]="iconImage.value">
+                      <img class="inline-icon-select" src="assets/images/color-shapes/{{ iconImage.value }}.svg" />
+                      {{ iconImage.name }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <div class="error-msg" *ngIf="symbolShapeError">Please select shape</div>
+                <!-- <div class="custom-shape">
+
 
                                 </div> -->
-                             </div>
-                             <!-- <div class="addbtn1">
-                                <img src="../../../assets/images/addIcon.png">
+              </div>
+              <!-- <div class="addbtn1">
+                                <img src="assets/images/addIcon.png">
                             </div> -->
-                       </div>   
-                    </mat-radio-group>             
             </div>
-            <div class="icon-preview" *ngIf="imageSrc">
-                <img [src]="imageSrc">
-            </div>      
-        </div>          
-    </div> 
-
-    <div class="clearfix"></div>    
-    <div class="edit-btn">
-        <mat-dialog-actions align="end">
-            <div class="preview-btn">
-                <button class="secondary-btn" (click)="preview()" [disabled]="enableAdd" mat-flat-button>PREVIEW</button>
-            </div>
-            <button mat-flat-button color="primary" (click)="closeModal()" [disabled]="enableAdd" class="addfinal" >ADD</button>   
-        </mat-dialog-actions>     
+          </mat-radio-group>
+        </div>
+        <div class="icon-preview" *ngIf="imageSrc">
+          <img [src]="imageSrc" />
+        </div>
+      </div>
     </div>
-</form>
+
+    <div class="clearfix"></div>
+    <div class="edit-btn">
+      <mat-dialog-actions align="end">
+        <div class="preview-btn">
+          <button class="secondary-btn" (click)="preview()" [disabled]="enableAdd" mat-flat-button>PREVIEW</button>
+        </div>
+        <button mat-flat-button color="primary" (click)="closeModal()" [disabled]="enableAdd" class="addfinal">ADD</button>
+      </mat-dialog-actions>
+    </div>
+  </form>
 </mat-dialog-content>

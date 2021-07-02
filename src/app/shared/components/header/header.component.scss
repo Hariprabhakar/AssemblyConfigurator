@@ -1,36 +1,35 @@
 .header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 24px;
+
+  .logo-title-wrap {
     display: flex;
-    justify-content: space-between;
-    padding: 10px 24px;
+    align-items: center;
 
-    .logo-title-wrap {
-        display: flex;
-        align-items: center;
+    .logo-container {
+      display: inline-block;
+      padding: 5px 8px;
+      background-color: #212121;
+      border-radius: 4px;
 
-        .logo-container {
-            display: inline-block;
-            padding: 5px 8px;
-            background-color: #212121;
-            border-radius: 4px;
-
-            .logo {
-                background: url("../../../../assets/images/sanveo-logo.png") no-repeat;
-                width: 88px;
-                height: 27px;
-            }
-        }
-
-        .title {
-            padding-left: 13px;
-            font-size: 14px;
-        }
+      .logo {
+        background: url("../../../../assets/images/sanveo-logo.png") no-repeat;
+        width: 88px;
+        height: 27px;
+      }
     }
 
-    .user-action {
-        background: #212121;
-        border-radius: 4px;
-        margin-right: 22px;
-        padding: 0 14px;
+    .title {
+      padding-left: 13px;
+      font-size: 14px;
     }
+  }
 
+  .user-action {
+    background: #212121;
+    border-radius: 4px;
+    margin-right: 22px;
+    padding: 0 14px;
+  }
 }

@@ -8,7 +8,7 @@ import { RestApiService } from './rest-api-service';
 export class ConfiguratorService {
   private _companyId!: number;
   private _assemblyData: any;
-  private asemblyDataSubject$ = new  BehaviorSubject('');
+  private asemblyDataSubject$ = new BehaviorSubject('');
   private groupName = new BehaviorSubject('');
   public currentAssemblyValue = this.asemblyDataSubject$.asObservable();
   public groupNameObservable = this.groupName.asObservable();
@@ -16,10 +16,9 @@ export class ConfiguratorService {
 
   constructor(private restApiService: RestApiService) {
     const sessionCompany = sessionStorage.getItem('companyId');
-    if ( sessionCompany !== null) {
+    if (sessionCompany !== null) {
       this._companyId = parseInt(sessionCompany);
     }
-
   }
 
   public currentAssemblyData(data: any) {
@@ -28,7 +27,6 @@ export class ConfiguratorService {
 
   public currentGroupName(val: any) {
     this.groupName.next(val);
-
   }
 
   setCompanyId(id: number) {
@@ -42,7 +40,6 @@ export class ConfiguratorService {
   public setAssemblyData(assebmlyData: any) {
     this._assemblyData = assebmlyData;
     this.currentAssemblyData(assebmlyData);
-
   }
 
   public setGroups(groups: any) {
@@ -51,9 +48,9 @@ export class ConfiguratorService {
 
   public getGroupNameById(groupId: any) {
     let groupName;
-    if(this.groups) {
+    if (this.groups) {
       this.groups.forEach((group: any) => {
-        if(group.id == groupId) {
+        if (group.id == groupId) {
           groupName = group.name;
         }
       });
@@ -70,7 +67,7 @@ export class ConfiguratorService {
 
   public getCategories() {
     return this.restApiService.get('categories', '', '');
-    //return this.http.get('../../assets/categories.json')
+    //return this.http.get('assets/categories.json')
   }
 
   public getComponents(companyId: number, categoryId: number, includeImage: boolean = true) {
@@ -85,9 +82,19 @@ export class ConfiguratorService {
   public getAssemblies(companyId: number, familyId: number, defaultAssemblies: boolean, customAssemblies: boolean) {
     let queryParam: string;
     if (customAssemblies) {
-      queryParam = 'companyId=' + companyId + '&hideDefault=' +  defaultAssemblies + '&includeImage=true' +'&showCustom=' + customAssemblies + '&pageIndex=0&pageSize=0';
+      queryParam = 'companyId=' + companyId + '&hideDefault=' + defaultAssemblies + '&includeImage=true' + '&showCustom=' + customAssemblies + '&pageIndex=0&pageSize=0';
     } else {
-      queryParam = 'companyId=' + companyId + '&familyId=' + familyId + '&hideDefault='+ defaultAssemblies +'&includeImage=true' +  '&showCustom=' + customAssemblies + '&pageIndex=0&pageSize=0';
+      queryParam =
+        'companyId=' +
+        companyId +
+        '&familyId=' +
+        familyId +
+        '&hideDefault=' +
+        defaultAssemblies +
+        '&includeImage=true' +
+        '&showCustom=' +
+        customAssemblies +
+        '&pageIndex=0&pageSize=0';
     }
 
     return this.restApiService.get('Assemblies', '', queryParam);
@@ -125,7 +132,7 @@ export class ConfiguratorService {
   }
 
   /** Invokes ​'/assemblies​/{id}​/get-components' Get assembly components service call
-   * GET Methods 
+   * GET Methods
    * {url params} Assembly id
    * @memberOf ConfiguratorService
    */

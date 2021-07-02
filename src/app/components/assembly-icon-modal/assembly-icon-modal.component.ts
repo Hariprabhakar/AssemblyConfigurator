@@ -4,7 +4,6 @@ import { MatRadioChange } from '@angular/material/radio';
 import { ConfiguratorService } from 'src/app/services/configurator.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 
-
 @Component({
   selector: 'app-assembly-icon-modal',
   templateUrl: './assembly-icon-modal.component.html',
@@ -57,10 +56,9 @@ export class AssemblyIconModalComponent implements OnInit {
       value: 'polygon'
     }
   ];
-  constructor(private configuratorService: ConfiguratorService, private toastService: ToastService,
-    public dialogRef: MatDialogRef<AssemblyIconModalComponent>) {
-      dialogRef.disableClose = true;
-     }
+  constructor(private configuratorService: ConfiguratorService, private toastService: ToastService, public dialogRef: MatDialogRef<AssemblyIconModalComponent>) {
+    dialogRef.disableClose = true;
+  }
 
   ngOnInit(): void {
     this.companyId = this.configuratorService.companyId;
@@ -71,9 +69,10 @@ export class AssemblyIconModalComponent implements OnInit {
   }
 
   getAssemblies() {
-    this.configuratorService.getAssemblies(this.companyId, this.familyId, false, false).subscribe(res => {
-      this.assembliesData = res;
-    },
+    this.configuratorService.getAssemblies(this.companyId, this.familyId, false, false).subscribe(
+      (res) => {
+        this.assembliesData = res;
+      },
       (error: any) => {
         this.toastService.openSnackBar(error);
       }
@@ -87,7 +86,7 @@ export class AssemblyIconModalComponent implements OnInit {
           this.createDeviceIdIcon();
         } else {
           this.abbreviationError = true;
-        }        
+        }
         break;
       case '2':
         if (this.existingAssembly) {
@@ -97,7 +96,7 @@ export class AssemblyIconModalComponent implements OnInit {
         }
         break;
       case '3':
-        if(this.selectedShape && this.iconText) {
+        if (this.selectedShape && this.iconText) {
           this.createWithShape();
         } else {
           if (!this.selectedShape) {
@@ -127,7 +126,7 @@ export class AssemblyIconModalComponent implements OnInit {
       }
     });
 
-    if(this.addIcon && isAssemblyIcon) {
+    if (this.addIcon && isAssemblyIcon) {
       this.dialogRef.close(this.imageSrc);
     }
     this.addIcon = false;
@@ -138,18 +137,17 @@ export class AssemblyIconModalComponent implements OnInit {
   }
 
   createIcon(text: string, shape: string) {
-
     this.icon = document.createElement('canvas');
-    let width: number = 100;    
+    let width: number = 100;
     this.icon.width = width;
     this.icon.height = width;
     this.icon.style.width = width;
     this.icon.style.height = width;
-    const iconImage = this.icon.getContext('2d')
+    const iconImage = this.icon.getContext('2d');
     iconImage.fillStyle = '#262626';
-    const image = new Image()
-    image.onload = _ => {
-      if (shape == 'oval' || shape == 'rectangle'){
+    const image = new Image();
+    image.onload = (_) => {
+      if (shape == 'oval' || shape == 'rectangle') {
         iconImage.drawImage(image, 0, 15, width, 70); // left,top,height,width
       } else {
         iconImage.drawImage(image, 0, 0, width, width); // left,top,height,width
@@ -158,21 +156,19 @@ export class AssemblyIconModalComponent implements OnInit {
       iconImage.textAlign = 'center';
       iconImage.font = 'bold 24px sans-serif';
       iconImage.fillStyle = '#787878';
-      iconImage.fillText(text, width / 2, width / 2)
+      iconImage.fillText(text, width / 2, width / 2);
       this.imageSrc = this.icon.toDataURL('image/jepg', 0.9);
-      if(this.addIcon) {
+      if (this.addIcon) {
         this.dialogRef.close(this.imageSrc);
         this.addIcon = false;
       }
-      
     };
-    image.src = `./../../.././assets/images/${shape}.svg`;
-
+    image.src = `assets/images/${shape}.svg`;
   }
 
   public closeModal() {
     this.addIcon = true;
-    this.preview();    
+    this.preview();
   }
 
   public cancelModal() {
@@ -180,16 +176,16 @@ export class AssemblyIconModalComponent implements OnInit {
   }
 
   public radioChange(event: MatRadioChange) {
-     this.enableAdd = false;
-     this.isAssemblyNameError = false;
-     this.symbolTextError = false;
-     this.symbolShapeError = false;
-     this.abbreviationError = false;
+    this.enableAdd = false;
+    this.isAssemblyNameError = false;
+    this.symbolTextError = false;
+    this.symbolShapeError = false;
+    this.abbreviationError = false;
   }
 
   public getExistingAssemblyName(id: number) {
-    if(this.assembliesData) {
-      const assemblydata = this.assembliesData.find((assembly: any)=>{
+    if (this.assembliesData) {
+      const assemblydata = this.assembliesData.find((assembly: any) => {
         return assembly.id == id;
       });
       return assemblydata?.name;

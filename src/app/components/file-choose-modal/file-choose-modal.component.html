@@ -1,101 +1,114 @@
 <h2 mat-dialog-title>Upload Assembly Image</h2>
-<mat-dialog-actions align="end"> 
-    <button class="close-button" mat-flat-button [mat-dialog-close]="true"><span><img src="../../../assets/images/Shape.png"></span></button>   
-</mat-dialog-actions> 
+<mat-dialog-actions align="end">
+  <button class="close-button" mat-flat-button [mat-dialog-close]="true">
+    <span><img src="assets/images/Shape.png" /></span>
+  </button>
+</mat-dialog-actions>
 <div class="clearfix"></div>
 <mat-dialog-content class="mat-typography">
   <!-- <h3>Assembly Name</h3> -->
   <div class="valid"></div>
 
-<form [formGroup]="FileChooseFrom" autocomplete="off" >
-    <div class="create-assembly">  
-        <div class="select-picklist">
-            <div *ngIf="showSelectedFiles">
-                <div class="loaded-files">
-                    <h2 mat-dialog-title class="maxfileinfo" *ngIf="data.length > 0">Your uploaded files</h2>
-                    <!-- <mat-dialog-actions class="primary-select" align="center">
+  <form [formGroup]="FileChooseFrom" autocomplete="off">
+    <div class="create-assembly">
+      <div class="select-picklist">
+        <div *ngIf="showSelectedFiles">
+          <div class="loaded-files">
+            <h2 mat-dialog-title class="maxfileinfo" *ngIf="data.length > 0">Your uploaded files</h2>
+            <!-- <mat-dialog-actions class="primary-select" align="center">
                         <button  mat-flat-button color="primary" class="edit-icon-fun" *ngIf="data.length > 1">
                             <mat-icon class="edit-icon" aria-hidden="false" aria-label="Example home icon">edit</mat-icon>
                         </button>
                     </mat-dialog-actions> -->
-                </div>
-           
-                <div class="select-wrap fl group-new for-file" *ngFor="let file of data; let i = index">                
-                   
-                    <div class="file-list">                    
-                        <!-- <mat-icon aria-hidden="false" class="file-icon" aria-label="Example home icon">file_copy</mat-icon> -->
-                        <div class="img-shape">
-                            <img src={{file.fileName64Bit}} />
-                        </div>
-                        <div class="file-name">{{file.fileName}}</div> 
-                        <mat-radio-group aria-labelledby="example-radio-group-label" name="primaryBtn[i]"    class="example-radio-group">
-                        <mat-radio-button (change)="radioChange(i)" [checked]="file.isPrimary" name="primaryBtn[i]" class="radio-btn" [value]="i">
-                            <!-- <div *ngIf="file.isPrimary">Default</div> -->
-                            <div>Is Primary?</div>
-                        </mat-radio-button>
-                    </mat-radio-group>
-                        <!-- <div *ngIf="file.isPrimary && !showEditPrimaryImage" class="file-name-primary">Primary</div>                          -->
-                        <mat-dialog-actions align="end"> 
-                            <button class="close-button close-shape" mat-flat-button (click)="closeUploadedFiles(file, i)" ><span><img class="cls-btn" src="../../../assets/images/close.png"></span></button>   
-                        </mat-dialog-actions> 
-                    </div>
-                </div> 
- 
-            </div>   
-            <div formArrayName="items">
-                <h2 mat-dialog-title class="maxfileinfo1">Choose files to Add</h2>
-                <div class="select-wrap fl group-new for-new-files" *ngFor="let item of items.controls; let i = index">                
-                    <div class="img-shape">
-                        <img src={{tempUploads[i].fileName64Bit}} />
-                    </div> 
-                   <div class="file-name">{{tempUploads[i].fileName}}</div> 
-                    <!-- <mat-dialog-actions align="end"> 
-                        <button class="close-button" mat-flat-button (click)="closeTempFiles(item, i)" ><span><img class="cls-btn" src="../../../assets/images/close.png"></span></button>   
-                    </mat-dialog-actions>                     -->
-                    <!--mat-form-field class="example-full-width">
-                        <mat-label >Input</mat-label>
-                        <input formControlName="inputText" matInput>                   
-                    </mat-form-field-->  
-                    <label>System</label>
-                    
-                    <mat-form-field id="Systems" class="example-full-width" appearance="outline">                  
-                        <input matInput placeholder="Input"  [formControlName]="i" />   
-                            
-                    </mat-form-field>   
-                </div> 
+          </div>
+
+          <div class="select-wrap fl group-new for-file" *ngFor="let file of data; let i = index">
+            <div class="file-list">
+              <!-- <mat-icon aria-hidden="false" class="file-icon" aria-label="Example home icon">file_copy</mat-icon> -->
+              <div class="img-shape">
+                <img src="{{ file.fileName64Bit }}" />
+              </div>
+              <div class="file-name">{{ file.fileName }}</div>
+              <mat-radio-group aria-labelledby="example-radio-group-label" name="primaryBtn[i]" class="example-radio-group">
+                <mat-radio-button (change)="radioChange(i)" [checked]="file.isPrimary" name="primaryBtn[i]" class="radio-btn" [value]="i">
+                  <!-- <div *ngIf="file.isPrimary">Default</div> -->
+                  <div>Is Primary?</div>
+                </mat-radio-button>
+              </mat-radio-group>
+              <!-- <div *ngIf="file.isPrimary && !showEditPrimaryImage" class="file-name-primary">Primary</div>                          -->
+              <mat-dialog-actions align="end">
+                <button class="close-button close-shape" mat-flat-button (click)="closeUploadedFiles(file, i)">
+                  <span><img class="cls-btn" src="assets/images/close.png" /></span>
+                </button>
+              </mat-dialog-actions>
             </div>
-            <div class="select-wrap fr" >             
-                <!-- <button #multipleFile class="btn btn-light choose-btn">Choose Files</button> -->
-                <div>
-                    <input multiple formControlName="fileupload" class="file-input" type="file" accept="image/x-png,image/gif,image/jpeg,image/jpg,image/tif"
-                    (change)="handleFileInput($event)" #fileUpload />             
-                   
-                    
-                </div>
-                <button mat-mini-fab class="upload-btn"
-                (click)="fileUpload.click()">Choose File</button>
-            </div> 
+          </div>
+        </div>
+        <div formArrayName="items">
+          <h2 mat-dialog-title class="maxfileinfo1">Choose files to Add</h2>
+          <div class="select-wrap fl group-new for-new-files" *ngFor="let item of items.controls; let i = index">
+            <div class="img-shape">
+              <img src="{{ tempUploads[i].fileName64Bit }}" />
+            </div>
+            <div class="file-name">{{ tempUploads[i].fileName }}</div>
+            <!-- <mat-dialog-actions align="end">
+                        <button class="close-button" mat-flat-button (click)="closeTempFiles(item, i)" ><span><img class="cls-btn" src="assets/images/close.png"></span></button>
+                    </mat-dialog-actions>                     -->
+            <!--mat-form-field class="example-full-width">
+                        <mat-label >Input</mat-label>
+                        <input formControlName="inputText" matInput>
+                    </mat-form-field-->
+            <label>System</label>
 
+            <mat-form-field id="Systems" class="example-full-width" appearance="outline">
+              <input matInput placeholder="Input" [formControlName]="i" />
+            </mat-form-field>
+          </div>
         </div>
-      
-        <div class="clearfix"></div>
-        <div class="maxfileerror" *ngIf="isMaxFileError">{{maxFileError}}</div>
-        <div class="primaryImgNotSet" *ngIf="isPrimaryImgNotSet">{{primaryImgNotSet}}</div>
-        <div *ngIf="maxImageSizeExceeded">
-            <div class="primaryImgNotSet" *ngFor="let fileName of maxLimitExieedFiles">{{fileName}} File Size exceeds 2MB</div>
+        <div class="select-wrap fr">
+          <!-- <button #multipleFile class="btn btn-light choose-btn">Choose Files</button> -->
+          <div>
+            <input
+              multiple
+              formControlName="fileupload"
+              class="file-input"
+              type="file"
+              accept="image/x-png,image/gif,image/jpeg,image/jpg,image/tif"
+              (change)="handleFileInput($event)"
+              #fileUpload
+            />
+          </div>
+          <button mat-mini-fab class="upload-btn" (click)="fileUpload.click()">Choose File</button>
         </div>
-        <div *ngIf="isInValidFileExtension">
-            <div class="primaryImgNotSet" *ngFor="let fileName of inValidFileExtension">{{fileName}} File Extension is not supported</div>
-        </div>
+      </div>
 
-        <div class="edit-btn">
-            <mat-dialog-actions align="center" class="click-add-img" *ngIf="showAddBtn"> 
-                <button mat-flat-button color="primary"  (click)="onSubmit()">Add Image</button>   
-            </mat-dialog-actions>     
-            <mat-dialog-actions align="end"> 
-                <button [ngClass]="(!this.FileChooseFrom.valid || data.length == 0 || !showAddBtn) ? 'btn-disabled' : 'btn-enable'" [disabled]="(!this.FileChooseFrom.valid || showAddBtn || data.length == 0 )" mat-flat-button class="click-close-btn" color="primary" (click)="closeBtnClick()">Update</button>   
-            </mat-dialog-actions> 
-        </div>
-    </div> 
-</form>
+      <div class="clearfix"></div>
+      <div class="maxfileerror" *ngIf="isMaxFileError">{{ maxFileError }}</div>
+      <div class="primaryImgNotSet" *ngIf="isPrimaryImgNotSet">{{ primaryImgNotSet }}</div>
+      <div *ngIf="maxImageSizeExceeded">
+        <div class="primaryImgNotSet" *ngFor="let fileName of maxLimitExieedFiles">{{ fileName }} File Size exceeds 2MB</div>
+      </div>
+      <div *ngIf="isInValidFileExtension">
+        <div class="primaryImgNotSet" *ngFor="let fileName of inValidFileExtension">{{ fileName }} File Extension is not supported</div>
+      </div>
+
+      <div class="edit-btn">
+        <mat-dialog-actions align="center" class="click-add-img" *ngIf="showAddBtn">
+          <button mat-flat-button color="primary" (click)="onSubmit()">Add Image</button>
+        </mat-dialog-actions>
+        <mat-dialog-actions align="end">
+          <button
+            [ngClass]="!this.FileChooseFrom.valid || data.length == 0 || !showAddBtn ? 'btn-disabled' : 'btn-enable'"
+            [disabled]="!this.FileChooseFrom.valid || showAddBtn || data.length == 0"
+            mat-flat-button
+            class="click-close-btn"
+            color="primary"
+            (click)="closeBtnClick()"
+          >
+            Update
+          </button>
+        </mat-dialog-actions>
+      </div>
+    </div>
+  </form>
 </mat-dialog-content>

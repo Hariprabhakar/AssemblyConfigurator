@@ -1,42 +1,44 @@
 <h2 mat-dialog-title>Select System and Connection type</h2>
-<mat-dialog-actions align="end"> 
-    <button class="close-button" mat-flat-button (click)="close()" ><span><img src="../../../assets/images/Shape.png"></span></button>   
-</mat-dialog-actions> 
+<mat-dialog-actions align="end">
+  <button class="close-button" mat-flat-button (click)="close()">
+    <span><img src="assets/images/Shape.png" /></span>
+  </button>
+</mat-dialog-actions>
 <div class="clearfix"></div>
 <mat-dialog-content class="mat-typography">
   <h3>Component Name</h3>
-  <div class="valid">{{data.componentName}}</div>
+  <div class="valid">{{ data.componentName }}</div>
 
-<form  [formGroup]="JunctionBoxFrom" autocomplete="off" >
-    <div class="create-assembly">  
-        <div class="select-picklist">
-            <div class="select-wrap fl">
-                <label>System</label>
-                <mat-form-field class="select-group" appearance="outline">
-                <mat-label class="matLable">Select System</mat-label>
-                <mat-select [multiple]="isJunctionBoxGroup" formControlName="systemName">
-                    <mat-option *ngIf="!isJunctionBoxGroup">None</mat-option>
-                    <mat-option *ngFor="let system of systems" [value]="system.value">{{system.name}}</mat-option>
-                </mat-select>
-                </mat-form-field>
-            </div>
-            <div class="select-wrap fr">               
-                <label class="fr">Connection Type</label>
-                <mat-form-field class="select-group fr" appearance="outline">
-                    <mat-label class="matLable">Select Connection Type</mat-label>
-                    <mat-select  [multiple]="isJunctionBoxGroup" formControlName="connection">
-                            <mat-option *ngIf="!isJunctionBoxGroup">None</mat-option>
-                            <mat-option *ngFor="let connectionType of connectionTypes" [value]="connectionType.value">{{connectionType.name}}</mat-option>                        
-                    </mat-select>
-                </mat-form-field>               
-            </div> 
+  <form [formGroup]="JunctionBoxFrom" autocomplete="off">
+    <div class="create-assembly">
+      <div class="select-picklist">
+        <div class="select-wrap fl">
+          <label>System</label>
+          <mat-form-field class="select-group" appearance="outline">
+            <mat-label class="matLable">Select System</mat-label>
+            <mat-select [multiple]="isJunctionBoxGroup" formControlName="systemName">
+              <mat-option *ngIf="!isJunctionBoxGroup">None</mat-option>
+              <mat-option *ngFor="let system of systems" [value]="system.value">{{ system.name }}</mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
-        <div class="clearfix"></div>
-        <div class="edit-btn">
-            <mat-dialog-actions align="end"> 
-                <button mat-flat-button color="primary"  (click)="onSubmit()">Add</button>   
-            </mat-dialog-actions>     
+        <div class="select-wrap fr">
+          <label class="fr">Connection Type</label>
+          <mat-form-field class="select-group fr" appearance="outline">
+            <mat-label class="matLable">Select Connection Type</mat-label>
+            <mat-select [multiple]="isJunctionBoxGroup" formControlName="connection">
+              <mat-option *ngIf="!isJunctionBoxGroup">None</mat-option>
+              <mat-option *ngFor="let connectionType of connectionTypes" [value]="connectionType.value">{{ connectionType.name }}</mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
-    </div> 
-</form>
+      </div>
+      <div class="clearfix"></div>
+      <div class="edit-btn">
+        <mat-dialog-actions align="end">
+          <button mat-flat-button color="primary" (click)="onSubmit()">Add</button>
+        </mat-dialog-actions>
+      </div>
+    </div>
+  </form>
 </mat-dialog-content>

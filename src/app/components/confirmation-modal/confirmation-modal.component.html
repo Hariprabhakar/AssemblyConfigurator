@@ -1,17 +1,15 @@
 <div class="confirm-dialog-wrapper">
-    <div class="close-icon" (click)="close()">
-        <span><img src="../../../assets/images/Shape.png"></span>
+  <div class="close-icon" (click)="close()">
+    <span><img src="assets/images/Shape.png" /></span>
+  </div>
+  <div class="header">Remove Component</div>
+  <div class="confirm-txt">Should we remove this component from the assembly?</div>
+  <div class="btn-wrapper">
+    <div class="secondary-btn">
+      <button mat-flat-button (click)="close(false)" color="primary">NO</button>
     </div>
-    <div class="header">
-        Remove Component
+    <div class="primary-btn">
+      <button mat-flat-button (click)="close(true)" color="primary">YES</button>
     </div>
-    <div class="confirm-txt">Should we remove this component from the assembly?</div>
-    <div class="btn-wrapper">
-        <div class="secondary-btn">
-          <button mat-flat-button (click)="close(false)" color="primary" >NO</button>
-        </div>
-        <div class="primary-btn">
-            <button mat-flat-button (click)="close(true)" color="primary">YES</button>
-        </div>
-    </div>
+  </div>
 </div>
