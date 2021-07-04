@@ -23,7 +23,7 @@ export class FileChooseModalComponent implements OnInit {
   public inValidFileExtension: any;
   public FileChooseFrom: FormGroup = this.formBuilder.group({
       fileupload: [''],
-      items: this.formBuilder.array([]),
+      // items: this.formBuilder.array([]),
   });
 
   constructor(public fileChoose: MatDialogRef < FileChooseModalComponent > , @Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder, private cd: ChangeDetectorRef) {
@@ -292,7 +292,7 @@ export class FileChooseModalComponent implements OnInit {
     } else if(this.data.length === 0) {
       this.filesToUpload = 5;
     } else {
-        this.showSelectedFiles = true
+        this.showSelectedFiles = true;
         this.filesToUpload = 5 - this.data.length;
     }
   }
@@ -310,6 +310,11 @@ export class FileChooseModalComponent implements OnInit {
         }
     });
     this.isPrimaryImgNotSet = false;
+  }
+
+
+  public setDefaultImage() {
+     console.log('tets');
   }
 
 }
