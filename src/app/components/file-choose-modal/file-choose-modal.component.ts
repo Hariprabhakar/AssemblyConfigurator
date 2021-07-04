@@ -7,14 +7,11 @@ import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@ang
   styleUrls: ['./file-choose-modal.component.scss']
 })
 export class FileChooseModalComponent implements OnInit {
-  public fileObj: any;
   public maxFileError: string;
   public isMaxFileError: boolean;
   public uploadedFiles: any;
-  public showSelectedFiles: boolean;
   public filesToUpload: number;
   public tempUploads: any;
-  public showAddBtn: boolean;
   public primaryImgNotSet: string;
   public isPrimaryImgNotSet: boolean;
   public maxImageSizeExceeded: boolean;
@@ -23,22 +20,22 @@ export class FileChooseModalComponent implements OnInit {
   public inValidFileExtension: any;
   public setDefaultBtn: boolean;
   public selectedID:number;
+  public showCloseAlert: boolean;
+  public showFirstView: boolean;
   public FileChooseFrom: FormGroup = this.formBuilder.group({
       fileupload: [''],
-      // items: this.formBuilder.array([]),
   });
 
+  public FileChooseFrom1: FormGroup = this.formBuilder.group({ // this form is for first view
+    fileupload1: [''],
+  });
+  public selectedImagedetailsToDelete: any;
+
   constructor(public fileChoose: MatDialogRef < FileChooseModalComponent > , @Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder, private cd: ChangeDetectorRef) {
-      this.fileObj = {
-          imageList: [],
-          inputText: '',
-      };
       this.maxFileError = '';
       this.isMaxFileError = false;
-      this.showSelectedFiles = false;
       this.tempUploads = [];
       this.filesToUpload = 0;
-      this.showAddBtn = false;
       this.primaryImgNotSet = '';
       this.isPrimaryImgNotSet = false;
       this.isMaxFileError = false;
@@ -49,6 +46,12 @@ export class FileChooseModalComponent implements OnInit {
       fileChoose.disableClose = true;
       this.setDefaultBtn = true;
       this.selectedID = -1;
+      this.showCloseAlert = false;
+      this.showFirstView = false;
+      this.selectedImagedetailsToDelete = {
+        file: {},
+        index: 0
+      }
 
   }
 
@@ -56,9 +59,12 @@ export class FileChooseModalComponent implements OnInit {
       this.updateViews(); //Function to update the view based on already uplodaed images in the page
       let isDefaultSet = this.data.filter((value: any, key: number) => value.isDefault === true);
       isDefaultSet = isDefaultSet.length !== 0 ? true : false;
-      if (!isDefaultSet) {
+      if (this.data.length === 0) {
+        this.showFirstView = true;
+      } 
+      if (!isDefaultSet && this.data.length !== 0) {
         this.data[0].isDefault = true;
-       }
+      }
   }
 
   get items(): FormArray { // Get Dynamically injected form fields
@@ -79,6 +85,7 @@ export class FileChooseModalComponent implements OnInit {
    * @memberOf FileChooseModalComponent
    */
   public async handleFileInput(event: any) {
+      this.showFirstView = false;
       this.filesToUpload = 5 - ((this.data.length || 0) + (this.tempUploads.length || 0));
       const fileLength = event.target.files.length;
       const maxfileLength = this.filesToUpload ;
@@ -128,7 +135,7 @@ export class FileChooseModalComponent implements OnInit {
   public initVariables() {
     this.maxLimitExieedFiles = [];
     this.inValidFileExtension = [];
-    this.showAddBtn = true;
+
     this.isMaxFileError = false;
   }
 
@@ -155,17 +162,17 @@ export class FileChooseModalComponent implements OnInit {
       this.maxImageSizeExceeded = true;
     } 
 
-    if ((this.maxLimitExieedFiles.length !== 0 && this.tempUploads.length === 0)) {
-      this.showAddBtn = false;
-    }
+    // if ((this.maxLimitExieedFiles.length !== 0 && this.tempUploads.length === 0)) {
+
+    // }
 
     if (this.inValidFileExtension.length !== 0) {
       this.isInValidFileExtension = true;
     }
 
-    if ((this.inValidFileExtension.length !== 0 && this.tempUploads.length === 0)) {
-      this.showAddBtn = false;
-    }
+    // if ((this.inValidFileExtension.length !== 0 && this.tempUploads.length === 0)) {
+
+    // }
   }
 
     
@@ -256,7 +263,7 @@ export class FileChooseModalComponent implements OnInit {
          }
           this.data = this.data.concat(this.tempUploads);
           this.updateViews();
-          this.showAddBtn = false;
+
           // this.FileChooseFrom.reset();
 
           // const control = <FormArray>this.FileChooseFrom.controls['items'];
@@ -274,19 +281,9 @@ export class FileChooseModalComponent implements OnInit {
    * @memberOf FileChooseModalComponent
    */
   public closeUploadedFiles(file: any, index: number) {
-      this.maxFileError = "";
-      this.data = this.data.filter((value: any, key: number) => key !== index);
-      this.cd.markForCheck();
-      if (file?.isDefault) {
-        
-        try {
-          this.data[index].isDefault = true;
-        } catch {
-          this.data[0].isDefault = true;
-        }
-      }
-      
-      this.updateViews();
+     this.selectedImagedetailsToDelete.file = file;
+     this.selectedImagedetailsToDelete.index = index;
+      this.showCloseAlert = true;
   }
 
   /** Function to handle close button
@@ -302,20 +299,20 @@ export class FileChooseModalComponent implements OnInit {
         this.isPrimaryImgNotSet = true;
       } else {
         this.fileChoose.close(this.data);
-      } 
-    this.showAddBtn = false;
+      }
   }
 
   /** Function to update the view based on already uplodaed images in the page
    * @memberOf FileChooseModalComponent Component
    */
   public updateViews(){ 
-    if(this.data.length === 1) {
-      this.showSelectedFiles = true;
-    } else if(this.data.length === 0) {
+    // if(this.data.length === 1) {
+    //   // this.showSelectedFiles = true;
+    // } else 
+    if(this.data.length === 0) {
       this.filesToUpload = 5;
     } else {
-        this.showSelectedFiles = true;
+        // this.showSelectedFiles = true;
         this.filesToUpload = 5 - this.data.length;
     }
   }
@@ -357,5 +354,38 @@ export class FileChooseModalComponent implements OnInit {
     }
     
   }
+
+  public cancelBtnClick(){
+    this.showCloseAlert = true;
+  }
+
+  public cancelBtnYesActionClick(){
+    const index = this.selectedImagedetailsToDelete.index;
+    const file = this.selectedImagedetailsToDelete.file;
+    this.maxFileError = "";
+      this.data = this.data.filter((value: any, key: number) => key !== index);
+      this.cd.markForCheck();
+      if (file?.isDefault) {
+        
+        try {
+          this.data[index].isDefault = true;
+        } catch {
+          const data = this.data[0];
+          if (data) { 
+            this.data[0].isDefault = true;
+          }
+        }
+      }
+      
+      this.updateViews();
+      this.showCloseAlert = false;
+  }
+
+  public cancelBtnNoActionClick(){
+    this.showCloseAlert = false;
+  }
+
+ 
+
 
 }

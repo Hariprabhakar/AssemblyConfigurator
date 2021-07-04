@@ -92,126 +92,131 @@
 
 
 <!----------------upload assembly image--------------->
-
+<div *ngIf="showFirstView">
 <div class="assmbly-title">Assembly Image</div>
-<mat-dialog-actions align="end">    
+<mat-dialog-actions align="end" class="top-close-btn">    
     <button class="close-button-1" mat-flat-button [mat-dialog-close]="true"><span><img src="../../../assets/images/closebtn.png"></span></button>   
 </mat-dialog-actions> 
 <div class="clearfix"></div>
 <mat-dialog-content class="mat-typography-assembly-img">
-    <div class="select-wrap img-load fr" >             
-        <div class="col-12 rmpm dropzone">
-            <div class="text-wrapper">
-                <img src="../../../assets/images/imgIcon.png" class="imgicon">
-                <div class="centered">Drag and Drop image here</div>
-            </div>
-        </div>   
-        <div class="or-txt">OR</div>
-        <div>
-            <input multiple formControlName="fileupload" class="file-input" type="file" accept="image/x-png,image/gif,image/jpeg,image/jpg,image/tif"
-            (change)="handleFileInput($event)" #fileUpload />                        
-        </div>
-        <div class="brws-btn">
-             <button mat-mini-fab class="upload-btn" color="primary" class="primary-btn">Browse Image</button>
-             <div class="file-type">(jpeg, PNG, max upto 5 mb)</div> 
-        </div>        
-    </div> 
-</mat-dialog-content>
-
+    <form [formGroup]="FileChooseFrom1" autocomplete="off" >
+        <div class="select-wrap img-load fr" >             
+            <div class="col-12 rmpm dropzone">
+                <div class="text-wrapper">
+                    <img src="../../../assets/images/imgIcon.png" class="imgicon">
+                    <div class="centered">Drag and Drop image here</div>
+                </div>
+            </div>   
+            <div class="or-txt">OR</div>
+            <div>
+                <input multiple formControlName="fileupload1" class="file-input" type="file" accept="image/x-png,image/gif,image/jpeg,image/jpg,image/tif"
+                (change)="handleFileInput($event)" #fileUpload1 />                        
+            </div> 
+            <div class="brws-btn">
+                <button mat-mini-fab class="upload-btn" color="primary" class="primary-btn" (click)="fileUpload1.click()">Browse Image</button>
+                <div class="file-type">(jpeg, PNG, max upto 5 mb)</div> 
+            </div>        
+        </div> 
+    </form>
+</mat-dialog-content> 
+</div>
 
 
 <!--------------------------------view uploaded image-------------------->
-<!-- <div class="popupHeader">
-  <div class="assmbly-title">Assembly Image</div>
-  <mat-dialog-actions align="end">    
-      <button class="close-button-1" mat-flat-button [mat-dialog-close]="true"><span><img src="../../../assets/images/closebtn.png"></span></button>   
-  </mat-dialog-actions> 
-</div>
-<div class="clearfix"></div>
-<mat-dialog-content class="mat-typography-assembly-img-review">
-  <div class="review-img">
-    <div class="upload-img-title">Your uploaded images</div>
+<div class="popupcontainer" *ngIf="!showFirstView">
+    <div class="assmbly-title">Assembly Image</div>
+    <mat-dialog-actions align="end" class="top-close-btn">    
+        <button class="close-button-1" mat-flat-button [mat-dialog-close]="true"><span><img src="../../../assets/images/closebtn.png"></span></button>   
+    </mat-dialog-actions> 
     <div class="clearfix"></div>
-    <div class="fileList">
-        <div *ngFor="let file of data; let i = index">
-            <div class="selected-img" (click)="selectCard(file, i)" [ngClass]="{'selected-item': (!file.isDefault && selectedID == i)}">
-                <div class="img-view">
-                    <img src="{{file.fileName64Bit}}">
-                </div>
-                <div class="img-no">Image {{i+1}}</div>
-                <div class="default-img" *ngIf="file.isDefault">
-                    Default
-                </div>
-                <mat-dialog-actions align="end" class="ass-img-close">    
-                    <button class="close-button" mat-flat-button (click)="closeUploadedFiles(file, i); $event.stopPropagation();"><span><img src="../../../assets/images/closebtn.png"></span></button>   
-                </mat-dialog-actions>
-            </div> 
-        </div>
-    </div>
-    <div class="btn-select">
-        <div class="default-action">
-        <button mat-flat-button (click)="setDefaultImage()" [disabled]="setDefaultBtn" [ngClass]="setDefaultBtn ? 'btn-disabled': 'btn-enable'" class="btn-disabled">Set as Default</button>     
-        </div>
-        <div class="cancel-done-btn">
-        <button class="cancel-btn" mat-flat-button [mat-dialog-close]="true">Cancel</button>     
-        <button class="done-btn" mat-flat-button [disabled]="data.length === 0" [ngClass]="data.length === 0 ? 'btn-disabled': 'btn-enable'" (click)="closeBtnClick()">Done</button>     
-        </div>
-    </div>
-</div>
-</mat-dialog-content>
-<div class="clearfix"></div>
-<mat-dialog-content class="mat-typography-assembly-img1">
-    <form [formGroup]="FileChooseFrom" autocomplete="off" >
-        <div class="assembly-img1">
-            <div class="upload-img-title">Upload New image</div>
-            <div class="select-wrap img-load1 fr" >             
-                <div class="col-12 rmpm dropzone">
-                    <div class="text-wrapper1">               
-                        <div class="centered">Drag and Drop image here</div>
+    <div class="load-rev-del-img">
+    <mat-dialog-content class="mat-typography-assembly-img-review">
+    <div class="review-img">
+        <div class="upload-img-title">Your uploaded images</div>
+        <div class="clearfix"></div>
+        <div class="fileList">
+            <div *ngFor="let file of data; let i = index">
+                <div class="selected-img" (click)="selectCard(file, i)" [ngClass]="{'selected-item': (!file.isDefault && selectedID == i)}">
+                    <div class="img-view">
+                        <img src="{{file.fileName64Bit}}">
                     </div>
-                </div>   
-                <div class="or-txt1">OR</div>
-                <div>
-                    <input multiple formControlName="fileupload" class="file-input" type="file" accept="image/x-png,image/gif,image/jpeg,image/jpg,image/tif"
-                    (change)="handleFileInput($event)" #fileUpload />                        
-                </div>
-                <div class="brws-btn1">
-                    <button mat-mini-fab color="primary" class="primary-btn upload-btn" (click)="fileUpload.click()">Browse Image</button>             
-                </div>        
-            </div> 
+                    <div class="img-no">Image {{i+1}}</div>
+                    <div class="default-img" *ngIf="file.isDefault">
+                        Default
+                    </div>
+                    <mat-dialog-actions align="end" class="ass-img-close">    
+                        <button class="close-button" mat-flat-button (click)="closeUploadedFiles(file, i); $event.stopPropagation();"><span><img src="../../../assets/images/closebtn.png"></span></button>   
+                    </mat-dialog-actions>
+                </div> 
+            </div>
         </div>
-    </form>
-         
+        <div class="btn-select">
+            <div class="default-action">
+            <button mat-flat-button (click)="setDefaultImage()" [disabled]="setDefaultBtn" [ngClass]="setDefaultBtn ? 'btn-disabled': 'btn-enable'" class="btn-disabled">Set as Default</button>     
+            </div>
+            <div class="cancel-done-btn">
+            <button class="cancel-btn" mat-flat-button [mat-dialog-close]="true">Cancel</button>     
+            <button class="done-btn" mat-flat-button [disabled]="data.length === 0" [ngClass]="data.length === 0 ? 'btn-disabled': 'btn-enable'" (click)="closeBtnClick()">Done</button>     
+            </div>
+        </div>
+    </div>
+    </mat-dialog-content>
     <div class="clearfix"></div>
-    <div class="maxfileerror" *ngIf="isMaxFileError">{{maxFileError}}</div>
-    <div class="primaryImgNotSet" *ngIf="isPrimaryImgNotSet">{{primaryImgNotSet}}</div>
-    <div *ngIf="maxImageSizeExceeded">
-        <div class="primaryImgNotSet" *ngFor="let fileName of maxLimitExieedFiles">{{fileName}} File Size exceeds 2MB</div>
+    <mat-dialog-content class="mat-typography-assembly-img1" >
+        <form [formGroup]="FileChooseFrom" autocomplete="off" >
+            <div class="assembly-img1">
+                <div class="upload-img-title">Upload New image</div>
+                <div class="select-wrap img-load1 fr" >             
+                    <div class="col-12 rmpm dropzone">
+                        <div class="text-wrapper1">               
+                            <div class="centered">Drag and Drop image here</div>
+                        </div>
+                    </div>   
+                    <div class="or-txt1">OR</div>
+                    <div>
+                        <input multiple formControlName="fileupload" class="file-input" type="file" accept="image/x-png,image/gif,image/jpeg,image/jpg,image/tif"
+                        (change)="handleFileInput($event)" #fileUpload />                        
+                    </div>
+                    <div class="brws-btn1">
+                        <button mat-mini-fab color="primary" class="primary-btn upload-btn" (click)="fileUpload.click()">Browse Image</button>             
+                    </div>        
+                </div> 
+            </div>
+        </form>
+            
+        <div class="clearfix"></div>
+        <div class="maxfileerror" *ngIf="isMaxFileError">{{maxFileError}}</div>
+        <div class="primaryImgNotSet" *ngIf="isPrimaryImgNotSet">{{primaryImgNotSet}}</div>
+        <div *ngIf="maxImageSizeExceeded">
+            <div class="primaryImgNotSet" *ngFor="let fileName of maxLimitExieedFiles">{{fileName}} File Size exceeds 2MB</div>
+        </div>
+        <div *ngIf="isInValidFileExtension">
+            <div class="primaryImgNotSet" *ngFor="let fileName of inValidFileExtension">{{fileName}} File Extension is not supported</div>
+        </div>
+     
+    </mat-dialog-content> 
+    <!-- <div class="cdk-overlay-backdrop"></div> -->
+    <div class="delete-img-fun" *ngIf="showCloseAlert">
+        <mat-dialog-content class="mat-typography-delete-assem-img">
+            <!-- <mat-dialog-actions align="end" class="close-btn-3"> 
+                <button class="close-button-del" mat-flat-button [mat-dialog-close]="true"><span><img src="../../../assets/images/del-cls-btn.JPG"></span></button>   
+            </mat-dialog-actions>  -->
+            <div class="review-img">
+            <div class="delete-upload-img-title">Are you sure you want to Delete Image?</div>
+            <div class="clearfix"></div>   
+            <div class="btn-select">        
+                <div class="cancel-done-btn1">
+                <button class="yes-btn" mat-flat-button (click)="cancelBtnYesActionClick()">YES</button>     
+                <button class="no-btn" mat-flat-button (click)="cancelBtnNoActionClick()">NO</button>     
+                </div>
+            </div>
+            </div>
+        </mat-dialog-content>
     </div>
-    <div *ngIf="isInValidFileExtension">
-        <div class="primaryImgNotSet" *ngFor="let fileName of inValidFileExtension">{{fileName}} File Extension is not supported</div>
-    </div>
-</mat-dialog-content>  -->
-
+</div>
 
 
 
  <!--------------yes or No popup-------------->
-<!--
- <mat-dialog-actions align="end">    
-  <button class="close-button-1" mat-flat-button [mat-dialog-close]="true"><span><img src="../../../assets/images/closebtn.png"></span></button>   
-</mat-dialog-actions> 
-<div class="clearfix"></div>
-<mat-dialog-content class="mat-typography-delete-assem-img">
-<div class="review-img">
-  <div class="upload-img-title">Do you want to delete the image</div>
-  <div class="clearfix"></div>   
-  <div class="btn-select">        
-      <div class="cancel-done-btn">
-      <button class="cancel-btn" mat-flat-button [mat-dialog-close]="true">Yes</button>     
-      <button class="cancel-btn" mat-flat-button [mat-dialog-close]="true">No</button>     
-      </div>
-  </div>
-</div>
-</mat-dialog-content>
--->
+
+

@@ -76,7 +76,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
 
 
   openFileChooseModal() { // Can be moved to right place
-    const fileChoose = this.dialog.open(FileChooseModalComponent, {
+    const fileChoose = this.dialog.open(FileChooseModalComponent, {panelClass: 'filechoose',
       data: this.imageThubList
     });
     fileChoose.afterClosed().subscribe(result => {
