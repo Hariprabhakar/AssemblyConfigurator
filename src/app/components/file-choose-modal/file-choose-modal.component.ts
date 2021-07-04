@@ -21,6 +21,8 @@ export class FileChooseModalComponent implements OnInit {
   public maxLimitExieedFiles: any;
   public isInValidFileExtension: boolean;
   public inValidFileExtension: any;
+  public setDefaultBtn: boolean;
+  public selectedID:number;
   public FileChooseFrom: FormGroup = this.formBuilder.group({
       fileupload: [''],
       // items: this.formBuilder.array([]),
@@ -45,11 +47,18 @@ export class FileChooseModalComponent implements OnInit {
       this.isInValidFileExtension = false;
       this.inValidFileExtension = [];
       fileChoose.disableClose = true;
+      this.setDefaultBtn = true;
+      this.selectedID = -1;
 
   }
 
   ngOnInit(): void {
       this.updateViews(); //Function to update the view based on already uplodaed images in the page
+      let isDefaultSet = this.data.filter((value: any, key: number) => value.isDefault === true);
+      isDefaultSet = isDefaultSet.length !== 0 ? true : false;
+      if (!isDefaultSet) {
+        this.data[0].isDefault = true;
+       }
   }
 
   get items(): FormArray { // Get Dynamically injected form fields
@@ -82,7 +91,9 @@ export class FileChooseModalComponent implements OnInit {
             const isSizeExeeded = this.isFilesizeExeeded(size);
             const isValidExtension = this.validateFileExtension(name);
             if (!isSizeExeeded && isValidExtension) { // Success Flow
-              this.items.push(this.formBuilder.control('', Validators.required));
+              // this.items.push(this.formBuilder.control('', Validators.required));
+              console.log('on file select', 'add to this.data');
+              this.onSubmit();
             } else { // Error Flow
               this.handleErrors(isSizeExeeded, isValidExtension, name);
             }
@@ -223,35 +234,38 @@ export class FileChooseModalComponent implements OnInit {
    * @memberOf FileChooseModalComponent
    */
   public onSubmit() {
-      if (this.FileChooseFrom.valid) {
+     // if (this.FileChooseFrom.valid) {
           this.clearMaxFileSizeError();
           this.clearInvalidFileExtensionError();
-          let finalData: any = [];
-          this.tempUploads.forEach((value: any, key: number) => {
-              const obj = {
-                  fileName: '',
-                  fileName64Bit: '',
-                  inputText: '',
-                  isPrimary: false
-              };
-              obj.fileName = value.fileName,
-                  obj.fileName64Bit = value.fileName64Bit,
-                  obj.inputText = this.FileChooseFrom.value.items[key]
-              finalData.push(obj);
-          });
-         finalData = finalData.concat(this.data);
-          this.data = finalData;
+        //  let finalData: any = [];
+        //   this.tempUploads.forEach((value: any, key: number) => {
+        //       const obj = {
+        //           fileName: '',
+        //           fileName64Bit: '',
+        //           inputText: '',
+        //           isPrimary: false
+        //       };
+        //       obj.fileName = value.fileName,
+        //           obj.fileName64Bit = value.fileName64Bit,
+        //           obj.inputText = this.FileChooseFrom.value.items[key]
+        //       finalData.push(obj);
+        //   });
+        //  finalData = finalData.concat(this.data);
+         if (this.data.length === 0) {
+          this.tempUploads[0].isDefault = true;
+         }
+          this.data = this.data.concat(this.tempUploads);
           this.updateViews();
           this.showAddBtn = false;
-          this.FileChooseFrom.reset();
+          // this.FileChooseFrom.reset();
 
-          const control = <FormArray>this.FileChooseFrom.controls['items'];
-          for(let i = control.length-1; i >= 0; i--) {
-            control.removeAt(i)
-          }
+          // const control = <FormArray>this.FileChooseFrom.controls['items'];
+          // for(let i = control.length-1; i >= 0; i--) {
+          //   control.removeAt(i)
+          // }
           this.tempUploads = [];
           // this.fileChoose.close(finalData);
-      } 
+    //  } 
 
   }
 
@@ -263,6 +277,15 @@ export class FileChooseModalComponent implements OnInit {
       this.maxFileError = "";
       this.data = this.data.filter((value: any, key: number) => key !== index);
       this.cd.markForCheck();
+      if (file?.isDefault) {
+        
+        try {
+          this.data[index].isDefault = true;
+        } catch {
+          this.data[0].isDefault = true;
+        }
+      }
+      
       this.updateViews();
   }
 
@@ -272,7 +295,7 @@ export class FileChooseModalComponent implements OnInit {
   public closeBtnClick() {
     this.maxFileError = "";
 
-    let isPrimarySet = this.data.filter((value: any, key: number) => value.isPrimary === true);
+    let isPrimarySet = this.data.filter((value: any, key: number) => value.isDefault === true);
     isPrimarySet = isPrimarySet.length !== 0 ? true : false;
       if (!isPrimarySet) {
         this.primaryImgNotSet = "Please set primary image";
@@ -314,7 +337,25 @@ export class FileChooseModalComponent implements OnInit {
 
 
   public setDefaultImage() {
-     console.log('tets');
+    this.data.forEach((value: any, key: number) => {
+      if (key === this.selectedID) {
+        this.data[this.selectedID].isDefault = true;
+      } else {
+        this.data[key].isDefault = false;
+      }
+    });
+    this.setDefaultBtn = true;
+  }
+
+  public selectCard(file: any, index: number) {
+    this.selectedID = index;
+    
+    if (file?.isDefault) {
+      this.setDefaultBtn = true;
+    } else {
+      this.setDefaultBtn = false;
+    }
+    
   }
 
 }
