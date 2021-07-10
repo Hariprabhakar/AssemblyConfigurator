@@ -26,6 +26,8 @@ export class FileChooseModalComponent implements OnInit {
       fileupload: [''],
   });
 
+  files: File[] = [];
+
   public FileChooseFrom1: FormGroup = this.formBuilder.group({ // this form is for first view
     fileupload1: [''],
   });
@@ -80,21 +82,41 @@ export class FileChooseModalComponent implements OnInit {
       })
   }
 
+  onSelect(event:any) {
+    console.log(event);
+    this.files.push(...event.addedFiles);
+    this.handleFileUpload(event?.addedFiles);
+  }
+  
+  onRemove(event:any) {
+    console.log(event);
+    this.files.splice(this.files.indexOf(event), 1);
+  }
+
   
   /** Function to Handle file upload
    * @memberOf FileChooseModalComponent
    */
-  public async handleFileInput(event: any) {
-      this.showFirstView = false;
+  public async handleBrowseFiles(event: any) {
+     this.handleFileUpload(event?.target?.files);
+  }
+
+
+
+  /** Function to Handle file upload
+   * @memberOf FileChooseModalComponent
+   */
+   public async handleFileUpload(files: any) {
+    this.showFirstView = false;
       this.filesToUpload = 5 - ((this.data.length || 0) + (this.tempUploads.length || 0));
-      const fileLength = event.target.files.length;
+      const fileLength = files.length;
       const maxfileLength = this.filesToUpload ;
       if (fileLength < (maxfileLength + 1)) {
-        await this.getBase64ConvertedData(event.target.files);
+        await this.getBase64ConvertedData(files);
         this.initVariables();
-          for (let i = 0; i < event.target.files.length; i++) {
-            let size = event.target.files[i].size; 
-            let name = event.target.files[i].name; 
+          for (let i = 0; i < files.length; i++) {
+            let size = files[i].size; 
+            let name = files[i].name; 
             const isSizeExeeded = this.isFilesizeExeeded(size);
             const isValidExtension = this.validateFileExtension(name);
             if (!isSizeExeeded && isValidExtension) { // Success Flow
@@ -111,6 +133,7 @@ export class FileChooseModalComponent implements OnInit {
           this.isMaxFileError = true;
       }
   }
+
 
   // Clear Error falgs for previously updated files 
   public clearPreviousErrors() {

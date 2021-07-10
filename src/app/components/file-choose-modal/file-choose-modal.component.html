@@ -102,15 +102,22 @@
     <form [formGroup]="FileChooseFrom1" autocomplete="off" >
         <div class="select-wrap img-load fr" >             
             <div class="col-12 rmpm dropzone">
+                <ngx-dropzone (change)="onSelect($event)">
+                    <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
                 <div class="text-wrapper">
                     <img src="../../../assets/images/imgIcon.png" class="imgicon">
                     <div class="centered">Drag and Drop image here</div>
                 </div>
+                
+                    <!-- <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                    </ngx-dropzone-preview> -->
+                </ngx-dropzone>
             </div>   
             <div class="or-txt">OR</div>
             <div>
                 <input multiple formControlName="fileupload1" class="file-input" type="file" accept="image/x-png,image/gif,image/jpeg,image/jpg,image/tif"
-                (change)="handleFileInput($event)" #fileUpload1 />                        
+                (change)="handleBrowseFiles($event)" #fileUpload1 />                        
             </div> 
             <div class="brws-btn">
                 <button mat-mini-fab class="upload-btn" color="primary" class="primary-btn" (click)="fileUpload1.click()">Browse Image</button>
@@ -172,10 +179,16 @@
                             <div class="centered">Drag and Drop image here</div>
                         </div>
                     </div>   
+                    <ngx-dropzone (change)="onSelect($event)">
+                        <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
+                        <!-- <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                        </ngx-dropzone-preview> -->
+                    </ngx-dropzone>
                     <div class="or-txt1">OR</div>
                     <div>
                         <input multiple formControlName="fileupload" class="file-input" type="file" accept="image/x-png,image/gif,image/jpeg,image/jpg,image/tif"
-                        (change)="handleFileInput($event)" #fileUpload />                        
+                        (change)="handleBrowseFiles($event)" #fileUpload />                        
                     </div>
                     <div class="brws-btn1">
                         <button mat-mini-fab color="primary" class="primary-btn upload-btn" (click)="fileUpload.click()">Browse Image</button>             
