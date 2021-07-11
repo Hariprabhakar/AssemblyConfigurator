@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { RestApiService } from './rest-api-service';
 import { environment } from '../../environments/environment';
+import { LocalService } from '../shared/services/local.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,9 @@ export class ConfiguratorService {
   public groups: any;
   private assemblyFormValue: any;
 
-  constructor(private restApiService: RestApiService) {
-    const sessionCompany = sessionStorage.getItem('companyId');
+  constructor(private restApiService: RestApiService, private localService: LocalService) {
+    // const sessionCompany = sessionStorage.getItem('companyId');
+    const sessionCompany = this.localService.getJsonValue('companyId')
     if (sessionCompany !== null) {
       this._companyId = parseInt(sessionCompany);
     }

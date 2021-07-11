@@ -10,7 +10,6 @@ import { Subscription } from 'rxjs';
 import { ToastService } from '../shared/services/toast.service';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { ConfirmationModalComponent } from '../components/confirmation-modal/confirmation-modal.component';
-import { elementAt } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 export interface SaveAssemblyData {
@@ -172,26 +171,6 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
           this.deleteImage(0);
         }
       }
-
-
-      // if (Object.keys(result).length !== 0) {
-      //   if (Object.keys(this.imageObj).length !== 0) {
-      //     this.imageObj.inputText = result.inputText;
-      //     this.imageObj.imageList.push(result.imageList[0]);
-      //   } else {
-      //     this.imageObj = result;
-      //   }
-
-      //   const firstImage = this.imageObj.imageList.filter((image:any) => image.id == 1); 
-      //   this.imag64BitUrl = firstImage[0].fileName;
-      //   const thumbImage = this.imageObj.imageList.filter((image:any) => image.id != 1); 
-      //   if (thumbImage.length !== 0) {
-      //     this.imageThubList = thumbImage;
-      //   }
-
-
-      //   console.log('this.imageList', this.imageObj);
-      // }
     });
   }
 
@@ -282,17 +261,6 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
           this.selectedConnections = [...new Set(this.selectedConnections)];
           this.selectedSystem = [...new Set(this.selectedSystem)];
         } 
-        // else {
-        //   console.log('this.componentsData', this.componentsData);
-        //   const isComponentDuplicate: boolean = this.componentsData.some((component: any) => {
-        //     return component.id == changes.selectedComponent.currentValue.id;
-        //   });
-        //   if (!isComponentDuplicate) {
-        //     this.componentsData.push({ ...changes.selectedComponent.currentValue, qty: 1 });
-        //     this.componentTableData = new MatTableDataSource(this.componentsData);
-        //     console.log('this.componentTableData', this.componentTableData);
-        //   }
-        // }
       }
     }
   }
@@ -422,20 +390,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
         if(this.checkArray(result.connection)){
           result.connection = result.connection || [];
           result.systemName = result.systemName || [];
-  
-          // const missingConnection = this.getMissingValues(element.connection, result.connection);
-          // this.selectedConnections = this.selectedConnections.filter((ele: any) => {
-          //   return !missingConnection.includes(ele);
-          // });
-          // this.selectedConnections = [...this.selectedConnections, ...result.connection]
-          // this.selectedConnections = [...new Set(this.selectedConnections)];
 
-          // const missingSystem = this.getMissingValues(element.system, result.systemName);
-          // this.selectedSystem = this.selectedSystem.filter((ele: any) => {
-          //   return !missingSystem.includes(ele);
-          // });
-          // this.selectedSystem = [...this.selectedSystem, ...result.systemName]
-          // this.selectedSystem = [...new Set(this.selectedSystem)];
           element.connectionTypes = result.connection;
           element.systems = result.systemName;
         } else {

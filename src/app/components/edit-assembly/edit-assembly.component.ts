@@ -1,6 +1,5 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ConfiguratorService } from 'src/app/services/configurator.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import {MatDialog} from '@angular/material/dialog';
@@ -90,7 +89,7 @@ export class EditAssemblyComponent implements OnInit, OnDestroy {
   public createSuggestion(event: any) {
     let currVal: any = event.target.value;
     if (event.target.value !== this.prevAssemblyName) {
-      let suggArr = [];
+      let suggArr: string[] = [];
       currVal = currVal.toUpperCase().split(' ');
 
       if (currVal.length > 1) {
