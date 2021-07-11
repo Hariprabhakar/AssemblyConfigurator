@@ -8,7 +8,7 @@
         <div class="upload-img-btn secondary-btn" *ngIf="!assemblyDetailsReadOnly">
           <img src="assets/images/maximize.png" *ngIf="imag64BitUrl" (click)="openZoomImg()" class="img-max-btn" />
           <button mat-flat-button color="primary" *ngIf="!imag64BitUrl" (click)="openFileChooseModal()">Upload Assembly Image</button>
-          <img *ngIf="imag64BitUrl" src="{{ imag64BitUrl }}" alt="Profile" />
+          <img *ngIf="imag64BitUrl" [src]="imag64BitUrl" alt="Profile" />
         </div>
         <div class="upload-img-btn secondary-btn" *ngIf="assemblyDetailsReadOnly">
           <img src="assets/images/maximize.png" (click)="openZoomImg()" class="img-max-btn" />
@@ -48,8 +48,7 @@
         <div class="add-delete-btn">
           <div class="delete-img-btn secondary-btn" *ngFor="let image of imageThubList; let index = index">
             <button mat-flat-button color="primary" [ngClass]="{ borderHighlighter: selectedItem == image }">
-              <img (click)="imageSelection(image.fileName64Bit, image)" class="shape-icon" src="{{ image.fileName64Bit }}" />
-              <img
+              <img (click)="imageSelection(image.fileName64Bit, image)" class="shape-icon" [src]="image.fileName64Bit" /><img
                 *ngIf="!assemblyDetailsReadOnly"
                 (click)="deleteImage(index)"
                 class="delete-btn"

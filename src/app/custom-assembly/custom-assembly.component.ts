@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, Pipe, SimpleChanges } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { FileChooseModalComponent } from '../components/file-choose-modal/file-choose-modal.component';
@@ -12,6 +12,7 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { ConfirmationModalComponent } from '../components/confirmation-modal/confirmation-modal.component';
 import { elementAt } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { DomSanitizer } from '@angular/platform-browser';
 
 export interface SaveAssemblyData {
   id: string;
@@ -24,7 +25,6 @@ export interface SaveAssemblyData {
   abbreviation?: string;
   companyId?: string;
 }
-
 @Component({
   selector: 'app-custom-assembly',
   templateUrl: './custom-assembly.component.html',
@@ -41,7 +41,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   public componentTableData: any;
   public assemblydata: any;
   public groupName: any;
-  public imag64BitUrl: String;
+  public imag64BitUrl: any;
   public imageObj: any;
   public imageThubList: any;
   public selectedItem: any;
@@ -68,7 +68,8 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
     companyId: ''
   };
   constructor(public dialog: MatDialog, private configuratorService: ConfiguratorService, 
-    private toastService: ToastService, private router:Router, private route: ActivatedRoute) {
+    private toastService: ToastService, private router:Router, private route: ActivatedRoute,
+    public sanitizer: DomSanitizer) {
     this.imag64BitUrl = '';
     this.imageObj = [];
 
@@ -84,7 +85,13 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
       this.assemblysubscription = this.configuratorService.currentAssemblyValue.subscribe((data: any) => {
         this.assemblydata = data;
         if(data.iconLocation) {
-          this.iconSrc = this.baseUrl + data.iconLocation;
+          //this.iconSrc = this.baseUrl + data.iconLocation;
+          this.converBase64FromUrl(data.iconLocation)
+          .then((result: any) => {
+            this.iconSrc = this.sanitizer.bypassSecurityTrustResourceUrl(result);
+          });
+          
+          // this.iconSrc = this.baseUrl + data.iconLocation;
         }
       });
       this.groupsubscription = this.configuratorService.groupNameObservable.subscribe((groupName: any) => {
@@ -126,19 +133,38 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
       const images = res.images;
       this.imageThubList = [];
       if (images && images.length !== 0) {
-        images.forEach((image: any, idx: number) => {
-          let imgCopy = {
-            // fileName64Bit: 'data:image/jpeg;base64,'+image.image,
-            fileName64Bit: this.baseUrl + image.imageLocation,
-            isPrimary: image.isPrimary
-          }
-          this.imageThubList.push(imgCopy);
-          if(image.isPrimary){
-            this.selectedItem = this.imageThubList[idx];
-            // this.imag64BitUrl ='data:image/jpeg;base64,'+image.image;
-            this.imag64BitUrl = this.baseUrl + image.imageLocation;
-          }
-        });        
+          images.forEach((image: any, idx: number) => {
+            this.converBase64FromUrl(image.imageLocation)
+              .then((result: any) => {
+                let imgCopy = {
+                  // fileName64Bit: 'data:image/jpeg;base64,'+image.image,
+                  fileName64Bit: this.sanitizer.bypassSecurityTrustResourceUrl(result),
+                  isPrimary: image.isPrimary,
+                  inputText: image.name || ''
+                }
+                this.imageThubList.push(imgCopy);
+                if(image.isPrimary){
+                  this.selectedItem = this.imageThubList[idx];
+                  // this.imag64BitUrl ='data:image/jpeg;base64,'+image.image;
+                  this.imag64BitUrl = this.sanitizer.bypassSecurityTrustResourceUrl(result);
+                }
+              });     
+          });
+       
+        // images.forEach((image: any, idx: number) => {
+        //   let imgCopy = {
+        //     // fileName64Bit: 'data:image/jpeg;base64,'+image.image,
+        //     fileName64Bit: this.baseUrl + image.imageLocation,
+        //     isPrimary: image.isPrimary,
+        //     inputText: image.name || ''
+        //   }
+        //   this.imageThubList.push(imgCopy);
+        //   if(image.isPrimary){
+        //     this.selectedItem = this.imageThubList[idx];
+        //     // this.imag64BitUrl ='data:image/jpeg;base64,'+image.image;
+        //     this.imag64BitUrl = this.baseUrl + image.imageLocation;
+        //   }
+        // });        
       } else {
         this.imag64BitUrl = '';
       }
@@ -198,7 +224,11 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   public createImageObj(obj: any) {
     this.imageObj = [];
     obj.forEach((imgData: any) => {
-      const imgBase64 = imgData.fileName64Bit.replace('data:image/jpeg;base64,', '');
+      if(imgData.fileName64Bit.changingThisBreaksApplicationSecurity){
+        imgData.fileName64Bit = imgData.fileName64Bit.changingThisBreaksApplicationSecurity;
+      }
+      const imgBase64 = this.removeString(imgData.fileName64Bit);
+      
       const img = {
         name: imgData.inputText || '',
         image: imgBase64,
@@ -310,7 +340,8 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
         let imgCopy = {
           // fileName64Bit: 'data:image/jpeg;base64,'+image.image,
           fileName64Bit: this.baseUrl + image.imageLocation,
-          isPrimary: image.isPrimary
+          isPrimary: image.isPrimary,
+          inputText: image.name || ''
         }
         this.imageThubList.push(imgCopy);
         if(image.isPrimary){
@@ -339,8 +370,11 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
     this.saveAssemblyData.images = this.imageObj;
     this.buildComponents();
     let iconBase64 = ''
-    if (this.iconSrc) {
-      iconBase64 = this.iconSrc.replace('data:image/png;base64,', '');
+    if (this.iconSrc) {    
+      if(this.iconSrc.changingThisBreaksApplicationSecurity){
+        this.iconSrc = this.iconSrc.changingThisBreaksApplicationSecurity;
+      }  
+      iconBase64 = this.removeString(this.iconSrc);      
     }
     this.saveAssemblyData.icon = iconBase64;
     this.saveAssemblyData.id = this.assemblydata.id;
@@ -375,8 +409,8 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   }
 
   private saveAssemblyComponents(): void {
-    const saveAssemblyLocal = this.isEdit ? this.isCopyAssembly ?'saveAssemblyComponents':'updateAssemblyComponents' : 'saveAssemblyComponents';
-    this.configuratorService[saveAssemblyLocal](this.saveAssemblyData, this.assemblydata.id).subscribe((res: any) => {
+    // const saveAssemblyLocal = this.isEdit ? this.isCopyAssembly ?'saveAssemblyComponents':'updateAssemblyComponents' : 'saveAssemblyComponents';
+    this.configuratorService.saveAssemblyComponents(this.saveAssemblyData, this.assemblydata.id).subscribe((res: any) => {
       this.saveLoader = false;
       this.router.navigate(['/assembly-configurator']);
       this.toastService.openSnackBar('Assembly saved successfully', 'OK', 'success-snackbar');      
@@ -391,19 +425,22 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
 
   private buildComponents(): any {
     this.componentObj = [];
-    this.componentTableData._data.value.forEach((component: any) => {
-      if (component.qty > 0) {
-        const componentData = {
-          id: component.id,
-          qty: component.qty,
-          uom: component.uom || '',
-          systems: component.systems || [],
-          connectionTypes: component.connectionTypes || []
+    if(this.componentTableData){
+
+      this.componentTableData._data.value.forEach((component: any) => {
+        if (component.qty > 0) {
+          const componentData = {
+            id: component.id,
+            qty: component.qty,
+            uom: component.uom || '',
+            systems: component.systems || [],
+            connectionTypes: component.connectionTypes || []
+          }
+          this.componentObj.push(componentData);
         }
-        this.componentObj.push(componentData);
-      }
-    });
-    this.saveAssemblyData.components = this.componentObj;
+      });
+      this.saveAssemblyData.components = this.componentObj;
+    }
   }
 
   public editConnectionSystem(element: any) {
@@ -564,5 +601,28 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   public resetAssembly() {
     this.getAssemblyData();
     this.configuratorService.resetAssemblyData('true');
+  }
+
+  private removeString(base64: string) {
+    const index = base64.indexOf('base64,') + 7;
+    return base64.substring(index);
+  }
+
+  private async converBase64FromUrl(imageUrl: any) {
+    const url = imageUrl;
+      var res = await fetch(url);
+      var blob = await res.blob();
+    
+      return new Promise((resolve, reject) => {
+        var reader  = new FileReader();
+        reader.addEventListener("load", function () {
+            resolve(reader.result);
+        }, false);
+    
+        reader.onerror = () => {
+          return reject(this);
+        };
+        reader.readAsDataURL(blob);
+      })
   }
 }

@@ -233,7 +233,8 @@ export class FileChooseModalComponent implements OnInit {
           reader.onload = () => {
               const fileObj = {
                   fileName: file.name,
-                  fileName64Bit: reader.result
+                  fileName64Bit: reader.result,
+                  inputText: file.name.substring(0,file.name.indexOf('.'))
               };
               resolve(fileObj);
           }
