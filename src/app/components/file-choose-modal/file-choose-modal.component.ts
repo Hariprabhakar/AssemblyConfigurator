@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, ChangeDetectorRef } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
+import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-modal.component';
 @Component({
   selector: 'app-file-choose-modal',
   templateUrl: './file-choose-modal.component.html',
@@ -33,7 +34,8 @@ export class FileChooseModalComponent implements OnInit {
   });
   public selectedImagedetailsToDelete: any;
 
-  constructor(public fileChoose: MatDialogRef < FileChooseModalComponent > , @Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder, private cd: ChangeDetectorRef) {
+  constructor(public fileChoose: MatDialogRef < FileChooseModalComponent > , @Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder, private cd: ChangeDetectorRef,
+  public dialog: MatDialog) {
       this.maxFileError = '';
       this.isMaxFileError = false;
       this.tempUploads = [];
@@ -83,13 +85,11 @@ export class FileChooseModalComponent implements OnInit {
   }
 
   onSelect(event:any) {
-    console.log(event);
     this.files.push(...event.addedFiles);
     this.handleFileUpload(event?.addedFiles);
   }
   
   onRemove(event:any) {
-    console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
 
@@ -306,7 +306,19 @@ export class FileChooseModalComponent implements OnInit {
   public closeUploadedFiles(file: any, index: number) {
      this.selectedImagedetailsToDelete.file = file;
      this.selectedImagedetailsToDelete.index = index;
-      this.showCloseAlert = true;
+     // confirmation dialog
+     const confirmationDialog = this.dialog.open(ConfirmationModalComponent, {
+      data: {
+        title: 'Delete Image',
+        content: 'Are you sure you want to Delete Image?? '
+      }
+    });
+    confirmationDialog.afterClosed().subscribe(result => {
+      if (result === true) {
+       this.cancelBtnYesActionClick();
+      }
+    });
+    // this.showCloseAlert = true;
   }
 
   /** Function to handle close button

@@ -1,7 +1,9 @@
 import { Component, Input, OnInit, Output, SimpleChanges, EventEmitter } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ConfiguratorService } from 'src/app/services/configurator.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
-
+import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-modal.component';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-assemblies',
   templateUrl: './assemblies.component.html',
@@ -23,12 +25,15 @@ export class AssembliesComponent implements OnInit {
   public ImagesData: any;
   private selectedAssemblyData: any;
   private iconSrc: string = '';
+  public baseUrl: string = '';
   @Output() isComponentLoader = new EventEmitter();
 
-  constructor(private configuratorService: ConfiguratorService, private toastService: ToastService) { }
+  constructor(private configuratorService: ConfiguratorService, private toastService: ToastService,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.companyId = this.configuratorService.companyId;
+    this.baseUrl = environment.url;
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -130,10 +135,44 @@ export class AssembliesComponent implements OnInit {
       this.selectedAssemblyData = {...this.selectedAssemblyData, ...res, groupName, icon:this.iconSrc};
       this.assemblyDetails.emit(this.selectedAssemblyData);
       this.isComponentLoader.emit(false);
+      this.setAssemblyType(res);
     },
     (error: any) => {
       this.toastService.openSnackBar(error);
       this.isComponentLoader.emit(false);
+    });
+  }
+
+  private setAssemblyType(res: any){
+    let assemblyType: string;
+    if(!res.companyId) {
+      assemblyType = 'default';
+    } else {
+      if (res.used && res.used.length) {
+        assemblyType = 'customused';
+      } else {
+        assemblyType = 'custom';
+      }
+    }
+    sessionStorage.setItem('assemblyType', assemblyType);
+  }
+
+  public deleteAssembly(id: number) {
+    const confirmationDialog = this.dialog.open(ConfirmationModalComponent, {
+      data: {
+        title: 'Delete Assembly',
+        content: 'Should we delete this Assembly? '
+      }
+    });
+    confirmationDialog.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.configuratorService.deleteAssembly(id).subscribe(() => {
+          this.getAssemblies();
+        },
+        (error: any) => {
+          this.toastService.openSnackBar(error);
+        });
+      }
     });
   }
 

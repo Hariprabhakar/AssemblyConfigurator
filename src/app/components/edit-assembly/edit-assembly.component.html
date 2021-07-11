@@ -20,7 +20,7 @@
       <div class="input-wrap">
         <mat-form-field class="abbr-field" appearance="outline">
           <mat-label>Abbreviation</mat-label>
-          <input formControlName="abbreviation" [readonly]="submitted" matInput type="text" placeholder="Abbreviation">
+          <input formControlName="abbreviation"  (focusout)="isEditAssembly? setFormValue() : null" [readonly]="submitted" matInput type="text" placeholder="Abbreviation">
         </mat-form-field>
       </div>
       <div class="suggestion" *ngIf="showSuggestion && createAssemblyFrom.value.name">
@@ -30,7 +30,7 @@
         </ng-container>
         
       </div>
-      <div class="edit-btn">
+      <div class="edit-btn" *ngIf="!isEditAssembly">
         <button mat-flat-button color="primary" *ngIf="!submitted" (click)="onSubmit()" [disabled]="createAssemblyFrom.invalid" >Save</button>
         <button mat-flat-button color="primary" *ngIf="submitted" (click)="enableForm()"  >EDIT</button>
       </div>

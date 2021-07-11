@@ -1,35 +1,35 @@
 [
     {
+        "id": 5,
+        "name": "Cable Tray System"
+    },
+    {
         "id": 1,
         "name": "Conduit Raceway"
-    },
-    {
-        "id": 2,
-        "name": "Box"
-    },
-    {
-        "id": 3,
-        "name": "Supports"
     },
     {
         "id": 4,
         "name": "Equipment"
     },
     {
-        "id": 5,
-        "name": "Cable Tray System"
+        "id": 8,
+        "name": "Firestop Devices"
     },
     {
         "id": 6,
         "name": "In-Wall Devices"
     },
     {
+        "id": 2,
+        "name": "Junction Box"
+    },
+    {
         "id": 7,
         "name": "Lighting Fixture"
     },
     {
-        "id": 8,
-        "name": "Firestop Devices"
+        "id": 3,
+        "name": "Supports"
     },
     {
         "id": 9,

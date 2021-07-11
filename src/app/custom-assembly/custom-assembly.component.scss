@@ -2,9 +2,6 @@
   float: none;
   clear: both;
 }
-.assembly-info {
-  cursor: pointer;
-}
 .upload-img-btn {
   width: 100%;
   height: 100%;
@@ -14,6 +11,9 @@
     height: 100%;
     padding: 30px;
   }
+}
+.choose-icon{
+  cursor: pointer;
 }
 .custom-assembly-wrap {
   .assembly-section {
@@ -263,8 +263,21 @@
       bottom: 0;
       padding-right: 15px;
       .save-btn-wrap {
-        float: right;
+        display: flex;
+        justify-content: space-between;
         padding-top: 5px;
+        .right-side-ctrl{
+          display: flex;
+        }
+        .secondary-btn{
+          padding-right: 10px;
+          button{
+            line-height: 30px;
+            color: #ffc400;
+            border: 1px solid #ffc400;
+            border-radius: 20px;
+          }
+        }
         button {
           border-radius: 20px;
           width: 100px;

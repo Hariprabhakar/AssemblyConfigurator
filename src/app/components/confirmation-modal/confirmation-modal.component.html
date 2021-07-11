@@ -2,8 +2,8 @@
   <div class="close-icon" (click)="close()">
     <span><img src="assets/images/Shape.png" /></span>
   </div>
-  <div class="header">Remove Component</div>
-  <div class="confirm-txt">Should we remove this component from the assembly?</div>
+  <div class="header">{{title}}</div>
+  <div class="confirm-txt">{{content}}</div>
   <div class="btn-wrapper">
     <div class="secondary-btn">
       <button mat-flat-button (click)="close(false)" color="primary">NO</button>

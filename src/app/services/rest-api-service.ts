@@ -46,6 +46,11 @@ export class RestApiService {
     return this.invokeApiCall('PATCH', serviceName, params, urlParams);
   }
 
+  // HttpClient API get() method
+  public delete<T>(serviceName: string, params: any, urlParams: any) {
+    return this.invokeApiCall('DELETE', serviceName, params, urlParams);
+  }
+
   /** invoke api call */
   public invokeApiCall<T>(methodName: string, serviceName: any, serviceParams: any, urlParams: any) {
     // const httparams = new HttpParams().set('params', serviceParams);
@@ -89,7 +94,7 @@ export class RestApiService {
           errorMessage += `${element.message}\n`;
         });
       } else {
-        errorMessage = error.error.error;
+        errorMessage = error.error.error || error.error.message;
       }
     } else {
       // Get server-side error

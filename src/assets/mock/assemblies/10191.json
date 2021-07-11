@@ -1,0 +1,13 @@
+{
+    "id": 10191,
+    "name": " jdjd ffs fksk",
+    "abbreviation": "JFF",
+    "familyId": 2,
+    "companyId": 1,
+    "used": [
+        {
+		"id": 1,
+		"name": "Abcd"
+	}
+    ]
+}

@@ -19,24 +19,27 @@
             <mat-list-option *ngFor="let assembly of assembliesData" [value]='assembly.id'>
                 <div class="assembly-list-wrap">
                     <div class="img-cont">
-                        <div *ngIf="!assembly.primaryImage" class="assembly-image" [class.no-img]="!assembly.primaryImage"></div>
-                        <div *ngIf="assembly.primaryImage" class="assembly-image">
-                            <img *ngIf="!assembly.primaryImage.includes('base64')" src="data:image/jpeg;base64,{{assembly.primaryImage}}" alt=" " />                            
-                            <img *ngIf="assembly.primaryImage.includes('base64')" src="{{assembly.primaryImage}}" alt=" " />
+                        <div *ngIf="!assembly.imageLocation" class="assembly-image" [class.no-img]="!assembly.imageLocation"></div>
+                        <div *ngIf="assembly.imageLocation" class="assembly-image">
+                            <!-- <img *ngIf="!assembly.imageLocation.includes('base64')" src="data:image/jpeg;base64,{{assembly.imageLocation}}" alt=" " />                             -->
+                            <img src="{{baseUrl}}{{assembly.imageLocation}}" alt=" " />
                         </div>
                         <div class="assembly-icon">
-                            <span *ngIf="assembly?.icon">
-                                <img *ngIf="!assembly.icon.includes('base64')" src="data:image/jpeg;base64,{{assembly.icon}}" alt=" " />                            
-                                <img *ngIf="assembly.icon.includes('base64')" src="{{assembly.icon}}" alt=" " />
+                            <span *ngIf="assembly?.iconLocation">
+                                <!-- <img *ngIf="!assembly.icon.includes('base64')" src="data:image/jpeg;base64,{{assembly.icon}}" alt=" " />                             -->
+                                <img src="{{baseUrl}}{{assembly.iconLocation}}" alt=" " />
                             </span>
                             
-                            <div *ngIf="!assembly?.icon" class="default-icon">{{assembly.name | slice:0:1}}</div>
+                            <div *ngIf="!assembly?.iconLocation" class="default-icon">{{assembly.name | slice:0:1}}</div>
                         </div>
                     </div>                   
                     <div class="assembly-name">
                         {{assembly.name}}
                     </div>
                     <div class="action-btn">
+                        <button *ngIf="assembly.companyId && (!assembly.used || assembly.used?.length === 0)" mat-icon-button class="delete-icon" (click)="deleteAssembly(assembly.id)" color="primary">
+                            <span class="material-icons-outlined">delete_outline</span>
+                          </button>
                         <button mat-icon-button class="duplicate-icon" color="primary">
                             <mat-icon [inline]="true">queue</mat-icon>
                           </button>

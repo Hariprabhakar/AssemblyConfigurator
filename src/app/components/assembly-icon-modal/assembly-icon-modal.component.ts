@@ -65,6 +65,9 @@ export class AssemblyIconModalComponent implements OnInit {
     // this.familyId = this.configuratorService.getAssemblyData().familyId;
     this.familyId = 1;
     this.abbreviation = this.configuratorService.getAssemblyData()?.abbreviation;
+    if(!this.abbreviation) {
+      this.abbreviation = this.configuratorService.getAssemblyFormValue()?.abbreviation;
+    }
     this.getAssemblies();
   }
 

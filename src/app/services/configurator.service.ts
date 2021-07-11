@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { RestApiService } from './rest-api-service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,10 @@ export class ConfiguratorService {
   private groupName = new BehaviorSubject('');
   public currentAssemblyValue = this.asemblyDataSubject$.asObservable();
   public groupNameObservable = this.groupName.asObservable();
+  private resetSubject$ = new BehaviorSubject('');
+  public resetValueObservable = this.resetSubject$.asObservable();
   public groups: any;
+  private assemblyFormValue: any;
 
   constructor(private restApiService: RestApiService) {
     const sessionCompany = sessionStorage.getItem('companyId');
@@ -29,12 +33,24 @@ export class ConfiguratorService {
     this.groupName.next(val);
   }
 
+  public resetAssemblyData(val: string){
+    this.resetSubject$.next(val);
+  }
+
   setCompanyId(id: number) {
     this._companyId = id;
   }
 
   public get companyId(): number {
     return this._companyId;
+  }
+
+  public setAssemblyFormValue(value: any) {
+    this.assemblyFormValue = value;
+  }
+
+  public getAssemblyFormValue() {
+    return this.assemblyFormValue;
   }
 
   public setAssemblyData(assebmlyData: any) {
@@ -137,13 +153,28 @@ export class ConfiguratorService {
    * @memberOf ConfiguratorService
    */
   public getAssemblyComponent(id: number) {
+    if(environment.mockEnabled){
+      id = 10191;
+    }
     return this.restApiService.get(`assemblies/${id}/get-components`, '', '');
   }
-  public saveAssemblyComponents(reqObj: any, assemblyId: number) {
+  public saveAssemblyComponents(reqObj: any, assemblyId: number): Observable<any> {
     return this.restApiService.post(`assemblies/${assemblyId}/save-components`, reqObj, '');
   }
 
+  public updateAssemblyComponents(reqObj: any, assemblyId: number): Observable<any> {
+    return this.restApiService.put(`assemblies/${assemblyId}/save-components`, reqObj, '');
+  }
+
   public getAssemblyById(assemblyId: number) {
+    if(environment.mockEnabled){
+      assemblyId = 10191;
+    }
     return this.restApiService.get(`assemblies/${assemblyId}`, '', '');
   }
+
+  public deleteAssembly(assemblyId: number) {
+    return this.restApiService.delete(`assemblies/${assemblyId}`, '', '');
+  }
+
 }

@@ -8,11 +8,16 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class ConfirmationModalComponent implements OnInit {
 
+  public title: string = '';
+  public content: string = '';
+
   constructor(public dialogRef: MatDialogRef<ConfirmationModalComponent>,  @Inject(MAT_DIALOG_DATA) public data: any) {
     dialogRef.disableClose = true;
    }
 
   ngOnInit(): void {
+    this.title = this.data.title;
+    this.content = this.data.content;
   }
 
   public close(isRemove : boolean = false){

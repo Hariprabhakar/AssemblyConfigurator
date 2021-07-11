@@ -140,6 +140,12 @@ a {
   color: #fff;
   white-space: pre-line;
 }
+.success-snackbar{
+  word-break: break-word;
+  background-color: #14dd6f;
+  color: #fff;
+  white-space: pre-line;
+}
 .assem-grp, .symbol-selector{
   .mat-form-field-wrapper{padding-bottom:0 !important}
 } 
@@ -165,3 +171,10 @@ a {
 }
 .filechoose .mat-dialog-container{padding: 0px 24px; background-color: #323232;}
 // .assmbly-title{margin-bottom: 10px;}
+
+.editable {
+  input[type=number]::-webkit-inner-spin-button, 
+  input[type=number]::-webkit-outer-spin-button {
+   opacity: 1;
+  }
+}

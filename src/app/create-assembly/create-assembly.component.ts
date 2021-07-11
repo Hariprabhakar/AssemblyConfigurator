@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ConfiguratorService } from '../services/configurator.service';
 import { ToastService } from '../shared/services/toast.service';
 
@@ -14,8 +15,10 @@ export class CreateAssemblyComponent implements OnInit {
   public showOverlay: boolean;
   public selectedComponent: any;
   public isComponentLoader: boolean = false;
+  private isEdit: boolean = false;
   
-  constructor( private configuratorService: ConfiguratorService, private toastService: ToastService) { }
+  constructor( private configuratorService: ConfiguratorService, private toastService: ToastService,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.showOverlay = true;
@@ -26,6 +29,15 @@ export class CreateAssemblyComponent implements OnInit {
     (error: any) => {
       this.toastService.openSnackBar(error);
     });
+
+    this.route.queryParams.subscribe(params => {
+      this.isEdit = params.edit;
+    }
+  );
+
+  if (this.isEdit) {
+    this.showOverlay = false;
+  }
     
   }
 

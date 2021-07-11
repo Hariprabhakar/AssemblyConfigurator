@@ -1,16 +1,18 @@
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ConfiguratorService } from 'src/app/services/configurator.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import {MatDialog} from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-assembly',
   templateUrl: './edit-assembly.component.html',
   styleUrls: ['./edit-assembly.component.scss']
 })
-export class EditAssemblyComponent implements OnInit {
+export class EditAssemblyComponent implements OnInit, OnDestroy {
 
   @Input() public families: any;
   @Output() assemblyDataAdded = new EventEmitter();
@@ -22,8 +24,12 @@ export class EditAssemblyComponent implements OnInit {
   public showSuggestion: boolean;
   private assemblyId: number;
   public disableGroupDropdown: boolean = false;
+  public isEditAssembly: boolean = false;
+  private resetSubscription: Subscription;
+  private paramId: number;
 
-  constructor(private formBuilder: FormBuilder, private configuratorService: ConfiguratorService, private toastService: ToastService,  public dialog: MatDialog) { }
+  constructor(private formBuilder: FormBuilder, private configuratorService: ConfiguratorService, private toastService: ToastService,
+    public dialog: MatDialog, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.createAssemblyFrom = this.formBuilder.group({
@@ -32,6 +38,41 @@ export class EditAssemblyComponent implements OnInit {
       abbreviation: ['', Validators.required],
     });
     this.showSuggestion = false;
+
+    this.route.queryParams.subscribe(params => {
+      if(params.id) {
+        this.isEditAssembly = true;
+        this.paramId = params.id;
+        this.getAssemblyData(params.id);
+      }        
+    });
+
+    this.resetSubscription = this.configuratorService.resetValueObservable.subscribe((groupName: any) => {
+      if(this.paramId) {
+        this.getAssemblyData(this.paramId);
+      }
+    });
+
+  }
+
+  private getAssemblyData(id: number){
+
+    this.configuratorService.getAssemblyById(id).subscribe((res: any) => {
+      this.createAssemblyFrom.patchValue({
+        name: res.name,
+        familyId: res.familyId,
+        abbreviation: res.abbreviation,
+      });
+      if (this.isEditAssembly) {
+        this.setFormValue();
+      }
+      this.configuratorService.setAssemblyData(res);
+      this.updateGroupName(res['familyId']);
+      this.disableGroupDropdown = true;
+    },
+    (error: any) => {
+      this.toastService.openSnackBar(error);
+    });
   }
 
   public onSubmit(): void {
@@ -65,12 +106,18 @@ export class EditAssemblyComponent implements OnInit {
     }
 
     this.prevAssemblyName = event.target.value;
+    if (this.isEditAssembly) {
+      this.setFormValue();
+    }
   }
 
   public fillAbbr(abbr: any) {
     this.createAssemblyFrom.patchValue({
       abbreviation: abbr
     });
+    if (this.isEditAssembly) {
+      this.setFormValue();
+    }
   }
 
   private validateSuggestions(suggArr: string[]) {
@@ -105,11 +152,23 @@ export class EditAssemblyComponent implements OnInit {
   }
 
   private updateGroupName(familyId: number) {
-    this.families.some((element: any) => {
-      if(element.id === familyId) {
-        this.configuratorService.currentGroupName(element.name);
-      }
-    });
-    
+    if(this.families) {
+      this.families.some((element: any) => {
+        if(element.id === familyId) {
+          this.configuratorService.currentGroupName(element.name);
+        }
+      }); 
+    }   
   }
+
+  public setFormValue() {
+    this.configuratorService.setAssemblyFormValue(this.createAssemblyFrom.value);
+  }
+
+  ngOnDestroy() {
+    if(this.resetSubscription) {
+      this.resetSubscription.unsubscribe();
+    }
+  }
+  
 }
