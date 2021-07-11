@@ -416,7 +416,20 @@ float: left;
 
 #cdk-overlay-0 .mat-dialog-container {    position: relative;}
 .fileList {height: 230px; margin-right: -15px;
-  overflow-y: scroll;}
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px #232323;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #4f4f4f;
+  }
+}
  .btn-disabled {opacity: 0.5;    }
  .selected-item {border: 2px solid #FFC81F;}
  .btn-enable {opacity: 1;}

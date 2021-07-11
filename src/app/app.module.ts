@@ -21,6 +21,7 @@ import { FileChooseModalComponent } from './components/file-choose-modal/file-ch
 import { AssemblyZoomImageModalComponent } from './components/assembly-zoom-image-modal/assembly-zoom-image-modal.component';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     MatDialogModule,
     MatRadioModule,
     MatFileUploadModule, 
-    NgxDropzoneModule
+    NgxDropzoneModule,
+    MatMenuModule
       ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, ToastService],
   exports: [],

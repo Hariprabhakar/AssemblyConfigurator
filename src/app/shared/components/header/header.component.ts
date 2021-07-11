@@ -34,6 +34,10 @@ export class HeaderComponent implements OnInit {
       });
   }
 
+  public closeTab() {
+    window.close();
+  }
+
 
 
 }
