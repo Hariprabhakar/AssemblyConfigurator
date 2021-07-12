@@ -1,6 +1,6 @@
-import {  NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+// import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,7 +12,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { AssemblyConfiguratorModule } from './assembly-configurator/assembly-configurator.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ToastService } from './shared/services/toast.service';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatFileUploadModule } from 'angular-material-fileupload';
 import { JunctionboxModalComponent } from './components/junctionbox-modal/junctionbox-modal.component';
@@ -21,7 +21,7 @@ import { FileChooseModalComponent } from './components/file-choose-modal/file-ch
 import { AssemblyZoomImageModalComponent } from './components/assembly-zoom-image-modal/assembly-zoom-image-modal.component';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -30,8 +30,10 @@ import {MatMenuModule} from '@angular/material/menu';
     HeaderComponent,
     FooterComponent,
     JunctionboxModalComponent,
-    AssemblyIconModalComponent,   
-    FileChooseModalComponent, AssemblyZoomImageModalComponent, ConfirmationModalComponent     
+    AssemblyIconModalComponent,
+    FileChooseModalComponent,
+    AssemblyZoomImageModalComponent,
+    ConfirmationModalComponent
   ],
   imports: [
     BrowserModule,
@@ -43,13 +45,13 @@ import {MatMenuModule} from '@angular/material/menu';
     MatSnackBarModule,
     MatDialogModule,
     MatRadioModule,
-    MatFileUploadModule, 
+    MatFileUploadModule,
     NgxDropzoneModule,
     MatMenuModule
-      ],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, ToastService],
+  ],
+  providers: [/*{provide: LocationStrategy, useClass: HashLocationStrategy},*/ ToastService],
   exports: [],
   bootstrap: [AppComponent],
   entryComponents: [AssemblyIconModalComponent]
 })
-export class AppModule { }
+export class AppModule {}
