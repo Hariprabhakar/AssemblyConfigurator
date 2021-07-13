@@ -4,6 +4,7 @@ import { ConfiguratorService } from 'src/app/services/configurator.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-modal.component';
 import { environment } from 'src/environments/environment';
+import { MessageModalComponent } from '../message-modal/message-modal.component';
 @Component({
   selector: 'app-assemblies',
   templateUrl: './assemblies.component.html',
@@ -27,6 +28,7 @@ export class AssembliesComponent implements OnInit {
   private iconSrc: string = '';
   public baseUrl: string = '';
   @Output() isComponentLoader = new EventEmitter();
+  private isDeleteClicked: boolean = false;
 
   constructor(private configuratorService: ConfiguratorService, private toastService: ToastService,
     public dialog: MatDialog) { }
@@ -136,6 +138,14 @@ export class AssembliesComponent implements OnInit {
       this.assemblyDetails.emit(this.selectedAssemblyData);
       this.isComponentLoader.emit(false);
       this.setAssemblyType(res);
+      if(this.isDeleteClicked) {
+        this.isDeleteClicked = false;
+        if(res.projects && res.projects.length) {
+        this.cannotDeleteAssembly(res.projects);
+        }  else {
+          this.confirmDeleteAssembly(res.id);
+        }
+      }
     },
     (error: any) => {
       this.toastService.openSnackBar(error);
@@ -148,7 +158,7 @@ export class AssembliesComponent implements OnInit {
     if(!res.companyId) {
       assemblyType = 'default';
     } else {
-      if (res.used && res.used.length) {
+      if (res.projects && res.projects.length) {
         assemblyType = 'customused';
       } else {
         assemblyType = 'custom';
@@ -157,11 +167,23 @@ export class AssembliesComponent implements OnInit {
     sessionStorage.setItem('assemblyType', assemblyType);
   }
 
-  public deleteAssembly(id: number) {
+  public cannotDeleteAssembly(projects: any) {
+    const projectLists = projects.map((project: any) => {
+      return  project.name;
+    });
+    const messageDialog = this.dialog.open(MessageModalComponent, {
+      data: {
+        title: 'Assembly is used in Projects',
+        content: projectLists
+      }
+    });
+  }
+
+  public confirmDeleteAssembly(id: number) {
     const confirmationDialog = this.dialog.open(ConfirmationModalComponent, {
       data: {
         title: 'Delete Assembly',
-        content: 'Should we delete this Assembly? '
+        content: 'The Assembly will be deleted permanently. Do you want to continue? '
       }
     });
     confirmationDialog.afterClosed().subscribe(result => {
@@ -175,6 +197,18 @@ export class AssembliesComponent implements OnInit {
       }
     });
   }
+
+  public deleteAssembly(id: number) {
+    this.isDeleteClicked = true;
+    if(this.selectedAssemblyData && id === this.selectedAssemblyData.id) {      
+        this.isDeleteClicked = false;
+        if(this.selectedAssemblyData.projects && this.selectedAssemblyData.projects.length) {
+        this.cannotDeleteAssembly(this.selectedAssemblyData.projects);
+        }  else {
+          this.confirmDeleteAssembly(this.selectedAssemblyData.id);
+        }
+    }
+   }
 
   
 }

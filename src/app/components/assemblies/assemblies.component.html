@@ -37,7 +37,7 @@
                         {{assembly.name}}
                     </div>
                     <div class="action-btn">
-                        <button *ngIf="assembly.companyId && (!assembly.used || assembly.used?.length === 0)" mat-icon-button class="delete-icon" (click)="deleteAssembly(assembly.id)" color="primary">
+                        <button *ngIf="assembly.companyId" mat-icon-button class="delete-icon" (click)="deleteAssembly(assembly.id)" color="primary">
                             <span class="material-icons-outlined">delete_outline</span>
                           </button>
                         <button mat-icon-button class="duplicate-icon" color="primary">

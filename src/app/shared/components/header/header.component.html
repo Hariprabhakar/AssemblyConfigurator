@@ -17,9 +17,19 @@
           </button>
     </div>
     <mat-menu #help="matMenu">
-      <button mat-menu-item>Download</button>
+      <button mat-menu-item class="menu-icon">
+        <span class="material-icons">picture_as_pdf</span>
+        Help Manual</button>
+      <button mat-menu-item class="menu-icon" (click)="contactUs()">
+        <span class="material-icons">call</span>
+        Contact Us</button>
     </mat-menu>
     <mat-menu #account="matMenu">
-      <button mat-menu-item (click)="closeTab()">logout</button>
+      <button mat-menu-item class="menu-icon">
+        <span class="material-icons">settings</span>
+        Profile</button>
+      <button mat-menu-item (click)="closeTab()" class="menu-icon">
+        <span class="material-icons">power_settings_new</span>
+        Sign Out</button>
     </mat-menu>
 </div>

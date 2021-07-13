@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   // url: 'http://localhost:4200/assets/mock/',
   url: 'https://sit.sanveo.net/assemblyconfigurator-api/',
+  imageUrl: 'https://sit.sanveo.net/',
   // url: 'https://localhost:44338/',
   mockEnabled: false
 };

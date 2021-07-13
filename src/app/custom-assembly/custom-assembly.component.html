@@ -1,5 +1,5 @@
 <div class="custom-assembly-wrap" [class.read-only]="assemblyDetailsReadOnly">
-  <div class="ac-loader" *ngIf="showLoader">
+  <div class="ac-loader" *ngIf="showLoader || saveLoader">
     <mat-spinner [diameter]="40"></mat-spinner>
   </div>
   <div class="assembly-section">
@@ -190,9 +190,9 @@
             </button>
           </div>
           <div class="right-side-ctrl">
-            <button mat-flat-button color="primary" *ngIf="assemblyDetailsReadOnly" (click)="editAssembly()">EDIT</button>
+            <button mat-flat-button color="primary" *ngIf="assemblyDetailsReadOnly" [disabled]="!enableEdit" (click)="editAssembly()">EDIT</button>
             <div class="secondary-btn">
-              <button *ngIf="!assemblyDetailsReadOnly && isEdit" mat-flat-button color="primary"  (click)="cancelEdit()">Cancel</button>
+              <button *ngIf="!assemblyDetailsReadOnly && isEdit" mat-flat-button color="primary" (click)="cancelEdit()">Cancel</button>
             </div>
             <button *ngIf="isEdit && !assemblyDetailsReadOnly" mat-flat-button color="primary"  (click)="getUpdatedAssemblyData()">{{isCopyAssembly ? 'SAVE AS' : 'SAVE'}}</button>
             <button *ngIf="!isEdit && !assemblyDetailsReadOnly" mat-flat-button color="primary"  (click)="saveAssembly()">SAVE</button>

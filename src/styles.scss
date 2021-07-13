@@ -83,6 +83,7 @@ a {
 }
 
 .ac-loader{
+  z-index: 1;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -176,5 +177,10 @@ a {
   input[type=number]::-webkit-inner-spin-button, 
   input[type=number]::-webkit-outer-spin-button {
    opacity: 1;
+  }
+}
+.contact-us-modal{
+  .mat-dialog-container{
+    padding: 0px;
   }
 }

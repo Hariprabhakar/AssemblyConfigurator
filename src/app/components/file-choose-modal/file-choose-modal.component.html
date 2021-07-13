@@ -95,7 +95,7 @@
 <div *ngIf="showFirstView">
 <div class="assmbly-title">Assembly Image</div>
 <mat-dialog-actions align="end" class="top-close-btn">    
-    <button class="close-button-1" mat-flat-button [mat-dialog-close]="true"><span><img src="../../../assets/images/closebtn.png"></span></button>   
+    <button class="close-button-1" mat-flat-button [mat-dialog-close]="true"><span><img src="assets/images/closebtn.png"></span></button>   
 </mat-dialog-actions> 
 <div class="clearfix"></div>
 <mat-dialog-content class="mat-typography-assembly-img">
@@ -104,7 +104,7 @@
             <div class="col-12 rmpm dropzone">
                 <ngx-dropzone (change)="onSelect($event)">                
                 <div class="text-wrapper">
-                    <img src="../../../assets/images/imgIcon.png" class="imgicon">
+                    <img src="assets/images/imgIcon.png" class="imgicon">
                     <div class="centered">Drag and Drop image here</div>
                     <div class="or-txt">OR</div>
                 <div>
@@ -133,7 +133,7 @@
 <div class="popupcontainer" *ngIf="!showFirstView">
     <div class="assmbly-title">Assembly Image</div>
     <mat-dialog-actions align="end" class="top-close-btn">    
-        <button class="close-button-1" mat-flat-button [mat-dialog-close]="true"><span><img src="../../../assets/images/closebtn.png"></span></button>   
+        <button class="close-button-1" mat-flat-button [mat-dialog-close]="true"><span><img src="assets/images/closebtn.png"></span></button>   
     </mat-dialog-actions> 
     <div class="clearfix"></div>
     <div class="load-rev-del-img">
@@ -152,7 +152,7 @@
                         Default
                     </div>
                     <mat-dialog-actions align="end" class="ass-img-close">    
-                        <button class="close-button" mat-flat-button (click)="closeUploadedFiles(file, i); $event.stopPropagation();"><span><img src="../../../assets/images/closebtn.png"></span></button>   
+                        <button class="close-button" mat-flat-button (click)="closeUploadedFiles(file, i); $event.stopPropagation();"><span><img src="assets/images/closebtn.png"></span></button>   
                     </mat-dialog-actions>
                 </div> 
             </div>

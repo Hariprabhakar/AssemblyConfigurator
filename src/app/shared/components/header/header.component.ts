@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, startWith } from 'rxjs/operators';
+import { ContactUsComponent } from '../contact-us/contact-us.component';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +12,7 @@ import { filter, startWith } from 'rxjs/operators';
 export class HeaderComponent implements OnInit {
 
   public pageTitle = "Assembly Configurator";
-  constructor(private router: Router) { }
+  constructor(private router: Router, public dialog: MatDialog) { }
 
   ngOnInit(): void {
 
@@ -38,6 +40,12 @@ export class HeaderComponent implements OnInit {
     window.close();
   }
 
-
+  public contactUs() {
+    this.dialog.open(ContactUsComponent,{
+      height: '400px',
+      width: '800px',
+      panelClass: 'contact-us-modal'
+    });
+  }
 
 }

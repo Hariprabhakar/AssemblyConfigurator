@@ -57,6 +57,9 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   public assemblyType: string | null;
   public isCopyAssembly: boolean = false;
   public baseUrl: string = '';
+  public downloadedImg: any;
+  public initialLoad: boolean = true;
+  public enableEdit: boolean = false;
   private saveAssemblyData: SaveAssemblyData = {
     id: '',
     name: '',
@@ -81,17 +84,26 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
     this.componentsData = [];
     this.groupName = '';
     this.assemblydata = {};
+    this.iconSrc = '';
+    this.initialLoad = true;
     if (!this.assemblyDetailsReadOnly) {
       this.assemblysubscription = this.configuratorService.currentAssemblyValue.subscribe((data: any) => {
         this.assemblydata = data;
         if(data.iconLocation) {
           //this.iconSrc = this.baseUrl + data.iconLocation;
-          this.converBase64FromUrl(data.iconLocation)
-          .then((result: any) => {
-            this.iconSrc = this.sanitizer.bypassSecurityTrustResourceUrl(result);
-          });
+          // this.converBase64FromUrl(data.iconLocation)
+          // .then((result: any) => {
+          //   this.iconSrc = result;
+          // });
+          if(this.initialLoad ) {
+            this.getBase64Image(this.baseUrl + data.iconLocation, (data: any) => {
+              this.iconSrc = data;
+            })
+            this.initialLoad = false;
+          }
           
           // this.iconSrc = this.baseUrl + data.iconLocation;
+          
         }
       });
       this.groupsubscription = this.configuratorService.groupNameObservable.subscribe((groupName: any) => {
@@ -116,6 +128,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
     }
   }
 
+  
   /**
    * Function on edit assembly flow
    */
@@ -134,11 +147,25 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
       this.imageThubList = [];
       if (images && images.length !== 0) {
           images.forEach((image: any, idx: number) => {
-            this.converBase64FromUrl(image.imageLocation)
-              .then((result: any) => {
+            // this.converBase64FromUrl(image.imageLocation)
+            //   .then((result: any) => {
+            //     let imgCopy = {
+            //       // fileName64Bit: 'data:image/jpeg;base64,'+image.image,
+            //       fileName64Bit: this.sanitizer.bypassSecurityTrustResourceUrl(result),
+            //       isPrimary: image.isPrimary,
+            //       inputText: image.name || ''
+            //     }
+            //     this.imageThubList.push(imgCopy);
+            //     if(image.isPrimary){
+            //       this.selectedItem = this.imageThubList[idx];
+            //       // this.imag64BitUrl ='data:image/jpeg;base64,'+image.image;
+            //       this.imag64BitUrl = this.sanitizer.bypassSecurityTrustResourceUrl(result);
+            //     }
+            //   });
+              this.getBase64Image(this.baseUrl + image.imageLocation, (result: any) => {
                 let imgCopy = {
                   // fileName64Bit: 'data:image/jpeg;base64,'+image.image,
-                  fileName64Bit: this.sanitizer.bypassSecurityTrustResourceUrl(result),
+                  fileName64Bit: result,
                   isPrimary: image.isPrimary,
                   inputText: image.name || ''
                 }
@@ -146,9 +173,9 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
                 if(image.isPrimary){
                   this.selectedItem = this.imageThubList[idx];
                   // this.imag64BitUrl ='data:image/jpeg;base64,'+image.image;
-                  this.imag64BitUrl = this.sanitizer.bypassSecurityTrustResourceUrl(result);
+                  this.imag64BitUrl = result;
                 }
-              });     
+              }) 
           });
        
         // images.forEach((image: any, idx: number) => {
@@ -232,7 +259,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
       const img = {
         name: imgData.inputText || '',
         image: imgBase64,
-        isPrimary: imgData.isPrimary
+        isPrimary: imgData.isPrimary || imgData.isDefault || false
       }
       this.imageObj.push(img);
     });
@@ -331,6 +358,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
    * @memberOf CustomAssemblyComponent
    */
   public updateRightPanel(changes:any) {
+    this.enableEdit = true;
     this.imageThubList = [];
     this.imag64BitUrl = '';
     const currentValue = changes.selectedComponent.currentValue;
@@ -588,7 +616,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   }
 
   public checkJunctionBox(row: any) {
-    if (this.groupName.toLowerCase() === 'junction box' || row?.categoryName?.toLowerCase() === 'junction box') {
+    if (this.groupName.toLowerCase() === 'junction box' || row?.categoryName?.toLowerCase() === 'junction box' || row.isJunctionBox == true) {
       return true;
     } 
     return false;
@@ -609,7 +637,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   }
 
   private async converBase64FromUrl(imageUrl: any) {
-    const url = imageUrl;
+    const url = this.baseUrl + imageUrl;
       var res = await fetch(url);
       var blob = await res.blob();
     
@@ -623,6 +651,49 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
           return reject(this);
         };
         reader.readAsDataURL(blob);
-      })
+      });
+
   }
+
+  getBase64Image(src: any, callback: any) {
+    const img = new Image();
+    img.crossOrigin = 'Anonymous';
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      let dataURL;
+      canvas.height = img.naturalHeight;
+      canvas.width = img.naturalWidth;
+      if (ctx) {
+        ctx.drawImage(img, 0, 0);
+      }
+      dataURL = canvas.toDataURL();
+      callback(dataURL);
+    };
+
+    img.src = src;
+    if (img.complete || img.complete === undefined) {
+      img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+      img.src = src;
+    }
+  }
+
+  public imageReceived() {
+    let canvas = document.createElement("canvas");
+    let context = canvas.getContext("2d");
+  
+    canvas.width = this.downloadedImg.width;
+    canvas.height = this.downloadedImg.height;
+  
+    context ? context.drawImage(this.downloadedImg, 0, 0): null;
+  
+    try {
+      localStorage.setItem("saved-image-example", canvas.toDataURL("image/png"));
+    }
+    catch(err) {
+      console.log("Error: " + err);
+    }
+  }
+
 }
+

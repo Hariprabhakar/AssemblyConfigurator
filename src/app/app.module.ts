@@ -21,7 +21,9 @@ import { FileChooseModalComponent } from './components/file-choose-modal/file-ch
 import { AssemblyZoomImageModalComponent } from './components/assembly-zoom-image-modal/assembly-zoom-image-modal.component';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
-import { MatMenuModule } from '@angular/material/menu';
+import {MatMenuModule} from '@angular/material/menu';
+import { MessageModalComponent } from './components/message-modal/message-modal.component';
+import { ContactUsComponent } from './shared/components/contact-us/contact-us.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { MatMenuModule } from '@angular/material/menu';
     AssemblyIconModalComponent,
     FileChooseModalComponent,
     AssemblyZoomImageModalComponent,
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
+    MessageModalComponent, 
+    ContactUsComponent     
   ],
   imports: [
     BrowserModule,
