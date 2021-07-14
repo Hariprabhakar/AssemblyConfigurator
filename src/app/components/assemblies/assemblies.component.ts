@@ -190,6 +190,7 @@ export class AssembliesComponent implements OnInit {
       if (result === true) {
         this.configuratorService.deleteAssembly(id).subscribe(() => {
           this.getAssemblies();
+          this.toastService.openSnackBar('Assembly deleted successfully', 'OK', 'success-snackbar');
         },
         (error: any) => {
           this.toastService.openSnackBar(error);

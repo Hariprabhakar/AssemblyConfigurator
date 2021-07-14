@@ -17,9 +17,9 @@
           </button>
     </div>
     <mat-menu #help="matMenu">
-      <button mat-menu-item class="menu-icon">
-        <span class="material-icons">picture_as_pdf</span>
-        Help Manual</button>
+      <button mat-menu-item class="menu-icon download-manual">
+        <a href="assets/User Manual.pdf" download="User Manual.pdf"><span class="material-icons">picture_as_pdf</span>
+        Help Manual</a></button>
       <button mat-menu-item class="menu-icon" (click)="contactUs()">
         <span class="material-icons">call</span>
         Contact Us</button>
