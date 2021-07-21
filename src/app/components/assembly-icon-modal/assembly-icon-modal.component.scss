@@ -260,9 +260,10 @@ mat-radio-button{font-size: 12px; font-weight: 100; font-size: 10px;}
     color: #000000 !important; font-weight: bold !important;}
     .icon-img{
       display: inline-block;
-      width: 25px;
-      padding-left: 10px;
-    
+      width: 30px;
+      height: 30px;
+      vertical-align: bottom;
+      text-align: center;
       img{
         width: 100%;
       }

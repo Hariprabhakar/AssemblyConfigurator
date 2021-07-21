@@ -24,6 +24,7 @@ export class CreateAssemblyComponent implements OnInit {
     this.showOverlay = true;
     this.configuratorService.getFamilies().subscribe((res: any) => {
       this.families = res;
+      this.configuratorService.families = res;
       this.setFamilies();
     },
     (error: any) => {

@@ -10,6 +10,7 @@ export class MessageModalComponent implements OnInit {
 
   public title: string = '';
   public projectLists: any;
+  public isDuplicateComponentMsg: boolean = false;
 
   constructor(public dialogRef: MatDialogRef<MessageModalComponent>,  @Inject(MAT_DIALOG_DATA) public data: any) {
     dialogRef.disableClose = true;
@@ -18,6 +19,7 @@ export class MessageModalComponent implements OnInit {
   ngOnInit(): void {
     this.title = this.data.title;
     this.projectLists = this.data.content;
+    this.isDuplicateComponentMsg = this.data.isFromcomponent;
   }
 
   public close(){

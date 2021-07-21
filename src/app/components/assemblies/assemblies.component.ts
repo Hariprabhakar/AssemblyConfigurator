@@ -174,7 +174,8 @@ export class AssembliesComponent implements OnInit {
     const messageDialog = this.dialog.open(MessageModalComponent, {
       data: {
         title: 'Assembly is used in Projects',
-        content: projectLists
+        content: projectLists,
+        isFromcomponent: false
       }
     });
   }

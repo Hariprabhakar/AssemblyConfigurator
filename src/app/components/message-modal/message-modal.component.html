@@ -2,11 +2,18 @@
     <div class="close-icon" (click)="close()">
       <span><img src="assets/images/Shape.png" /></span>
     </div>
-    <div class="header">Assembly is in use in {{projectLists.length}} Projects</div>
-    <div>Please remove or replace those before deleting</div>
-    <div *ngFor="let project of projectLists">
-        {{project}}
+    <div  *ngIf="!isDuplicateComponentMsg">
+      <div class="header">Assembly is in use in {{projectLists.length}} Projects</div>
+      <div>Please remove or replace those before deleting</div>
+      <div *ngFor="let project of projectLists">
+          {{project}}
+      </div>
     </div>
+    <div *ngIf="isDuplicateComponentMsg">
+      <div class="header">Component Added</div>
+      <div class="text">Component already added to the Assembly.</div>
+    </div>
+
     <div class="btn-wrapper">
       <div class="primary-btn">
         <button mat-flat-button (click)="close()" color="primary">Close</button>

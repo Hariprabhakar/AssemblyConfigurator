@@ -78,7 +78,7 @@ export class CategoryComponentsComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.categoryValue && changes.categoryValue.currentValue) {
-      if (changes.categoryValue.currentValue.id === 7 || this.isJunctionBoxGroup) { // Junctionbox id is 7 and for mocking its kept of Data Jack
+      if (changes.categoryValue.currentValue.id === 7) { // Junctionbox id is 7 and for mocking its kept of Data Jack
         this.isJunctionBox = true;
       } else {
         this.isJunctionBox = false;
@@ -107,9 +107,10 @@ export class CategoryComponentsComponent implements OnInit {
   addComponent(element: any) {
     this.recentElement = element;
     const getAssemblyData = this.configuratorService.getAssemblyData();
-    if (getAssemblyData !== undefined && getAssemblyData?.familyId && getAssemblyData.familyId === 2) {
-      this.openDialog(element);
-    } else if (this.isJunctionBox) {
+    // if (getAssemblyData !== undefined && getAssemblyData?.familyId && getAssemblyData.familyId === 2) {
+    //   this.openDialog(element);
+    // }  
+    if (this.isJunctionBox) {
       this.openDialog(element);
     } else {
       this.selectedComponent.emit(element);

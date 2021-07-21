@@ -18,10 +18,11 @@ import { EditAssemblyComponent } from '../components/edit-assembly/edit-assembly
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { CustomAssemblyModule } from '../custom-assembly/custom-assembly.module';
+import { ShowIfTruncatedDirective } from '../shared/directives/show-if-truncated.directive';
 
 
 @NgModule({
-  declarations: [CreateAssemblyComponent, EditAssemblyComponent, CategoryComponent, CategoryComponentsComponent],
+  declarations: [CreateAssemblyComponent, EditAssemblyComponent, CategoryComponent, CategoryComponentsComponent, ShowIfTruncatedDirective],
   imports: [
     CommonModule,
     MatCheckboxModule,

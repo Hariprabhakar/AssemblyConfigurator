@@ -30,7 +30,7 @@
 
       <ng-container matColumnDef="component">
         <th mat-header-cell *matHeaderCellDef> COMPONENT </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        <td mat-cell *matCellDef="let element" [matTooltip]="element.name" appShowIfTruncated> {{element.name}} </td>
       </ng-container>
 
 

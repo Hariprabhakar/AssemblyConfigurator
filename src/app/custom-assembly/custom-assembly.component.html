@@ -8,11 +8,11 @@
         <div class="upload-img-btn secondary-btn" *ngIf="!assemblyDetailsReadOnly">
           <img src="assets/images/maximize.png" *ngIf="imag64BitUrl" (click)="openZoomImg()" class="img-max-btn" />
           <button mat-flat-button color="primary" *ngIf="!imag64BitUrl" (click)="openFileChooseModal()">Upload Assembly Image</button>
-          <img *ngIf="imag64BitUrl" [src]="imag64BitUrl" alt="Profile" />
+          <img class="preview-img" *ngIf="imag64BitUrl" [src]="imag64BitUrl" alt="Profile" />
         </div>
         <div class="upload-img-btn secondary-btn" *ngIf="assemblyDetailsReadOnly">
           <img src="assets/images/maximize.png" (click)="openZoomImg()" class="img-max-btn" />
-          <img *ngIf="imag64BitUrl" src="{{ imag64BitUrl }}" alt="Profile" />
+          <img class="preview-img" *ngIf="imag64BitUrl" src="{{ imag64BitUrl }}" alt="Profile" />
         </div>
       </div>
       <div class="assembly-info">
@@ -40,8 +40,8 @@
           <div class="assembly-details">
             <div class="assembly-name">{{ assemblydata?.name }}</div>
             <div class="assembly-group" *ngIf="groupName">Group: {{ groupName }}</div>
-            <div class="system-names" *ngIf="selectedSystem.length" [matTooltip]="selectedSystem.join()">System: {{ selectedSystem }}</div>
-            <div class="connection-type" *ngIf="selectedConnections.length" [matTooltip]="selectedConnections.join()">Connection: {{ selectedConnections }}</div>
+            <div class="system-names" *ngIf="selectedSystem.length" [matTooltip]="selectedSystem.join(', ')">System: {{ selectedSystem.join(', ') }}</div>
+            <div class="connection-type" *ngIf="selectedConnections.length" [matTooltip]="selectedConnections.join(', ')">Connection: {{ selectedConnections.join(', ') }}</div>
           </div>
         </div>
         <div class="clearfix"></div>

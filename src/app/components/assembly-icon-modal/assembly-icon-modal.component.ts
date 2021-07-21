@@ -3,6 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { MatRadioChange } from '@angular/material/radio';
 import { ConfiguratorService } from 'src/app/services/configurator.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-assembly-icon-modal',
@@ -26,6 +27,7 @@ export class AssemblyIconModalComponent implements OnInit {
   public symbolShapeError = false;
   public abbreviationError = false;
   public abbreviation: string;
+  public baseUrl: string = '';
   public iconImages: any = [
     {
       name: 'Star',
@@ -62,8 +64,9 @@ export class AssemblyIconModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.companyId = this.configuratorService.companyId;
+    this.baseUrl = environment.url;
     // this.familyId = this.configuratorService.getAssemblyData().familyId;
-    this.familyId = 1;
+    // this.familyId = 1;
     this.abbreviation = this.configuratorService.getAssemblyData()?.abbreviation;
     if(!this.abbreviation) {
       this.abbreviation = this.configuratorService.getAssemblyFormValue()?.abbreviation;
@@ -72,7 +75,7 @@ export class AssemblyIconModalComponent implements OnInit {
   }
 
   getAssemblies() {
-    this.configuratorService.getAssemblies(this.companyId, this.familyId, false, false).subscribe(
+    this.configuratorService.getAssemblies(this.companyId, this.familyId, true, true).subscribe(
       (res) => {
         this.assembliesData = res;
       },
@@ -121,18 +124,21 @@ export class AssemblyIconModalComponent implements OnInit {
 
   private chooseExistingIcon() {
     let isAssemblyIcon = this.assembliesData.some((assembly: any) => {
-      if (assembly.id == this.existingAssembly && assembly.icon) {
-        this.imageSrc = 'data:image/jpeg;base64,' + assembly.icon;
+      if (assembly.id == this.existingAssembly && assembly.iconLocation) {
+        this.getBase64Image(this.baseUrl + assembly.iconLocation, (data: any) => {
+          this.imageSrc = data;
+          if (this.addIcon && isAssemblyIcon) {
+            this.dialogRef.close(this.imageSrc);
+          }
+          this.addIcon = false;
+        });        
         return true;
       } else {
         return false;
       }
     });
 
-    if (this.addIcon && isAssemblyIcon) {
-      this.dialogRef.close(this.imageSrc);
-    }
-    this.addIcon = false;
+    
   }
 
   private createWithShape() {
@@ -194,4 +200,28 @@ export class AssemblyIconModalComponent implements OnInit {
       return assemblydata?.name;
     }
   }
+
+  public getBase64Image(src: any, callback: any) {
+    const img = new Image();
+    img.crossOrigin = 'Anonymous';
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      let dataURL;
+      canvas.height = img.naturalHeight;
+      canvas.width = img.naturalWidth;
+      if (ctx) {
+        ctx.drawImage(img, 0, 0);
+      }
+      dataURL = canvas.toDataURL();
+      callback(dataURL);
+    };
+
+    img.src = src;
+    if (img.complete || img.complete === undefined) {
+      img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+      img.src = src;
+    }
+  }
+
 }
