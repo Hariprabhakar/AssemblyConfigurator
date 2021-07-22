@@ -100,6 +100,7 @@
 <div class="clearfix"></div>
 <mat-dialog-content class="mat-typography-assembly-img">
     <form [formGroup]="FileChooseFrom1" autocomplete="off" >
+        
         <div class="select-wrap img-load fr" >             
             <div class="col-12 rmpm dropzone">
                 <ngx-dropzone (change)="onSelect($event)">                
@@ -131,6 +132,7 @@
 
 <!--------------------------------view uploaded image-------------------->
 <div class="popupcontainer" *ngIf="!showFirstView">
+
     <div class="assmbly-title">Assembly Image</div>
     <mat-dialog-actions align="end" class="top-close-btn">    
         <button class="close-button-1" mat-flat-button [mat-dialog-close]="true"><span><img src="assets/images/closebtn.png"></span></button>   
@@ -138,25 +140,34 @@
     <div class="clearfix"></div>
     <div class="load-rev-del-img">
     <mat-dialog-content class="mat-typography-assembly-img-review">
+        <form [formGroup]="FileChooseFrom" autocomplete="off" >
     <div class="review-img">
         <div class="upload-img-title">Your uploaded images</div>
         <div class="clearfix"></div>
+        <div formArrayName="items">
         <div class="fileList">
-            <div *ngFor="let file of data; let i = index">
-                <div class="selected-img" (click)="selectCard(file, i)" [ngClass]="{'selected-item': (!file.isDefault && selectedID == i)}">
+            <div *ngFor="let file of items.controls; let i = index">
+
+                <div class="selected-img" (click)="selectCard(data[i], i)" [ngClass]="{'selected-item': (!data[i].isDefault && selectedID == i)}">
                     <div class="img-view">
-                        <img src="{{file.fileName64Bit}}">
+                        <img src="{{data[i].fileName64Bit}}">
                     </div>
                     <div class="img-no">Image {{i+1}}</div>
-                    <div class="default-img" *ngIf="file.isDefault">
+                    <div class="default-img" *ngIf="data[i].isDefault">
                         Default
                     </div>
+     
+                    <mat-form-field id="Systems" class="example-full-width" appearance="outline">                  
+                        <input matInput placeholder="Input"  [formControlName]="i" />   
+                        
+                    </mat-form-field>
                     <mat-dialog-actions align="end" class="ass-img-close">    
-                        <button class="close-button" mat-flat-button (click)="closeUploadedFiles(file, i); $event.stopPropagation();"><span><img src="assets/images/closebtn.png"></span></button>   
+                        <button class="close-button" mat-flat-button (click)="closeUploadedFiles(data[i], i); $event.stopPropagation();"><span><img src="assets/images/closebtn.png"></span></button>   
                     </mat-dialog-actions>
                 </div> 
             </div>
         </div>
+    </div>
         <div class="btn-select">
             <div class="default-action">
             <button mat-flat-button (click)="setDefaultImage()" [disabled]="setDefaultBtn" [ngClass]="setDefaultBtn ? 'btn-disabled': 'btn-enable'" class="btn-disabled">Set as Default</button>     
@@ -167,10 +178,11 @@
             </div>
         </div>
     </div>
+    </form>
     </mat-dialog-content>
     <div class="clearfix"></div>
     <mat-dialog-content class="mat-typography-assembly-img1" >
-        <form [formGroup]="FileChooseFrom" autocomplete="off" >
+        <form [formGroup]="FileChooseFrom1" autocomplete="off" >
             <div class="assembly-img1">
                 <div class="upload-img-title">Upload New image</div>
                 <div class="select-wrap img-load1 fr" >             

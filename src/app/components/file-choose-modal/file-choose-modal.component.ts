@@ -25,16 +25,18 @@ export class FileChooseModalComponent implements OnInit {
   public showFirstView: boolean;
   public FileChooseFrom: FormGroup = this.formBuilder.group({
       fileupload: [''],
+      items: this.formBuilder.array([]),
   });
 
   files: File[] = [];
 
   public FileChooseFrom1: FormGroup = this.formBuilder.group({ // this form is for first view
     fileupload1: [''],
+    fileupload: [''],
   });
   public selectedImagedetailsToDelete: any;
 
-  constructor(public fileChoose: MatDialogRef < FileChooseModalComponent > , @Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder, private cd: ChangeDetectorRef,
+  constructor(public fileChoose: MatDialogRef < FileChooseModalComponent > , @Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder, public cd: ChangeDetectorRef,
   public dialog: MatDialog) {
       this.maxFileError = '';
       this.isMaxFileError = false;
@@ -62,6 +64,9 @@ export class FileChooseModalComponent implements OnInit {
   ngOnInit(): void {
       this.updateViews(); //Function to update the view based on already uplodaed images in the page
       let isDefaultSet = this.data.filter((value: any, key: number) => value.isDefault === true);
+      for(let i =  this.data.length-1; i >= 0; i--) {
+        this.items.push(this.formBuilder.control('', Validators.required));
+      }
       isDefaultSet = isDefaultSet.length !== 0 ? true : false;
       if (this.data.length === 0) {
         this.showFirstView = true;
@@ -122,6 +127,8 @@ export class FileChooseModalComponent implements OnInit {
             if (!isSizeExeeded && isValidExtension) { // Success Flow
               // this.items.push(this.formBuilder.control('', Validators.required));
               console.log('on file select', 'add to this.data');
+              this.items.push(this.formBuilder.control('', Validators.required));
+              // this.cd.detectChanges();
               this.onSubmit();
             } else { // Error Flow
               this.handleErrors(isSizeExeeded, isValidExtension, name);
@@ -297,6 +304,7 @@ export class FileChooseModalComponent implements OnInit {
           this.tempUploads = [];
           // this.fileChoose.close(finalData);
     //  } 
+    // this.cd.detectChanges()
 
   }
 
@@ -327,14 +335,15 @@ export class FileChooseModalComponent implements OnInit {
    */
   public closeBtnClick() {
     this.maxFileError = "";
-
-    let isPrimarySet = this.data.filter((value: any, key: number) => value.isDefault === true);
-    isPrimarySet = isPrimarySet.length !== 0 ? true : false;
-      if (!isPrimarySet) {
-        this.primaryImgNotSet = "Please set primary image";
-        this.isPrimaryImgNotSet = true;
-      } else {
-        this.fileChoose.close(this.data);
+    if (this.FileChooseFrom.valid) {
+      let isPrimarySet = this.data.filter((value: any, key: number) => value.isDefault === true);
+      isPrimarySet = isPrimarySet.length !== 0 ? true : false;
+        if (!isPrimarySet) {
+          this.primaryImgNotSet = "Please set primary image";
+          this.isPrimaryImgNotSet = true;
+        } else {
+          this.fileChoose.close(this.data);
+        }
       }
   }
 
@@ -351,6 +360,8 @@ export class FileChooseModalComponent implements OnInit {
         // this.showSelectedFiles = true;
         this.filesToUpload = 5 - this.data.length;
     }
+ 
+
   }
 
   
@@ -398,6 +409,10 @@ export class FileChooseModalComponent implements OnInit {
   public cancelBtnYesActionClick(){
     const index = this.selectedImagedetailsToDelete.index;
     const file = this.selectedImagedetailsToDelete.file;
+    const control = <FormArray>this.FileChooseFrom.controls['items'];
+   // for(let i = control.length-1; i >= 0; i--) {
+      control.removeAt(index)
+   // }
     this.maxFileError = "";
       this.data = this.data.filter((value: any, key: number) => key !== index);
       this.cd.markForCheck();
