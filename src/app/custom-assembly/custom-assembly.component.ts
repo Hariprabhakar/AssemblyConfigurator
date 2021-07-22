@@ -13,6 +13,7 @@ import { ConfirmationModalComponent } from '../components/confirmation-modal/con
 import { elementAt } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { DomSanitizer } from '@angular/platform-browser';
+import { MessageModalComponent } from '../components/message-modal/message-modal.component';
 
 export interface SaveAssemblyData {
   id: string;
@@ -60,6 +61,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   public downloadedImg: any;
   public initialLoad: boolean = true;
   public enableEdit: boolean = false;
+  public originalIconSrc: string = '';
   private saveAssemblyData: SaveAssemblyData = {
     id: '',
     name: '',
@@ -98,6 +100,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
           if(this.initialLoad ) {
             this.getBase64Image(this.baseUrl + data.iconLocation, (data: any) => {
               this.iconSrc = data;
+              this.originalIconSrc = data;
             })
             this.initialLoad = false;
           }
@@ -338,7 +341,15 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
           this.selectedSystem = this.getUniqueSystemConnection('systems');
           this.selectedConnections = [...new Set(this.selectedConnections)];
           this.selectedSystem = [...new Set(this.selectedSystem)];
-        } 
+        } else {
+          const messageDialog = this.dialog.open(MessageModalComponent, {
+            data: {
+              title: 'Component already added.',
+              content: '',
+              isFromcomponent: true
+            }
+          });
+        }
         // else {
         //   console.log('this.componentsData', this.componentsData);
         //   const isComponentDuplicate: boolean = this.componentsData.some((component: any) => {
@@ -616,7 +627,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   }
 
   public checkJunctionBox(row: any) {
-    if (this.groupName.toLowerCase() === 'junction box' || row?.categoryName?.toLowerCase() === 'junction box' || row.isJunctionBox == true) {
+    if (row?.categoryName?.toLowerCase() === 'junction box' || row.isJunctionBox == true) {
       return true;
     } 
     return false;
@@ -628,6 +639,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
 
   public resetAssembly() {
     this.getAssemblyData();
+    this.iconSrc = this.originalIconSrc;
     this.configuratorService.resetAssemblyData('true');
   }
 

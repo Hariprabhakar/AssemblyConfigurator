@@ -121,7 +121,7 @@ a {
 }
 .page-right-pane{
   width: 50%;
-  padding-right: 10px;
+  padding-right: 11px;
   .right-container{
     background-color: #151515;
     width: 100%;
@@ -183,4 +183,8 @@ a {
   .mat-dialog-container{
     padding: 0px;
   }
+}
+.icon-select .mat-select-panel .mat-optgroup-label, .mat-select-panel .mat-option{
+  height: 35px !important;
+  line-height: 35px !important;
 }

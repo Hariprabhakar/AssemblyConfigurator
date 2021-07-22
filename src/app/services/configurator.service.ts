@@ -9,14 +9,15 @@ import { environment } from '../../environments/environment';
 export class ConfiguratorService {
   private _companyId!: number;
   private _assemblyData: any;
-  private asemblyDataSubject$ = new BehaviorSubject('');
+  private asemblyDataSubject$ = new Subject();
   private groupName = new BehaviorSubject('');
   public currentAssemblyValue = this.asemblyDataSubject$.asObservable();
   public groupNameObservable = this.groupName.asObservable();
-  private resetSubject$ = new BehaviorSubject('');
+  private resetSubject$ = new Subject();
   public resetValueObservable = this.resetSubject$.asObservable();
   public groups: any;
   private assemblyFormValue: any;
+  public families: any;
 
   constructor(private restApiService: RestApiService) {
     const sessionCompany = sessionStorage.getItem('companyId');

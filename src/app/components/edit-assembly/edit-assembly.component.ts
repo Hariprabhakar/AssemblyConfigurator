@@ -152,9 +152,10 @@ export class EditAssemblyComponent implements OnInit, OnDestroy {
   }
 
   private updateGroupName(familyId: number) {
-    if(this.families) {
-      this.families.some((element: any) => {
-        if(element.id === familyId) {
+    const families = this.families || this.configuratorService.families;
+    if(families) {
+      families.forEach((element: any) => {
+        if(element.id === familyId) {     
           this.configuratorService.currentGroupName(element.name);
         }
       }); 

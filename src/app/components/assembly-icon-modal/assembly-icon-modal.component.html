@@ -26,12 +26,12 @@
                 <div class="select-existing-icon">
                   <mat-form-field class="select-group assem-grp exist-assem" appearance="outline" style="background-color: #282828">
                     <mat-label class="matLable">Choose from existing Assembly</mat-label>
-                    <mat-select name="existingAssemblyName" [(ngModel)]="existingAssembly">
+                    <mat-select name="existingAssemblyName" panelClass="icon-select" [(ngModel)]="existingAssembly">
                       <mat-select-trigger>{{ getExistingAssemblyName(existingAssembly) }}</mat-select-trigger>
                       <mat-option *ngFor="let assembly of assembliesData" [value]="assembly.id">
-                        <div class="icon-img" *ngIf="assembly.icon"><img src="data:image/jpeg;base64,{{ assembly.icon }}" /></div>
-                        <div class="icon-img" *ngIf="!assembly.icon">
-                          <span style="font-size: 12px" class="material-icons-outlined"> image_not_supported </span>
+                        <div class="icon-img" *ngIf="assembly.iconLocation"><img src="{{baseUrl}}{{ assembly.iconLocation }}" /></div>
+                        <div class="icon-img" *ngIf="!assembly.iconLocation">
+                          <span style="font-size: 18px;" class="material-icons-outlined"> image_not_supported </span>
                         </div>
                         {{ assembly.name }}
                       </mat-option>
