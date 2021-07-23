@@ -145,6 +145,9 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
         this.componentTableData = new MatTableDataSource(this.componentsData);
         this.selectedConnections = this.getUniqueSystemConnection('connectionTypes');
         this.selectedSystem = this.getUniqueSystemConnection('systems');
+        this.configuratorService.junctionBoxComponents = res.components.map((component: any) => {
+          return component.id;
+        })
       }     
       const images = res.images;
       this.imageThubList = [];
@@ -600,6 +603,9 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
     const componentData = this.componentsData.filter((component: any) => {
       return component.id !== id;
     });
+    this.configuratorService.junctionBoxComponents = this.configuratorService.junctionBoxComponents.filter((compId: number) => {
+      return compId !== id;
+    });
     this.componentsData = componentData;
     this.componentTableData = new MatTableDataSource(this.componentsData);
   }
@@ -634,13 +640,28 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   }
 
   public cancelEdit() {
+    this.configuratorService.cancelRouteValues = {
+      familyId: this.assemblydata.familyId,
+      assemblyId: this.assemblydata.id
+    }
     this.router.navigate(['/assembly-configurator']);
   }
 
   public resetAssembly() {
-    this.getAssemblyData();
     this.iconSrc = this.originalIconSrc;
-    this.configuratorService.resetAssemblyData('true');
+    if (this.isEdit) {
+      this.getAssemblyData();    
+      this.configuratorService.resetAssemblyData('true');
+    } else {
+      this.componentsData = [];
+      this.imageThubList = [];
+      this.selectedItem = [];
+      this.imag64BitUrl = '';
+      this.componentTableData = new MatTableDataSource(this.componentsData);
+      this.selectedConnections = this.getUniqueSystemConnection('connectionTypes');
+      this.selectedSystem = this.getUniqueSystemConnection('systems');
+    }
+    
   }
 
   private removeString(base64: string) {

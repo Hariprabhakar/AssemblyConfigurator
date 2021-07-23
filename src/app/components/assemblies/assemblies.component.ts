@@ -19,7 +19,7 @@ export class AssembliesComponent implements OnInit {
 
   public assembliesData: any[] = [];
   public assembliesOriginalData: any = [];
-
+  public selectedOptions: any;
   public defaultAssemblies = false;
   public customAssemblies = false;
   public showLoader: boolean;
@@ -56,6 +56,22 @@ export class AssembliesComponent implements OnInit {
       this.assembliesOriginalData = res;
       this.assembliesData = [...this.assembliesOriginalData];
       this.showLoader = false;
+      const assemblyId = this.configuratorService.cancelRouteValues.assemblyId;
+      if (assemblyId) {
+        this.configuratorService.cancelRouteValues.assemblyId = '';
+        this.assembliesData.some((assembly: any) => {
+          if (assemblyId == assembly.id) {
+            this.selectedOptions = [assembly.id];
+            const event = {
+              option: {
+                value: assembly.id
+              }
+            }
+            this.getAssemblyDetails(event)
+            return true;
+          }
+        });
+      }
       // this.getImages();
     },
       (error: any) => {

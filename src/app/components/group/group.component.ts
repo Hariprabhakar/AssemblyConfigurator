@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MatSelectionList, MatSelectionListChange } from '@angular/material/list';
+import { ActivatedRoute } from '@angular/router';
 import { ConfiguratorService } from 'src/app/services/configurator.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 
@@ -14,10 +15,12 @@ export class GroupComponent implements OnInit {
   private groups: any;
   public groupList: any;
   public searchValue: any;
+  public selectedOptions: any;
   @Output() groupChanged = new EventEmitter();
   @ViewChild(MatSelectionList) selectedGroup: MatSelectionList;
   public showLoader: boolean;
-  constructor(private configuratorService:  ConfiguratorService, private toastService: ToastService) { }
+  constructor(private configuratorService:  ConfiguratorService, private toastService: ToastService,
+    private route: ActivatedRoute,) { }
 
   ngOnInit(): void {
     this.showLoader = true;
@@ -32,6 +35,17 @@ export class GroupComponent implements OnInit {
         grp.option.selected = true;
         this.groupChanged.emit(grp.option.value);
     });
+      const famildyId = this.configuratorService.cancelRouteValues.familyId;
+      if (famildyId) {
+        this.configuratorService.cancelRouteValues.familyId = '';
+        this.groups.some((group: any) => {
+          if (famildyId == group.id) {
+            this.selectedOptions = [group];
+            this.groupChanged.emit(group);
+            return true;
+          }
+        });
+    }
     },
     (error: any) => {
       this.toastService.openSnackBar(error);

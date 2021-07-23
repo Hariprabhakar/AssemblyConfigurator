@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="category-lists circle-check">
-    <mat-selection-list #selectedGroup>
+    <mat-selection-list #selectedGroup [(ngModel)]="selectedOptions">
       <mat-list-option checkboxPosition="before" *ngFor="let group of groupList" [value]="group">
         {{ group.name }}
       </mat-list-option>

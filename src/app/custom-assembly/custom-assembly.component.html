@@ -184,7 +184,7 @@
       <div class="footer">
         <div class="save-btn-wrap">
           <div class="reset-btn">
-            <button mat-button color="primary" *ngIf="!assemblyDetailsReadOnly && isEdit" (click)="resetAssembly()">
+            <button mat-button color="primary" *ngIf="!assemblyDetailsReadOnly" (click)="resetAssembly()">
               <span class="material-icons-outlined">autorenew</span>
               RESET
             </button>
@@ -192,7 +192,7 @@
           <div class="right-side-ctrl">
             <button mat-flat-button color="primary" *ngIf="assemblyDetailsReadOnly" [disabled]="!enableEdit" (click)="editAssembly()">EDIT</button>
             <div class="secondary-btn">
-              <button *ngIf="!assemblyDetailsReadOnly && isEdit" mat-flat-button color="primary" (click)="cancelEdit()">Cancel</button>
+              <button *ngIf="!assemblyDetailsReadOnly" mat-flat-button color="primary" (click)="cancelEdit()">Cancel</button>
             </div>
             <button *ngIf="isEdit && !assemblyDetailsReadOnly" mat-flat-button color="primary"  (click)="getUpdatedAssemblyData()">{{isCopyAssembly ? 'SAVE AS' : 'SAVE'}}</button>
             <button *ngIf="!isEdit && !assemblyDetailsReadOnly" mat-flat-button color="primary"  (click)="saveAssembly()">SAVE</button>

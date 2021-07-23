@@ -5,6 +5,7 @@ import { ToastService } from 'src/app/shared/services/toast.service';
 import { MatDialog } from '@angular/material/dialog';
 import { JunctionboxModalComponent } from '../junctionbox-modal/junctionbox-modal.component';
 import { Subscription } from 'rxjs';
+import { MessageModalComponent } from '../message-modal/message-modal.component';
 
 
 
@@ -70,6 +71,7 @@ export class CategoryComponentsComponent implements OnInit {
         this.recentElement.connectionTypes = result.connection;
         this.recentElement.systems = result.systemName;
         this.recentElement.isJunctionBox = this.isJunctionBox;
+        this.configuratorService.junctionBoxComponents.push(this.recentElement.id);
         this.selectedComponent.emit(this.recentElement);
       }
     });
@@ -78,7 +80,7 @@ export class CategoryComponentsComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.categoryValue && changes.categoryValue.currentValue) {
-      if (changes.categoryValue.currentValue.id === 7) { // Junctionbox id is 7 and for mocking its kept of Data Jack
+      if (changes.categoryValue.currentValue?.name?.toLowerCase() === 'junction box') { // Junctionbox id is 7 and for mocking its kept of Data Jack
         this.isJunctionBox = true;
       } else {
         this.isJunctionBox = false;
@@ -111,7 +113,18 @@ export class CategoryComponentsComponent implements OnInit {
     //   this.openDialog(element);
     // }  
     if (this.isJunctionBox) {
-      this.openDialog(element);
+      const existingComponents = this.configuratorService.junctionBoxComponents;
+      if (!existingComponents.includes(element.id)) {
+        this.openDialog(element);
+      } else {
+        const messageDialog = this.dialog.open(MessageModalComponent, {
+          data: {
+            title: 'Component already added.',
+            content: '',
+            isFromcomponent: true
+          }
+        });
+      }      
     } else {
       this.selectedComponent.emit(element);
     }

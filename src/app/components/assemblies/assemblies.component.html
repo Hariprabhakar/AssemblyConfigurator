@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="assembly-lists">
-        <mat-selection-list [multiple]="false" (selectionChange)="getAssemblyDetails($event)">
+        <mat-selection-list [multiple]="false" (selectionChange)="getAssemblyDetails($event)" [(ngModel)]="selectedOptions">
             <mat-list-option *ngFor="let assembly of assembliesData" [value]='assembly.id'>
                 <div class="assembly-list-wrap">
                     <div class="img-cont">

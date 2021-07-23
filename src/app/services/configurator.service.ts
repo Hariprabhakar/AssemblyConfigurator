@@ -18,6 +18,11 @@ export class ConfiguratorService {
   public groups: any;
   private assemblyFormValue: any;
   public families: any;
+  public cancelRouteValues: any = {
+    familyId: '',
+    assemblyId: ''
+  }
+  public junctionBoxComponents: number[] = [];
 
   constructor(private restApiService: RestApiService) {
     const sessionCompany = sessionStorage.getItem('companyId');

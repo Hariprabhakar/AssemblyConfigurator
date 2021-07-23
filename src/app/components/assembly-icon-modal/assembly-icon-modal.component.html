@@ -49,9 +49,8 @@
               <div class="clearfix"></div>
               <div class="sym-txt">
                 <label>Symbol Text</label>
-                <mat-form-field appearance="outline">
-                  <mat-label>eg: AA or ED etc</mat-label>
-                  <input matInput name="iconName" [(ngModel)]="iconText" />
+                <mat-form-field appearance="outline" floatPlaceholder="never">
+                  <input placeholder="eg: AA or ED etc" matInput name="iconName" [(ngModel)]="iconText" />
                 </mat-form-field>
                 <div class="error-msg" *ngIf="symbolTextError">Please provide symbol text</div>
               </div>
