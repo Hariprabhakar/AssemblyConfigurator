@@ -19,10 +19,12 @@ export class RestApiService {
     CRUD Methods for consuming RESTful API
   =========================================*/
 
+  public token = sessionStorage.getItem('token');
   // Http Options
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer '+ this.token,
     })
   };
 

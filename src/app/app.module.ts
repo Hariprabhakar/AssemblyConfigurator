@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 // import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +24,13 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import {MatMenuModule} from '@angular/material/menu';
 import { MessageModalComponent } from './components/message-modal/message-modal.component';
 import { ContactUsComponent } from './shared/components/contact-us/contact-us.component';
+import { ConfiguratorInitService } from './shared/services/configurator-init.service';
+
+export function initializeApp(appInitService: ConfiguratorInitService) {
+  return (): Promise<any> => { 
+    return appInitService.Init();
+  }
+}
 
 @NgModule({
   declarations: [
@@ -53,7 +60,9 @@ import { ContactUsComponent } from './shared/components/contact-us/contact-us.co
     NgxDropzoneModule,
     MatMenuModule
   ],
-  providers: [/*{provide: LocationStrategy, useClass: HashLocationStrategy},*/ ToastService],
+  providers: [/*{provide: LocationStrategy, useClass: HashLocationStrategy},*/ ToastService, 
+    ConfiguratorInitService,
+    { provide: APP_INITIALIZER,useFactory: initializeApp, deps: [ConfiguratorInitService], multi: true}],
   exports: [],
   bootstrap: [AppComponent],
   entryComponents: [AssemblyIconModalComponent]
