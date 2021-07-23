@@ -6,26 +6,27 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class ConfiguratorInitService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   Init() {
-    const url = `${environment.url}/users/authenticate`; 
+    const url = `${environment.url}/users/authenticate`;
     return new Promise<void>((resolve, reject) => {
-      const headers = { 'content-type': 'application/json'}  
-    const body={
-      username: environment.userName,
-      password: environment.password
-    };
-    console.log(body)
-    this.http.post(url, body,{'headers':headers}).subscribe((res: any)=>{
-      sessionStorage.setItem('token', res.token)
-      resolve();
-    }, (error) => {
-      console.log('Error token');      
-      resolve();
+      const headers = { 'content-type': 'application/json' };
+      const body = {
+        username: environment.userName,
+        password: environment.password
+      };
+      // console.log(body)
+      this.http.post(url, body, { headers: headers }).subscribe(
+        (res: any) => {
+          sessionStorage.setItem('token', res.token);
+          resolve();
+        },
+        (error) => {
+          console.log('Error token');
+          resolve();
+        }
+      );
     });
-    });
-}
-
+  }
 }
