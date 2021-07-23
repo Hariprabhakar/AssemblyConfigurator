@@ -158,8 +158,9 @@
                     </div>
      
                     <mat-form-field id="Systems" class="example-full-width" appearance="outline">                  
-                        <input matInput placeholder="Input"  [formControlName]="i" />   
-                        
+                        <input [readonly]="data[i].isReadOnly" matInput placeholder="Input"  [formControlName]="i" />   
+                        <!-- (mouseout)="focuslost(i)" -->
+                        <div *ngIf="data[i].isReadOnly" (click)="editField(i)">edit</div>
                     </mat-form-field>
                     <mat-dialog-actions align="end" class="ass-img-close">    
                         <button class="close-button" mat-flat-button (click)="closeUploadedFiles(data[i], i); $event.stopPropagation();"><span><img src="assets/images/closebtn.png"></span></button>   

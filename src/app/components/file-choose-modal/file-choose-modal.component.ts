@@ -63,10 +63,17 @@ export class FileChooseModalComponent implements OnInit {
 
   ngOnInit(): void {
       this.updateViews(); //Function to update the view based on already uplodaed images in the page
+     
+
       let isDefaultSet = this.data.filter((value: any, key: number) => value.isDefault === true);
       for(let i =  this.data.length-1; i >= 0; i--) {
         this.items.push(this.formBuilder.control('', Validators.required));
       }
+      this.data.forEach((value: any, key: any) => {
+        const data: any = {};
+        data[key] = value.inputText;
+        this.items.at(key).patchValue(value.inputText);
+      });
       isDefaultSet = isDefaultSet.length !== 0 ? true : false;
       if (this.data.length === 0) {
         this.showFirstView = true;
@@ -336,6 +343,12 @@ export class FileChooseModalComponent implements OnInit {
   public closeBtnClick() {
     this.maxFileError = "";
     if (this.FileChooseFrom.valid) {
+      console.log('values', this.FileChooseFrom.value.items);
+      console.log('data', this.data);
+        this.data.forEach((value: any, key: any) => {
+          value.inputText = this.FileChooseFrom.value.items[key];
+          value.isReadOnly = true
+        });
       let isPrimarySet = this.data.filter((value: any, key: number) => value.isDefault === true);
       isPrimarySet = isPrimarySet.length !== 0 ? true : false;
         if (!isPrimarySet) {
@@ -436,7 +449,12 @@ export class FileChooseModalComponent implements OnInit {
     this.showCloseAlert = false;
   }
 
+ public editField(index: number) {
+    this.data[index].isReadOnly = false;
+ }
+ public focuslost(index: number) {
+  this.data[index].isReadOnly = true;
+}
+
  
-
-
 }
