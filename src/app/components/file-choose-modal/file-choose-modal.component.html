@@ -154,11 +154,10 @@
                     </div>
                     <div class="img-no">
                         <mat-form-field id="Systems" class="img-name example-full-width" appearance="outline">                  
-                            <input [readonly]="data[i].isReadOnly" matInput placeholder="Input" (focusout)="focuslost(i)" [formControlName]="i" />   
-                            <!-- (mouseout)="focuslost(i)" -->
-                       
+                            <input  matInput placeholder="Input"  [formControlName]="i" />   
+                            <!-- [readonly]="data[i].isReadOnly" (focusout)="focuslost(i)"" --> 
                         </mat-form-field>
-                        <div *ngIf="data[i].isReadOnly" (click)="editField(i)">edit</div>
+                        <!-- <div *ngIf="data[i].isReadOnly" (click)="editField(i)">edit</div> -->
                     </div>
                     <div class="default-img" *ngIf="data[i].isDefault">
                         Default
@@ -178,7 +177,7 @@
             </div>
             <div class="cancel-done-btn">
             <button class="cancel-btn" mat-flat-button [mat-dialog-close]="true">Cancel</button>     
-            <button class="done-btn" mat-flat-button [disabled]="data.length === 0" [ngClass]="data.length === 0 ? 'btn-disabled': 'btn-enable'" (click)="closeBtnClick()">Done</button>     
+            <button class="done-btn" mat-flat-button  (click)="closeBtnClick()">Done</button>     
             </div>
         </div>
     </div>

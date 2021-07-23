@@ -351,7 +351,7 @@ export class FileChooseModalComponent implements OnInit {
         });
       let isPrimarySet = this.data.filter((value: any, key: number) => value.isDefault === true);
       isPrimarySet = isPrimarySet.length !== 0 ? true : false;
-        if (!isPrimarySet) {
+        if (!isPrimarySet && this.data.length != 0) {
           this.primaryImgNotSet = "Please set primary image";
           this.isPrimaryImgNotSet = true;
         } else {
