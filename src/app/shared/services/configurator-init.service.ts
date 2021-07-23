@@ -9,7 +9,7 @@ export class ConfiguratorInitService {
   constructor(private http: HttpClient) {}
 
   Init() {
-    const url = `${environment.url}/users/authenticate`;
+    const url = `${environment.url}users/authenticate`;
     return new Promise<void>((resolve, reject) => {
       const headers = { 'content-type': 'application/json' };
       const body = {
