@@ -140,7 +140,7 @@
     <div class="clearfix"></div>
     <div class="load-rev-del-img">
     <mat-dialog-content class="mat-typography-assembly-img-review">
-        <form [formGroup]="FileChooseFrom" autocomplete="off" >
+        <form [formGroup]="FileChooseFrom" style="height: 100%;" autocomplete="off" >
     <div class="review-img">
         <div class="upload-img-title">Your uploaded images</div>
         <div class="clearfix"></div>
@@ -152,16 +152,18 @@
                     <div class="img-view">
                         <img src="{{data[i].fileName64Bit}}">
                     </div>
-                    <div class="img-no">Image {{i+1}}</div>
+                    <div class="img-no">
+                        <mat-form-field id="Systems" class="img-name example-full-width" appearance="outline">                  
+                            <input [readonly]="data[i].isReadOnly" matInput placeholder="Input"  [formControlName]="i" />   
+                            <!-- (mouseout)="focuslost(i)" -->
+                            <div *ngIf="data[i].isReadOnly" (click)="editField(i)">edit</div>
+                        </mat-form-field>
+                    </div>
                     <div class="default-img" *ngIf="data[i].isDefault">
                         Default
                     </div>
      
-                    <mat-form-field id="Systems" class="example-full-width" appearance="outline">                  
-                        <input [readonly]="data[i].isReadOnly" matInput placeholder="Input"  [formControlName]="i" />   
-                        <!-- (mouseout)="focuslost(i)" -->
-                        <div *ngIf="data[i].isReadOnly" (click)="editField(i)">edit</div>
-                    </mat-form-field>
+                    
                     <mat-dialog-actions align="end" class="ass-img-close">    
                         <button class="close-button" mat-flat-button (click)="closeUploadedFiles(data[i], i); $event.stopPropagation();"><span><img src="assets/images/closebtn.png"></span></button>   
                     </mat-dialog-actions>
