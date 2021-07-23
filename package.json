@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve -o --port=4200",
-    "build": "ng build --base-href \"/assemblyconfigurator/\"",
+    "build": "ng build --base-href /assemblyconfigurator/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
