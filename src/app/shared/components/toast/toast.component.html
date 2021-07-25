@@ -1,0 +1,13 @@
+<div class="snackbar-wrap snackbar-{{data?.snackType}}">
+    <div class="snackbar-container">
+        <div class="icon">
+            <span class="material-icons-outlined">
+                {{icon}}
+                </span>
+        </div>
+        <div class="message">{{data.message}}</div>
+        <div class="btn">
+            <button mat-flat-button color="primary" (click)="closeSnackbar()">OK</button>
+        </div>
+    </div>
+</div>

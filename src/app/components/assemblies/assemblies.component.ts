@@ -56,6 +56,7 @@ export class AssembliesComponent implements OnInit {
       this.assembliesOriginalData = res;
       this.assembliesData = [...this.assembliesOriginalData];
       this.showLoader = false;
+      // on cancel or back select the current assembly in view
       const assemblyId = this.configuratorService.cancelRouteValues.assemblyId;
       if (assemblyId) {
         this.configuratorService.cancelRouteValues.assemblyId = '';
@@ -121,6 +122,7 @@ export class AssembliesComponent implements OnInit {
   public getAssemblyDetails(event:any) {
     this.isComponentLoader.emit(true);
     let id = event.option.value;
+    sessionStorage.setItem('selectedAssembly', id);
     if (event.option.value) {
       this.configuratorService.getAssemblyComponent(id).subscribe(res => {
         const assemblyInfo = res;
@@ -207,7 +209,7 @@ export class AssembliesComponent implements OnInit {
       if (result === true) {
         this.configuratorService.deleteAssembly(id).subscribe(() => {
           this.getAssemblies();
-          this.toastService.openSnackBar('Assembly deleted successfully', 'OK', 'success-snackbar');
+          this.toastService.openSnackBar('Assembly deleted successfully', 'success', 'success-snackbar');
         },
         (error: any) => {
           this.toastService.openSnackBar(error);

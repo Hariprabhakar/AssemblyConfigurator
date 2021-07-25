@@ -25,6 +25,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { MessageModalComponent } from './components/message-modal/message-modal.component';
 import { ContactUsComponent } from './shared/components/contact-us/contact-us.component';
 import { ConfiguratorInitService } from './shared/services/configurator-init.service';
+import { ToastComponent } from './shared/components/toast/toast.component';
 
 export function initializeApp(appInitService: ConfiguratorInitService) {
   return (): Promise<any> => { 
@@ -44,7 +45,7 @@ export function initializeApp(appInitService: ConfiguratorInitService) {
     AssemblyZoomImageModalComponent,
     ConfirmationModalComponent,
     MessageModalComponent, 
-    ContactUsComponent     
+    ContactUsComponent, ToastComponent     
   ],
   imports: [
     BrowserModule,

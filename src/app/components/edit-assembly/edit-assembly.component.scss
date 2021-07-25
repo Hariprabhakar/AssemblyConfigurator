@@ -31,6 +31,14 @@
     }
   }
 
+  .secondary-btn{
+    padding-left: 10px;
+    button{
+      border: 1px solid #ffc400 !important;
+      color: #ffc400 !important;
+    }
+  }
+
   .input-wrap {
     font-size: 12px;
     ::ng-deep .mat-form-field-flex > .mat-form-field-infix {

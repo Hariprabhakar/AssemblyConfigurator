@@ -34,6 +34,9 @@
         <button mat-flat-button color="primary" *ngIf="!submitted" (click)="onSubmit()" [disabled]="createAssemblyFrom.invalid" >Save</button>
         <button mat-flat-button color="primary" *ngIf="submitted" (click)="enableForm()"  >EDIT</button>
       </div>
+      <div class="secondary-btn" *ngIf="showBack && !isEditAssembly">
+        <button mat-flat-button color="primary" type="button" (click)="goBack()" >BACK</button>
+      </div>
     </div>
  
 </form>

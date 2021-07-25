@@ -411,12 +411,12 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   public saveAssembly() {
     this.saveAssemblyData.images = this.imageObj;
     this.buildComponents();
-    let iconBase64 = ''
-    if (this.iconSrc) {    
-      if(this.iconSrc.changingThisBreaksApplicationSecurity){
-        this.iconSrc = this.iconSrc.changingThisBreaksApplicationSecurity;
+    let iconBase64 = this.iconSrc
+    if (iconBase64) {    
+      if(iconBase64.changingThisBreaksApplicationSecurity){
+        iconBase64 = iconBase64.changingThisBreaksApplicationSecurity;
       }  
-      iconBase64 = this.removeString(this.iconSrc);      
+      iconBase64 = this.removeString(iconBase64);      
     }
     this.saveAssemblyData.icon = iconBase64;
     this.saveAssemblyData.id = this.assemblydata.id;
@@ -451,11 +451,16 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   }
 
   private saveAssemblyComponents(): void {
+    
     // const saveAssemblyLocal = this.isEdit ? this.isCopyAssembly ?'saveAssemblyComponents':'updateAssemblyComponents' : 'saveAssemblyComponents';
     this.configuratorService.saveAssemblyComponents(this.saveAssemblyData, this.assemblydata.id).subscribe((res: any) => {
       this.saveLoader = false;
+      this.configuratorService.cancelRouteValues = {
+        familyId: this.assemblydata.familyId,
+        assemblyId: this.assemblydata.id
+      }
       this.router.navigate(['/assembly-configurator']);
-      this.toastService.openSnackBar('Assembly saved successfully', 'OK', 'success-snackbar');      
+      this.toastService.openSnackBar('Assembly saved successfully', 'success', 'success-snackbar');      
     },
       (error: any) => {
         this.saveLoader = false;

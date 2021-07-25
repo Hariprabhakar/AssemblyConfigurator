@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ConfiguratorService } from 'src/app/services/configurator.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import {MatDialog} from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -27,9 +27,10 @@ export class EditAssemblyComponent implements OnInit, OnDestroy {
   public isEditAssembly: boolean = false;
   private resetSubscription: Subscription;
   private paramId: number;
+  public showBack: boolean = true;
 
   constructor(private formBuilder: FormBuilder, private configuratorService: ConfiguratorService, private toastService: ToastService,
-    public dialog: MatDialog, private route: ActivatedRoute) { }
+    public dialog: MatDialog, private route: ActivatedRoute, private router:Router) { }
 
   ngOnInit(): void {
     this.createAssemblyFrom = this.formBuilder.group({
@@ -145,6 +146,7 @@ export class EditAssemblyComponent implements OnInit, OnDestroy {
       this.assemblyDataAdded.emit();
       this.configuratorService.setAssemblyData(res);
       this.updateGroupName(res['familyId']);
+      this.showBack = false;
     },
     (error) => {
       this.toastService.openSnackBar(error);
@@ -170,6 +172,14 @@ export class EditAssemblyComponent implements OnInit, OnDestroy {
     if(this.resetSubscription) {
       this.resetSubscription.unsubscribe();
     }
+  }
+
+  public goBack() {
+    this.configuratorService.cancelRouteValues = {
+      familyId: sessionStorage.getItem('selectedFamily'),
+      assemblyId: sessionStorage.getItem('selectedAssembly')
+    }
+    this.router.navigate(['/assembly-configurator']);
   }
   
 }

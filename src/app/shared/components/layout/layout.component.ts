@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConfiguratorService } from 'src/app/services/configurator.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { ConfiguratorService } from 'src/app/services/configurator.service';
 })
 export class LayoutComponent implements OnInit {
 
-  constructor( private route: ActivatedRoute, private configuratorService: ConfiguratorService ) { }
+  constructor( private route: ActivatedRoute, private configuratorService: ConfiguratorService, private router: Router ) { }
 
   ngOnInit(): void {
     this.route.queryParams
@@ -18,7 +18,12 @@ export class LayoutComponent implements OnInit {
         this.configuratorService.setCompanyId(parseInt(params.companyId));
         sessionStorage.setItem('companyId', params.companyId);
       }
-    }) 
+    });
+    
+    const snapshot = this.route.snapshot;
+    const params = { ...snapshot.queryParams };
+    delete params.companyId
+    this.router.navigate([], { queryParams: params });
   }
 
 }

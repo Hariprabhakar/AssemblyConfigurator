@@ -30,7 +30,7 @@ export class GroupComponent implements OnInit {
       this.groupList = [...this.groups];
       this.showLoader = false;
       this.selectedGroup.selectionChange.subscribe((grp: MatSelectionListChange) => {          
-        
+        sessionStorage.setItem('selectedFamily', grp.option.value.id);
         this.selectedGroup.deselectAll();
         grp.option.selected = true;
         this.groupChanged.emit(grp.option.value);
