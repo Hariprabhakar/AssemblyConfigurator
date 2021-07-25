@@ -14,6 +14,7 @@ import { elementAt } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MessageModalComponent } from '../components/message-modal/message-modal.component';
+import { SessionService } from '../shared/services/session.service';
 
 export interface SaveAssemblyData {
   id: string;
@@ -74,7 +75,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   };
   constructor(public dialog: MatDialog, private configuratorService: ConfiguratorService, 
     private toastService: ToastService, private router:Router, private route: ActivatedRoute,
-    public sanitizer: DomSanitizer) {
+    public sanitizer: DomSanitizer, private sessionService: SessionService) {
     this.imag64BitUrl = '';
     this.imageObj = [];
 
@@ -420,7 +421,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
     }
     this.saveAssemblyData.icon = iconBase64;
     this.saveAssemblyData.id = this.assemblydata.id;
-    this.saveAssemblyData.companyId = sessionStorage.getItem('companyId') || '';;
+    this.saveAssemblyData.companyId = this.sessionService.decrypt(sessionStorage.getItem('companyId') || '');
     this.saveAssemblyData.familyName = this.groupName;
     this.saveAssemblyData.name = this.assemblydata.name;
     this.saveAssemblyData.familyId = this.assemblydata.familyId;

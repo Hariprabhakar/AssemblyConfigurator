@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { RestApiService } from './rest-api-service';
 import { environment } from '../../environments/environment';
+import { SessionService } from '../shared/services/session.service';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +25,9 @@ export class ConfiguratorService {
   }
   public junctionBoxComponents: number[] = [];
 
-  constructor(private restApiService: RestApiService) {
-    const sessionCompany = sessionStorage.getItem('companyId');
+  constructor(private restApiService: RestApiService, private sessionService: SessionService) {
+    const companyId = sessionStorage.getItem('companyId') || '';
+    const sessionCompany = this.sessionService.decrypt(companyId);
     if (sessionCompany !== null) {
       this._companyId = parseInt(sessionCompany);
     }
