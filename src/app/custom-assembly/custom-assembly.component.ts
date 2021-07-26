@@ -1,5 +1,5 @@
-import { Component, Input, OnDestroy, OnInit, Pipe, SimpleChanges } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, Input, OnDestroy, OnInit, Pipe, SimpleChanges, ViewChild } from '@angular/core';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { FileChooseModalComponent } from '../components/file-choose-modal/file-choose-modal.component';
 import { AssemblyIconModalComponent } from '../components/assembly-icon-modal/assembly-icon-modal.component';
@@ -15,6 +15,7 @@ import { environment } from 'src/environments/environment';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MessageModalComponent } from '../components/message-modal/message-modal.component';
 import { SessionService } from '../shared/services/session.service';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 export interface SaveAssemblyData {
   id: string;
@@ -63,6 +64,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   public initialLoad: boolean = true;
   public enableEdit: boolean = false;
   public originalIconSrc: string = '';
+  @ViewChild('table') table: MatTable<any>;
   private saveAssemblyData: SaveAssemblyData = {
     id: '',
     name: '',
@@ -475,9 +477,10 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
     this.componentObj = [];
     if(this.componentTableData){
 
-      this.componentTableData._data.value.forEach((component: any) => {
+      this.componentTableData._data.value.forEach((component: any, index: number) => {
         if (component.qty > 0) {
           const componentData = {
+            sequence: index+1,
             id: component.id,
             qty: component.qty,
             uom: component.uom || '',
@@ -692,6 +695,15 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
         reader.readAsDataURL(blob);
       });
 
+  }
+
+  dropTable(event: CdkDragDrop<any>) {
+    // const prevIndex = this.componentTableData.findIndex((d: any) => d === event.item.data);
+    // moveItemInArray(this.componentTableData, prevIndex, event.currentIndex);
+    // this.table.renderRows();
+    moveItemInArray(this.componentsData, event.previousIndex, event.currentIndex);
+    this.componentTableData = new MatTableDataSource(this.componentsData);
+    // this.table.renderRows();
   }
 
   getBase64Image(src: any, callback: any) {
