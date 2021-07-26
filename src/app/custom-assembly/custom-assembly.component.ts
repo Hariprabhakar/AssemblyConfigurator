@@ -63,7 +63,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   public downloadedImg: any;
   public initialLoad: boolean = true;
   public enableEdit: boolean = false;
-  public originalIconSrc: string = '';
+  public originalIconSrc: any;
   @ViewChild('table') table: MatTable<any>;
   private saveAssemblyData: SaveAssemblyData = {
     id: '',
@@ -95,21 +95,18 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
       this.assemblysubscription = this.configuratorService.currentAssemblyValue.subscribe((data: any) => {
         this.assemblydata = data;
         if(data.iconLocation) {
-          //this.iconSrc = this.baseUrl + data.iconLocation;
-          // this.converBase64FromUrl(data.iconLocation)
-          // .then((result: any) => {
-          //   this.iconSrc = result;
-          // });
           if(this.initialLoad ) {
-            this.getBase64Image(this.baseUrl + data.iconLocation, (data: any) => {
-              this.iconSrc = data;
-              this.originalIconSrc = data;
-            })
+            // this.getBase64Image(this.baseUrl + data.iconLocation, (data: any) => {
+            //   this.iconSrc = data;
+            //   this.originalIconSrc = data;
+            // })
+            this.converBase64FromUrl(data.iconLocation)
+              .then((result: any) => {
+                this.iconSrc = this.sanitizer.bypassSecurityTrustResourceUrl(result);
+                this.originalIconSrc = this.sanitizer.bypassSecurityTrustResourceUrl(result);
+              });
             this.initialLoad = false;
-          }
-          
-          // this.iconSrc = this.baseUrl + data.iconLocation;
-          
+          }          
         }
       });
       this.groupsubscription = this.configuratorService.groupNameObservable.subscribe((groupName: any) => {
