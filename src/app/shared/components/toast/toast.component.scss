@@ -4,6 +4,14 @@
     .message{
         padding: 0 10px;
     }
+    .btn{
+        position: absolute;
+        right: 10px;
+        button{
+            height: 25px;
+            line-height: 25px;
+        }
+    }
 }
 
 .snackbar{
