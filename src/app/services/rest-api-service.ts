@@ -7,6 +7,7 @@ import { environment } from '../../environments/environment';
 export interface options {
   headers: HttpHeaders;
   body?: object;
+  withCredentials?: boolean;
 }
 
 @Injectable({
@@ -24,7 +25,7 @@ export class RestApiService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer '+ this.token,
+      Authorization: 'Bearer ' + this.token
     })
   };
 
@@ -61,7 +62,8 @@ export class RestApiService {
     let reqMethodName;
     const options: options = {
       headers: this.httpOptions.headers,
-      body: {}
+      body: {},
+      withCredentials: true
     };
 
     if (methodName !== 'GET') {
@@ -90,7 +92,7 @@ export class RestApiService {
   handleError(error: any) {
     let errorMessage = '';
     if (error.error) {
-      if(error.error.errors) {
+      if (error.error.errors) {
         errorMessage = error.error.message + '\n';
         error.error.errors.forEach((element: any) => {
           errorMessage += `${element.message}\n`;
