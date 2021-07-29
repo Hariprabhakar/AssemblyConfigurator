@@ -16,7 +16,7 @@
         <div class="select-wrap fl">
           <mat-radio-group aria-label="Select an option" name="iconOptions" (change)="radioChange($event)" [(ngModel)]="selectedValue">
             <div class="radio-btn">
-              <mat-radio-button value="1">Use DeviceId as Symbol</mat-radio-button>
+              <mat-radio-button value="1">Use Abbreviation as Symbol</mat-radio-button>
               <div class="error-msg" *ngIf="abbreviationError">Abbreviation not available</div>
             </div>
             <div class="radio-btn">
@@ -24,9 +24,9 @@
               <div class="clearfix"></div>
               <div class="choose-existing-wrap">
                 <div class="select-existing-icon">
-                  <mat-form-field class="select-group assem-grp exist-assem" appearance="outline" style="background-color: #282828">
+                  <mat-form-field class="select-group assem-grp exist-assem" [class.read-only]="!enableExistingField" appearance="outline" style="background-color: #282828">
                     <mat-label class="matLable">Choose from existing Assembly</mat-label>
-                    <mat-select name="existingAssemblyName" panelClass="icon-select" [(ngModel)]="existingAssembly">
+                    <mat-select name="existingAssemblyName"  panelClass="icon-select" [(ngModel)]="existingAssembly">
                       <mat-select-trigger>{{ getExistingAssemblyName(existingAssembly) }}</mat-select-trigger>
                       <mat-option *ngFor="let assembly of assembliesData" [value]="assembly.id">
                         <div class="icon-img" *ngIf="assembly.iconLocation"><img src="{{baseUrl}}{{ assembly.iconLocation }}" /></div>
@@ -50,13 +50,13 @@
               <div class="sym-txt">
                 <label>Symbol Text</label>
                 <mat-form-field appearance="outline" floatPlaceholder="never">
-                  <input placeholder="eg: AA or ED etc" matInput name="iconName" [(ngModel)]="iconText" />
+                  <input placeholder="eg: AA or ED etc" [disabled]="!enableCustomField" matInput name="iconName" [(ngModel)]="iconText" />
                 </mat-form-field>
                 <div class="error-msg" *ngIf="symbolTextError">Please provide symbol text</div>
               </div>
               <div class="sym-shape">
                 <label>Symbol Shape</label>
-                <mat-form-field class="select-group assem-grp exist-assem" appearance="outline" style="background-color: #282828">
+                <mat-form-field class="select-group assem-grp exist-assem" [class.read-only]="!enableCustomField" appearance="outline" style="background-color: #282828">
                   <mat-label class="matLable">Select Shape</mat-label>
                   <mat-select name="shape" [(ngModel)]="selectedShape">
                     <mat-option *ngFor="let iconImage of iconImages" [value]="iconImage.value">
