@@ -7,6 +7,9 @@ h2 {
     float: left;
     line-height: 0.1;
 }
+.read-only {
+  pointer-events: none;
+}
 h3{
     font-size: 12px;
     font-weight: 100;

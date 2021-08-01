@@ -27,6 +27,9 @@ export class AssemblyIconModalComponent implements OnInit {
   public symbolTextError = false;
   public symbolShapeError = false;
   public abbreviationError = false;
+  public enableAbbrField = false;
+  public enableExistingField = false;
+  public enableCustomField = false;
   public abbreviation: string;
   public baseUrl: string = '';
   public iconImages: any = [
@@ -55,7 +58,7 @@ export class AssemblyIconModalComponent implements OnInit {
       value: 'triangle'
     },
     {
-      name: 'Polygon',
+      name: 'Pentagon',
       value: 'polygon'
     }
   ];
@@ -172,8 +175,9 @@ export class AssemblyIconModalComponent implements OnInit {
     switch (shape) {
       case 'star':
           const fontSize = text.length > 4 ? '30px' : '45px';
-          icon = `<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          icon = `<svg version="1.1" id="Capa_1" class="cls-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
           viewBox="0 0 243.317 243.317" style="enable-background:new 0 0 243.317 243.317;" xml:space="preserve">
+          <defs><style>.cls-1{background-color: #fff}</style></defs>
        <path d="M242.949,93.714c-0.882-2.715-3.229-4.694-6.054-5.104l-74.98-10.9l-33.53-67.941c-1.264-2.56-3.871-4.181-6.725-4.181
          c-2.855,0-5.462,1.621-6.726,4.181L81.404,77.71L6.422,88.61C3.596,89.021,1.249,91,0.367,93.714
          c-0.882,2.715-0.147,5.695,1.898,7.688l54.257,52.886L43.715,228.96c-0.482,2.814,0.674,5.658,2.983,7.335
@@ -187,27 +191,31 @@ export class AssemblyIconModalComponent implements OnInit {
        </svg>`
         break;
       case 'circle':
-          icon = `<svg xmlns="http://www.w3.org/2000/svg" width="512px" height="512px" viewBox="0 0 512 512">
+          icon = `<svg xmlns="http://www.w3.org/2000/svg" class="cls-1" width="512px" height="512px" viewBox="0 0 512 512">
+          <defs><style>.cls-1{background-color: #fff}</style></defs>
           <path fill="#000" d="M256 23.05C127.5 23.05 23.05 127.5 23.05 256S127.5 488.9 256 488.9 488.9 384.5 488.9 256 384.5 23.05 256 23.05zm0 17.9c118.9 0 215.1 96.15 215.1 215.05S374.9 471.1 256 471.1c-118.9 0-215.05-96.2-215.05-215.1C40.95 137.1 137.1 40.95 256 40.95z"/>
           <text x="50%" y="50%" text-anchor="middle" font-size="100px" font-family="Arial, Helvetica, sans-serif" font-weight="bold" stroke-width="2px" dy=".25em">${text}</text>
           </svg>`;
         break;
       case 'oval':
-          icon = `<svg width="300" height="240" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          icon = `<svg width="300" class="cls-1" height="240" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <defs><style>.cls-1{background-color: #fff}</style></defs>
             <ellipse cx="150" cy="120" rx="135" ry="105" fill="none" stroke="#000" stroke-width="10"/>
             <text x="50%" y="50%" text-anchor="middle" font-size="xxx-large" font-family="Arial, Helvetica, sans-serif" font-weight="bold" stroke-width="2px" dy=".25em">${text}</text>
           </svg>`;
         break;
       case 'square':
-          icon = `<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+          icon = `<svg version="1.1" class="cls-1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
           x="0px" y="0px" viewBox="0 0 201.611 201.611" style="enable-background:new 0 0 201.611 201.611;" xml:space="preserve">
+          <defs><style>.cls-1{background-color: #fff}</style></defs>
           <path style="fill:#010002;" d="M201.611,201.611H0V0h201.611V201.611z M8.328,193.283h184.955V8.328H8.328V193.283z"/>
           <text x="50%" y="50%" text-anchor="middle" font-size="xxx-large" font-family="Arial, Helvetica, sans-serif" font-weight="bold" stroke-width="1px" dy=".25em">${text}</text>
           </svg>`;
         break;
       case 'rectangle':
-          icon = `<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          icon = `<svg version="1.1" class="cls-1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
           viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+          <defs><style>.cls-1{background-color: #fff}</style></defs>
        <path d="M501.333,96H10.667C4.779,96,0,100.779,0,106.667v298.667C0,411.221,4.779,416,10.667,416h490.667
          c5.888,0,10.667-4.779,10.667-10.667V106.667C512,100.779,507.221,96,501.333,96z M490.667,394.667H21.333V117.333h469.333
          V394.667z"/>
@@ -216,14 +224,16 @@ export class AssemblyIconModalComponent implements OnInit {
         break;
       case 'triangle':
         const rectFontSize = text.length < 4 ? '100px' : text.length < 5 ? '80px' : '60px';
-          icon = `<svg width="460" height="460"  xmlns="http://www.w3.org/2000/svg">
+          icon = `<svg width="460" height="460" class="cls-1"  xmlns="http://www.w3.org/2000/svg">
+          <defs><style>.cls-1{background-color: #fff}</style></defs>
           <polygon points="225,10 10,375 450,375" style="fill:rgba(0,0,0,0);stroke:#000;stroke-width:10" />
           <text x="49%" y="50%" text-anchor="middle" font-size="${rectFontSize}" font-family="Arial, Helvetica, sans-serif" font-weight="bold" stroke-width="2px" dy=".25em">${text}</text>
           </svg>`;
         break;
       case 'polygon':
-        icon = `<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        icon = `<svg version="1.1" id="Capa_1" class="cls-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
         viewBox="0 0 60 60" style="enable-background:new 0 0 60 60;" xml:space="preserve">
+        <defs><style>.cls-1{background-color: #fff}</style></defs>
      <path fill="none" stroke="#000" d="M59.662,26.042L30.701,0.458c-0.377-0.332-0.94-0.334-1.319-0.004L0.343,25.79c-0.306,0.267-0.42,0.692-0.289,1.076
        l11,32.249c0.138,0.405,0.519,0.677,0.946,0.677h35.954c0.427,0,0.806-0.271,0.945-0.674l11.046-32
        C60.077,26.735,59.966,26.311,59.662,26.042z"/>
@@ -231,7 +241,8 @@ export class AssemblyIconModalComponent implements OnInit {
      </svg>`;
       break;
       default:
-        icon = `<svg xmlns="http://www.w3.org/2000/svg" width="512px" height="512px" viewBox="0 0 512 512">
+        icon = `<svg xmlns="http://www.w3.org/2000/svg" class="cls-1" width="512px" height="512px" viewBox="0 0 512 512">
+        <defs><style>.cls-1{background-color: #fff}</style></defs>
         <path fill="#000" d="M256 23.05C127.5 23.05 23.05 127.5 23.05 256S127.5 488.9 256 488.9 488.9 384.5 488.9 256 384.5 23.05 256 23.05zm0 17.9c118.9 0 215.1 96.15 215.1 215.05S374.9 471.1 256 471.1c-118.9 0-215.05-96.2-215.05-215.1C40.95 137.1 137.1 40.95 256 40.95z"/>
         <text x="50%" y="50%" text-anchor="middle" font-size="xxx-large" font-family="Arial, Helvetica, sans-serif" font-weight="bold" stroke-width="2px" dy=".25em">${text}</text>
         </svg>`;
@@ -290,6 +301,25 @@ export class AssemblyIconModalComponent implements OnInit {
     this.symbolTextError = false;
     this.symbolShapeError = false;
     this.abbreviationError = false;
+    switch (event.value) {
+      case '1':
+        this.enableAbbrField = true;
+        this.enableExistingField = false;
+        this.enableCustomField = false;
+          break;
+      case '2':
+        this.enableAbbrField = false;
+        this.enableExistingField = true;
+        this.enableCustomField = false;
+          break;
+      case '3':
+        this.enableAbbrField = false;
+        this.enableExistingField = false;
+        this.enableCustomField = true;
+          break;    
+      default:
+        break;
+    }
   }
 
   public getExistingAssemblyName(id: number) {

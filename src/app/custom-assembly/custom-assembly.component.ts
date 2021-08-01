@@ -87,6 +87,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.baseUrl = environment.url;
     this.componentsData = [];
+    this.configuratorService.junctionBoxComponents = [];
     this.groupName = '';
     this.assemblydata = {};
     this.iconSrc = '';
