@@ -16,6 +16,7 @@ export class CreateAssemblyComponent implements OnInit {
   public selectedComponent: any;
   public isComponentLoader: boolean = false;
   private isEdit: boolean = false;
+  public removedComponents: any;
   
   constructor( private configuratorService: ConfiguratorService, private toastService: ToastService,
     private route: ActivatedRoute) { }
@@ -52,6 +53,13 @@ export class CreateAssemblyComponent implements OnInit {
 
   public addComponent(event: any){
     this.selectedComponent = {...event};
+  }
+
+  public removeComponent(event: any){
+
+    
+    this.removedComponents = event;
+    console.log('REMOVED',this.removedComponents);
   }
 
   private setFamilies(){

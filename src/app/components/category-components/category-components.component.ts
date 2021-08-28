@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { JunctionboxModalComponent } from '../junctionbox-modal/junctionbox-modal.component';
 import { Subscription } from 'rxjs';
 import { MessageModalComponent } from '../message-modal/message-modal.component';
+import { ActivatedRoute } from '@angular/router';
 
 
 
@@ -16,6 +17,7 @@ import { MessageModalComponent } from '../message-modal/message-modal.component'
 })
 export class CategoryComponentsComponent implements OnInit {
   @Input() public categoryValue: number;
+  @Input() public duplicateValue: any;
   @ViewChild('tagModal', { read: ElementRef, static: false }) tagModal: ElementRef
   @Output() selectedComponent = new EventEmitter();
   public displayedColumns: string[] = ['image', 'component', 'tag', 'phase', 'uom', 'add'];
@@ -38,17 +40,33 @@ export class CategoryComponentsComponent implements OnInit {
   public editableTagIndex: any;
   public isJunctionBox: boolean;
   private recentElement: any;
+  public addedElement: any;
+  public disable: any;
+  public editedData: any;
+  public disableBtn: any;
   private isJunctionBoxGroup: any;
   private assemblysubscription: Subscription;
 
-  constructor(private configuratorService: ConfiguratorService, private toastService: ToastService, public dialog: MatDialog) {
+  constructor(private configuratorService: ConfiguratorService, private route: ActivatedRoute, private toastService: ToastService, public dialog: MatDialog) {
     this.isJunctionBox = false;
     this.isJunctionBoxGroup = false;
   }
 
   ngOnInit(): void {
 
+    console.log('ON - - IniT');
+    this.addedElement = [];
+
+    //let dupArr: any = [];
+    //this.configuratorService.removedComponents(dupArr);
+
+    // this.configuratorService.dupElement.forEach((ele: any)=>{
+
+    //   ele.duplicate = false;
+    // })
+
     this.assemblysubscription = this.configuratorService.currentAssemblyValue.subscribe((data: any) => {
+
       if(data.familyId === 2){
         this.isJunctionBoxGroup = true;
       } else{
@@ -78,7 +96,17 @@ export class CategoryComponentsComponent implements OnInit {
   }
  
 
-  ngOnChanges(changes: SimpleChanges) {
+  public ngOnChanges(changes: SimpleChanges) {
+
+    this.route.queryParams.subscribe((params: any) => {
+      let paramId = params.id;
+      if(paramId) {
+        this.editedData = this.getAssemblyData(paramId);
+      }        
+    });
+
+    //console.log('CHANGES-DUP',this.configuratorService.dupElement);
+    console.log('VALUE FROM CUSTOM COMPONENT',this.duplicateValue);
     if (changes.categoryValue && changes.categoryValue.currentValue) {
       if (changes.categoryValue.currentValue?.name?.toLowerCase() === 'junction box') { // Junctionbox id is 7 and for mocking its kept of Data Jack
         this.isJunctionBox = true;
@@ -89,6 +117,83 @@ export class CategoryComponentsComponent implements OnInit {
       const id = changes.categoryValue.currentValue.id;
       this.showLoader = true;
       this.configuratorService.getComponents(this.configuratorService.companyId, id).subscribe((res: any) => {
+       //console.log('ADDED-ELEMENT',this.addedElement);
+      //  if(this.duplicateValue){
+
+      //   (this.addedElement = [...this.duplicateValue]);
+      //  }
+   
+      this.editedData && res.forEach((val: any)=>{
+
+        this.editedData.forEach((value: any)=>{
+          if(val.id === value.id){ 
+            val.duplicate = true;
+          }
+       });
+  
+    });
+
+      this.configuratorService.dupElement && res.forEach((val: any)=>{
+
+        this.configuratorService.dupElement.forEach((value: any)=>{
+          if(val.id === value.id){ 
+            val.duplicate = value.duplicate;
+          }
+       });
+  
+    });
+      
+        res.forEach((val: any)=>{
+          this.configuratorService.removedElement.subscribe((response: any)=>{
+
+         if(response){
+          response.forEach((value: any)=>{
+            if(val.id === value.id){ 
+              val.duplicate = value.duplicate;
+            }
+
+      console.log('MSG FROM CATAGEORIES',response);
+      });
+
+         }
+        });
+          // this.configuratorService.removedElement.forEach((response: any)=>{
+
+
+          //     if(response){
+          //         if(val.id === response.id){ 
+          //           val.duplicate = response.duplicate;
+          //         }else{
+          //           val.duplicate =  false;
+          //          }
+          //     }
+            
+          //   console.log('MSG FROM CATAGEORIES',response);
+          //   });
+            
+        });
+
+        // this.addedElement.forEach((val: any)=>{
+        //   this.configuratorService.dupElement.subscribe((response: any)=>{
+        //     if(response){
+        //       response.forEach((addedElement: any)=>{
+
+        //         if(val.id === addedElement.id){ 
+                   
+        //           this.addedElement.splice(this.addedElement.indexOf(val.id),1);
+
+        //         }
+              
+        //     });
+        //     }
+          
+        //   console.log('MSG FROM CATAGEORIES',response);
+        //   });
+
+        // })
+
+        console.log('RESPONSE',res);
+        //this.addedElement = res;
         this.componentDataSource = new MatTableDataSource(res);
         this.editableRowIndex = -1;
         this.showLoader = false;
@@ -108,15 +213,26 @@ export class CategoryComponentsComponent implements OnInit {
 
   addComponent(element: any) {
     this.recentElement = element;
+    console.log('ADD ELEMENT',element);
+    this.checkDuplicate(element);
+    //this.disableBtn = element.id;
+
+    //this.disable.push(element.id);
+   //console.log('ADDED',this.disable);
+
     const getAssemblyData = this.configuratorService.getAssemblyData();
     // if (getAssemblyData !== undefined && getAssemblyData?.familyId && getAssemblyData.familyId === 2) {
     //   this.openDialog(element);
     // }  
+
+    console.log('ADD COMP',getAssemblyData);
     if (this.isJunctionBox) {
       const existingComponents = this.configuratorService.junctionBoxComponents;
       if (!existingComponents.includes(element.id)) {
         this.openDialog(element);
       } else {
+
+        this.disableBtn = true;
         const messageDialog = this.dialog.open(MessageModalComponent, {
           data: {
             title: 'Component already added.',
@@ -233,4 +349,35 @@ export class CategoryComponentsComponent implements OnInit {
     this.selectedComponentId = row.id;
     this.editableTagIndex = rowIndex;
   }
+
+  public showFilterModal(){
+
+    console.log('TRUE MODAL OPENED');
+  }
+
+  public checkDuplicate(element: any){
+    // this.addedElement.filter((val: any)=>{
+
+    //   return val.id != element.id;
+    // });
+    //this.configuratorService.isDuplicate = true;
+    
+    !(element.duplicate) && (element.duplicate = true);
+    //this.addedElement.push(element);
+    
+    this.configuratorService.dupElement.push(element);
+    //this.configuratorService.addedComponents(this.addedElement);
+
+
+  }
+
+  public getAssemblyData(id: any): any{
+
+    this.configuratorService.getAssemblyComponent(id).subscribe((response: any)=>{
+
+      return response.components;
+  
+    })
+  }
+
 }

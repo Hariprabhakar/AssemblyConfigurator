@@ -23,6 +23,13 @@ export class ConfiguratorService {
     familyId: '',
     assemblyId: ''
   }
+  public dupElement: any= [];
+  // public _addElement$ = new Subject();
+  // public addElement = this._addElement$.asObservable();
+
+  public _removedElement$ = new BehaviorSubject('');
+  public removedElement = this._removedElement$.asObservable();
+
   public junctionBoxComponents: number[] = [];
 
   constructor(private restApiService: RestApiService, private sessionService: SessionService) {
@@ -39,6 +46,20 @@ export class ConfiguratorService {
 
   public currentGroupName(val: any) {
     this.groupName.next(val);
+  }
+
+  // public addedComponents(val: any){
+
+  //   this._addElement$.next(val);
+  // }
+
+  public removedComponents(val: any){
+
+    this._removedElement$.next(val);
+  }
+
+  public completeComponents(){
+    this._removedElement$.complete();
   }
 
   public resetAssemblyData(val: string){

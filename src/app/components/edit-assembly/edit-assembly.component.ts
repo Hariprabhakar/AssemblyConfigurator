@@ -137,8 +137,13 @@ export class EditAssemblyComponent implements OnInit, OnDestroy {
 
   private createAssembly() {
     const isUpdate: boolean = this.assemblyId ? true : false;
-
-    this.configuratorService.createAssembly(this.createAssemblyFrom.value, isUpdate, this.assemblyId).subscribe((res: any)=>{
+    let formValue = this.createAssemblyFrom.value;
+    for(let val in formValue) {
+      formValue[val] = formValue[val].toString().replace(/\s/g,"");
+    }
+ console.log('TRIMED',formValue);
+    this.configuratorService.createAssembly(formValue, isUpdate, this.assemblyId).subscribe((res: any)=>{
+      console.log('RESPONSE',res);
       this.assemblyId = res['id'];
       this.submitted = true;
       this.disableGroupDropdown = true;
