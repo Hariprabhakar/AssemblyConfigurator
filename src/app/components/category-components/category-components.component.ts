@@ -54,6 +54,14 @@ export class CategoryComponentsComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.route.queryParams.subscribe((params: any) => {
+      let paramId = params.id;
+      if(paramId) {
+         this.getAssemblyData(paramId);
+      }        
+    });
+
+    //console.log('EDITED',this.editedData);
     console.log('ON - - IniT');
     this.addedElement = [];
 
@@ -98,12 +106,6 @@ export class CategoryComponentsComponent implements OnInit {
 
   public ngOnChanges(changes: SimpleChanges) {
 
-    this.route.queryParams.subscribe((params: any) => {
-      let paramId = params.id;
-      if(paramId) {
-        this.editedData = this.getAssemblyData(paramId);
-      }        
-    });
 
     //console.log('CHANGES-DUP',this.configuratorService.dupElement);
     console.log('VALUE FROM CUSTOM COMPONENT',this.duplicateValue);
@@ -371,11 +373,16 @@ export class CategoryComponentsComponent implements OnInit {
 
   }
 
-  public getAssemblyData(id: any): any{
+  public getAssemblyData(id: any){
 
+    console.log('This is for EDIT MODE');
     this.configuratorService.getAssemblyComponent(id).subscribe((response: any)=>{
+      console.log('This is for EDIT MODE',response.components);
+      this.editedData = response.components;
+      this.editedData.forEach((val: any)=>{
 
-      return response.components;
+        this.checkDuplicate(val);
+      })
   
     })
   }
