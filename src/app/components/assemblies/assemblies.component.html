@@ -40,7 +40,7 @@
                         <button *ngIf="assembly.companyId" mat-icon-button class="delete-icon" (click)="deleteAssembly(assembly.id)" color="primary">
                             <span class="material-icons-outlined">delete_outline</span>
                           </button>
-                        <button mat-icon-button class="duplicate-icon" color="primary">
+                        <button mat-icon-button class="duplicate-icon" (click)="duplicateAssembly(assembly.id)" color="primary">
                             <mat-icon [inline]="true">queue</mat-icon>
                           </button>
                     </div>

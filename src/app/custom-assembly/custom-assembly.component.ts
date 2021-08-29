@@ -64,6 +64,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   public downloadedImg: any;
   public initialLoad: boolean = true;
   public enableEdit: boolean = false;
+  public duplicateAssembly: boolean = false;
   public originalIconSrc: any;
   @Output() removedComponent = new EventEmitter();
   @ViewChild('table') table: MatTable<any>;
@@ -121,6 +122,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
 
     this.route.queryParams.subscribe(params => {
         this.isEdit = params.edit;
+        this.duplicateAssembly = params.copy;
         this.paramId = params.id;
         if(this.paramId) {
           this.getAssemblyData();
@@ -148,7 +150,6 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
       if(res.components) {
         
         this.componentsData = res.components;
-        console.log('ADDED-CUSTOM-COMPONENTS',this.componentsData);
         this.componentTableData = new MatTableDataSource(this.componentsData);
         this.selectedConnections = this.getUniqueSystemConnection('connectionTypes');
         this.selectedSystem = this.getUniqueSystemConnection('systems');
@@ -444,22 +445,30 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
     if (this.imageThubList.length && !this.imageObj.length) {
       this.createImageObj(this.imageThubList);
     }
-    let assemblyValue = this.configuratorService.getAssemblyFormValue();
-    if(!assemblyValue) {
-      assemblyValue = this.configuratorService.getAssemblyData();
+    if (!this.duplicateAssembly) {
+      let assemblyValue = this.configuratorService.getAssemblyFormValue();
+      if(!assemblyValue) {
+        assemblyValue = this.configuratorService.getAssemblyData();
+      }
+
+    for(let val in assemblyValue) {
+      assemblyValue[val] = assemblyValue[val].toString().trim();
     }
-      const assemblyId = this.isCopyAssembly ? 0 : this.assemblydata.id;
-      const isUpdate = this.isCopyAssembly ? false : true;
-      this.configuratorService.createAssembly(assemblyValue, isUpdate, assemblyId).subscribe((res: any)=>{
-        this.configuratorService.setAssemblyData(res);
-        this.assemblydata.familyId = assemblyValue.familyId;
-        this.assemblydata.name = assemblyValue.name;
-        this.assemblydata.abbreviation = assemblyValue.abbreviation;
-        this.saveAssembly();
-      },
-      (error) => {
-        this.toastService.openSnackBar(error);
-      });
+        const assemblyId = this.isCopyAssembly ? 0 : this.assemblydata.id;
+        const isUpdate = this.isCopyAssembly ? false : true;
+        this.configuratorService.createAssembly(assemblyValue, isUpdate, assemblyId).subscribe((res: any)=>{
+          this.configuratorService.setAssemblyData(res);
+          this.assemblydata.familyId = assemblyValue.familyId;
+          this.assemblydata.name = assemblyValue.name;
+          this.assemblydata.abbreviation = assemblyValue.abbreviation;
+          this.saveAssembly();
+        },
+        (error) => {
+          this.toastService.openSnackBar(error);
+        });
+    } else {
+      this.saveAssembly();
+    }
   }
 
   private saveAssemblyComponents(): void {
@@ -508,7 +517,6 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
         })
       })
       this.saveAssemblyData.components = this.componentObj;
-      console.log('SAVED-COMP',this.saveAssemblyData.components);
     }
   }
 
@@ -524,7 +532,6 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('MESSAGE from MODAL',result);
       if (result) {
         if(this.checkArray(result.connection)){
           result.connection = result.connection || [];
@@ -689,8 +696,6 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   });
 
   fileChoose.afterClosed().subscribe((result)=>{
-
-    console.log('Result',result);
     if(result){
 
       this.configuratorService.cancelRouteValues = {

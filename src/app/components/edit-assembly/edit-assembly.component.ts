@@ -28,6 +28,7 @@ export class EditAssemblyComponent implements OnInit, OnDestroy {
   private resetSubscription: Subscription;
   private paramId: number;
   public showBack: boolean = true;
+  public isDuplicateAssembly: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private configuratorService: ConfiguratorService, private toastService: ToastService,
     public dialog: MatDialog, private route: ActivatedRoute, private router:Router) { }
@@ -45,6 +46,9 @@ export class EditAssemblyComponent implements OnInit, OnDestroy {
         this.isEditAssembly = true;
         this.paramId = params.id;
         this.getAssemblyData(params.id);
+      }
+      if (params.copy) {
+        this.isDuplicateAssembly = true;
       }        
     });
 
@@ -60,9 +64,9 @@ export class EditAssemblyComponent implements OnInit, OnDestroy {
 
     this.configuratorService.getAssemblyById(id).subscribe((res: any) => {
       this.createAssemblyFrom.patchValue({
-        name: res.name,
+        name: this.isDuplicateAssembly ? `${res.name}-copy` : res.name,
         familyId: res.familyId,
-        abbreviation: res.abbreviation,
+        abbreviation: this.isDuplicateAssembly ? '' : res.abbreviation,
       });
       if (this.isEditAssembly) {
         this.setFormValue();
@@ -139,11 +143,9 @@ export class EditAssemblyComponent implements OnInit, OnDestroy {
     const isUpdate: boolean = this.assemblyId ? true : false;
     let formValue = this.createAssemblyFrom.value;
     for(let val in formValue) {
-      formValue[val] = formValue[val].toString().replace(/\s/g,"");
+      formValue[val] = formValue[val].toString().trim();
     }
- console.log('TRIMED',formValue);
     this.configuratorService.createAssembly(formValue, isUpdate, this.assemblyId).subscribe((res: any)=>{
-      console.log('RESPONSE',res);
       this.assemblyId = res['id'];
       this.submitted = true;
       this.disableGroupDropdown = true;

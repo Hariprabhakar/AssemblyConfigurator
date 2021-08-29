@@ -1,43 +1,43 @@
 <div class="header">
-    <form [formGroup]="createAssemblyFrom" autocomplete="off">
-        <div class="create-assembly">
-            <div class="input-wrap">
-                <mat-form-field class="assembly-field" appearance="outline">
-                    <mat-label>Assembly</mat-label>
-                    <input formControlName="name" (focusout)="createSuggestion($event)" [readonly]="submitted" matInput type="text" placeholder="Assembly">
-                </mat-form-field>
-            </div>
-            <div class="select-wrap">
-                <mat-form-field class="select-group" [ngClass]="disableGroupDropdown ? 'read-only' : ''" appearance="outline">
-                    <mat-label>Select group</mat-label>
-                    <mat-select formControlName="familyId">
-                        <mat-option *ngFor="let family of families" [value]="family.id">
-                            {{family.name}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-            <div class="input-wrap">
-                <mat-form-field class="abbr-field" appearance="outline">
-                    <mat-label>Abbreviation</mat-label>
-                    <input formControlName="abbreviation" maxlength="4" minlength="3" (focusout)="isEditAssembly? setFormValue() : null" [readonly]="submitted" matInput type="text" placeholder="Abbreviation">
-                </mat-form-field>
-            </div>
-            <div class="suggestion" *ngIf="showSuggestion && createAssemblyFrom.value.name">
-                Suggestion -
-                <ng-container *ngFor="let suggestion of suggestions">
-                    <span [ngClass]="{'not-available': !suggestion.isAvailable, 'suggestion-value': true}" (click)="fillAbbr(suggestion.abbreviation)">{{suggestion.abbreviation}}</span>
-                </ng-container>
-
-            </div>
-            <div class="edit-btn" *ngIf="!isEditAssembly">
-                <button mat-flat-button color="primary" *ngIf="!submitted" (click)="onSubmit()" [disabled]="createAssemblyFrom.invalid">Save</button>
-                <button mat-flat-button color="primary" *ngIf="submitted" (click)="enableForm()">EDIT</button>
-            </div>
-            <div class="secondary-btn" *ngIf="showBack && !isEditAssembly">
-                <button mat-flat-button color="primary" type="button" (click)="goBack()">BACK</button>
-            </div>
-        </div>
-
-    </form>
+  <form [formGroup]="createAssemblyFrom" autocomplete="off" >
+    <div class="create-assembly">
+      <div class="input-wrap">
+        <mat-form-field class="assembly-field" appearance="outline">
+          <mat-label>Assembly</mat-label>
+          <input formControlName="name" (focusout)="createSuggestion($event)" [readonly]="submitted" matInput type="text"  placeholder="Assembly">
+        </mat-form-field>
+      </div>
+      <div class="select-wrap">
+        <mat-form-field class="select-group" [ngClass]="disableGroupDropdown ? 'read-only' : ''" appearance="outline">
+          <mat-label>Select group</mat-label>
+          <mat-select formControlName="familyId">
+            <mat-option *ngFor="let family of families" [value]="family.id">
+              {{family.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="input-wrap">
+        <mat-form-field class="abbr-field" appearance="outline">
+          <mat-label>Abbreviation</mat-label>
+          <input formControlName="abbreviation" maxlength="4" minlength="2" (focusout)="isEditAssembly? setFormValue() : null" [readonly]="submitted" matInput type="text" placeholder="Abbreviation">
+        </mat-form-field>
+      </div>
+      <div class="suggestion" *ngIf="showSuggestion && createAssemblyFrom.value.name">
+        Suggestion - 
+        <ng-container *ngFor="let suggestion of suggestions">
+          <span [ngClass]="{'not-available': !suggestion.isAvailable, 'suggestion-value': true}" (click)="fillAbbr(suggestion.abbreviation)" >{{suggestion.abbreviation}}</span>
+        </ng-container>
+        
+      </div>
+      <div class="edit-btn" *ngIf="!isEditAssembly || isDuplicateAssembly">
+        <button mat-flat-button color="primary" *ngIf="!submitted" (click)="onSubmit()" [disabled]="createAssemblyFrom.invalid" >Save</button>
+        <button mat-flat-button color="primary" *ngIf="submitted" (click)="enableForm()"  >EDIT</button>
+      </div>
+      <div class="secondary-btn" *ngIf="showBack && !isEditAssembly || isDuplicateAssembly">
+        <button mat-flat-button color="primary" type="button" (click)="goBack()" >BACK</button>
+      </div>
+    </div>
+ 
+</form>
 </div>

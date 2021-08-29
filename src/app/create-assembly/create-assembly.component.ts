@@ -17,6 +17,7 @@ export class CreateAssemblyComponent implements OnInit {
   public isComponentLoader: boolean = false;
   private isEdit: boolean = false;
   public removedComponents: any;
+  private isDuplicate: boolean = false;
   
   constructor( private configuratorService: ConfiguratorService, private toastService: ToastService,
     private route: ActivatedRoute) { }
@@ -34,10 +35,11 @@ export class CreateAssemblyComponent implements OnInit {
 
     this.route.queryParams.subscribe(params => {
       this.isEdit = params.edit;
+      this.isDuplicate = params.copy;
     }
   );
 
-  if (this.isEdit) {
+  if (this.isEdit && !this.isDuplicate) {
     this.showOverlay = false;
   }
     
@@ -59,7 +61,6 @@ export class CreateAssemblyComponent implements OnInit {
 
     
     this.removedComponents = event;
-    console.log('REMOVED',this.removedComponents);
   }
 
   private setFamilies(){

@@ -13,21 +13,21 @@
     <div class="create-assembly">
       <div class="select-picklist">
         <div class="select-wrap fl">
-          <label>System</label>
+          <label>System *</label>
           <mat-form-field class="select-group" appearance="outline">
             <mat-label class="matLable">Select System</mat-label>
             <mat-select [multiple]="isJunctionBoxGroup" formControlName="systemName">
-              <mat-option *ngIf="!isJunctionBoxGroup">None</mat-option>
+              <!-- <mat-option *ngIf="!isJunctionBoxGroup">None</mat-option> -->
               <mat-option *ngFor="let system of systems" [value]="system.value">{{ system.name }}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
         <div class="select-wrap fr">
-          <label class="fr">Connection Type</label>
+          <label class="fr">Connection Type *</label>
           <mat-form-field class="select-group fr" appearance="outline">
             <mat-label class="matLable">Select Connection Type</mat-label>
             <mat-select [multiple]="isJunctionBoxGroup" formControlName="connection">
-              <mat-option *ngIf="!isJunctionBoxGroup">None</mat-option>
+              <!-- <mat-option *ngIf="!isJunctionBoxGroup">None</mat-option> -->
               <mat-option *ngFor="let connectionType of connectionTypes" [value]="connectionType.value">{{ connectionType.name }}</mat-option>
             </mat-select>
           </mat-form-field>
@@ -36,7 +36,7 @@
       <div class="clearfix"></div>
       <div class="edit-btn">
         <mat-dialog-actions align="end">
-          <button mat-flat-button color="primary" (click)="onSubmit()">Add</button>
+          <button mat-flat-button color="primary" [disabled]="!JunctionBoxFrom.valid" (click)="onSubmit()">Add</button>
         </mat-dialog-actions>
       </div>
     </div>

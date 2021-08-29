@@ -5,6 +5,7 @@ import { ToastService } from 'src/app/shared/services/toast.service';
 import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-modal.component';
 import { environment } from 'src/environments/environment';
 import { MessageModalComponent } from '../message-modal/message-modal.component';
+import { NavigationExtras, Router } from '@angular/router';
 @Component({
   selector: 'app-assemblies',
   templateUrl: './assemblies.component.html',
@@ -31,7 +32,7 @@ export class AssembliesComponent implements OnInit {
   private isDeleteClicked: boolean = false;
 
   constructor(private configuratorService: ConfiguratorService, private toastService: ToastService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog, private router:Router) { }
 
   ngOnInit(): void {
     this.companyId = this.configuratorService.companyId;
@@ -230,5 +231,15 @@ export class AssembliesComponent implements OnInit {
     }
    }
 
+   public duplicateAssembly(id: number){
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        edit: true,
+        copy: true,
+        id: id
+      }
+    }
+    this.router.navigate(['/create-assembly'], navigationExtras);
+   }
   
 }
