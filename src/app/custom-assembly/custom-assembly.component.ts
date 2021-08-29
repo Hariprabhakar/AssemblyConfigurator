@@ -643,21 +643,8 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
       }
     });
 
-
-
-    // this.configuratorService.addElement.subscribe((response: any)=>{
-
-    //   response.forEach((val: any)=>{
-    //     if(id === val.id){
-    //       val.duplicate = false;
-    //       this.configuratorService.dupElement.push(val);
-    //     }
-    //   });
-    // })
-
     this.configuratorService.removedComponents(this.configuratorService.dupElement);
 
-    //this.removedComponent.emit(this.configuratorService.dupElement);
     this.componentsData = componentData;
     this.componentTableData = new MatTableDataSource(this.componentsData);
   }
@@ -710,11 +697,6 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
         familyId: this.assemblydata.familyId,
         assemblyId: this.assemblydata.id
       }
-  //     this.configuratorService.dupElement.forEach((value: any)=>{
-       
-  //       value.duplicate = false;
-
-  //  });
 
    let emptyDup: any = [];
    this.configuratorService.removedComponents(emptyDup);

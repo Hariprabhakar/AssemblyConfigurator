@@ -40,7 +40,6 @@ export class CategoryComponentsComponent implements OnInit {
   public editableTagIndex: any;
   public isJunctionBox: boolean;
   private recentElement: any;
-  public addedElement: any;
   public disable: any;
   public editedData: any;
   public disableBtn: any;
@@ -61,17 +60,8 @@ export class CategoryComponentsComponent implements OnInit {
       }        
     });
 
-    //console.log('EDITED',this.editedData);
     console.log('ON - - IniT');
-    this.addedElement = [];
 
-    //let dupArr: any = [];
-    //this.configuratorService.removedComponents(dupArr);
-
-    // this.configuratorService.dupElement.forEach((ele: any)=>{
-
-    //   ele.duplicate = false;
-    // })
 
     this.assemblysubscription = this.configuratorService.currentAssemblyValue.subscribe((data: any) => {
 
@@ -119,22 +109,7 @@ export class CategoryComponentsComponent implements OnInit {
       const id = changes.categoryValue.currentValue.id;
       this.showLoader = true;
       this.configuratorService.getComponents(this.configuratorService.companyId, id).subscribe((res: any) => {
-       //console.log('ADDED-ELEMENT',this.addedElement);
-      //  if(this.duplicateValue){
-
-      //   (this.addedElement = [...this.duplicateValue]);
-      //  }
-   
-      this.editedData && res.forEach((val: any)=>{
-
-        this.editedData.forEach((value: any)=>{
-          if(val.id === value.id){ 
-            val.duplicate = true;
-          }
-       });
-  
-    });
-
+      
       this.configuratorService.dupElement && res.forEach((val: any)=>{
 
         this.configuratorService.dupElement.forEach((value: any)=>{
@@ -159,43 +134,12 @@ export class CategoryComponentsComponent implements OnInit {
 
          }
         });
-          // this.configuratorService.removedElement.forEach((response: any)=>{
-
-
-          //     if(response){
-          //         if(val.id === response.id){ 
-          //           val.duplicate = response.duplicate;
-          //         }else{
-          //           val.duplicate =  false;
-          //          }
-          //     }
-            
-          //   console.log('MSG FROM CATAGEORIES',response);
-          //   });
+    
             
         });
 
-        // this.addedElement.forEach((val: any)=>{
-        //   this.configuratorService.dupElement.subscribe((response: any)=>{
-        //     if(response){
-        //       response.forEach((addedElement: any)=>{
-
-        //         if(val.id === addedElement.id){ 
-                   
-        //           this.addedElement.splice(this.addedElement.indexOf(val.id),1);
-
-        //         }
-              
-        //     });
-        //     }
-          
-        //   console.log('MSG FROM CATAGEORIES',response);
-        //   });
-
-        // })
 
         console.log('RESPONSE',res);
-        //this.addedElement = res;
         this.componentDataSource = new MatTableDataSource(res);
         this.editableRowIndex = -1;
         this.showLoader = false;
@@ -358,17 +302,10 @@ export class CategoryComponentsComponent implements OnInit {
   }
 
   public checkDuplicate(element: any){
-    // this.addedElement.filter((val: any)=>{
-
-    //   return val.id != element.id;
-    // });
-    //this.configuratorService.isDuplicate = true;
     
     !(element.duplicate) && (element.duplicate = true);
-    //this.addedElement.push(element);
     
     this.configuratorService.dupElement.push(element);
-    //this.configuratorService.addedComponents(this.addedElement);
 
 
   }
@@ -377,14 +314,18 @@ export class CategoryComponentsComponent implements OnInit {
 
     console.log('This is for EDIT MODE');
     this.configuratorService.getAssemblyComponent(id).subscribe((response: any)=>{
-      console.log('This is for EDIT MODE',response.components);
-      this.editedData = response.components;
-      this.editedData.forEach((val: any)=>{
-
-        this.checkDuplicate(val);
-      })
+      if(response){
+        console.log('This is for EDIT MODE',response.components);
+        this.editedData = response.components;
+        this.editedData.forEach((val: any)=>{
   
-    })
+          this.checkDuplicate(val);
+        });
+
+      }
+    
+  
+    });
   }
 
 }
