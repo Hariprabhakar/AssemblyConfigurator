@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   // url: 'http://localhost:4200/assets/mock/',
-  // url: 'https://sit.sanveo.net/assemblyconfigurator-api/',
-  url: 'https://localhost:44338/',
+  url: 'https://sit.sanveo.net/assemblyconfigurator-api/',
+ // url: 'https://localhost:44338/',
   userName: 'sanveotech@sanveo.com',
   password: 'Wel@2021',
   // url: 'https://localhost:44338/',

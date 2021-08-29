@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { JunctionboxModalComponent } from '../junctionbox-modal/junctionbox-modal.component';
 import { Subscription } from 'rxjs';
 import { MessageModalComponent } from '../message-modal/message-modal.component';
+import { ActivatedRoute } from '@angular/router';
 
 
 
@@ -16,6 +17,7 @@ import { MessageModalComponent } from '../message-modal/message-modal.component'
 })
 export class CategoryComponentsComponent implements OnInit {
   @Input() public categoryValue: number;
+  @Input() public duplicateValue: any;
   @ViewChild('tagModal', { read: ElementRef, static: false }) tagModal: ElementRef
   @Output() selectedComponent = new EventEmitter();
   public displayedColumns: string[] = ['image', 'component', 'tag', 'phase', 'uom', 'add'];
@@ -38,17 +40,31 @@ export class CategoryComponentsComponent implements OnInit {
   public editableTagIndex: any;
   public isJunctionBox: boolean;
   private recentElement: any;
+  public disable: any;
+  public editedData: any;
+  public disableBtn: any;
   private isJunctionBoxGroup: any;
   private assemblysubscription: Subscription;
 
-  constructor(private configuratorService: ConfiguratorService, private toastService: ToastService, public dialog: MatDialog) {
+  constructor(private configuratorService: ConfiguratorService, private route: ActivatedRoute, private toastService: ToastService, public dialog: MatDialog) {
     this.isJunctionBox = false;
     this.isJunctionBoxGroup = false;
   }
 
   ngOnInit(): void {
 
+    this.route.queryParams.subscribe((params: any) => {
+      let paramId = params.id;
+      if(paramId) {
+         this.getAssemblyData(paramId);
+      }        
+    });
+
+    console.log('ON - - IniT');
+
+
     this.assemblysubscription = this.configuratorService.currentAssemblyValue.subscribe((data: any) => {
+
       if(data.familyId === 2){
         this.isJunctionBoxGroup = true;
       } else{
@@ -78,7 +94,11 @@ export class CategoryComponentsComponent implements OnInit {
   }
  
 
-  ngOnChanges(changes: SimpleChanges) {
+  public ngOnChanges(changes: SimpleChanges) {
+
+
+    //console.log('CHANGES-DUP',this.configuratorService.dupElement);
+    console.log('VALUE FROM CUSTOM COMPONENT',this.duplicateValue);
     if (changes.categoryValue && changes.categoryValue.currentValue) {
       if (changes.categoryValue.currentValue?.name?.toLowerCase() === 'junction box') { // Junctionbox id is 7 and for mocking its kept of Data Jack
         this.isJunctionBox = true;
@@ -89,6 +109,37 @@ export class CategoryComponentsComponent implements OnInit {
       const id = changes.categoryValue.currentValue.id;
       this.showLoader = true;
       this.configuratorService.getComponents(this.configuratorService.companyId, id).subscribe((res: any) => {
+      
+      this.configuratorService.dupElement && res.forEach((val: any)=>{
+
+        this.configuratorService.dupElement.forEach((value: any)=>{
+          if(val.id === value.id){ 
+            val.duplicate = value.duplicate;
+          }
+       });
+  
+    });
+      
+        res.forEach((val: any)=>{
+          this.configuratorService.removedElement.subscribe((response: any)=>{
+
+         if(response){
+          response.forEach((value: any)=>{
+            if(val.id === value.id){ 
+              val.duplicate = value.duplicate;
+            }
+
+      console.log('MSG FROM CATAGEORIES',response);
+      });
+
+         }
+        });
+    
+            
+        });
+
+
+        console.log('RESPONSE',res);
         this.componentDataSource = new MatTableDataSource(res);
         this.editableRowIndex = -1;
         this.showLoader = false;
@@ -108,15 +159,26 @@ export class CategoryComponentsComponent implements OnInit {
 
   addComponent(element: any) {
     this.recentElement = element;
+    console.log('ADD ELEMENT',element);
+    this.checkDuplicate(element);
+    //this.disableBtn = element.id;
+
+    //this.disable.push(element.id);
+   //console.log('ADDED',this.disable);
+
     const getAssemblyData = this.configuratorService.getAssemblyData();
     // if (getAssemblyData !== undefined && getAssemblyData?.familyId && getAssemblyData.familyId === 2) {
     //   this.openDialog(element);
     // }  
+
+    console.log('ADD COMP',getAssemblyData);
     if (this.isJunctionBox) {
       const existingComponents = this.configuratorService.junctionBoxComponents;
       if (!existingComponents.includes(element.id)) {
         this.openDialog(element);
       } else {
+
+        this.disableBtn = true;
         const messageDialog = this.dialog.open(MessageModalComponent, {
           data: {
             title: 'Component already added.',
@@ -233,4 +295,37 @@ export class CategoryComponentsComponent implements OnInit {
     this.selectedComponentId = row.id;
     this.editableTagIndex = rowIndex;
   }
+
+  public showFilterModal(){
+
+    console.log('TRUE MODAL OPENED');
+  }
+
+  public checkDuplicate(element: any){
+    
+    !(element.duplicate) && (element.duplicate = true);
+    
+    this.configuratorService.dupElement.push(element);
+
+
+  }
+
+  public getAssemblyData(id: any){
+
+    console.log('This is for EDIT MODE');
+    this.configuratorService.getAssemblyComponent(id).subscribe((response: any)=>{
+      if(response){
+        console.log('This is for EDIT MODE',response.components);
+        this.editedData = response.components;
+        this.editedData.forEach((val: any)=>{
+  
+          this.checkDuplicate(val);
+        });
+
+      }
+    
+  
+    });
+  }
+
 }

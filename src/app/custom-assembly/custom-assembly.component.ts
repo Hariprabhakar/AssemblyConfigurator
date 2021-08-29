@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit, Pipe, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, Pipe, SimpleChanges, ViewChild } from '@angular/core';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { FileChooseModalComponent } from '../components/file-choose-modal/file-choose-modal.component';
@@ -44,6 +44,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   public componentTableData: any;
   public assemblydata: any;
   public groupName: any;
+  public abbreviation: any;
   public imag64BitUrl: any;
   public imageObj: any;
   public imageThubList: any;
@@ -64,6 +65,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   public initialLoad: boolean = true;
   public enableEdit: boolean = false;
   public originalIconSrc: any;
+  @Output() removedComponent = new EventEmitter();
   @ViewChild('table') table: MatTable<any>;
   private saveAssemblyData: SaveAssemblyData = {
     id: '',
@@ -89,6 +91,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
     this.componentsData = [];
     this.configuratorService.junctionBoxComponents = [];
     this.groupName = '';
+    this.abbreviation = '';
     this.assemblydata = {};
     this.iconSrc = '';
     this.initialLoad = true;
@@ -113,6 +116,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
       this.groupsubscription = this.configuratorService.groupNameObservable.subscribe((groupName: any) => {
         this.groupName = groupName;
       });
+
     }
 
     this.route.queryParams.subscribe(params => {
@@ -142,7 +146,9 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
       const assemblyInfo = res;
       //this.iconSrc = res.icon ? 'data:image/jpeg;base64,'+res.icon: '';
       if(res.components) {
+        
         this.componentsData = res.components;
+        console.log('ADDED-CUSTOM-COMPONENTS',this.componentsData);
         this.componentTableData = new MatTableDataSource(this.componentsData);
         this.selectedConnections = this.getUniqueSystemConnection('connectionTypes');
         this.selectedSystem = this.getUniqueSystemConnection('systems');
@@ -310,6 +316,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    //console.log('CHANGES FROM COMPONENT',changes);
     if (changes.selectedComponent && changes.selectedComponent.currentValue) {
       if (this.assemblyDetailsReadOnly) {
         this.updateRightPanel(changes);
@@ -399,6 +406,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
     this.assemblydata.id = currentValue.id
     this.assemblydata.name = currentValue.name;
     this.assemblydata.familyId = currentValue.familyId;
+    this.assemblydata.abbreviation = currentValue.abbreviation;
     this.iconSrc = currentValue.iconLocation ? this.baseUrl + currentValue.iconLocation : currentValue.icon;
     this.componentsData = [];
     this.componentsData = currentValue.components;
@@ -427,6 +435,9 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
     this.saveAssemblyData.familyId = this.assemblydata.familyId;
     this.saveAssemblyComponents();
     this.saveLoader = true;
+    let emptyDup: any = [];
+    this.configuratorService.removedComponents(emptyDup);
+    this.configuratorService.dupElement = [];
   }
 
   public getUpdatedAssemblyData() {
@@ -488,7 +499,16 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
           this.componentObj.push(componentData);
         }
       });
+      this.componentObj.forEach((comp: any)=>{
+
+        this.configuratorService.dupElement && this.configuratorService.dupElement.forEach((val: any)=>{
+
+          comp.duplicate = val.duplicate;
+
+        })
+      })
       this.saveAssemblyData.components = this.componentObj;
+      console.log('SAVED-COMP',this.saveAssemblyData.components);
     }
   }
 
@@ -504,6 +524,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
+      console.log('MESSAGE from MODAL',result);
       if (result) {
         if(this.checkArray(result.connection)){
           result.connection = result.connection || [];
@@ -607,12 +628,23 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   }
 
   private removeComponentData(id: number) {
+     //this.configuratorService.isDuplicate = false;
+
+
     const componentData = this.componentsData.filter((component: any) => {
       return component.id !== id;
     });
     this.configuratorService.junctionBoxComponents = this.configuratorService.junctionBoxComponents.filter((compId: number) => {
       return compId !== id;
     });
+    this.configuratorService.dupElement.forEach((val: any)=>{
+      if(id === val.id){
+        val.duplicate = false;
+      }
+    });
+
+    this.configuratorService.removedComponents(this.configuratorService.dupElement);
+
     this.componentsData = componentData;
     this.componentTableData = new MatTableDataSource(this.componentsData);
   }
@@ -647,11 +679,35 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   }
 
   public cancelEdit() {
-    this.configuratorService.cancelRouteValues = {
-      familyId: this.assemblydata.familyId,
-      assemblyId: this.assemblydata.id
+
+    const fileChoose = this.dialog.open(ConfirmationModalComponent, {
+      data: {
+        title: 'Cancel Popup',
+        content: 'Do you really want to cancel ?'
+      } 
+   
+  });
+
+  fileChoose.afterClosed().subscribe((result)=>{
+
+    console.log('Result',result);
+    if(result){
+
+      this.configuratorService.cancelRouteValues = {
+        familyId: this.assemblydata.familyId,
+        assemblyId: this.assemblydata.id
+      }
+
+   let emptyDup: any = [];
+   this.configuratorService.removedComponents(emptyDup);
+   this.configuratorService.dupElement = [];
+
+   this.configuratorService.removedComponents(this.configuratorService.dupElement);
+      this.router.navigate(['/assembly-configurator']);
     }
-    this.router.navigate(['/assembly-configurator']);
+
+  });
+    
   }
 
   public resetAssembly() {
@@ -660,6 +716,12 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
       this.getAssemblyData();    
       this.configuratorService.resetAssemblyData('true');
     } else {
+      this.configuratorService.dupElement.forEach((value: any)=>{
+       
+          value.duplicate = false;
+
+     });
+     this.configuratorService.removedComponents(this.configuratorService.dupElement);
       this.componentsData = [];
       this.imageThubList = [];
       this.selectedItem = [];

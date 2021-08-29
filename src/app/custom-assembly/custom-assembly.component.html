@@ -1,53 +1,54 @@
 <div class="custom-assembly-wrap" [class.read-only]="assemblyDetailsReadOnly">
-  <div class="ac-loader" *ngIf="showLoader || saveLoader">
-    <mat-spinner [diameter]="40"></mat-spinner>
-  </div>
-  <div class="assembly-section">
-    <div class="assembly-detail-section">
-      <div class="primary-img">
-        <div class="upload-img-btn secondary-btn" *ngIf="!assemblyDetailsReadOnly">
-          <img src="assets/images/maximize.png" *ngIf="imag64BitUrl" (click)="openZoomImg()" class="img-max-btn" />
-          <button mat-flat-button color="primary" *ngIf="!imag64BitUrl" (click)="openFileChooseModal()">Upload Assembly Image</button>
-          <img class="preview-img" *ngIf="imag64BitUrl" [src]="imag64BitUrl" alt="Profile" />
-        </div>
-        <div class="upload-img-btn secondary-btn" *ngIf="assemblyDetailsReadOnly">
-          <img src="assets/images/maximize.png" (click)="openZoomImg()" class="img-max-btn" />
-          <img class="preview-img" *ngIf="imag64BitUrl" src="{{ imag64BitUrl }}" alt="Profile" />
-        </div>
-      </div>
-      <div class="assembly-info">
-        <div>
-          <div class="icon-wrap">
-            <div class="choose-icon"  *ngIf="!assemblyDetailsReadOnly">
-              <div class="icon" (click)="openAssembly()">
-                <div *ngIf="!iconSrc" class="icon-shape"></div>
-                <div *ngIf="iconSrc" class="icon-base64"><img [src]="iconSrc" /></div>
-                <div class="caret">
-                  <mat-icon>arrow_drop_down</mat-icon>
+    <div class="ac-loader" *ngIf="showLoader || saveLoader">
+        <mat-spinner [diameter]="40"></mat-spinner>
+    </div>
+    <div class="assembly-section">
+        <div class="assembly-detail-section">
+            <div class="primary-img">
+                <div class="upload-img-btn secondary-btn" *ngIf="!assemblyDetailsReadOnly">
+                    <img src="assets/images/maximize.png" *ngIf="imag64BitUrl" (click)="openZoomImg()" class="img-max-btn" />
+                    <button mat-flat-button color="primary" *ngIf="!imag64BitUrl" (click)="openFileChooseModal()">Upload Assembly Image</button>
+                    <img class="preview-img" *ngIf="imag64BitUrl" [src]="imag64BitUrl" alt="Profile" />
                 </div>
-              </div>
-              <div (click)="openAssembly()" class="icon-text">Select Assembly Icon</div>
-            </div>            
-            <div class="icon" *ngIf="assemblyDetailsReadOnly">
-              <div *ngIf="!iconSrc" class="icon-shape">{{ assemblydata?.name | slice: 0:1 }}</div>
-              <div *ngIf="iconSrc" class="icon-base64">
-                <!-- <img *ngIf="!iconSrc.includes('base64')" src="data:image/jpeg;base64,{{ iconSrc }}" alt=" " /> -->
-                <img src="{{ iconSrc }}" alt=" " />
-              </div>
+                <div class="upload-img-btn secondary-btn" *ngIf="assemblyDetailsReadOnly">
+                    <img src="assets/images/maximize.png" (click)="openZoomImg()" class="img-max-btn" />
+                    <img class="preview-img" *ngIf="imag64BitUrl" src="{{ imag64BitUrl }}" alt="Profile" />
+                </div>
             </div>
-            <div class="clearfix"></div>            
-          </div>
-          <div class="assembly-details">
-            <div class="assembly-name">{{ assemblydata?.name }}</div>
-            <div class="assembly-group" *ngIf="groupName">Group: {{ groupName }}</div>
-            <div class="system-names" *ngIf="selectedSystem.length" [matTooltip]="selectedSystem.join(', ')">System: {{ selectedSystem.join(', ') }}</div>
-            <div class="connection-type" *ngIf="selectedConnections.length" [matTooltip]="selectedConnections.join(', ')">Connection: {{ selectedConnections.join(', ') }}</div>
-          </div>
-        </div>
-        <div class="clearfix"></div>
-        <div class="add-delete-btn">
-          <div class="delete-img-btn secondary-btn" *ngFor="let image of imageThubList; let index = index">
-            <button mat-flat-button color="primary" [ngClass]="{ borderHighlighter: selectedItem == image }">
+            <div class="assembly-info">
+                <div>
+                    <div class="icon-wrap">
+                        <div class="choose-icon" *ngIf="!assemblyDetailsReadOnly">
+                            <div class="icon" (click)="openAssembly()">
+                                <div *ngIf="!iconSrc" class="icon-shape"></div>
+                                <div *ngIf="iconSrc" class="icon-base64"><img [src]="iconSrc" /></div>
+                                <div class="caret">
+                                    <mat-icon>arrow_drop_down</mat-icon>
+                                </div>
+                            </div>
+                            <div (click)="openAssembly()" class="icon-text">Select Assembly Icon</div>
+                        </div>
+                        <div class="icon" *ngIf="assemblyDetailsReadOnly">
+                            <div *ngIf="!iconSrc" class="icon-shape">{{ assemblydata?.name | slice: 0:1 }}</div>
+                            <div *ngIf="iconSrc" class="icon-base64">
+                                <!-- <img *ngIf="!iconSrc.includes('base64')" src="data:image/jpeg;base64,{{ iconSrc }}" alt=" " /> -->
+                                <img src="{{ iconSrc }}" alt=" " />
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="assembly-details">
+                        <div class="assembly-name">{{ assemblydata?.name }}</div>
+                        <div class="assembly-group" *ngIf="groupName">Group: {{ groupName }}</div>
+                        <div class="assembly-group">Abbr: {{ assemblydata?.abbreviation }}</div>
+                        <div class="system-names" *ngIf="selectedSystem.length" [matTooltip]="selectedSystem.join(', ')">System: {{ selectedSystem.join(', ') }}</div>
+                        <div class="connection-type" *ngIf="selectedConnections.length" [matTooltip]="selectedConnections.join(', ')">Connection: {{ selectedConnections.join(', ') }}</div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="add-delete-btn">
+                    <div class="delete-img-btn secondary-btn" *ngFor="let image of imageThubList; let index = index">
+                        <button mat-flat-button color="primary" [ngClass]="{ borderHighlighter: selectedItem == image }">
               <img (click)="imageSelection(image.fileName64Bit, image)" class="shape-icon" [src]="image.fileName64Bit" /><img
                 *ngIf="!assemblyDetailsReadOnly"
                 (click)="deleteImage(index)"
@@ -55,84 +56,73 @@
                 src="assets/images/deletebtn.png"
               />
             </button>
-          </div>
-          <!--  <div class="delete-img-btn secondary-btn">
+                    </div>
+                    <!--  <div class="delete-img-btn secondary-btn">
             <button mat-flat-button color="primary"><img src="assets/images/deletebtn.png"></button>
           </div>
           <div class="delete-img-btn secondary-btn">
             <button mat-flat-button color="primary"><img src="assets/images/deletebtn.png"></button>
           </div> -->
-          <ng-container *ngIf="!assemblyDetailsReadOnly">
-            <div class="add-img-btn secondary-btn" [ngClass]="{ borderHighlighter: imageThubList.length == 0 }" *ngIf="imageThubList.length < 5" (click)="openFileChooseModal()">
-              <button *ngIf="!assemblyDetailsReadOnly" mat-flat-button color="primary" class="delete-btn-img"><img src="assets/images/addImageIcon.png" /></button>
-            </div>
-          </ng-container>
-        </div>
-
-        <div class="clearfix"></div>
-        <div class="component-controls">
-          <div class="view-select">
-            <span inline="true" class="material-icons-round"> grid_view </span>
-          </div>
-          <div class="component-search ac-input">
-            <input (keyup)="filterComponent($event)" type="text" placeholder="Search by part name, Size, Material etc" />
-            <div class="search">
-              <mat-icon inline="true">search</mat-icon>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="component-section">
-      <div class="table" [class.editable]="!assemblyDetailsReadOnly">
-        <table mat-table #table [dataSource]="componentTableData" cdkDropList
-        [cdkDropListData]="componentTableData"
-        (cdkDropListDropped)="dropTable($event)">
-          <ng-container matColumnDef="sn">
-            <th mat-header-cell *matHeaderCellDef>SN</th>
-            <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
-          </ng-container>
-
-          <ng-container matColumnDef="image">
-            <th mat-header-cell *matHeaderCellDef>Image</th>
-            <td mat-cell *matCellDef="let element"></td>
-          </ng-container>
-
-          <ng-container matColumnDef="component">
-            <th mat-header-cell *matHeaderCellDef>Component</th>
-            <td mat-cell *matCellDef="let element">
-              <div>{{ element.name }}</div>
-              <div class="jbox-action" *ngIf="!assemblyDetailsReadOnly ? checkJunctionBox(element) : true">
-                <div class="jbox-system" *ngIf="assemblyDetailsReadOnly ? !checkArrayEmpty(element.systems) : true">
-                  <div class="label">Sys:</div>
-                  <div class="chip">
-                    <span *ngIf="checkArray(element.systems)"
-                      >{{ element.systems[0] }} <span *ngIf="element.systems?.length > 1"> + {{ element.systems.length - 1 }}</span></span
-                    >
-                    <span *ngIf="!checkArray(element.systems)">{{ element.systems }}</span>
-                    <div class="action-icons" *ngIf="!assemblyDetailsReadOnly">
-                      <span inline="true" (click)="!assemblyDetailsReadOnly && editConnectionSystem(element)" class="material-icons-outlined edit-icon"> border_color </span>
-                      <span inline="true" (click)="!assemblyDetailsReadOnly && deleteConnectionSystem(element, 'systems')" class="material-icons-outlined delete-icon">delete</span>
-                    </div>
-                  </div>
+                    <ng-container *ngIf="!assemblyDetailsReadOnly">
+                        <div class="add-img-btn secondary-btn" [ngClass]="{ borderHighlighter: imageThubList.length == 0 }" *ngIf="imageThubList.length < 5" (click)="openFileChooseModal()">
+                            <button *ngIf="!assemblyDetailsReadOnly" mat-flat-button color="primary" class="delete-btn-img"><img src="assets/images/addImageIcon.png" /></button>
+                        </div>
+                    </ng-container>
                 </div>
-                <div class="jbox-connector" *ngIf="assemblyDetailsReadOnly ? !checkArrayEmpty(element.connectionTypes) : true">
-                  <div class="label">Conn:</div>
-                  <div class="chip">
-                    <span *ngIf="checkArray(element.connectionTypes)"
-                      >{{ element.connectionTypes[0] }} <span *ngIf="element.connectionTypes?.length > 1">+ {{ element.connectionTypes.length - 1 }}</span></span
-                    >
-                    <span *ngIf="!checkArray(element.connectionTypes)">{{ element.connectionTypes }}</span>
-                    <div class="action-icons" *ngIf="!assemblyDetailsReadOnly">
-                      <span class="edit-icon" (click)="!assemblyDetailsReadOnly && editConnectionSystem(element)" inline="true" class="material-icons-outlined edit-icon">
+
+                <div class="clearfix"></div>
+                <div class="component-controls">
+                    <div class="view-select">
+                        <span inline="true" class="material-icons-round"> grid_view </span>
+                    </div>
+                    <div class="component-search ac-input">
+                        <input (keyup)="filterComponent($event)" type="text" placeholder="Search by part name, Size, Material etc" />
+                        <div class="search">
+                            <mat-icon inline="true">search</mat-icon>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="component-section">
+            <div class="table" [class.editable]="!assemblyDetailsReadOnly">
+                <table mat-table #table [dataSource]="componentTableData" cdkDropList [cdkDropListData]="componentTableData" (cdkDropListDropped)="dropTable($event)">
+                    <ng-container matColumnDef="sn">
+                        <th mat-header-cell *matHeaderCellDef>SN</th>
+                        <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="image">
+                        <th mat-header-cell *matHeaderCellDef>Image</th>
+                        <td mat-cell *matCellDef="let element"></td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="component">
+                        <th mat-header-cell *matHeaderCellDef>Component</th>
+                        <td mat-cell *matCellDef="let element">
+                            <div>{{ element.name }}</div>
+                            <div class="jbox-action" *ngIf="!assemblyDetailsReadOnly ? checkJunctionBox(element) : true">
+                                <div class="jbox-system" *ngIf="assemblyDetailsReadOnly ? !checkArrayEmpty(element.systems) : true">
+                                    <div class="label">Sys:</div>
+                                    <div class="chip">
+                                        <span *ngIf="checkArray(element.systems)">{{ element.systems[0] }} <span *ngIf="element.systems?.length > 1"> + {{ element.systems.length - 1 }}</span></span>
+                                        <span *ngIf="!checkArray(element.systems)">{{ element.systems }}</span>
+                                        <div class="action-icons" *ngIf="!assemblyDetailsReadOnly">
+                                            <span inline="true" (click)="!assemblyDetailsReadOnly && editConnectionSystem(element)" class="material-icons-outlined edit-icon"> border_color </span>
+                                            <span inline="true" (click)="!assemblyDetailsReadOnly && deleteConnectionSystem(element, 'systems')" class="material-icons-outlined delete-icon">delete</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="jbox-connector" *ngIf="assemblyDetailsReadOnly ? !checkArrayEmpty(element.connectionTypes) : true">
+                                    <div class="label">Conn:</div>
+                                    <div class="chip">
+                                        <span *ngIf="checkArray(element.connectionTypes)">{{ element.connectionTypes[0] }} <span *ngIf="element.connectionTypes?.length > 1">+ {{ element.connectionTypes.length - 1 }}</span></span>
+                                        <span *ngIf="!checkArray(element.connectionTypes)">{{ element.connectionTypes }}</span>
+                                        <div class="action-icons" *ngIf="!assemblyDetailsReadOnly">
+                                            <span class="edit-icon" (click)="!assemblyDetailsReadOnly && editConnectionSystem(element)" inline="true" class="material-icons-outlined edit-icon">
                         border_color
                       </span>
-                      <span
-                        class="deleted-icon"
-                        (click)="!assemblyDetailsReadOnly && deleteConnectionSystem(element, 'connectionTypes')"
-                        inline="true"
-                        class="material-icons-outlined delee-icont"
-                        >delete</span
+                                            <span class="deleted-icon" (click)="!assemblyDetailsReadOnly && deleteConnectionSystem(element, 'connectionTypes')" inline="true" class="material-icons-outlined delee-icont">delete</span
                       >
                     </div>
                   </div>
@@ -150,20 +140,19 @@
             <th mat-header-cell *matHeaderCellDef>Tag</th>
             <td mat-cell *matCellDef="let element; let i = index" [matTooltip]="element.tag">
               <span>{{ element.tag }}</span>
-            </td>
-          </ng-container>
+                        </td>
+                    </ng-container>
 
-          <ng-container matColumnDef="phase">
-            <th mat-header-cell *matHeaderCellDef>Phase</th>
-            <td mat-cell *matCellDef="let element; let i = index" [matTooltip]="element.phase">
-              <span>{{ element.phase }}</span>
-            </td>
-          </ng-container>
-          <ng-container matColumnDef="qty">
-            <th mat-header-cell *matHeaderCellDef>QTY</th>
-            <td mat-cell *matCellDef="let element">
-              <span class="ac-input"
-                ><input
+                    <ng-container matColumnDef="phase">
+                        <th mat-header-cell *matHeaderCellDef>Phase</th>
+                        <td mat-cell *matCellDef="let element; let i = index" [matTooltip]="element.phase">
+                            <span>{{ element.phase }}</span>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="qty">
+                        <th mat-header-cell *matHeaderCellDef>QTY</th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="ac-input"><input
                   type="number"
                   [readonly]="assemblyDetailsReadOnly"
                   min="0"
@@ -171,36 +160,36 @@
                   oninput="validity.valid||(value='');"
                   [(ngModel)]="element.qty"
               /></span>
-            </td>
-          </ng-container>
+                        </td>
+                    </ng-container>
 
-          <ng-container matColumnDef="uom">
-            <th mat-header-cell *matHeaderCellDef>UOM</th>
-            <td mat-cell *matCellDef="let element">{{ element.uom }}</td>
-          </ng-container>
+                    <ng-container matColumnDef="uom">
+                        <th mat-header-cell *matHeaderCellDef>UOM</th>
+                        <td mat-cell *matCellDef="let element">{{ element.uom }}</td>
+                    </ng-container>
 
-          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns" [cdkDragDisabled]="assemblyDetailsReadOnly" cdkDrag [cdkDragData]="row"></tr>
-        </table>
-      </div>
-      <div class="footer">
-        <div class="save-btn-wrap">
-          <div class="reset-btn">
-            <button mat-button color="primary" *ngIf="!assemblyDetailsReadOnly" (click)="resetAssembly()">
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns" [cdkDragDisabled]="assemblyDetailsReadOnly" cdkDrag [cdkDragData]="row"></tr>
+                </table>
+                </div>
+                <div class="footer">
+                    <div class="save-btn-wrap">
+                        <div class="reset-btn">
+                            <button mat-button color="primary" *ngIf="!assemblyDetailsReadOnly" (click)="resetAssembly()">
               <span class="material-icons-outlined">autorenew</span>
               RESET
             </button>
-          </div>
-          <div class="right-side-ctrl">
-            <button mat-flat-button color="primary" *ngIf="assemblyDetailsReadOnly" [disabled]="!enableEdit" (click)="editAssembly()">EDIT</button>
-            <div class="secondary-btn">
-              <button *ngIf="!assemblyDetailsReadOnly" mat-flat-button color="primary" (click)="cancelEdit()">Cancel</button>
-            </div>
-            <button *ngIf="isEdit && !assemblyDetailsReadOnly" mat-flat-button color="primary"  (click)="getUpdatedAssemblyData()">{{isCopyAssembly ? 'SAVE AS' : 'SAVE'}}</button>
-            <button *ngIf="!isEdit && !assemblyDetailsReadOnly" mat-flat-button color="primary"  (click)="saveAssembly()">SAVE</button>
-          </div>          
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+                        </div>
+                        <div class="right-side-ctrl">
+                            <button mat-flat-button color="primary" *ngIf="assemblyDetailsReadOnly" [disabled]="!enableEdit" (click)="editAssembly()">EDIT</button>
+                            <div class="secondary-btn">
+                                <button *ngIf="!assemblyDetailsReadOnly" mat-flat-button color="primary" (click)="cancelEdit()">Cancel</button>
+                            </div>
+                            <button *ngIf="isEdit && !assemblyDetailsReadOnly" mat-flat-button color="primary" (click)="getUpdatedAssemblyData()">{{isCopyAssembly ? 'SAVE AS' : 'SAVE'}}</button>
+                            <button *ngIf="!isEdit && !assemblyDetailsReadOnly" mat-flat-button color="primary" (click)="saveAssembly()">SAVE</button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                </div>
+                </div>

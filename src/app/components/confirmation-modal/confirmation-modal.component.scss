@@ -1,35 +1,40 @@
 .confirm-dialog-wrapper {
-  position: relative;
-  color: #b5b5b5;
-  .close-icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .confirm-txt{
-      padding: 15px 0px;
-      font-size: 12px;
-  }
-  .btn-wrapper {
-    padding: 10px;
-    display: flex;
-    justify-content: flex-end;
-  }
-  .primary-btn, .secondary-btn{
-    button{
-      border-radius: 20px;
-      height: 30px;
-      line-height: 30px;
+    width: 22rem;
+    position: relative;
+    color: #b5b5b5;
+    .close-icon {
+        position: absolute;
+        right: 0;
+        top: 0;
     }
-  }
-  .secondary-btn{
-      padding-right: 10px;
-    button{
-        background: #1f1f1f !important;
-        border: 1px solid #ffc400 !important;
-        color: #ffc400 !important;
-        border-radius: 20px;
-        height: 30px;
-      }
-  }
+    .confirm-txt {
+        padding: 15px 0px;
+        font-size: 13.5px;
+    }
+    .header {
+        font-size: 19px !important;
+    }
+    .btn-wrapper {
+        padding: 10px;
+        display: flex;
+        justify-content: flex-end;
+    }
+    .primary-btn,
+    .secondary-btn {
+        button {
+            border-radius: 20px;
+            height: 30px;
+            line-height: 30px;
+        }
+    }
+    .secondary-btn {
+        padding-right: 10px;
+        button {
+            background: #1f1f1f !important;
+            border: 1px solid #ffc400 !important;
+            color: #ffc400 !important;
+            border-radius: 20px;
+            height: 30px;
+        }
+    }
 }
