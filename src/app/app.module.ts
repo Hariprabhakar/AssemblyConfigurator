@@ -28,6 +28,7 @@ import { MessageModalComponent } from './components/message-modal/message-modal.
 import { ContactUsComponent } from './shared/components/contact-us/contact-us.component';
 import { ConfiguratorInitService } from './shared/services/configurator-init.service';
 import { ToastComponent } from './shared/components/toast/toast.component';
+import { FilterModalComponent } from './components/filter-modal/filter-modal.component';
 export function initializeApp(appInitService: ConfiguratorInitService) {
   return (): Promise<any> => { 
     return appInitService.Init();
@@ -46,7 +47,7 @@ export function initializeApp(appInitService: ConfiguratorInitService) {
     AssemblyZoomImageModalComponent,
     ConfirmationModalComponent,
     MessageModalComponent, 
-    ContactUsComponent, ToastComponent  
+    ContactUsComponent, ToastComponent, FilterModalComponent  
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@ import { JunctionboxModalComponent } from '../junctionbox-modal/junctionbox-moda
 import { Subscription } from 'rxjs';
 import { MessageModalComponent } from '../message-modal/message-modal.component';
 import { ActivatedRoute } from '@angular/router';
+import { FilterModalComponent } from '../filter-modal/filter-modal.component';
 
 
 
@@ -288,7 +289,18 @@ export class CategoryComponentsComponent implements OnInit {
 
   public showFilterModal() {
 
-    console.log('TRUE MODAL OPENED');
+    const dialogRef = this.dialog.open(FilterModalComponent, {
+      backdropClass: 'backdropBackground',
+      data: {
+        categoryId: 1
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log(true);
+        
+      }
+    });
   }
 
   public checkDuplicate(element: any) {

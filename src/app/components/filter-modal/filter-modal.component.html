@@ -1,0 +1,24 @@
+<div class="filter-modal-container">
+    <div class="filter-modal">
+        <div class="header">
+            <div>Filter</div>
+            <div class="filter-icon">
+                <mat-icon [inline]=true>filter_alt</mat-icon>
+            </div>
+        </div>
+        <div class="filter-body">
+            <mat-tab-group [@.disabled]="true" >
+                <ng-container *ngFor="let filter of filterValue.filters">
+                    <mat-tab>
+                        <ng-template mat-tab-label>
+                            {{filter.name}}
+                        </ng-template>
+                        <div *ngFor="let value of filter.values">
+                            {{value}}
+                        </div> 
+                    </mat-tab>
+                </ng-container>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>
