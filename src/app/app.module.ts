@@ -29,6 +29,7 @@ import { ContactUsComponent } from './shared/components/contact-us/contact-us.co
 import { ConfiguratorInitService } from './shared/services/configurator-init.service';
 import { ToastComponent } from './shared/components/toast/toast.component';
 import { FilterModalComponent } from './components/filter-modal/filter-modal.component';
+import { MatListModule } from '@angular/material/list';
 export function initializeApp(appInitService: ConfiguratorInitService) {
   return (): Promise<any> => { 
     return appInitService.Init();
@@ -63,7 +64,8 @@ export function initializeApp(appInitService: ConfiguratorInitService) {
     MatFileUploadModule,
     NgxDropzoneModule,
     MatMenuModule,
-    MatTabsModule
+    MatTabsModule,
+    MatListModule
   ],
   providers: [/*{provide: LocationStrategy, useClass: HashLocationStrategy},*/ ToastService, 
     ConfiguratorInitService,

@@ -167,6 +167,18 @@ app-category-components {
             font-size: 20px;
         }
     }
+    .label.disable{
+        color: #787878;
+    }
+    .clear-filter-icon {
+        color: #ffc400;
+        padding: 11.5px;
+        display: flex;
+        cursor: pointer;
+        .close-icon{
+            font-size: 20px;
+        }
+    }
     input {
         border: 1px solid #4a4a4a;
         min-height: 30px;
@@ -219,7 +231,7 @@ app-category-components {
     }
     .filter-search {
         input {
-            width: 250px;
+            width: 220px;
         }
     }
 }
@@ -236,7 +248,26 @@ app-category-components {
         }
     }
 }
+@media screen and (min-width: 990px) and (max-width: 1300px) {
+    .clear-label{
+        display: none;
+    }
+}
+@media screen and (max-width: 1300px) {
+    .filter-search {
+        input {
+            width: 250px;
+        }
+    }
+}
 
+@media screen and (max-width: 1200px) {
+    .filter-search {
+        input {
+            width: 220px;
+        }
+    }
+}
 .disableBtn {
     background: #4a4a4a;
 }

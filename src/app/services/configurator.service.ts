@@ -207,4 +207,13 @@ export class ConfiguratorService {
     return this.restApiService.delete(`assemblies/${assemblyId}`, '', '');
   }
 
+  public getComponentFilters(categoryId: number){
+    const queryParam = `categoryId=${categoryId}`
+    return this.restApiService.get(`filters`, '', queryParam);
+  }
+
+  public postComponentFilters(categoryId: number, reqObj: any){
+    return this.restApiService.post(`apply-filters/${categoryId}`, reqObj, '');
+  }
+
 }

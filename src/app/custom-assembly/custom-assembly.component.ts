@@ -691,8 +691,8 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
 
     const fileChoose = this.dialog.open(ConfirmationModalComponent, {
       data: {
-        title: 'Cancel Popup',
-        content: 'Do you really want to cancel ?'
+        title: 'Cancel',
+        content: 'The assembly creation process will be terminated. Do you want to proceed?'
       } 
    
   });

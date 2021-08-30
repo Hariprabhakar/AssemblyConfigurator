@@ -4,7 +4,7 @@
     </div>
     <!-- <button class="btn" (click)="openAssembly()">Assembly Icon</button> -->
     <div class="filter-search">
-        <div class="label" (click)="showFilterModal()">
+        <div class="label" [class.disable]="!categoryValue" (click)="categoryValue && showFilterModal()">
             <div>
                 Filter
             </div>
@@ -12,6 +12,11 @@
                 <mat-icon [inline]=true>filter_alt</mat-icon>
             </div>
         </div>
+        <div *ngIf="selectedFilter" (click)="clearFilter()" class="clear-filter-icon">
+            <div class="clear-label">Clear</div>
+            <div class="material-icons-outlined close-icon">close</div>
+        </div>
+        
         <div class="ac-input">
             <input type="text" (keyup)="filterComponent($event)" placeholder="Search by part name, size, material etc">
             <div class="search-icon">

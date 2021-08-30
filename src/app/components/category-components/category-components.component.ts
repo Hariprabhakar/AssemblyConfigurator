@@ -17,7 +17,7 @@ import { FilterModalComponent } from '../filter-modal/filter-modal.component';
   styleUrls: ['./category-components.component.scss']
 })
 export class CategoryComponentsComponent implements OnInit {
-  @Input() public categoryValue: number;
+  @Input() public categoryValue: any;
   @Input() public duplicateValue: any;
   @ViewChild('tagModal', { read: ElementRef, static: false }) tagModal: ElementRef
   @Output() selectedComponent = new EventEmitter();
@@ -46,6 +46,7 @@ export class CategoryComponentsComponent implements OnInit {
   public disableBtn: any;
   private isJunctionBoxGroup: any;
   private assemblysubscription: Subscription;
+  public selectedFilter: any;
 
   constructor(private configuratorService: ConfiguratorService, private route: ActivatedRoute, private toastService: ToastService, public dialog: MatDialog) {
     this.isJunctionBox = false;
@@ -53,7 +54,6 @@ export class CategoryComponentsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.route.queryParams.subscribe((params: any) => {
       let paramId = params.id;
       if (paramId) {
@@ -101,7 +101,7 @@ export class CategoryComponentsComponent implements OnInit {
       } else {
         this.isJunctionBox = false;
       }
-
+      this.selectedFilter = null;
       const id = changes.categoryValue.currentValue.id;
       this.showLoader = true;
       this.configuratorService.getComponents(this.configuratorService.companyId, id).subscribe((res: any) => {
@@ -291,15 +291,27 @@ export class CategoryComponentsComponent implements OnInit {
 
     const dialogRef = this.dialog.open(FilterModalComponent, {
       backdropClass: 'backdropBackground',
+      panelClass: 'filter-modalbox',
+      width: '360px',
       data: {
-        categoryId: 1
+        categoryId: this.categoryValue,
+        filters: this.selectedFilter
       }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(true);
-        
+        this.selectedFilter = result;
+        this.updateComponent(result);
       }
+    });
+  }
+
+  private updateComponent(filters: any){
+    this.configuratorService.postComponentFilters(this.categoryValue.id, filters).subscribe((res: any)=>{
+      this.componentDataSource = new MatTableDataSource(res);
+    },
+    (error: any)=>{
+      this.toastService.openSnackBar(error);
     });
   }
 
@@ -327,6 +339,46 @@ export class CategoryComponentsComponent implements OnInit {
 
 
     });
+  }
+
+  public clearFilter(){
+    this.configuratorService.getComponents(this.configuratorService.companyId, this.categoryValue.id).subscribe((res: any) => {
+      this.selectedFilter = null;
+      this.configuratorService.dupElement && res.forEach((val: any) => {
+
+        this.configuratorService.dupElement.forEach((value: any) => {
+          if (val.id === value.id) {
+            val.duplicate = value.duplicate;
+          }
+        });
+
+      });
+
+      res.forEach((val: any) => {
+        this.configuratorService.removedElement.subscribe((response: any) => {
+
+          if (response) {
+            response.forEach((value: any) => {
+              if (val.id === value.id) {
+                val.duplicate = value.duplicate;
+              }
+
+            });
+
+          }
+        });
+
+
+      });
+
+      this.componentDataSource = new MatTableDataSource(res);
+      this.editableRowIndex = -1;
+      this.showLoader = false;
+    },
+      (error: any) => {
+        this.toastService.openSnackBar(error);
+        this.showLoader = false;
+      });
   }
 
 }
