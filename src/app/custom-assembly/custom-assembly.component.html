@@ -73,7 +73,10 @@
                 <div class="clearfix"></div>
                 <div class="component-controls">
                     <div class="view-select">
-                        <span inline="true" class="material-icons-round"> grid_view </span>
+                        <span class="material-icons-outlined view-tab" *ngIf="!gridViewFlag" (click)="gridView()">
+                            view_list
+                            </span>
+                        <span inline="true" *ngIf="gridViewFlag" class="material-icons-round grid-view" (click)="gridView()"> grid_view </span>
                     </div>
                     <div class="component-search ac-input">
                         <input (keyup)="filterComponent($event)" type="text" placeholder="Search by part name, Size, Material etc" />
@@ -85,7 +88,7 @@
             </div>
         </div>
         <div class="component-section">
-            <div class="table" [class.editable]="!assemblyDetailsReadOnly">
+            <div class="table" [class.editable]="!assemblyDetailsReadOnly" *ngIf="!gridViewFlag">
                 <table mat-table #table [dataSource]="componentTableData" cdkDropList [cdkDropListData]="componentTableData" (cdkDropListDropped)="dropTable($event)">
                     <ng-container matColumnDef="sn">
                         <th mat-header-cell *matHeaderCellDef>SN</th>
@@ -97,58 +100,54 @@
                         <td mat-cell *matCellDef="let element"></td>
                     </ng-container>
 
-          <ng-container matColumnDef="component">
-            <th mat-header-cell *matHeaderCellDef>Component</th>
-            <td mat-cell *matCellDef="let element">
-              <div>{{ element.name }}</div>
-              <div class="jbox-action" *ngIf="!assemblyDetailsReadOnly ? checkJunctionBox(element) : true">
-                <div class="jbox-system" *ngIf="assemblyDetailsReadOnly ? !checkArrayEmpty(element.systems) : true">
-                  <div class="label">Sys:</div>
-                  <div class="chip">
-                    <span *ngIf="checkArray(element.systems)"
-                      >{{ element.systems[0] }} <span *ngIf="element.systems?.length > 1"> + {{ element.systems.length - 1 }}</span></span
-                    >
-                    <span *ngIf="!checkArray(element.systems)">{{ element.systems }}</span>
-                    <div class="action-icons" *ngIf="!assemblyDetailsReadOnly">
-                      <span inline="true" (click)="!assemblyDetailsReadOnly && editConnectionSystem(element)" class="material-icons-outlined edit-icon"> border_color </span>
-                      <!-- <span inline="true" (click)="!assemblyDetailsReadOnly && deleteConnectionSystem(element, 'systems')" class="material-icons-outlined delete-icon">delete</span> -->
-                    </div>
-                  </div>
-                </div>
-                <div class="jbox-connector" *ngIf="assemblyDetailsReadOnly ? !checkArrayEmpty(element.connectionTypes) : true">
-                  <div class="label">Conn:</div>
-                  <div class="chip">
-                    <span *ngIf="checkArray(element.connectionTypes)"
-                      >{{ element.connectionTypes[0] }} <span *ngIf="element.connectionTypes?.length > 1">+ {{ element.connectionTypes.length - 1 }}</span></span
-                    >
-                    <span *ngIf="!checkArray(element.connectionTypes)">{{ element.connectionTypes }}</span>
-                    <div class="action-icons" *ngIf="!assemblyDetailsReadOnly">
-                      <span class="edit-icon" (click)="!assemblyDetailsReadOnly && editConnectionSystem(element)" inline="true" class="material-icons-outlined edit-icon">
+                    <ng-container matColumnDef="component">
+                        <th mat-header-cell *matHeaderCellDef>Component</th>
+                        <td mat-cell *matCellDef="let element">
+                            <div>{{ element.name }}</div>
+                            <div class="jbox-action" *ngIf="!assemblyDetailsReadOnly ? checkJunctionBox(element) : true">
+                                <div class="jbox-system" *ngIf="assemblyDetailsReadOnly ? !checkArrayEmpty(element.systems) : true">
+                                    <div class="label">Sys:</div>
+                                    <div class="chip">
+                                        <span *ngIf="checkArray(element.systems)">{{ element.systems[0] }} <span *ngIf="element.systems?.length > 1"> + {{ element.systems.length - 1 }}</span></span>
+                                        <span *ngIf="!checkArray(element.systems)">{{ element.systems }}</span>
+                                        <div class="action-icons" *ngIf="!assemblyDetailsReadOnly">
+                                            <span inline="true" (click)="!assemblyDetailsReadOnly && editConnectionSystem(element)" class="material-icons-outlined edit-icon"> border_color </span>
+                                            <!-- <span inline="true" (click)="!assemblyDetailsReadOnly && deleteConnectionSystem(element, 'systems')" class="material-icons-outlined delete-icon">delete</span> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="jbox-connector" *ngIf="assemblyDetailsReadOnly ? !checkArrayEmpty(element.connectionTypes) : true">
+                                    <div class="label">Conn:</div>
+                                    <div class="chip">
+                                        <span *ngIf="checkArray(element.connectionTypes)">{{ element.connectionTypes[0] }} <span *ngIf="element.connectionTypes?.length > 1">+ {{ element.connectionTypes.length - 1 }}</span></span>
+                                        <span *ngIf="!checkArray(element.connectionTypes)">{{ element.connectionTypes }}</span>
+                                        <div class="action-icons" *ngIf="!assemblyDetailsReadOnly">
+                                            <span class="edit-icon" (click)="!assemblyDetailsReadOnly && editConnectionSystem(element)" inline="true" class="material-icons-outlined edit-icon">
                         border_color
                       </span>
-                      <!-- <span
+                                            <!-- <span
                         class="deleted-icon"
                         (click)="!assemblyDetailsReadOnly && deleteConnectionSystem(element, 'connectionTypes')"
                         inline="true"
                         class="material-icons-outlined delee-icont"
                         >delete</span
                       > -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </td>
-          </ng-container>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </ng-container>
 
-          <!-- <ng-container matColumnDef="tag">
+                    <!-- <ng-container matColumnDef="tag">
                         <th mat-header-cell *matHeaderCellDef> Tag </th>
                         <td mat-cell *matCellDef="let element" (click)="showTagModal($event, element)" [matTooltip]="element.tag ? element.tag : 'Add Tag'">  {{element.tag ? element.tag : 'Add Tag'}} </td>
                       </ng-container> -->
 
-          <ng-container matColumnDef="tag">
-            <th mat-header-cell *matHeaderCellDef>Tag</th>
-            <td mat-cell *matCellDef="let element; let i = index" [matTooltip]="element.tag">
-              <span>{{ element.tag }}</span>
+                    <ng-container matColumnDef="tag">
+                        <th mat-header-cell *matHeaderCellDef>Tag</th>
+                        <td mat-cell *matCellDef="let element; let i = index" [matTooltip]="element.tag">
+                            <span>{{ element.tag }}</span>
                         </td>
                     </ng-container>
 
@@ -180,25 +179,41 @@
                     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns" [cdkDragDisabled]="assemblyDetailsReadOnly" cdkDrag [cdkDragData]="row"></tr>
                 </table>
+            </div>
+
+            <div class="gridViewTag" *ngIf="gridViewFlag">
+                <div class="box" *ngFor="let component of componentsData">
+
+                    <div class="img">
+
+                    </div>
+
+                    <div class="content">
+                        <span class="heading">{{component.name}}</span>
+                        <span class="quantity">QTY: {{component.qty}}</span>
+                        <span class="tag"> TAG: {{component.tag}}</span>
+                    </div>
+
                 </div>
-                <div class="footer">
-                    <div class="save-btn-wrap">
-                        <div class="reset-btn">
-                            <button mat-button color="primary" *ngIf="!assemblyDetailsReadOnly" (click)="resetAssembly()">
+            </div>
+            <div class="footer">
+                <div class="save-btn-wrap">
+                    <div class="reset-btn">
+                        <button mat-button color="primary" *ngIf="!assemblyDetailsReadOnly" (click)="resetAssembly()">
               <span class="material-icons-outlined">autorenew</span>
               RESET
             </button>
-          </div>
-          <div class="right-side-ctrl">
-            <button mat-flat-button color="primary" *ngIf="assemblyDetailsReadOnly" [disabled]="!enableEdit" (click)="editAssembly()">EDIT</button>
-            <div class="secondary-btn">
-              <button *ngIf="!assemblyDetailsReadOnly" mat-flat-button color="primary" (click)="cancelEdit()">Cancel</button>
+                    </div>
+                    <div class="right-side-ctrl">
+                        <button mat-flat-button color="primary" *ngIf="assemblyDetailsReadOnly" [disabled]="!enableEdit" (click)="editAssembly()">EDIT</button>
+                        <div class="secondary-btn">
+                            <button *ngIf="!assemblyDetailsReadOnly" mat-flat-button color="primary" (click)="cancelEdit()">Cancel</button>
+                        </div>
+                        <button *ngIf="isEdit && !assemblyDetailsReadOnly" mat-flat-button color="primary" (click)="getUpdatedAssemblyData()">{{duplicateAssembly ? 'SAVE' : isCopyAssembly ? 'SAVE AS' : 'SAVE'}}</button>
+                        <button *ngIf="!isEdit && !assemblyDetailsReadOnly" mat-flat-button color="primary" (click)="saveAssembly()">SAVE</button>
+                    </div>
+                </div>
             </div>
-            <button *ngIf="isEdit && !assemblyDetailsReadOnly" mat-flat-button color="primary"  (click)="getUpdatedAssemblyData()">{{duplicateAssembly ? 'SAVE' : isCopyAssembly ? 'SAVE AS' : 'SAVE'}}</button>
-            <button *ngIf="!isEdit && !assemblyDetailsReadOnly" mat-flat-button color="primary"  (click)="saveAssembly()">SAVE</button>
-          </div>          
         </div>
-      </div>
     </div>
-  </div>
 </div>

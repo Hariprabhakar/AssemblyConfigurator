@@ -61,11 +61,13 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   public assemblyType: string | null;
   public isCopyAssembly: boolean = false;
   public baseUrl: string = '';
+  public disableBtn: boolean = false;
   public downloadedImg: any;
   public initialLoad: boolean = true;
   public enableEdit: boolean = false;
   public duplicateAssembly: boolean = false;
   public originalIconSrc: any;
+  public gridViewFlag: boolean = false;
   @Output() removedComponent = new EventEmitter();
   @ViewChild('table') table: MatTable<any>;
   private saveAssemblyData: SaveAssemblyData = {
@@ -148,7 +150,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
       const assemblyInfo = res;
       //this.iconSrc = res.icon ? 'data:image/jpeg;base64,'+res.icon: '';
       if(res.components) {
-        
+        console.log('COMPONENTS',res);
         this.componentsData = res.components;
         this.componentTableData = new MatTableDataSource(this.componentsData);
         this.selectedConnections = this.getUniqueSystemConnection('connectionTypes');
@@ -718,8 +720,24 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   public resetAssembly() {
     this.iconSrc = this.originalIconSrc;
     if (this.isEdit) {
+      console.log('EDIT MODE');
       this.getAssemblyData();    
       this.configuratorService.resetAssemblyData('true');
+
+
+      console.log('EDITED COMP',this.configuratorService.editedComponentData);
+       
+        this.configuratorService.dupElement.forEach((dupVal: any)=>{
+
+          if(this.configuratorService.editedComponentData.indexOf(dupVal) == -1){
+            dupVal.duplicate = false;
+          }
+        });
+       
+  
+   console.log('ADDED',this.configuratorService.dupElement);
+   this.configuratorService.removedComponents(this.configuratorService.dupElement);
+
     } else {
       this.configuratorService.dupElement.forEach((value: any)=>{
        
@@ -811,5 +829,18 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
     }
   }
 
-}
+  public gridView(){
 
+    let address = window.location.href;
+    if(this.isEdit){
+      this.gridViewFlag = false;
+    }else if( address.endsWith("create-assembly")){
+      this.gridViewFlag = false;
+    }
+    else{
+      this.gridViewFlag ? this.gridViewFlag = false : this.gridViewFlag = true;
+    }
+
+  }
+
+}

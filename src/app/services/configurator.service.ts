@@ -32,6 +32,7 @@ export class ConfiguratorService {
 
   public junctionBoxComponents: number[] = [];
 
+  public editedComponentData: any[] = [];
   constructor(private restApiService: RestApiService, private sessionService: SessionService) {
     const companyId = sessionStorage.getItem('companyId') || '';
     const sessionCompany = this.sessionService.decrypt(companyId);
