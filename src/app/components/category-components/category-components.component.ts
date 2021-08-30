@@ -82,6 +82,7 @@ export class CategoryComponentsComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        this.checkDuplicate(element);
         this.recentElement.connectionTypes = result.connection;
         this.recentElement.systems = result.systemName;
         this.recentElement.isJunctionBox = this.isJunctionBox;
@@ -151,7 +152,6 @@ export class CategoryComponentsComponent implements OnInit {
 
   addComponent(element: any) {
     this.recentElement = element;
-    this.checkDuplicate(element);
     //this.disableBtn = element.id;
 
     //this.disable.push(element.id);
@@ -168,7 +168,6 @@ export class CategoryComponentsComponent implements OnInit {
       if (!existingComponents.includes(element.id)) {
         this.openDialog(element);
       } else {
-
         this.disableBtn = true;
         const messageDialog = this.dialog.open(MessageModalComponent, {
           data: {
@@ -179,6 +178,7 @@ export class CategoryComponentsComponent implements OnInit {
         });
       }
     } else {
+      this.checkDuplicate(element);
       this.selectedComponent.emit(element);
     }
 
@@ -309,14 +309,15 @@ export class CategoryComponentsComponent implements OnInit {
 
     this.configuratorService.dupElement.push(element);
 
-
   }
 
   public getAssemblyData(id: any) {
 
     this.configuratorService.getAssemblyComponent(id).subscribe((response: any) => {
       if (response) {
+       
         this.editedData = response.components;
+        this.configuratorService.editedComponentData = this.editedData;
         this.editedData.forEach((val: any) => {
 
           this.checkDuplicate(val);

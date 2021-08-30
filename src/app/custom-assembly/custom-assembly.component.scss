@@ -23,7 +23,8 @@
     }
 }
 
-.choose-icon {
+.choose-icon,
+.view-tab {
     cursor: pointer;
 }
 
@@ -525,4 +526,130 @@
 .cdk-overlay-backdrop {
     /* your css needs */
     background: #0000007d !important;
+}
+
+.grid-view {
+    cursor: pointer;
+}
+
+.gridViewTag {
+    border-top: 2px solid #4a4a4a;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    overflow: hidden auto;
+    height: 500px;
+    align-content: flex-start;
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+    &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px #232323;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background-color: #4f4f4f;
+    }
+}
+
+.box {
+    border: 1px solid #4A4A4A;
+    width: 222.5px;
+    height: 129px;
+    padding: 4px;
+}
+
+.img {
+    width: 90px;
+    height: 95px;
+    background-color: #818181;
+    float: left;
+    margin-top: 10px;
+    margin-left: 6px;
+}
+
+.heading {
+    width: 100px;
+    margin-left: 11px;
+    margin-top: -25px;
+    display: inline-block;
+}
+
+.quantity {
+    display: inline-block;
+    width: 50px;
+    margin-top: 8px;
+    margin-left: -40px;
+}
+
+.content {
+    width: 100px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    padding-left: 35px;
+}
+
+.tag {
+    display: inline-block;
+    margin-top: 4px;
+    margin-left: -49px;
+}
+
+@media(min-width:1800px) {
+    .box {
+        width: 236.5px;
+    }
+}
+
+@media(max-width:1366px) {
+    .gridViewTag {
+        height: 300px;
+    }
+    .box {
+        width: 222.5px;
+    }
+    .content {
+        padding-left: 10px;
+    }
+}
+
+@media (max-width:1265px) {
+    .gridViewTag {
+        height: 350px;
+    }
+    .box {
+        width: 206.5px;
+    }
+}
+
+@media(max-width:1024px) {
+    .gridViewTag {
+        height: calc( 100vh - 193px);
+    }
+    .box {
+        width: 248.5px;
+    }
+}
+
+@media (max-width:965px) {
+    .box {
+        width: 229.5px;
+    }
+    .gridViewTag {
+        height: 500px;
+    }
+}
+
+@media(max-width:768px) {
+    .box {
+        width: 360px;
+        height: 136px;
+    }
+    .gridViewTag {
+        height: 625px;
+    }
 }

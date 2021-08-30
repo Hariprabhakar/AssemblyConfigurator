@@ -104,6 +104,14 @@ export class JunctionboxModalComponent implements OnInit {
   }
 
   public close(){
+    console.log('ADDED',this.configuratorService.dupElement);
+      this.configuratorService.dupElement && this.configuratorService.dupElement.forEach((val: any)=>{
+
+        if((val.id == 420 && val.duplicate == true)||(val.id == 264 && val.duplicate == true)){
+
+          val.duplicate = true;
+        }
+    });
     this.dialogRef.close(false);
   }
 }
