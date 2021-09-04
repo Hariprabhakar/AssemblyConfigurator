@@ -22,8 +22,8 @@ export class ConfiguratorService {
   public cancelRouteValues: any = {
     familyId: '',
     assemblyId: ''
-  }
-  public dupElement: any= [];
+  };
+  public dupElement: any = [];
   // public _addElement$ = new Subject();
   // public addElement = this._addElement$.asObservable();
 
@@ -54,16 +54,15 @@ export class ConfiguratorService {
   //   this._addElement$.next(val);
   // }
 
-  public removedComponents(val: any){
-
+  public removedComponents(val: any) {
     this._removedElement$.next(val);
   }
 
-  public completeComponents(){
+  public completeComponents() {
     this._removedElement$.complete();
   }
 
-  public resetAssemblyData(val: string){
+  public resetAssemblyData(val: string) {
     this.resetSubject$.next(val);
   }
 
@@ -183,7 +182,7 @@ export class ConfiguratorService {
    * @memberOf ConfiguratorService
    */
   public getAssemblyComponent(id: number) {
-    if(environment.mockEnabled){
+    if (environment.mockEnabled) {
       id = 10191;
     }
     return this.restApiService.get(`assemblies/${id}/get-components`, '', '');
@@ -197,7 +196,7 @@ export class ConfiguratorService {
   }
 
   public getAssemblyById(assemblyId: number) {
-    if(environment.mockEnabled){
+    if (environment.mockEnabled) {
       assemblyId = 10191;
     }
     return this.restApiService.get(`assemblies/${assemblyId}`, '', '');
@@ -207,13 +206,14 @@ export class ConfiguratorService {
     return this.restApiService.delete(`assemblies/${assemblyId}`, '', '');
   }
 
-  public getComponentFilters(categoryId: number){
-    const queryParam = `categoryId=${categoryId}`
-    return this.restApiService.get(`filters`, '', queryParam);
+  public getComponentFilters(categoryId: number) {
+    const companyId = sessionStorage.getItem('companyId') || '';
+    const sessionCompany = this.sessionService.decrypt(companyId);
+    const queryParam = `companyId=${sessionCompany}&categoryId=${categoryId}`;
+    return this.restApiService.get(`components/filters`, '', queryParam);
   }
 
-  public postComponentFilters(categoryId: number, reqObj: any){
+  public postComponentFilters(categoryId: number, reqObj: any) {
     return this.restApiService.post(`apply-filters/${categoryId}`, reqObj, '');
   }
-
 }

@@ -9,8 +9,6 @@ import { MessageModalComponent } from '../message-modal/message-modal.component'
 import { ActivatedRoute } from '@angular/router';
 import { FilterModalComponent } from '../filter-modal/filter-modal.component';
 
-
-
 @Component({
   selector: 'app-category-components',
   templateUrl: './category-components.component.html',
@@ -19,14 +17,14 @@ import { FilterModalComponent } from '../filter-modal/filter-modal.component';
 export class CategoryComponentsComponent implements OnInit {
   @Input() public categoryValue: any;
   @Input() public duplicateValue: any;
-  @ViewChild('tagModal', { read: ElementRef, static: false }) tagModal: ElementRef
+  @ViewChild('tagModal', { read: ElementRef, static: false }) tagModal: ElementRef;
   @Output() selectedComponent = new EventEmitter();
   public displayedColumns: string[] = ['image', 'component', 'tag', 'phase', 'uom', 'add'];
   public componentDataSource: any;
   public tagModalPosition = {
     left: '',
     top: ''
-  }
+  };
   public showAddTag: boolean = false;
   private tagFlag: boolean = false;
   public currentTagList: any;
@@ -62,7 +60,6 @@ export class CategoryComponentsComponent implements OnInit {
     });
 
     this.assemblysubscription = this.configuratorService.currentAssemblyValue.subscribe((data: any) => {
-
       if (data.familyId === 2) {
         this.isJunctionBoxGroup = true;
       } else {
@@ -80,7 +77,7 @@ export class CategoryComponentsComponent implements OnInit {
         isAdd: true
       }
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.checkDuplicate(element);
         this.recentElement.connectionTypes = result.connection;
@@ -92,11 +89,10 @@ export class CategoryComponentsComponent implements OnInit {
     });
   }
 
-
   public ngOnChanges(changes: SimpleChanges) {
-
     if (changes.categoryValue && changes.categoryValue.currentValue) {
-      if (changes.categoryValue.currentValue?.name?.toLowerCase() === 'junction box') { // Junctionbox id is 7 and for mocking its kept of Data Jack
+      if (changes.categoryValue.currentValue?.name?.toLowerCase() === 'junction box') {
+        // Junctionbox id is 7 and for mocking its kept of Data Jack
         this.isJunctionBox = true;
       } else {
         this.isJunctionBox = false;
@@ -104,46 +100,40 @@ export class CategoryComponentsComponent implements OnInit {
       this.selectedFilter = null;
       const id = changes.categoryValue.currentValue.id;
       this.showLoader = true;
-      this.configuratorService.getComponents(this.configuratorService.companyId, id).subscribe((res: any) => {
-
-        this.configuratorService.dupElement && res.forEach((val: any) => {
-
-          this.configuratorService.dupElement.forEach((value: any) => {
-            if (val.id === value.id) {
-              val.duplicate = value.duplicate;
-            }
-          });
-
-        });
-
-        res.forEach((val: any) => {
-          this.configuratorService.removedElement.subscribe((response: any) => {
-
-            if (response) {
-              response.forEach((value: any) => {
+      this.configuratorService.getComponents(this.configuratorService.companyId, id).subscribe(
+        (res: any) => {
+          this.configuratorService.dupElement &&
+            res.forEach((val: any) => {
+              this.configuratorService.dupElement.forEach((value: any) => {
                 if (val.id === value.id) {
                   val.duplicate = value.duplicate;
                 }
-
               });
+            });
 
-            }
+          res.forEach((val: any) => {
+            this.configuratorService.removedElement.subscribe((response: any) => {
+              if (response) {
+                response.forEach((value: any) => {
+                  if (val.id === value.id) {
+                    val.duplicate = value.duplicate;
+                  }
+                });
+              }
+            });
           });
 
-
-        });
-
-        this.componentDataSource = new MatTableDataSource(res);
-        this.editableRowIndex = -1;
-        this.showLoader = false;
-      },
+          this.componentDataSource = new MatTableDataSource(res);
+          this.editableRowIndex = -1;
+          this.showLoader = false;
+        },
         (error: any) => {
           this.toastService.openSnackBar(error);
           this.showLoader = false;
-        });
+        }
+      );
     }
   }
-
 
   filterComponent(event: any) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -160,8 +150,7 @@ export class CategoryComponentsComponent implements OnInit {
     const getAssemblyData = this.configuratorService.getAssemblyData();
     // if (getAssemblyData !== undefined && getAssemblyData?.familyId && getAssemblyData.familyId === 2) {
     //   this.openDialog(element);
-    // }  
-
+    // }
 
     if (this.isJunctionBox) {
       const existingComponents = this.configuratorService.junctionBoxComponents;
@@ -181,7 +170,6 @@ export class CategoryComponentsComponent implements OnInit {
       this.checkDuplicate(element);
       this.selectedComponent.emit(element);
     }
-
   }
 
   // public showTagModal(event: any, row: any){
@@ -219,19 +207,20 @@ export class CategoryComponentsComponent implements OnInit {
 
   public addTag() {
     if (this.tagValue) {
-      this.configuratorService.addTagToComponent(this.selectedComponentId, this.tagValue).subscribe((res: any) => {
-        this.componentDataSource.data.forEach((element: any) => {
-          if (element.id == res['componentId']) {
-            element.tag = element.tag ? element.tag + ',' + res.tag : res.tag;
-          }
-          this.showAddTag = false;
-        });
-      },
+      this.configuratorService.addTagToComponent(this.selectedComponentId, this.tagValue).subscribe(
+        (res: any) => {
+          this.componentDataSource.data.forEach((element: any) => {
+            if (element.id == res['componentId']) {
+              element.tag = element.tag ? element.tag + ',' + res.tag : res.tag;
+            }
+            this.showAddTag = false;
+          });
+        },
         (error: any) => {
           this.toastService.openSnackBar(error);
-        });
+        }
+      );
     }
-
   }
 
   public clearTagVal() {
@@ -246,13 +235,14 @@ export class CategoryComponentsComponent implements OnInit {
         const phaseObj = {
           phase: this.recentEditedPhase
         };
-        this.configuratorService.updatePhase(this.selectedComponentId, phaseObj).subscribe((res) => {
-          this.editableRowIndex = -1;
-
-        },
+        this.configuratorService.updatePhase(this.selectedComponentId, phaseObj).subscribe(
+          (res) => {
+            this.editableRowIndex = -1;
+          },
           (error: any) => {
             this.toastService.openSnackBar(error);
-          });
+          }
+        );
       }
     }
   }
@@ -264,13 +254,15 @@ export class CategoryComponentsComponent implements OnInit {
       if (this.recentEditedTag !== '' && this.recentEditedTag !== this.currentTagVal) {
         const tag = {
           tag: this.recentEditedTag
-        }
-        this.configuratorService.addTagToComponent(this.selectedComponentId, tag).subscribe((res: any) => {
-          this.editableTagIndex = -1;
-        },
+        };
+        this.configuratorService.addTagToComponent(this.selectedComponentId, tag).subscribe(
+          (res: any) => {
+            this.editableTagIndex = -1;
+          },
           (error: any) => {
             this.toastService.openSnackBar(error);
-          });
+          }
+        );
       }
     }
   }
@@ -288,7 +280,6 @@ export class CategoryComponentsComponent implements OnInit {
   }
 
   public showFilterModal() {
-
     const dialogRef = this.dialog.open(FilterModalComponent, {
       backdropClass: 'backdropBackground',
       panelClass: 'filter-modalbox',
@@ -298,7 +289,7 @@ export class CategoryComponentsComponent implements OnInit {
         filters: this.selectedFilter
       }
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.selectedFilter = result;
         this.updateComponent(result);
@@ -306,79 +297,68 @@ export class CategoryComponentsComponent implements OnInit {
     });
   }
 
-  private updateComponent(filters: any){
-    this.configuratorService.postComponentFilters(this.categoryValue.id, filters).subscribe((res: any)=>{
-      this.componentDataSource = new MatTableDataSource(res);
-    },
-    (error: any)=>{
-      this.toastService.openSnackBar(error);
-    });
+  private updateComponent(filters: any) {
+    this.configuratorService.postComponentFilters(this.categoryValue.id, filters).subscribe(
+      (res: any) => {
+        this.componentDataSource = new MatTableDataSource(res);
+      },
+      (error: any) => {
+        this.toastService.openSnackBar(error);
+      }
+    );
   }
 
   public checkDuplicate(element: any) {
-
-    !(element.duplicate) && (element.duplicate = true);
+    !element.duplicate && (element.duplicate = true);
 
     this.configuratorService.dupElement.push(element);
-
   }
 
   public getAssemblyData(id: any) {
-
     this.configuratorService.getAssemblyComponent(id).subscribe((response: any) => {
       if (response) {
-       
         this.editedData = response.components;
         this.configuratorService.editedComponentData = this.editedData;
         this.editedData.forEach((val: any) => {
-
           this.checkDuplicate(val);
         });
-
       }
-
-
     });
   }
 
-  public clearFilter(){
-    this.configuratorService.getComponents(this.configuratorService.companyId, this.categoryValue.id).subscribe((res: any) => {
-      this.selectedFilter = null;
-      this.configuratorService.dupElement && res.forEach((val: any) => {
-
-        this.configuratorService.dupElement.forEach((value: any) => {
-          if (val.id === value.id) {
-            val.duplicate = value.duplicate;
-          }
-        });
-
-      });
-
-      res.forEach((val: any) => {
-        this.configuratorService.removedElement.subscribe((response: any) => {
-
-          if (response) {
-            response.forEach((value: any) => {
+  public clearFilter() {
+    this.configuratorService.getComponents(this.configuratorService.companyId, this.categoryValue.id).subscribe(
+      (res: any) => {
+        this.selectedFilter = null;
+        this.configuratorService.dupElement &&
+          res.forEach((val: any) => {
+            this.configuratorService.dupElement.forEach((value: any) => {
               if (val.id === value.id) {
                 val.duplicate = value.duplicate;
               }
-
             });
+          });
 
-          }
+        res.forEach((val: any) => {
+          this.configuratorService.removedElement.subscribe((response: any) => {
+            if (response) {
+              response.forEach((value: any) => {
+                if (val.id === value.id) {
+                  val.duplicate = value.duplicate;
+                }
+              });
+            }
+          });
         });
 
-
-      });
-
-      this.componentDataSource = new MatTableDataSource(res);
-      this.editableRowIndex = -1;
-      this.showLoader = false;
-    },
+        this.componentDataSource = new MatTableDataSource(res);
+        this.editableRowIndex = -1;
+        this.showLoader = false;
+      },
       (error: any) => {
         this.toastService.openSnackBar(error);
         this.showLoader = false;
-      });
+      }
+    );
   }
-
 }

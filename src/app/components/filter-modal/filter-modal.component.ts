@@ -17,34 +17,37 @@ export interface FilterModel {
   styleUrls: ['./filter-modal.component.scss']
 })
 export class FilterModalComponent implements OnInit {
-
   public myModel = true;
   @ViewChildren('linkRef') linkRefs: QueryList<any> | undefined;
-  public selectedFilter: FilterModel = { "filters": [] };
+  public selectedFilter: FilterModel = { filters: [] };
   public preSelectedFilter: FilterModel;
   private element: any;
   public filterValue = {
-    "filters": [
+    filters: [
       {
-        "name": "Select Type",
-        "values": ["Type a", "Type b"]
+        name: 'Select Type',
+        values: ['Type a', 'Type b']
       },
       {
-        "name": "Select Size",
-        "values": ["Size a", "Size b"]
+        name: 'Select Size',
+        values: ['Size a', 'Size b']
       },
       {
-        "name": "Select Material",
-        "values": ["Material a", "Material b"]
+        name: 'Select Material',
+        values: ['Material a', 'Material b']
       },
       {
-        "name": "other filter",
-        "values": ["value 1", "value 2", "value 3", "value 4", "value 5", "value 6", "value 7", "value 8", "value 9", "value 10", "value 11", "value 12"]
+        name: 'other filter',
+        values: ['value 1', 'value 2', 'value 3', 'value 4', 'value 5', 'value 6', 'value 7', 'value 8', 'value 9', 'value 10', 'value 11', 'value 12']
       }
     ]
-  }
-  constructor(public dialModalRef: MatDialogRef<FilterModalComponent>, @Inject(MAT_DIALOG_DATA) public data: any,
-    private configuratorService: ConfiguratorService, private toastService: ToastService) {
+  };
+  constructor(
+    public dialModalRef: MatDialogRef<FilterModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private configuratorService: ConfiguratorService,
+    private toastService: ToastService
+  ) {
     dialModalRef.disableClose = true;
   }
 
@@ -55,17 +58,19 @@ export class FilterModalComponent implements OnInit {
     if (this.data.filters) {
       this.selectedFilter = this.data.filters;
     }
-    
+
     let categoryId = this.data.categoryId.id;
-    this.configuratorService.getComponentFilters(categoryId).subscribe((response: any) => {
-      if (response) {
-        this.filterValue = response;
-      }
-    },
+    this.configuratorService.getComponentFilters(categoryId).subscribe(
+      (response: any) => {
+        if (response) {
+          console.log(response);
+          this.filterValue = response;
+        }
+      },
       (error: any) => {
         this.toastService.openSnackBar(error);
-      });
-
+      }
+    );
   }
 
   public list_change(event: any, name: any, value: any) {
@@ -82,7 +87,7 @@ export class FilterModalComponent implements OnInit {
             });
             if (valIndex >= 0) {
               ele.values.splice(valIndex, 1);
-              if(ele.values.length == 0){
+              if (ele.values.length == 0) {
                 this.selectedFilter.filters.splice(index, 1);
               }
             }
@@ -95,17 +100,15 @@ export class FilterModalComponent implements OnInit {
       }
     }
     console.log(this.selectedFilter.filters);
-    
   }
 
   private addFilterValue(name: any, value: any) {
     const tempVal = {
-      'name': name,
-      'values': [value]
-    }
+      name: name,
+      values: [value]
+    };
     this.selectedFilter.filters.push(tempVal);
   }
-
 
   public close() {
     this.dialModalRef.close();
@@ -120,22 +123,20 @@ export class FilterModalComponent implements OnInit {
       let myCheckboxes = this.linkRefs.toArray();
       myCheckboxes.forEach((checkbox: any) => {
         checkbox._checked = false;
-      })
+      });
     }
     this.selectedFilter.filters = [];
-
   }
 
-  public checkSelected(name: string, value: string){
+  public checkSelected(name: string, value: string) {
     let checked: boolean = false;
-    if(this.selectedFilter){
-      checked = this.selectedFilter.filters.some((filter)=>{
-        if(filter.name == name){
-         return filter.values?.includes(value);
+    if (this.selectedFilter) {
+      checked = this.selectedFilter.filters.some((filter) => {
+        if (filter.name == name) {
+          return filter.values?.includes(value);
         }
       });
     }
     return checked;
   }
-
 }
