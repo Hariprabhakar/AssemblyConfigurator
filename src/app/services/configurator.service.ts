@@ -214,6 +214,8 @@ export class ConfiguratorService {
   }
 
   public postComponentFilters(categoryId: number, reqObj: any) {
-    return this.restApiService.post(`apply-filters/${categoryId}`, reqObj, '');
+    const companyId = sessionStorage.getItem('companyId') || '';
+    const sessionCompany = this.sessionService.decrypt(companyId);
+    return this.restApiService.post(`components/apply-filters?companyId=${sessionCompany}&categoryId=${categoryId}`, reqObj, '');
   }
 }
