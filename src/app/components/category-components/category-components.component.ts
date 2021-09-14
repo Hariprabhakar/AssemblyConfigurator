@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { MessageModalComponent } from '../message-modal/message-modal.component';
 import { ActivatedRoute } from '@angular/router';
 import { FilterModalComponent } from '../filter-modal/filter-modal.component';
+import { RequestNewComponent } from 'src/app/shared/components/request-new-comp/request-new-comp.component';
 
 @Component({
   selector: 'app-category-components',
@@ -46,7 +47,8 @@ export class CategoryComponentsComponent implements OnInit {
   private assemblysubscription: Subscription;
   public selectedFilter: any;
 
-  constructor(private configuratorService: ConfiguratorService, private route: ActivatedRoute, private toastService: ToastService, public dialog: MatDialog) {
+  constructor(private configuratorService: ConfiguratorService,
+    private route: ActivatedRoute, private toastService: ToastService, public dialog: MatDialog) {
     this.isJunctionBox = false;
     this.isJunctionBoxGroup = false;
   }
@@ -360,5 +362,24 @@ export class CategoryComponentsComponent implements OnInit {
         this.showLoader = false;
       }
     );
+  }
+
+  public reqNewComponent(){
+
+    console.log('REQUEST NEW COMPONENT');
+
+    const dialogRef = this.dialog.open(RequestNewComponent, {
+      backdropClass: 'backdropBackground',
+      data: {
+        componentName: 'Request New Component',
+
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+      console.log('RESULT', result);
+      }
+    });
   }
 }

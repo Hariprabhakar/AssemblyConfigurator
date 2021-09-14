@@ -16,7 +16,7 @@
             <div class="clear-label">Clear</div>
             <div class="material-icons-outlined close-icon">close</div>
         </div>
-        
+
         <div class="ac-input">
             <input type="text" (keyup)="filterComponent($event)" placeholder="Search by part name, size, material etc">
             <div class="search-icon">
@@ -86,7 +86,7 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-        <div class="req-component">Don't find the right part? <a href="javascript:void(0)"> Request New Component</a>
+        <div class="req-component">Don't find the right part? <a href="javascript:void(0)" (click)="reqNewComponent()"> Request New Component</a>
         </div>
 
         <!-- <div class="tag-modal" #tagModal *ngIf="showAddTag" [style.left]="tagModalPosition.left"
