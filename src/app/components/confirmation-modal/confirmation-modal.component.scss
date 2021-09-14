@@ -28,7 +28,6 @@
         }
     }
     .secondary-btn {
-        padding-right: 10px;
         button {
             background: #1f1f1f !important;
             border: 1px solid #ffc400 !important;
@@ -36,5 +35,8 @@
             border-radius: 20px;
             height: 30px;
         }
+    }
+    .primary-btn{
+        padding-right: 10px;
     }
 }

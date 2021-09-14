@@ -11,10 +11,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { CustomAssemblyModule } from '../custom-assembly/custom-assembly.module';
+import { TemplateSuccessModalComponent } from './template-success-modal/template-success-modal.component';
 
 
 @NgModule({
-  declarations: [AssemblyConfiguratorComponent, GroupComponent, AssembliesComponent],
+  declarations: [AssemblyConfiguratorComponent, GroupComponent, AssembliesComponent, TemplateSuccessModalComponent],
   imports: [
     CommonModule,
     AssemblyConfiguratorRoutingModule,

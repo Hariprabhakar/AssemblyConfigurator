@@ -1,6 +1,9 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSelectionList, MatSelectionListChange } from '@angular/material/list';
 import { ActivatedRoute } from '@angular/router';
+import { CreateTemplateModalComponent } from 'src/app/assembly-configurator/create-template-modal/create-template-modal.component';
+import { TemplateSuccessModalComponent } from 'src/app/assembly-configurator/template-success-modal/template-success-modal.component';
 import { ConfiguratorService } from 'src/app/services/configurator.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 
@@ -20,7 +23,7 @@ export class GroupComponent implements OnInit {
   @ViewChild(MatSelectionList) selectedGroup: MatSelectionList;
   public showLoader: boolean;
   constructor(private configuratorService:  ConfiguratorService, private toastService: ToastService,
-    private route: ActivatedRoute,) { }
+    private route: ActivatedRoute, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.showLoader = true;
@@ -52,12 +55,33 @@ export class GroupComponent implements OnInit {
       this.showLoader = false;
     });
 
-    
   }
 
   public filterCategory() {
     this.groupList = this.groups.filter((category: any) => {
       return category['name'].toLowerCase().indexOf(this.searchValue.toLowerCase()) >= 0;
+    });
+  }
+
+  public createTemplate() {
+    const dialogRef = this.dialog.open(CreateTemplateModalComponent, {panelClass: 'create-template-modal',
+      backdropClass: 'backdropBackground',
+      width: '90%',
+      height: '95%'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log(result);
+        this.showSuccessModal();
+      }
+    });
+  }
+
+  private showSuccessModal(){
+    const dialogRef = this.dialog.open(TemplateSuccessModalComponent, {panelClass: 'create-template-modal',
+      backdropClass: 'backdropBackground',
+      width: '390px',
+      height: '190px'
     });
   }
 

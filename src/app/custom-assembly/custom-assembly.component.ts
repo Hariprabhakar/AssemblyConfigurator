@@ -663,8 +663,9 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
     if (value.length == 1 && isEmpty) {
       return true;
     } else {
-      return false;
+      return true;
     }
+
   }
 
   public editAssembly() {

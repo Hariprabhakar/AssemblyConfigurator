@@ -91,6 +91,10 @@ export class ConfiguratorService {
     this.groups = groups;
   }
 
+  public getGroups(){
+    return this.groups;
+  }
+
   public getGroupNameById(groupId: any) {
     let groupName;
     if (this.groups) {
@@ -218,4 +222,9 @@ export class ConfiguratorService {
     const sessionCompany = this.sessionService.decrypt(companyId);
     return this.restApiService.post(`components/apply-filters?companyId=${sessionCompany}&categoryId=${categoryId}`, reqObj, '');
   }
+
+  public createTemplate(reqObj: any) {
+    return this.restApiService.post(`assemblies/create/template`, reqObj, '');
+  }
+
 }

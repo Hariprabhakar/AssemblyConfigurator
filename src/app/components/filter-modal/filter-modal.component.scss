@@ -111,6 +111,10 @@ mat-tab-body {
     font-size: 12px;
     font-weight: 400;
   }
+  .mat-tab-body-wrapper{
+    height: 325px;
+    overflow: auto;
+  }
   .mat-tab-body-content{
     &::-webkit-scrollbar {
       width: 10px;

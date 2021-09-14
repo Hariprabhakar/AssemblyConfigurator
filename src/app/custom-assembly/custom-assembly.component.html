@@ -29,7 +29,7 @@
                             <div (click)="openAssembly()" class="icon-text">Select Assembly Icon</div>
                         </div>
                         <div class="icon" *ngIf="assemblyDetailsReadOnly">
-                            <div *ngIf="!iconSrc" class="icon-shape">{{ assemblydata?.name | slice: 0:1 }}</div>
+                            <div *ngIf="!iconSrc" class="icon-shape"></div>
                             <div *ngIf="iconSrc" class="icon-base64">
                                 <!-- <img *ngIf="!iconSrc.includes('base64')" src="data:image/jpeg;base64,{{ iconSrc }}" alt=" " /> -->
                                 <img src="{{ iconSrc }}" alt=" " />
@@ -204,7 +204,7 @@
               RESET
             </button>
                     </div>
-                    <div class="export-btn"><button mat-flat-button color="primary" [disabled]="!enableEdit" (click)="exportPdf()">EXPORT</button></div>
+                    <!-- <div class="export-btn"><button mat-flat-button color="primary" [disabled]="!enableEdit" (click)="exportPdf()">EXPORT</button></div> -->
 
                     <div class="right-side-ctrl">
 

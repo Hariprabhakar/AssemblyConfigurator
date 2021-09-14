@@ -31,6 +31,7 @@ import { ToastComponent } from './shared/components/toast/toast.component';
 import { FilterModalComponent } from './components/filter-modal/filter-modal.component';
 import { MatListModule } from '@angular/material/list';
 import { RequestNewComponent } from './shared/components/request-new-comp/request-new-comp.component';
+import { CreateTemplateModalComponent } from './assembly-configurator/create-template-modal/create-template-modal.component';
 export function initializeApp(appInitService: ConfiguratorInitService) {
   return (): Promise<any> => { 
     return appInitService.Init();
@@ -49,7 +50,8 @@ export function initializeApp(appInitService: ConfiguratorInitService) {
     AssemblyZoomImageModalComponent,
     ConfirmationModalComponent,
     MessageModalComponent, 
-    ContactUsComponent, ToastComponent, FilterModalComponent, RequestNewComponent  
+    ContactUsComponent, ToastComponent, FilterModalComponent, RequestNewComponent,
+    CreateTemplateModalComponent
   ],
   imports: [
     BrowserModule,
