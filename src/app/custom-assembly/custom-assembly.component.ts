@@ -827,7 +827,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
     }
   }
 
-  public async exportPdf(){
+  public  exportPdf(){
 
     const doc = new jsPDF('l','pt',[920,720]);
 
@@ -835,7 +835,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
 
     const generatePdf = this.pdfTable.nativeElement;
     console.log('MNATIVE', generatePdf);
-    await doc.html(generatePdf,{
+    doc.html(generatePdf,{
     callback:(doc)=>{
 
       doc.setFont("helvetica");

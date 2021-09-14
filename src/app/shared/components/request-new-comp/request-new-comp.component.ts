@@ -116,10 +116,4 @@ this.groupName?.valueChanges.subscribe((value: any)=>{
 
     console.log('FORM VALUES',this.requestNewComponent.value);
   }
-
-  public groupChanged(){
-
-    console.log('CHANGESSSSEDDD');
-    console.log('NAME', this.requestNewComponent.value);
-  }
 }

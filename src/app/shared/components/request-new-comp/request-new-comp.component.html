@@ -11,7 +11,7 @@
       <div class="groupName">
           <mat-form-field class="select-group" appearance="outline">
             <mat-label class="matLable">Select Group</mat-label>
-            <mat-select  formControlName="groupName" (change)="groupChanged()">
+            <mat-select  formControlName="groupName">
               <mat-option  *ngFor="let group of groups" [value]="group.name">{{group.name}}</mat-option>
             </mat-select>
           </mat-form-field>
