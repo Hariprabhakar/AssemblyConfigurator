@@ -1,0 +1,76 @@
+<div class="popUp">
+<div class="title">
+<span mat-dialog-title>Request New Component</span>
+  <button class="close-button" mat-flat-button (click)="close()">
+    <span><img src="assets/images/Shape.png" /></span>
+  </button>
+</div>
+  <div class="validForm">
+<form [formGroup]="requestNewComponent" autocomplete="off">
+<div class="reqComponent">
+      <div class="groupName">
+          <mat-form-field class="select-group" appearance="outline">
+            <mat-label class="matLable">Select Group</mat-label>
+            <mat-select  formControlName="groupName" (change)="groupChanged()">
+              <mat-option  *ngFor="let group of groups" [value]="group.name">{{group.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+      </div>
+      <div class="otherName">
+<label [class.disableColor]="disableField">Other Group Name</label>
+<input type="text" formControlName="otherName" class="otherGrp" [class.otherGrpName]="disableField"></div>
+<div class="componentName">
+<label>Component Name</label>
+<input type="text" formControlName="componentName" class="compName"></div>
+<div class="attribute" >
+ <div class="attributeFields" *ngFor="let attr of attributeFormGroups">
+<div  class="attributeName" [formGroup]="attr">
+<label>Attribute Name</label>
+<input type="text" formControlName="attributeName" class="attrName">
+</div>
+<div class="attributeValue" [formGroup]="attr">
+<label>Attribute Value</label>
+<input type="text" formControlName="attributeValue" class="attrVal">
+ </div>
+</div>
+<div class="addButton"> <button class="fab-icon" mat-mini-fab color="primary" (click)="addAttributes()">
+<mat-icon [inline]="true">add</mat-icon></button></div>
+</div>
+
+<div class="preferred">
+<div class="preferredFields" *ngFor="let prefVal of preferredManufacturerGroup">
+<div class="preferedValue" [formGroup]="prefVal">
+<label>Preferred Manufacturer</label>
+<input type="text" formControlName="preferredName" class="preferrVal">
+
+</div>
+
+</div>
+<div class="addButton"> <button class="fab-icon" mat-mini-fab color="primary" (click)="addPreferredManuf()">
+<mat-icon [inline]="true">add</mat-icon></button>
+</div>
+</div>
+<div class="images">
+<label class="uploadImg">Add Image
+<input type="file" formControlName="fileUpload" class="inpFile" (change)="uploadedFile($event)">
+
+<mat-icon [inline]="true" class="
+addIcon">add</mat-icon>
+</label>
+<span>
+<input type="image" src="{{imgValue}}" alt="" formControlName="showImage" class="inputImg">
+</span>
+</div>
+<div class="remarks">
+<input type="text" formControlName="remarksField" class="inpRemarks" placeholder="Remarks">
+</div>
+      <div class="edit-btn">
+        <mat-dialog-actions align="end">
+          <button mat-flat-button color="primary" class="submit-btn"  (click)="onSubmit()">Submit</button>
+        </mat-dialog-actions>
+      </div>
+</div>
+  </form>
+</div>
+
+</div>

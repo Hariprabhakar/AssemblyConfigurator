@@ -189,7 +189,7 @@
                     </div>
 
                     <div class="content">
-                        <span class="heading">{{component.name}}</span>
+                        <span class="heading" matTooltip=component.name>{{component.name}}</span>
                         <span class="quantity">QTY: {{component.qty}}</span>
                         <span class="tag"> TAG: {{component.tag}}</span>
                     </div>
@@ -204,7 +204,10 @@
               RESET
             </button>
                     </div>
+                    <div class="export-btn"><button mat-flat-button color="primary" [disabled]="!enableEdit" (click)="exportPdf()">EXPORT</button></div>
+
                     <div class="right-side-ctrl">
+
                         <button mat-flat-button color="primary" *ngIf="assemblyDetailsReadOnly" [disabled]="!enableEdit" (click)="editAssembly()">EDIT</button>
                         <div class="secondary-btn">
                             <button *ngIf="!assemblyDetailsReadOnly" mat-flat-button color="primary" (click)="cancelEdit()">Cancel</button>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, Pipe, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, Pipe, SimpleChanges, ViewChild } from '@angular/core';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { FileChooseModalComponent } from '../components/file-choose-modal/file-choose-modal.component';
@@ -16,6 +16,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MessageModalComponent } from '../components/message-modal/message-modal.component';
 import { SessionService } from '../shared/services/session.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import {jsPDF} from 'jspdf';
+
 
 export interface SaveAssemblyData {
   id: string;
@@ -69,6 +71,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   public gridViewFlag: boolean = false;
   @Output() removedComponent = new EventEmitter();
   @ViewChild('table') table: MatTable<any>;
+  @ViewChild('table',{read: ElementRef}) pdfTable: ElementRef;
   private saveAssemblyData: SaveAssemblyData = {
     id: '',
     name: '',
@@ -822,5 +825,24 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
     } else {
       this.gridViewFlag ? (this.gridViewFlag = false) : (this.gridViewFlag = true);
     }
+  }
+
+  public async exportPdf(){
+
+    const doc = new jsPDF('l','pt',[920,720]);
+
+
+
+    const generatePdf = this.pdfTable.nativeElement;
+    console.log('MNATIVE', generatePdf);
+    await doc.html(generatePdf,{
+    callback:(doc)=>{
+
+      doc.setFont("helvetica");
+      doc.setFontSize(9);
+
+      doc.save('export.pdf')}
+    });
+    // doc.save('export.pdf');
   }
 }
