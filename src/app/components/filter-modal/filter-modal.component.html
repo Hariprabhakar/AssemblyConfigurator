@@ -1,4 +1,7 @@
 <div class="filter-modal-container">
+    <div class="ac-loader" *ngIf="showLoader">
+        <mat-spinner [diameter]="40"></mat-spinner>
+    </div>
     <div class="filter-modal">
         <div class="header">
             <div class="filter-icon">
@@ -12,7 +15,7 @@
             
         </div>
         <div class="filter-body">
-            <mat-tab-group [@.disabled]="true" >
+            <mat-tab-group [@.disabled]="true"  *ngIf="!showLoader">
                 <ng-container *ngFor="let filter of filterValue.filters">
                     <mat-tab>
                         <ng-template mat-tab-label>

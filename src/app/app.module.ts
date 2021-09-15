@@ -32,6 +32,7 @@ import { FilterModalComponent } from './components/filter-modal/filter-modal.com
 import { MatListModule } from '@angular/material/list';
 import { RequestNewComponent } from './shared/components/request-new-comp/request-new-comp.component';
 import { CreateTemplateModalComponent } from './assembly-configurator/create-template-modal/create-template-modal.component';
+
 export function initializeApp(appInitService: ConfiguratorInitService) {
   return (): Promise<any> => { 
     return appInitService.Init();

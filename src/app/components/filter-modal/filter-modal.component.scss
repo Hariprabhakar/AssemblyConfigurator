@@ -1,4 +1,5 @@
 .filter-modal-container {
+  position: relative;
   .header {
     position: relative;
     display: flex;
@@ -18,6 +19,9 @@
       top: 10px;
     }
   }
+  .filter-body{
+    min-height: 325px;
+  }
   .footer{
     display: flex;
     justify-content: flex-end;
@@ -29,7 +33,8 @@
     button{
       height: 30px;
       line-height: 30px;
-      border-radius: 0;
+      border-radius: 2px;
+      width: 100px;
     }
     .reset-filter{
       button{
@@ -47,6 +52,11 @@
 
 :host ::ng-deep .mat-tab-labels {
   flex-direction: column;
+  .mat-tab-label{
+    justify-content: start;
+    margin: 3px 0;
+    background-color: #373737;
+  }
 }
 
 mat-tab-group {
@@ -88,6 +98,7 @@ mat-tab-body {
 
 ::ng-deep .filter-modalbox .mat-dialog-container{
   padding: 0;
+  background: #303030;
 }
 
 ::ng-deep app-filter-modal {

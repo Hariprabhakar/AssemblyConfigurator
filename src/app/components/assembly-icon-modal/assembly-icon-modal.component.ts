@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatRadioChange } from '@angular/material/radio';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ConfiguratorService } from 'src/app/services/configurator.service';
@@ -63,7 +63,7 @@ export class AssemblyIconModalComponent implements OnInit {
     }
   ];
   constructor(private configuratorService: ConfiguratorService, private toastService: ToastService, public dialogRef: MatDialogRef<AssemblyIconModalComponent>,
-    public sanitizer: DomSanitizer) {
+    public sanitizer: DomSanitizer, @Inject(MAT_DIALOG_DATA) public data: any) {
     dialogRef.disableClose = true;
   }
 
@@ -77,6 +77,10 @@ export class AssemblyIconModalComponent implements OnInit {
       this.abbreviation = this.configuratorService.getAssemblyFormValue()?.abbreviation;
     }
     this.getAssemblies();
+    if(!this.data.icon) {
+      this.selectedValue = '1';
+      this.preview();
+    }
   }
 
   getAssemblies() {

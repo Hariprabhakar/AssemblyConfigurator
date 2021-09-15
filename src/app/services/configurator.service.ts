@@ -119,8 +119,8 @@ export class ConfiguratorService {
     //return this.http.get('assets/categories.json')
   }
 
-  public getComponents(companyId: number, categoryId: number, includeImage: boolean = true) {
-    const queryParam = 'companyId=' + companyId + '&categoryId=' + categoryId + '&includeImage=' + includeImage + '&pageIndex=0&pageSize=0';
+  public getComponents(companyId: number, categoryId: number, pageIndex:number = 0, includeImage: boolean = true) {
+    const queryParam = 'companyId=' + companyId + '&categoryId=' + categoryId + '&includeImage=' + includeImage + `&pageIndex=${pageIndex}&pageSize=15`;
     return this.restApiService.get('components', '', queryParam);
   }
 

@@ -22,26 +22,8 @@ export class FilterModalComponent implements OnInit {
   public selectedFilter: FilterModel = { filters: [] };
   public preSelectedFilter: FilterModel;
   private element: any;
-  public filterValue = {
-    filters: [
-      {
-        name: 'Select Type',
-        values: ['Type a', 'Type b']
-      },
-      {
-        name: 'Select Size',
-        values: ['Size a', 'Size b']
-      },
-      {
-        name: 'Select Material',
-        values: ['Material a', 'Material b']
-      },
-      {
-        name: 'other filter',
-        values: ['value 1', 'value 2', 'value 3', 'value 4', 'value 5', 'value 6', 'value 7', 'value 8', 'value 9', 'value 10', 'value 11', 'value 12']
-      }
-    ]
-  };
+  public filterValue: any;
+  public showLoader: boolean;
   constructor(
     public dialModalRef: MatDialogRef<FilterModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -52,6 +34,7 @@ export class FilterModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.showLoader = true;
     let width = window.innerWidth / 2 + 10;
     this.dialModalRef.updatePosition({ right: width + 'px' });
     this.preSelectedFilter = this.data.filters;
@@ -65,10 +48,12 @@ export class FilterModalComponent implements OnInit {
         if (response) {
           console.log(response);
           this.filterValue = response;
+          this.showLoader = false;
         }
       },
       (error: any) => {
         this.toastService.openSnackBar(error);
+        this.showLoader = false;
       }
     );
   }

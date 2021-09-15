@@ -22,6 +22,7 @@ export class CategoryComponentsComponent implements OnInit {
   @Output() selectedComponent = new EventEmitter();
   public displayedColumns: string[] = ['image', 'component', 'tag', 'phase', 'uom', 'add'];
   public componentDataSource: any;
+  private componentDataSourceCopy: any;
   public tagModalPosition = {
     left: '',
     top: ''
@@ -46,6 +47,7 @@ export class CategoryComponentsComponent implements OnInit {
   private isJunctionBoxGroup: any;
   private assemblysubscription: Subscription;
   public selectedFilter: any;
+  private pageNumber: number = 0;
 
   constructor(private configuratorService: ConfiguratorService,
     private route: ActivatedRoute, private toastService: ToastService, public dialog: MatDialog) {
@@ -100,9 +102,10 @@ export class CategoryComponentsComponent implements OnInit {
         this.isJunctionBox = false;
       }
       this.selectedFilter = null;
+      this.pageNumber = 0;
       const id = changes.categoryValue.currentValue.id;
       this.showLoader = true;
-      this.configuratorService.getComponents(this.configuratorService.companyId, id).subscribe(
+      this.configuratorService.getComponents(this.configuratorService.companyId, id, this.pageNumber).subscribe(
         (res: any) => {
           this.configuratorService.dupElement &&
             res.forEach((val: any) => {
@@ -126,6 +129,7 @@ export class CategoryComponentsComponent implements OnInit {
           });
 
           this.componentDataSource = new MatTableDataSource(res);
+          this.componentDataSourceCopy = res;
           this.editableRowIndex = -1;
           this.showLoader = false;
         },
@@ -295,6 +299,7 @@ export class CategoryComponentsComponent implements OnInit {
       if (result) {
         this.selectedFilter = result;
         this.updateComponent(result);
+        this.showLoader = true;
       }
     });
   }
@@ -303,9 +308,11 @@ export class CategoryComponentsComponent implements OnInit {
     this.configuratorService.postComponentFilters(this.categoryValue.id, filters).subscribe(
       (res: any) => {
         this.componentDataSource = new MatTableDataSource(res);
+        this.showLoader = false;
       },
       (error: any) => {
         this.toastService.openSnackBar(error);
+        this.showLoader = false;
       }
     );
   }
@@ -329,7 +336,9 @@ export class CategoryComponentsComponent implements OnInit {
   }
 
   public clearFilter() {
-    this.configuratorService.getComponents(this.configuratorService.companyId, this.categoryValue.id).subscribe(
+    this.showLoader = true;
+    this.pageNumber = 0;
+    this.configuratorService.getComponents(this.configuratorService.companyId, this.categoryValue.id, this.pageNumber).subscribe(
       (res: any) => {
         this.selectedFilter = null;
         this.configuratorService.dupElement &&
@@ -354,6 +363,7 @@ export class CategoryComponentsComponent implements OnInit {
         });
 
         this.componentDataSource = new MatTableDataSource(res);
+        this.componentDataSourceCopy = res;
         this.editableRowIndex = -1;
         this.showLoader = false;
       },
@@ -364,22 +374,59 @@ export class CategoryComponentsComponent implements OnInit {
     );
   }
 
-  public reqNewComponent(){
-
+  public reqNewComponent() {
     console.log('REQUEST NEW COMPONENT');
-
     const dialogRef = this.dialog.open(RequestNewComponent, {
       backdropClass: 'backdropBackground',
       data: {
         componentName: 'Request New Component',
-
       }
     });
-
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-      console.log('RESULT', result);
+        console.log('RESULT', result);
       }
     });
+
   }
+
+  public onComponentsScrollDown() {
+    this.pageNumber++;
+    this.showLoader = true;
+    this.configuratorService.getComponents(this.configuratorService.companyId, this.categoryValue.id, this.pageNumber).subscribe(
+      (res: any) => {
+        this.selectedFilter = null;
+        this.configuratorService.dupElement &&
+          res.forEach((val: any) => {
+            this.configuratorService.dupElement.forEach((value: any) => {
+              if (val.id === value.id) {
+                val.duplicate = value.duplicate;
+              }
+            });
+          });
+
+        res.forEach((val: any) => {
+          this.configuratorService.removedElement.subscribe((response: any) => {
+            if (response) {
+              response.forEach((value: any) => {
+                if (val.id === value.id) {
+                  val.duplicate = value.duplicate;
+                }
+              });
+            }
+          });
+        });
+
+        this.componentDataSourceCopy = [...this.componentDataSourceCopy, ...res];
+        this.componentDataSource = new MatTableDataSource(this.componentDataSourceCopy);
+        this.editableRowIndex = -1;
+        this.showLoader = false;
+      },
+      (error: any) => {
+        this.toastService.openSnackBar(error);
+        this.showLoader = false;
+      }
+    );
+  }
+
 }

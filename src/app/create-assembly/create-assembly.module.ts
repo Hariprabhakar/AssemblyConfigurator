@@ -19,6 +19,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { CustomAssemblyModule } from '../custom-assembly/custom-assembly.module';
 import { ShowIfTruncatedDirective } from '../shared/directives/show-if-truncated.directive';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { ShowIfTruncatedDirective } from '../shared/directives/show-if-truncated
     MatProgressSpinnerModule,
     ReactiveFormsModule,
     MatTooltipModule,
-    CustomAssemblyModule
+    CustomAssemblyModule,
+    InfiniteScrollModule
   ],
   exports: [ MatCheckboxModule, MatButtonModule, MatTableModule, MatInputModule, MatSelectModule, MatFormFieldModule
     , MatDividerModule, MatListModule, MatIconModule, FormsModule, MatProgressSpinnerModule, ReactiveFormsModule , MatTooltipModule, CustomAssemblyModule],
