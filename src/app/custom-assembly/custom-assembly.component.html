@@ -72,7 +72,7 @@
 
                 <div class="clearfix"></div>
                 <div class="component-controls">
-                    <div class="view-select">
+                    <div class="view-select" *ngIf="assemblyDetailsReadOnly">
                         <span class="material-icons-outlined view-tab" *ngIf="!gridViewFlag" (click)="gridView()">
                             view_list
                             </span>
@@ -189,7 +189,7 @@
                     </div>
 
                     <div class="content">
-                        <span class="heading" matTooltip=component.name>{{component.name}}</span>
+                        <span class="heading" [matTooltip]="component.name">{{component.name}}</span>
                         <span class="quantity">QTY: {{component.qty}}</span>
                         <span class="tag"> TAG: {{component.tag}}</span>
                     </div>

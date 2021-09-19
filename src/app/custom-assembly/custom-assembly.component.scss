@@ -113,19 +113,20 @@
                     display: flex;
                     border: 1px solid #4a4a4a;
                     border-bottom: none;
+                    justify-content: flex-end;
                     .view-select {
                         width: 50%;
                         align-items: center;
                         justify-content: flex-end;
                         display: flex;
                         padding: 0 10px;
-                        border-right: 1px solid #4a4a4a;
                         color: #ffc400;
                     }
                     .component-search {
                         width: 50%;
                         position: relative;
                         display: flex;
+                        border-left: 1px solid #4a4a4a;
                         input {
                             width: 100%;
                             padding-right: 36px;
@@ -134,7 +135,7 @@
                         }
                         .search {
                             position: absolute;
-                            top: 7px;
+                            top: 4px;
                             right: 10px;
                             font-size: 20px;
                         }
@@ -575,34 +576,28 @@
 
 .heading {
     width: 100px;
-    margin-left: 11px;
-    margin-top: -25px;
     display: inline-block;
     text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .quantity {
     display: inline-block;
     width: 50px;
-    margin-top: 8px;
-    margin-left: -40px;
 }
 
 .content {
-    width: 100px;
     height: 150px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     font-size: 10px;
-    padding-left: 35px;
+    padding-top: 10px;
 }
 
 .tag {
     display: inline-block;
-    margin-top: 4px;
-    margin-left: -49px;
 }
 
 @media(min-width:1800px) {
