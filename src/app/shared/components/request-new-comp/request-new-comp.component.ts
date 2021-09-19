@@ -24,7 +24,7 @@ export class RequestNewComponent implements OnInit {
     private toastService: ToastService) {
 
     this.requestNewComponent = this.formBuilder.group({
-      familyId: ['', Validators.required],
+      categoryId: ['', Validators.required],
       otherName: [''],
       componentName: ['', Validators.required],
       attributes: new FormArray([
@@ -75,7 +75,7 @@ export class RequestNewComponent implements OnInit {
   get attributeFormGroups() { return this.attributes.controls as FormGroup[]; }
   get preferredManufacturer() { return this.forms.preferredManufacturer as FormArray; }
   get preferredManufacturerGroup() { return this.preferredManufacturer.controls as FormGroup[]; }
-  get groupName() { return this.requestNewComponent.get('familyId') }
+  get groupName() { return this.requestNewComponent.get('categoryId') }
 
   public close() {
     this.dialogRef.close(false);
@@ -116,8 +116,8 @@ export class RequestNewComponent implements OnInit {
     const preferredManufacturer = reqObj.preferredManufacturer.map((element: any) => {
       return element.preferredName;
     });
-    reqObj.familyName = this.categoryName;
-    reqObj.familyId = reqObj.familyId.id;
+    reqObj.categoryName = this.categoryName;
+    reqObj.categoryId = reqObj.categoryId.id;
     reqObj.preferredManufacturer = preferredManufacturer;
     console.log(reqObj);
     this.showLoader = true;

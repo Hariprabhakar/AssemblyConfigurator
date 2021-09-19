@@ -13,14 +13,14 @@
       <div class="reqComponent">
         <div class="groupName">
           <mat-form-field class="select-group" appearance="outline">
-            <mat-label class="matLable">Select Group</mat-label>
-            <mat-select formControlName="familyId">
+            <mat-label class="matLable">Select Category</mat-label>
+            <mat-select formControlName="categoryId">
               <mat-option *ngFor="let group of groups" [value]="group">{{group.name}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
         <div class="otherName">
-          <label [class.disableColor]="disableField">Other Group Name</label>
+          <label [class.disableColor]="disableField">Other Category Name</label>
           <input type="text" formControlName="otherName" class="otherGrp" [class.otherGrpName]="disableField">
         </div>
         <div class="componentName">
