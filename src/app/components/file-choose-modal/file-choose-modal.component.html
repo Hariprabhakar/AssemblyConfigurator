@@ -92,11 +92,13 @@
 
 
 <!----------------upload assembly image--------------->
-<div *ngIf="showFirstView">
-<div class="assmbly-title">Assembly Image</div>
-<mat-dialog-actions align="end" class="top-close-btn">    
-    <button class="close-button-1" mat-flat-button [mat-dialog-close]="true"><span><img src="assets/images/closebtn.png"></span></button>   
-</mat-dialog-actions> 
+<div *ngIf="showFirstView" class="file-choose-modal">
+    <div class="header-wrap">
+        <div class="assmbly-title">Assembly Image</div>
+        <mat-dialog-actions align="end" class="top-close-btn">    
+            <button class="close-button-1" mat-flat-button [mat-dialog-close]="true"><span><img src="assets/images/closebtn.png"></span></button>   
+        </mat-dialog-actions> 
+    </div>
 <div class="clearfix"></div>
 <mat-dialog-content class="mat-typography-assembly-img">
     <form [formGroup]="FileChooseFrom1" autocomplete="off" >
@@ -131,12 +133,13 @@
 
 
 <!--------------------------------view uploaded image-------------------->
-<div class="popupcontainer" *ngIf="!showFirstView">
-
+<div class="popupcontainer file-choose-modal" *ngIf="!showFirstView">
+    <div class="header-wrap">
     <div class="assmbly-title">Assembly Image</div>
     <mat-dialog-actions align="end" class="top-close-btn">    
         <button class="close-button-1" mat-flat-button [mat-dialog-close]="true"><span><img src="assets/images/closebtn.png"></span></button>   
-    </mat-dialog-actions> 
+    </mat-dialog-actions>
+    </div>
     <div class="clearfix"></div>
     <div class="load-rev-del-img">
     <mat-dialog-content class="mat-typography-assembly-img-review">
@@ -231,7 +234,7 @@
                 <button class="close-button-del" mat-flat-button [mat-dialog-close]="true"><span><img src="../../../assets/images/del-cls-btn.JPG"></span></button>   
             </mat-dialog-actions>  -->
             <div class="review-img">
-            <div class="delete-upload-img-title">Are you sure you want to Delete Image?</div>
+            <div class="delete-upload-img-title">Are you sure you want to delete the image?</div>
             <div class="clearfix"></div>   
             <div class="btn-select">        
                 <div class="cancel-done-btn1">

@@ -24,6 +24,7 @@ export class ConfiguratorService {
     assemblyId: ''
   };
   public dupElement: any = [];
+  public categories: any;
   // public _addElement$ = new Subject();
   // public addElement = this._addElement$.asObservable();
 
@@ -95,6 +96,8 @@ export class ConfiguratorService {
     return this.groups;
   }
 
+
+
   public getGroupNameById(groupId: any) {
     let groupName;
     if (this.groups) {
@@ -120,7 +123,7 @@ export class ConfiguratorService {
   }
 
   public getComponents(companyId: number, categoryId: number, pageIndex:number = 0, includeImage: boolean = true) {
-    const queryParam = 'companyId=' + companyId + '&categoryId=' + categoryId + '&includeImage=' + includeImage + `&pageIndex=${pageIndex}&pageSize=15`;
+    const queryParam = 'companyId=' + companyId + '&categoryId=' + categoryId + '&includeImage=' + includeImage + `&pageIndex=${pageIndex}&pageSize=100`;
     return this.restApiService.get('components', '', queryParam);
   }
 
@@ -224,7 +227,11 @@ export class ConfiguratorService {
   }
 
   public createTemplate(reqObj: any) {
-    return this.restApiService.post(`assemblies/create/template`, reqObj, '');
+    return this.restApiService.post(`assemblies/create-template`, reqObj, '');
+  }
+
+  public requestComponent(reqObj: any) {
+    return this.restApiService.post(`components/request-component`, reqObj, '');
   }
 
 }

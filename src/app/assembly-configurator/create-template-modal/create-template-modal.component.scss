@@ -62,7 +62,7 @@ td.mat-column-asslemblyName.mat-cell {
 }
 td.mat-cell {
   /* row padding */
-  padding: 16px 0;
+  padding: 0px 0;
   color: #717171;
 }
 
@@ -168,3 +168,14 @@ table {
   color: #898989;
   padding-right: 7px;
 }
+
+.image-icon{
+  max-width: 35px;
+  img{
+    width: 100%;
+  }
+}
+
+// .template-wrap{
+//   position: relative;
+// }

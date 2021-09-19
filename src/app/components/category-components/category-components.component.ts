@@ -47,7 +47,7 @@ export class CategoryComponentsComponent implements OnInit {
   private isJunctionBoxGroup: any;
   private assemblysubscription: Subscription;
   public selectedFilter: any;
-  private pageNumber: number = 0;
+  private pageNumber: number = 1;
 
   constructor(private configuratorService: ConfiguratorService,
     private route: ActivatedRoute, private toastService: ToastService, public dialog: MatDialog) {
@@ -102,7 +102,7 @@ export class CategoryComponentsComponent implements OnInit {
         this.isJunctionBox = false;
       }
       this.selectedFilter = null;
-      this.pageNumber = 0;
+      this.pageNumber = 1;
       const id = changes.categoryValue.currentValue.id;
       this.showLoader = true;
       this.configuratorService.getComponents(this.configuratorService.companyId, id, this.pageNumber).subscribe(
@@ -337,7 +337,7 @@ export class CategoryComponentsComponent implements OnInit {
 
   public clearFilter() {
     this.showLoader = true;
-    this.pageNumber = 0;
+    this.pageNumber = 1;
     this.configuratorService.getComponents(this.configuratorService.companyId, this.categoryValue.id, this.pageNumber).subscribe(
       (res: any) => {
         this.selectedFilter = null;

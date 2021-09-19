@@ -323,7 +323,7 @@ export class FileChooseModalComponent implements OnInit {
     const confirmationDialog = this.dialog.open(ConfirmationModalComponent, {
       data: {
         title: 'Delete Image',
-        content: 'Are you sure you want to Delete Image?? '
+        content: 'Are you sure you want to delete the image?'
       }
     });
     confirmationDialog.afterClosed().subscribe((result) => {

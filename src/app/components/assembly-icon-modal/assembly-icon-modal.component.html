@@ -8,9 +8,10 @@
   </div>
 </mat-dialog-actions>
 <div class="clearfix"></div>
+<form autocomplete="off">
 <mat-dialog-content [class.preview]="imageSrc" class="mat-typography">
   <div class="valid"></div>
-  <form autocomplete="off">
+  
     <div class="create-assembly">
       <div class="select-picklist">
         <div class="select-wrap fl">
@@ -84,13 +85,15 @@
     </div>
 
     <div class="clearfix"></div>
-    <div class="edit-btn">
-      <mat-dialog-actions align="end">
-        <div class="preview-btn">
-          <button class="secondary-btn" (click)="preview()" [disabled]="enableAdd" mat-flat-button>PREVIEW</button>
-        </div>
-        <button mat-flat-button color="primary" (click)="closeModal()" [disabled]="enableAdd" class="addfinal">ADD</button>
-      </mat-dialog-actions>
-    </div>
-  </form>
+
+ 
 </mat-dialog-content>
+<div class="edit-btn">
+  <mat-dialog-actions align="end">
+    <div class="preview-btn">
+      <button class="secondary-btn" (click)="preview()" [disabled]="enableAdd" mat-flat-button>PREVIEW</button>
+    </div>
+    <button mat-flat-button color="primary" (click)="closeModal()" [disabled]="enableAdd" class="addfinal">ADD</button>
+  </mat-dialog-actions>
+</div>
+</form>

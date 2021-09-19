@@ -1,8 +1,17 @@
 .popUp {
     width: 450px;
     height: 75vh;
-    overflow-y: scroll;
-    overflow-x: hidden;
+   
+}
+
+.close-button{
+    cursor: pointer;
+   transform:translate(10%, -8%);
+
+}
+.reqComponent{
+    height: 350px;
+    overflow: auto;
     &::-webkit-scrollbar {
         width: 10px;
         margin-left: 10px;
@@ -16,12 +25,6 @@
         border-radius: 5px;
         background-color: #4f4f4f;
       }
-}
-
-.close-button{
-
-   transform:translate(10%, -8%);
-
 }
 .submit{
     border-radius: 25px;
@@ -59,7 +62,7 @@
     margin-top: -15px;
 }
 
-input {
+input, textarea {
     padding: 8px;
     background: #282828;
     border: none;
@@ -67,7 +70,7 @@ input {
     margin-left: 45px;
 }
 
-input:focus {
+input:focus, textarea:focus {
     outline: none;
 }
 
@@ -185,7 +188,7 @@ label{
     width: 425px;
     border: none;
     width: 100%;
-    padding: 40px !important;
+    padding: 18px !important;
     margin-left: 0 !important;
     color: #fff !important;
 }
@@ -194,6 +197,26 @@ label{
     transform:translateX(-15px);
     border-radius: 25px;
     padding: 2px 30px;
-    font-weight: 600;
     font-size: 18px;
 }
+
+.request-new-component{
+    position: relative;
+    .title{
+        font-size: 16px;
+        padding-bottom: 15px;
+    }
+    .footer-btn-wrap{
+        padding-top: 20px;
+    }
+
+}
+
+::ng-deep .request-new-component .groupName{
+    .mat-form-field{
+        width: 435px;
+    }
+    .mat-form-field-appearance-outline .mat-form-field-flex{
+    padding-left: 0;
+    }
+} 

@@ -123,18 +123,18 @@ label{
       }
     }
   }
-  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-start {
+  ::ng-deep .file-choose-modal .mat-form-field-appearance-outline .mat-form-field-outline-start {
     border-radius: 0px !important;
   }
-  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-end {
+  ::ng-deep .file-choose-modal .mat-form-field-appearance-outline .mat-form-field-outline-end {
     border-radius: 0px !important;
   }
   .cdk-overlay-pane{width: 610px !important;}
-  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  ::ng-deep .file-choose-modal .mat-form-field-appearance-outline .mat-form-field-outline {
     background-color: 
     #282828
   }
-  ::ng-deep .mat-form-field-wrapper{padding:0 !important}
+  ::ng-deep .file-choose-modal .mat-form-field-wrapper{padding:0 !important}
   .mat-typography{height: auto; width: 415px;}
   .select-picklist{width: 100%}
   .mat-dialog-actions{padding:0; min-height: 0;}
@@ -504,5 +504,12 @@ float: left;
     }
     ::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label, .mat-form-field-appearance-outline.mat-form-field-can-float .mat-input-server:focus + .mat-form-field-label-wrapper .mat-form-field-label{
       margin-top: 7px !important;
+    }
+  }
+  .header-wrap{
+    position: relative;
+    button{
+      position: absolute;
+      top: 10px;
     }
   }

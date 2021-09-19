@@ -23,6 +23,7 @@ export class CategoryComponent implements OnInit {
     this.showLoader = true;
     this.configuratorService.getCategories().subscribe((res) => {
       this.categories = res;
+      this.configuratorService.categories = res;
       this.categoryList = res;
       this.showLoader = false;
       this.selectedCategory.selectionChange.subscribe((grp: MatSelectionListChange) => {
