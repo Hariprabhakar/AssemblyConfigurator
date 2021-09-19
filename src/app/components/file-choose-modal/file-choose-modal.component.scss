@@ -353,7 +353,7 @@ float: left;
       }
     }
     .cancel-btn{height: 32px; line-height:1; background: #5C5C5C; border-radius: 4px; font-family: Roboto; font-style: normal; font-weight: 500; font-size: 12px; padding: 0 35px;}
-    .done-btn{height: 32px; line-height: 1; color: #FFC81F; border: 1px solid #FFC81F; border-radius: 4px; font-family: Roboto; font-style: normal; font-weight: 500; font-size: 12px; padding: 0 35px;}
+    .done-btn{height: 32px; line-height: 1; background-color: #FFC81F; color: #000; border: 1px solid #FFC81F; border-radius: 4px; font-family: Roboto; font-style: normal; font-weight: 500; font-size: 12px; padding: 0 35px;}
     .review-img{float: left;
       width: 100%;
       height: 100%;
@@ -417,7 +417,7 @@ float: left;
 
 #cdk-overlay-0 .mat-dialog-container {    position: relative;}
 .fileList {height: 230px; margin-right: -15px;
-  overflow-y: scroll;
+  overflow-y: auto;
   &::-webkit-scrollbar {
     width: 10px;
   }

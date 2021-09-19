@@ -2,6 +2,7 @@ import { Component, OnInit, Inject, ChangeDetectorRef } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-modal.component';
+import { ToastService } from 'src/app/shared/services/toast.service';
 @Component({
   selector: 'app-file-choose-modal',
   templateUrl: './file-choose-modal.component.html',
@@ -42,7 +43,8 @@ export class FileChooseModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private formBuilder: FormBuilder,
     public cd: ChangeDetectorRef,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public toastService: ToastService
   ) {
     this.maxFileError = '';
     this.isMaxFileError = false;
@@ -198,7 +200,8 @@ export class FileChooseModalComponent implements OnInit {
   // Function to handle Views to show errors
   public handleViews() {
     if (this.maxLimitExieedFiles.length !== 0) {
-      this.maxImageSizeExceeded = true;
+      this.toastService.openSnackBar(`${this.maxLimitExieedFiles.join(', ')} File Extension is not supported`);
+      // this.maxImageSizeExceeded = true;
     }
 
     // if ((this.maxLimitExieedFiles.length !== 0 && this.tempUploads.length === 0)) {
@@ -206,7 +209,8 @@ export class FileChooseModalComponent implements OnInit {
     // }
 
     if (this.inValidFileExtension.length !== 0) {
-      this.isInValidFileExtension = true;
+      this.toastService.openSnackBar(`${this.inValidFileExtension.join(', ')} File Extension is not supported`);
+      // this.isInValidFileExtension = true;
     }
 
     // if ((this.inValidFileExtension.length !== 0 && this.tempUploads.length === 0)) {
@@ -230,7 +234,7 @@ export class FileChooseModalComponent implements OnInit {
   public validateFileExtension(fileName: any) {
     let isValidExtension = true;
     const fname = fileName;
-    const re = /(\.jpg|\.jpeg|\.gif|\.png|\.tif)$/i;
+    const re = /(\.jpg|\.jpeg|\.jfif|\.gif|\.png|\.tif)$/i;
     if (!re.exec(fname)) {
       isValidExtension = false;
     }

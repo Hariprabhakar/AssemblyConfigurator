@@ -100,7 +100,8 @@ const ELEMENT_DATA: any = [
 })
 export class CreateTemplateModalComponent implements OnInit {
 
-  public displayedColumns: string[] = [ 'image', 'asslemblyName', 'group', 'system', 'connectionType', 'latestUpdate'];
+  // public displayedColumns: string[] = [ 'image', 'asslemblyName', 'group', 'system', 'connectionType', 'latestUpdate'];
+  public displayedColumns: string[] = [ 'image', 'asslemblyName', 'group', 'latestUpdate'];
   public dataSource: any = new MatTableDataSource<any>(ELEMENT_DATA);
   public dataSourceDuplicate = ELEMENT_DATA;
   public selection = new SelectionModel<any>(true, []);
@@ -190,7 +191,7 @@ private getAssemblies() {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  public ongroupChange(value: string){
+  public ongroupChange(value: string) {
     let data: any;
     if(value !== 'All') {
       data = this.dataSourceDuplicate.filter((ele: any)=>{
