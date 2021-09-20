@@ -378,6 +378,7 @@ export class CategoryComponentsComponent implements OnInit {
     console.log('REQUEST NEW COMPONENT');
     const dialogRef = this.dialog.open(RequestNewComponent, {
       backdropClass: 'backdropBackground',
+      panelClass: 'request-dialog',
       data: {
         componentName: 'Request New Component',
       }

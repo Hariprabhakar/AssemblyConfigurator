@@ -1,6 +1,6 @@
 .popUp {
     width: 450px;
-    height: 75vh;
+    height: 480px;
    
 }
 
@@ -10,7 +10,7 @@
 
 }
 .reqComponent{
-    height: 350px;
+    height:380px;
     overflow: auto;
     &::-webkit-scrollbar {
         width: 10px;
@@ -198,10 +198,12 @@ label{
 }
 
 .submit-btn{
-    transform:translateX(-15px);
+    transform: translateX(-15px);
     border-radius: 25px;
-    padding: 2px 30px;
-    font-size: 18px;
+    padding: 2px 28px;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
 }
 
 .request-new-component{
@@ -210,10 +212,6 @@ label{
         font-size: 16px;
         padding-bottom: 15px;
     }
-    .footer-btn-wrap{
-        padding-top: 20px;
-    }
-
 }
 
 ::ng-deep .request-new-component .groupName{
