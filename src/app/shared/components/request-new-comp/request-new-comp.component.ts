@@ -25,7 +25,7 @@ export class RequestNewComponent implements OnInit {
 
     this.requestNewComponent = this.formBuilder.group({
       categoryId: ['', Validators.required],
-      otherName: [''],
+      otherCategoryName: [''],
       componentName: ['', Validators.required],
       attributes: new FormArray([
         this.formBuilder.group({
@@ -33,12 +33,12 @@ export class RequestNewComponent implements OnInit {
           value: ['', Validators.required]
         })
       ]),
-      preferredManufacturer: new FormArray([
+      preferredManufacturers: new FormArray([
         this.formBuilder.group({
           preferredName: ['', Validators.required]
         })
       ]),
-      image: ['', null],
+      images: ['', null],
       remarks: ['', null],
       companyId: [this.configService.companyId, null]
     });
@@ -46,7 +46,7 @@ export class RequestNewComponent implements OnInit {
 
   ngOnInit(): void {
     this.showLoader = true;
-    this.requestNewComponent.get('otherName')?.disable()
+    this.requestNewComponent.get('otherCategoryName')?.disable()
     this.configService.getCategories().subscribe((res: any) => {
       res.push({ id: 0, name: 'Other Category' });
       this.groups = res;
@@ -54,14 +54,14 @@ export class RequestNewComponent implements OnInit {
     });
 
     this.groupName?.valueChanges.subscribe((value: any) => {
-      if (value.name === "Other Group") {
-        this.requestNewComponent.get('otherName')?.enable();
-        this.requestNewComponent.get('otherName')?.setValidators([Validators.required]);
+      if (value.name === "Other Category") {
+        this.requestNewComponent.get('otherCategoryName')?.enable();
+        this.requestNewComponent.get('otherCategoryName')?.setValidators([Validators.required]);
         this.requestNewComponent.updateValueAndValidity();
         this.disableField = false;
       } else {
-        this.requestNewComponent.get('otherName')?.disable();
-        this.requestNewComponent.get('otherName')?.clearValidators();
+        this.requestNewComponent.get('otherCategoryName')?.disable();
+        this.requestNewComponent.get('otherCategoryName')?.clearValidators();
         this.requestNewComponent.updateValueAndValidity();
         this.disableField = true;
       }
@@ -73,8 +73,8 @@ export class RequestNewComponent implements OnInit {
   get forms() { return this.requestNewComponent.controls; }
   get attributes() { return this.forms.attributes as FormArray; }
   get attributeFormGroups() { return this.attributes.controls as FormGroup[]; }
-  get preferredManufacturer() { return this.forms.preferredManufacturer as FormArray; }
-  get preferredManufacturerGroup() { return this.preferredManufacturer.controls as FormGroup[]; }
+  get preferredManufacturers() { return this.forms.preferredManufacturers as FormArray; }
+  get preferredManufacturerGroup() { return this.preferredManufacturers.controls as FormGroup[]; }
   get groupName() { return this.requestNewComponent.get('categoryId') }
 
   public close() {
@@ -91,7 +91,7 @@ export class RequestNewComponent implements OnInit {
   }
 
   public addPreferredManuf() {
-    this.preferredManufacturer.push(this.formBuilder.group({
+    this.preferredManufacturers.push(this.formBuilder.group({
       preferredName: ['', Validators.required]
     }))
   }
@@ -104,7 +104,7 @@ export class RequestNewComponent implements OnInit {
       reader.onload = () => {
         this.imgValue = reader.result as string;
         this.requestNewComponent.patchValue({
-          image: reader.result
+          images: reader.result
         });
 
       };
@@ -113,12 +113,14 @@ export class RequestNewComponent implements OnInit {
 
   public onSubmit() {
     let reqObj = { ...this.requestNewComponent.value }
-    const preferredManufacturer = reqObj.preferredManufacturer.map((element: any) => {
+    const preferredManufacturers = reqObj.preferredManufacturers.map((element: any) => {
       return element.preferredName;
     });
     reqObj.categoryName = this.categoryName;
-    reqObj.categoryId = reqObj.categoryId.id;
-    reqObj.preferredManufacturer = preferredManufacturer;
+    reqObj.categoryId = this.categoryName === 'Other Category' ? null : reqObj.categoryId.id;
+    reqObj.preferredManufacturers = preferredManufacturers;
+    const index = reqObj.images.indexOf('base64,') + 7;
+    reqObj.images = [reqObj.images.substring(index)];
     console.log(reqObj);
     this.showLoader = true;
     this.configService.requestComponent(reqObj).subscribe((res: any)=> {

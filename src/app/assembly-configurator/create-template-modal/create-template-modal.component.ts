@@ -102,8 +102,8 @@ export class CreateTemplateModalComponent implements OnInit {
 
   // public displayedColumns: string[] = [ 'image', 'asslemblyName', 'group', 'system', 'connectionType', 'latestUpdate'];
   public displayedColumns: string[] = [ 'image', 'asslemblyName', 'group', 'latestUpdate'];
-  public dataSource: any = new MatTableDataSource<any>(ELEMENT_DATA);
-  public dataSourceDuplicate = ELEMENT_DATA;
+  public dataSource: any;
+  public dataSourceDuplicate: any;
   public selection = new SelectionModel<any>(true, []);
   public groups: any[];
   public sortOptions = ['Latest', 'Oldest']
@@ -169,9 +169,9 @@ private getAssemblies() {
     const req = {
       templateName: this.templateName,
       companyId: this.configuratorService.companyId,
-      assemblyIds: [this.selection.selected.map((ele: any) => {
+      assemblyIds: this.selection.selected.map((ele: any) => {
         return ele.id
-      })]
+      })
     }
     this.showLoader = true;
     console.log(req);

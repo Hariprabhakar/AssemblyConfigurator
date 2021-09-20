@@ -21,7 +21,7 @@
         </div>
         <div class="otherName">
           <label [class.disableColor]="disableField">Other Category Name</label>
-          <input type="text" formControlName="otherName" class="otherGrp" [class.otherGrpName]="disableField">
+          <input type="text" formControlName="otherCategoryName" class="otherGrp" [class.otherGrpName]="disableField">
         </div>
         <div class="componentName">
           <label>Component Name</label>
@@ -64,7 +64,7 @@
             <mat-icon [inline]="true" class="addIcon">add</mat-icon>
           </label>
           <span *ngIf="imgValue">
-            <input type="image" src="{{imgValue}}" alt="" formControlName="image" class="inputImg">
+            <input type="image" src="{{imgValue}}" alt="" formControlName="images" class="inputImg">
           </span>
         </div>
         <div class="remarks">

@@ -79,6 +79,9 @@ label{
 }
 .otherName {
     margin-bottom: 22px;
+    input {
+        margin-left: 27px;
+    }
 }
 
 .otherGrpName{
@@ -191,6 +194,7 @@ label{
     padding: 18px !important;
     margin-left: 0 !important;
     color: #fff !important;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .submit-btn{
