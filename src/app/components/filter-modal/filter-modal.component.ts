@@ -46,7 +46,12 @@ export class FilterModalComponent implements OnInit {
     this.configuratorService.getComponentFilters(categoryId).subscribe(
       (response: any) => {
         if (response) {
-          console.log(response);
+
+          response.filters.forEach((element: any) => {
+            element.values = element.values.map((value: any) => value.trim())
+            element.values.sort(this.sortAlpheNumeric);
+           element.values = [...new Set(element.values)]; 
+          });
           this.filterValue = response;
           this.showLoader = false;
         }
@@ -57,6 +62,10 @@ export class FilterModalComponent implements OnInit {
       }
     );
   }
+
+  public sortAlpheNumeric = (a: any, b: any) => {
+    return a.toString().trim().localeCompare(b.toString().trim(), 'en', { numeric: true })
+  };
 
   public list_change(event: any, name: any, value: any) {
     if (this.selectedFilter.filters.length === 0) {
@@ -84,7 +93,6 @@ export class FilterModalComponent implements OnInit {
         this.addFilterValue(name, value);
       }
     }
-    console.log(this.selectedFilter.filters);
   }
 
   private addFilterValue(name: any, value: any) {

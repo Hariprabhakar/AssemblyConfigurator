@@ -375,7 +375,6 @@ export class CategoryComponentsComponent implements OnInit {
   }
 
   public reqNewComponent() {
-    console.log('REQUEST NEW COMPONENT');
     const dialogRef = this.dialog.open(RequestNewComponent, {
       backdropClass: 'backdropBackground',
       panelClass: 'request-dialog',
@@ -383,11 +382,11 @@ export class CategoryComponentsComponent implements OnInit {
         componentName: 'Request New Component',
       }
     });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        console.log('RESULT', result);
-      }
-    });
+    // dialogRef.afterClosed().subscribe((result) => {
+    //   if (result) {
+    //     console.log('RESULT', result);
+    //   }
+    // });
 
   }
 

@@ -143,14 +143,12 @@ private getAssemblies() {
 
 
   public isAllSelected() {
-    console.log(this.selection);
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
 
   public masterToggle() {
-     console.log(this.selection);
     this.isAllSelected() ?
         this.selection.clear() :
         this.dataSource.data.forEach((row: any) => this.selection.select(row));
@@ -158,7 +156,6 @@ private getAssemblies() {
 
   public selectRow(row: any) {
     this.selection.toggle(row);
-    console.log(this.selection.selected);
   }
 
   public close() {
@@ -174,7 +171,6 @@ private getAssemblies() {
       })
     }
     this.showLoader = true;
-    console.log(req);
     this.configuratorService.createTemplate(req).subscribe((res)=>{
       this.showLoader = false;
       this.dialogRef.close(true);
