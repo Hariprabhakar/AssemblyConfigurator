@@ -86,7 +86,7 @@ td.mat-cell {
 }
 
 .template-table-container {
-  height: 75%;
+  height: calc(95vh - 145px);
   overflow-y: auto;
   &::-webkit-scrollbar {
     width: 10px;

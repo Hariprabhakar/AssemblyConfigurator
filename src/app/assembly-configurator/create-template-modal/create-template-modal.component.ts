@@ -118,9 +118,8 @@ export class CreateTemplateModalComponent implements OnInit {
     private toastService: ToastService) { }
 
   ngOnInit(): void {
-    this.totalAssemblies = ELEMENT_DATA.length;
     this.groups = this.configuratorService.getGroups();
-    this.groups.unshift({id:0, name:'All'});
+    this.groups = [{id:0, name:'All'}, ...this.groups];
     this.selectedGroup = this.groups[0].name;
     this.selectedSort = this.sortOptions[0];
     this.baseUrl = environment.url;
@@ -132,6 +131,7 @@ private getAssemblies() {
   this.configuratorService.getAssemblies(this.configuratorService.companyId, 0, false, true).subscribe((res: any) => {
     this.dataSource = new MatTableDataSource<any>(res);
     this.dataSourceDuplicate = res;
+    this.totalAssemblies = res.length;
     this.showLoader = false;
   },
     (error: any) => {
@@ -195,7 +195,7 @@ private getAssemblies() {
     let data: any;
     if(value !== 'All') {
       data = this.dataSourceDuplicate.filter((ele: any)=>{
-        return ele.group.toLowerCase() === value.trim().toLowerCase();
+        return ele.familyName.toLowerCase() === value.trim().toLowerCase();
       });
     } else {
       data = this.dataSourceDuplicate;

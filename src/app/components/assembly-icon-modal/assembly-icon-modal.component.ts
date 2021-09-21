@@ -78,6 +78,7 @@ export class AssemblyIconModalComponent implements OnInit {
     }
     this.getAssemblies();
     if(!this.data.icon) {
+      this.enableAdd = false;
       this.selectedValue = '1';
       this.preview();
     }
