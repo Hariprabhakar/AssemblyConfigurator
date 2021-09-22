@@ -99,9 +99,10 @@ export class EditAssemblyComponent implements OnInit, OnDestroy {
       currVal = currVal.toUpperCase().split(' ');
 
       if (currVal.length > 1) {
-        suggArr.push(currVal.map((val: string) => {
+        const val = currVal.map((val: string) => {
           return val.slice(0, 1);
-        }).join(''));
+        }).join('');
+        suggArr.push(val.slice(0, 3));
 
         suggArr.push((currVal[0].slice(0, 2) + currVal[1].slice(0, 1)));
       }

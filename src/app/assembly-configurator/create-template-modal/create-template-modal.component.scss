@@ -103,6 +103,10 @@ td.mat-cell {
 table {
   /* row spacing / margin */
   border-spacing: 0 8px !important;
+  th.mat-header-cell:first-of-type {
+    padding-left: 0 !important;
+    text-align: center;
+  }
 }
 
 .footer {

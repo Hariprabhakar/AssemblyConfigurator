@@ -104,6 +104,7 @@ export class CreateTemplateModalComponent implements OnInit {
   public displayedColumns: string[] = [ 'image', 'asslemblyName', 'group', 'latestUpdate'];
   public dataSource: any;
   public dataSourceDuplicate: any;
+  public dataSourceOriginal: any;
   public selection = new SelectionModel<any>(true, []);
   public groups: any[];
   public sortOptions = ['Latest', 'Oldest']
@@ -120,7 +121,7 @@ export class CreateTemplateModalComponent implements OnInit {
   ngOnInit(): void {
     this.groups = this.configuratorService.getGroups();
     this.groups = [{id:0, name:'All'}, ...this.groups];
-    this.selectedGroup = this.groups[0].name;
+    this.selectedGroup = this.groups[0].id;
     this.selectedSort = this.sortOptions[0];
     this.baseUrl = environment.url;
     this.getAssemblies();
@@ -131,6 +132,7 @@ private getAssemblies() {
   this.configuratorService.getAssemblies(this.configuratorService.companyId, 0, false, true).subscribe((res: any) => {
     this.dataSource = new MatTableDataSource<any>(res);
     this.dataSourceDuplicate = res;
+    this.dataSourceOriginal = res;
     this.totalAssemblies = res.length;
     this.showLoader = false;
   },
@@ -187,17 +189,31 @@ private getAssemblies() {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  public ongroupChange(value: string) {
-    let data: any;
-    if(value !== 'All') {
-      data = this.dataSourceDuplicate.filter((ele: any)=>{
-        return ele.familyName.toLowerCase() === value.trim().toLowerCase();
-      });
+  public ongroupChange(value: any) {
+    if(value !== 0) {
+      this.showLoader = true;
+      this.configuratorService.getAssemblies(this.configuratorService.companyId, value, false, false).subscribe((res: any) => {
+        this.totalAssemblies = res.length;
+        this.dataSourceDuplicate = res;
+        this.dataSource = new MatTableDataSource<any>(res);
+        this.showLoader = false;
+        this.selection.clear();
+      },
+        (error: any) => {
+          this.toastService.openSnackBar(error);
+          this.showLoader = false;
+        }
+      );
+      // data = this.dataSourceDuplicate.filter((ele: any)=>{
+      //   return ele.familyName.toLowerCase() === value.trim().toLowerCase();
+      // });
     } else {
-      data = this.dataSourceDuplicate;
+      this.dataSource = new MatTableDataSource<any>(this.dataSourceOriginal);
+      this.totalAssemblies = this.dataSourceOriginal.length;
+      this.selection.clear();
     }
     
-    this.dataSource = new MatTableDataSource<any>(data);
+    
   }
 
   public validate(){

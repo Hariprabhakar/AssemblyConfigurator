@@ -188,7 +188,8 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
                 // fileName64Bit: 'data:image/jpeg;base64,'+image.image,
                 fileName64Bit: result,
                 isPrimary: image.isPrimary,
-                inputText: image.name || ''
+                inputText: image.name || '',
+                id: image.id
               };
               this.imageThubList.push(imgCopy);
               if (image.isPrimary) {
@@ -267,19 +268,32 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
 
   public createImageObj(obj: any) {
     this.imageObj = [];
+    let isPrimarySet = false;
     obj.forEach((imgData: any) => {
       if (imgData.fileName64Bit.changingThisBreaksApplicationSecurity) {
         imgData.fileName64Bit = imgData.fileName64Bit.changingThisBreaksApplicationSecurity;
       }
       const imgBase64 = this.removeString(imgData.fileName64Bit);
 
-      const img = {
+      const img: any = {
         name: imgData.inputText || '',
         image: imgBase64,
         isPrimary: imgData.isPrimary || imgData.isDefault || false
       };
+
+      if (img.isPrimary) {
+        isPrimarySet = true;
+      }
+
+      if(imgData.id) {
+        img.id = imgData.id;
+      }
       this.imageObj.push(img);
     });
+
+    if (!isPrimarySet && this.imageObj.length > 0) {
+      this.imageObj[0].isPrimary = true;
+    }
   }
 
   deleteImage(index: any) {
