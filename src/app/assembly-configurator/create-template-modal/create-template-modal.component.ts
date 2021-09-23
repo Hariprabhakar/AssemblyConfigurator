@@ -129,7 +129,7 @@ export class CreateTemplateModalComponent implements OnInit {
  
 private getAssemblies() {
   this.showLoader = true;
-  this.configuratorService.getAssemblies(this.configuratorService.companyId, 0, false, true).subscribe((res: any) => {
+  this.configuratorService.getAllAssemblies(this.configuratorService.companyId, 0).subscribe((res: any) => {
     this.dataSource = new MatTableDataSource<any>(res);
     this.dataSourceDuplicate = res;
     this.dataSourceOriginal = res;
@@ -192,7 +192,7 @@ private getAssemblies() {
   public ongroupChange(value: any) {
     if(value !== 0) {
       this.showLoader = true;
-      this.configuratorService.getAssemblies(this.configuratorService.companyId, value, false, false).subscribe((res: any) => {
+      this.configuratorService.getAllAssemblies(this.configuratorService.companyId, value).subscribe((res: any) => {
         this.totalAssemblies = res.length;
         this.dataSourceDuplicate = res;
         this.dataSource = new MatTableDataSource<any>(res);
@@ -204,9 +204,6 @@ private getAssemblies() {
           this.showLoader = false;
         }
       );
-      // data = this.dataSourceDuplicate.filter((ele: any)=>{
-      //   return ele.familyName.toLowerCase() === value.trim().toLowerCase();
-      // });
     } else {
       this.dataSource = new MatTableDataSource<any>(this.dataSourceOriginal);
       this.totalAssemblies = this.dataSourceOriginal.length;

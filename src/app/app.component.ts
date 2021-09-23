@@ -15,10 +15,16 @@ export class AppComponent {
   ngOnInit(): void {
     const urlParams = new URLSearchParams(window.location.search);
     const myParam = urlParams.get('companyId');
+    const userId = urlParams.get('userId');
     if(myParam) {
       this.configuratorService.setCompanyId(parseInt(myParam));
       sessionStorage.setItem('companyId',this.sessionService.encrypt(myParam));
-    } 
+    }
+    
+    if(userId) {
+      this.configuratorService.setUserId(parseInt(userId));
+      sessionStorage.setItem('userId',this.sessionService.encrypt(userId));
+    }
   }
 
 }

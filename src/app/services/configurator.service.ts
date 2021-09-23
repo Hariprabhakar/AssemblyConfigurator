@@ -9,6 +9,7 @@ import { SessionService } from '../shared/services/session.service';
 })
 export class ConfiguratorService {
   private _companyId!: number;
+  private _userId: number;
   private _assemblyData: any;
   private asemblyDataSubject$ = new Subject();
   private groupName = new BehaviorSubject('');
@@ -39,6 +40,11 @@ export class ConfiguratorService {
     const sessionCompany = this.sessionService.decrypt(companyId);
     if (sessionCompany !== null) {
       this._companyId = parseInt(sessionCompany);
+    }
+    const userId = sessionStorage.getItem('userId') || '';
+    const sessionUser = this.sessionService.decrypt(userId);
+    if (sessionUser !== null) {
+      this._userId = parseInt(sessionUser);
     }
   }
 
@@ -73,6 +79,14 @@ export class ConfiguratorService {
 
   public get companyId(): number {
     return this._companyId;
+  }
+
+  setUserId(id: number) {
+    this._userId = id;
+  }
+
+  public get userId(): number {
+    return this._userId;
   }
 
   public setAssemblyFormValue(value: any) {
@@ -147,6 +161,17 @@ export class ConfiguratorService {
         '&showCustom=' +
         customAssemblies +
         '&pageIndex=0&pageSize=0';
+    }
+
+    return this.restApiService.get('Assemblies', '', queryParam);
+  }
+
+  public getAllAssemblies(companyId: number, familyId: number) {
+    let queryParam: string;
+    if (familyId == 0) {
+      queryParam = 'companyId=' + companyId + '&includeImage=true';
+    } else {
+      queryParam = 'companyId=' + companyId + '&familyId=' + familyId + '&includeImage=true' ;
     }
 
     return this.restApiService.get('Assemblies', '', queryParam);

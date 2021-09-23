@@ -20,11 +20,16 @@ export class LayoutComponent implements OnInit {
         this.configuratorService.setCompanyId(parseInt(params.companyId));
         sessionStorage.setItem('companyId', this.sessionService.encrypt(params.companyId));
       }
+      if(params.userId) {
+        this.configuratorService.setUserId(parseInt(params.userId));
+        sessionStorage.setItem('userId', this.sessionService.encrypt(params.userId));
+      }
     });
     
     const snapshot = this.route.snapshot;
     const params = { ...snapshot.queryParams };
-    delete params.companyId
+    delete params.companyId;
+    delete params.userId;
     this.router.navigate([], { queryParams: params });
   }
 

@@ -121,6 +121,9 @@ export class RequestNewComponent implements OnInit {
     reqObj.preferredManufacturers = preferredManufacturers;
     const index = reqObj.images.indexOf('base64,') + 7;
     reqObj.images = [reqObj.images.substring(index)];
+    if (this.configService.userId) {
+      reqObj.userId = this.configService.userId;
+    }
     this.showLoader = true;
     this.configService.requestComponent(reqObj).subscribe((res: any)=> {
       this.toastService.openSnackBar('Request sent successfully', 'success', 'success-snackbar');
