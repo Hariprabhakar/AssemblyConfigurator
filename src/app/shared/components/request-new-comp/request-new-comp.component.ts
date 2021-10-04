@@ -10,7 +10,7 @@ import { ToastService } from '../../services/toast.service';
   templateUrl: './request-new-comp.component.html',
   styleUrls: ['./request-new-comp.component.scss']
 })
-export class RequestNewComponent implements OnInit {
+export class RequestNewComponent implements OnInit,OnDestroy {
 
   public requestNewComponent: FormGroup = new FormGroup({});
   public disableField: boolean = true;
@@ -21,7 +21,9 @@ export class RequestNewComponent implements OnInit {
   private categoryName: string;
   public showLoader: boolean = false;
   constructor(public dialogRef: MatDialogRef<RequestNewComponent>, private formBuilder: FormBuilder, private configService: ConfiguratorService,
-    private toastService: ToastService) {
+    private toastService: ToastService,
+    // private subscription:Subscription
+    ) {
 
     this.requestNewComponent = this.formBuilder.group({
       categoryId: ['', Validators.required],
@@ -96,6 +98,23 @@ export class RequestNewComponent implements OnInit {
     }))
   }
 
+  public deleteAttrVal() {
+    if(this.attributes.length > 1){
+      this.attributes.removeAt(this.attributes.length-1);
+    }
+
+  }
+
+  public deleteprefVal() {
+    if(this.preferredManufacturers.length > 1){
+      this.preferredManufacturers.removeAt(this.preferredManufacturers.length-1);
+    }
+  }
+
+  public deleteImg(){
+    this.imgValue = "";
+  }
+
   public uploadedFile(event: any) {
     const reader = new FileReader();
     if (event.target.files && event.target.files.length) {
@@ -128,11 +147,11 @@ export class RequestNewComponent implements OnInit {
     this.configService.requestComponent(reqObj).subscribe((res: any)=> {
       this.toastService.openSnackBar('Request sent successfully', 'success', 'success-snackbar');
       this.dialogRef.close();
-      this.showLoader = false;      
+      this.showLoader = false;
     },
     (error) => {
       this.toastService.openSnackBar(error);
-      this.showLoader = false; 
+      this.showLoader = false;
     });
   }
 }

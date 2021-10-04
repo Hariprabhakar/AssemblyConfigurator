@@ -1,7 +1,7 @@
 .popUp {
     width: 450px;
     height: 480px;
-   
+
 }
 
 .close-button{
@@ -113,6 +113,14 @@ label{
     margin-left: 12px !important;
 }
 
+.attributeValue{
+    border-bottom: 1px solid #424242;
+}
+
+.attributeName{
+    padding-top: 12px;
+}
+
 .attrVal {
     margin-left: 15px !important;
     margin-bottom: 12px;
@@ -157,6 +165,13 @@ label{
     }
 }
 
+.pref-icon-add{
+    margin-left: 6px;
+}
+
+.pref-icon-del{
+    margin-left: 1px;
+}
 .inpFile{
   display: none;
 }
@@ -170,6 +185,10 @@ label{
     padding: 3px;
     border-radius: 25px;
     transform: translate(305px, 4px);
+}
+
+.imgAdd{
+    transform: translate(277px,5px);
 }
 .inputImg{
     width: 26px;
@@ -221,4 +240,4 @@ label{
     .mat-form-field-appearance-outline .mat-form-field-flex{
     padding-left: 0;
     }
-} 
+}

@@ -30,6 +30,7 @@ export class CategoryComponent implements OnInit {
         this.selectedCategory.deselectAll();
         grp.option.selected = true;
         this.categoryChanged.emit(grp.option.value);
+        this.configuratorService.selectedCategory.next(grp.option.value);
       });
     },
       (error: any) => {
@@ -43,6 +44,11 @@ export class CategoryComponent implements OnInit {
     this.categoryList = this.categories.filter((category: any) => {
       return category['name'].toLowerCase().indexOf(this.searchValue.toLowerCase()) >= 0;
     });
+  }
+
+  public categoryChange(): void{
+
+    // sessionStorage.setItem('categoryVal',)
   }
 
 }

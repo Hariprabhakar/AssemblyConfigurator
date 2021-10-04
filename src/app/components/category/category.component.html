@@ -8,7 +8,7 @@
       <mat-icon inline="true">search</mat-icon>
     </div>
   </div>
-  <div class="category-lists circle-check">
+  <div class="category-lists circle-check" (click)="categoryChange()">
     <mat-selection-list #selectedCategory>
       <mat-list-option checkboxPosition="before" *ngFor="let category of categoryList" [value]="category">
         {{ category.name }}

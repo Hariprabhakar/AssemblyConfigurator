@@ -40,7 +40,14 @@
           </div>
           <div class="addButton"> <button class="fab-icon" mat-mini-fab color="primary" (click)="addAttributes()">
               <mat-icon [inline]="true">add</mat-icon>
-            </button></div>
+            </button>
+
+          </div>
+          <div class="delButton">
+            <button  mat-icon-button class="delete-icon" (click)="deleteAttrVal()" color="primary">
+              <span class="material-icons-outlined">delete_outline</span>
+            </button>
+          </div>
         </div>
 
         <div class="preferred">
@@ -50,19 +57,23 @@
               <input type="text" formControlName="preferredName" class="preferrVal">
 
             </div>
-
           </div>
-          <div class="addButton"> <button class="fab-icon" mat-mini-fab color="primary" (click)="addPreferredManuf()">
-              <mat-icon [inline]="true">add</mat-icon>
-            </button>
-          </div>
+          <button class="fab-icon pref-icon-add" mat-mini-fab color="primary" (click)="addPreferredManuf()">
+            <mat-icon [inline]="true">add</mat-icon>
+          </button>
+          <button  mat-icon-button class="fab-icon pref-icon-del" (click)="deleteprefVal()" color="primary">
+            <span class="material-icons-outlined">delete_outline</span>
+          </button>
         </div>
         <div class="images">
           <label class="uploadImg">Add Image
             <input type="file" class="inpFile" (change)="uploadedFile($event)">
 
-            <mat-icon [inline]="true" class="addIcon">add</mat-icon>
+            <mat-icon [inline]="true" class="addIcon imgAdd">add</mat-icon>
           </label>
+          <button  mat-icon-button class="fab-icon" (click)="deleteImg()" color="primary">
+            <span class="material-icons-outlined">delete_outline</span>
+          </button>
           <span *ngIf="imgValue">
             <input type="image" src="{{imgValue}}" alt="" formControlName="images" class="inputImg">
           </span>
@@ -75,7 +86,7 @@
         <mat-dialog-actions align="end">
           <div class="footer-btn-wrap">
             <button mat-flat-button color="primary" [disabled]="!requestNewComponent.valid" class="submit-btn" (click)="onSubmit()">Submit</button>
-          </div>          
+          </div>
         </mat-dialog-actions>
       </div>
     </form>
