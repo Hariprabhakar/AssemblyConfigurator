@@ -10,7 +10,7 @@ import { ToastService } from '../../services/toast.service';
   templateUrl: './request-new-comp.component.html',
   styleUrls: ['./request-new-comp.component.scss']
 })
-export class RequestNewComponent implements OnInit,OnDestroy {
+export class RequestNewComponent implements OnInit {
 
   public requestNewComponent: FormGroup = new FormGroup({});
   public disableField: boolean = true;
@@ -18,6 +18,7 @@ export class RequestNewComponent implements OnInit,OnDestroy {
   public imgValue: any;
   public groups: any;
   public groupValue: any;
+  public selectedCategory: any;
   private categoryName: string;
   public showLoader: boolean = false;
   constructor(public dialogRef: MatDialogRef<RequestNewComponent>, private formBuilder: FormBuilder, private configService: ConfiguratorService,
@@ -48,11 +49,17 @@ export class RequestNewComponent implements OnInit,OnDestroy {
 
   ngOnInit(): void {
     this.showLoader = true;
-    this.requestNewComponent.get('otherCategoryName')?.disable()
+    this.requestNewComponent.get('otherCategoryName')?.disable();
     this.configService.getCategories().subscribe((res: any) => {
       res.push({ id: 0, name: 'Other Category' });
       this.groups = res;
       this.showLoader = false;
+      const indx = this.groups.findIndex((element: any) => {
+        return element.id == this.configService.selectedCategory.id;
+      });
+      this.requestNewComponent.patchValue({
+        categoryId: this.groups[indx]
+      });
     });
 
     this.groupName?.valueChanges.subscribe((value: any) => {
@@ -70,6 +77,7 @@ export class RequestNewComponent implements OnInit,OnDestroy {
       this.categoryName = value.name;
 
     });
+    
   }
 
   get forms() { return this.requestNewComponent.controls; }

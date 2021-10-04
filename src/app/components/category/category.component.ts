@@ -30,7 +30,7 @@ export class CategoryComponent implements OnInit {
         this.selectedCategory.deselectAll();
         grp.option.selected = true;
         this.categoryChanged.emit(grp.option.value);
-        this.configuratorService.selectedCategory.next(grp.option.value);
+        this.configuratorService.selectedCategory = grp.option.value;
       });
     },
       (error: any) => {

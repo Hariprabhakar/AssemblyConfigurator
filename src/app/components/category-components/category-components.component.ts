@@ -257,7 +257,7 @@ export class CategoryComponentsComponent implements OnInit {
     if (this.recentEditedTag !== event.target.value) {
       this.recentEditedTag = event.target.value;
 
-      if (this.recentEditedTag !== '' && this.recentEditedTag !== this.currentTagVal) {
+      if (this.recentEditedTag !== this.currentTagVal) {
         const tag = {
           tag: this.recentEditedTag
         };
@@ -297,9 +297,14 @@ export class CategoryComponentsComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.selectedFilter = result;
-        this.updateComponent(result);
-        this.showLoader = true;
+        if(result.filters.length > 0) {
+          this.selectedFilter = result;
+          this.updateComponent(result);
+          this.showLoader = true;
+        } else{
+          this.clearFilter();
+        }
+        
       }
     });
   }

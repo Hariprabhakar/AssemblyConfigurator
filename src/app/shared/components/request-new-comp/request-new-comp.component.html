@@ -14,7 +14,7 @@
         <div class="groupName">
           <mat-form-field class="select-group" appearance="outline">
             <mat-label class="matLable">Select Category</mat-label>
-            <mat-select formControlName="categoryId">
+            <mat-select formControlName="categoryId" [(value)]="selectedCategory">
               <mat-option *ngFor="let group of groups" [value]="group">{{group.name}}</mat-option>
             </mat-select>
           </mat-form-field>
@@ -28,26 +28,35 @@
           <input type="text" formControlName="componentName" class="compName">
         </div>
         <div class="attribute">
-          <div class="attributeFields" *ngFor="let attr of attributeFormGroups">
-            <div class="attributeName" [formGroup]="attr">
-              <label>Attribute Name</label>
-              <input type="text" formControlName="name" class="attrName">
-            </div>
-            <div class="attributeValue" [formGroup]="attr">
-              <label>Attribute Value</label>
-              <input type="text" formControlName="value" class="attrVal">
-            </div>
+          <div>
+            <ng-container *ngFor="let attr of attributeFormGroups">
+              <div class="attributeFields" >
+                <div class="attributeName" [formGroup]="attr">
+                  <label>Attribute Name</label>
+                  <input type="text" formControlName="name" class="attrName">
+                </div>
+                <div class="attributeValue" [formGroup]="attr">
+                  <label>Attribute Value</label>
+                  <input type="text" formControlName="value" class="attrVal">
+                </div>
+              </div>
+            </ng-container>
           </div>
-          <div class="addButton"> <button class="fab-icon" mat-mini-fab color="primary" (click)="addAttributes()">
+          
+          
+          <div class="flex-cont">
+            <div class="addButton"> <button class="fab-icon" mat-mini-fab color="primary" (click)="addAttributes()">
               <mat-icon [inline]="true">add</mat-icon>
             </button>
 
           </div>
-          <div class="delButton">
-            <button  mat-icon-button class="delete-icon" (click)="deleteAttrVal()" color="primary">
+          <div class="delButton" *ngIf="attributes.length > 1">
+            <button  mat-icon-button class="delete-icon fab-icon" (click)="deleteAttrVal()" color="primary">
               <span class="material-icons-outlined">delete_outline</span>
             </button>
           </div>
+          </div>
+          
         </div>
 
         <div class="preferred">
@@ -61,7 +70,7 @@
           <button class="fab-icon pref-icon-add" mat-mini-fab color="primary" (click)="addPreferredManuf()">
             <mat-icon [inline]="true">add</mat-icon>
           </button>
-          <button  mat-icon-button class="fab-icon pref-icon-del" (click)="deleteprefVal()" color="primary">
+          <button *ngIf="preferredManufacturers.length > 1"  mat-icon-button class="fab-icon pref-icon-del" (click)="deleteprefVal()" color="primary">
             <span class="material-icons-outlined">delete_outline</span>
           </button>
         </div>
@@ -71,7 +80,7 @@
 
             <mat-icon [inline]="true" class="addIcon imgAdd">add</mat-icon>
           </label>
-          <button  mat-icon-button class="fab-icon" (click)="deleteImg()" color="primary">
+          <button  mat-icon-button class="fab-icon" *ngIf="imgValue" (click)="deleteImg()" color="primary">
             <span class="material-icons-outlined">delete_outline</span>
           </button>
           <span *ngIf="imgValue">

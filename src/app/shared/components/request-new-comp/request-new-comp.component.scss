@@ -188,7 +188,7 @@ label{
 }
 
 .imgAdd{
-    transform: translate(277px,5px);
+    transform: translate(306px,5px);
 }
 .inputImg{
     width: 26px;
@@ -222,7 +222,7 @@ label{
     padding: 2px 28px;
     font-size: 14px;
     height: 30px;
-    line-height: 30px;
+    line-height: 27px;
 }
 
 .request-new-component{
@@ -240,4 +240,8 @@ label{
     .mat-form-field-appearance-outline .mat-form-field-flex{
     padding-left: 0;
     }
+}
+
+.flex-cont{
+    display: flex;
 }

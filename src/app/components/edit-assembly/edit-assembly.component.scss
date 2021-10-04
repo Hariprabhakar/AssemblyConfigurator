@@ -74,6 +74,19 @@
     ::ng-deep .mat-form-field-appearance-outline .mat-empty.mat-form-field-label {
       margin-top: 0px;
     }
+
+    ::ng-deep .not-empty-select.mat-selected {
+      color: #d8d8d8 !important;
+    }
+    
+    ::ng-deep .mat-select-value-text {
+      color: #d8d8d8 !important;
+    }
+
+    ::ng-deep .read-only .mat-select-value-text {
+      color: #b8b8b8 !important;
+    }
+
     .read-only {
       pointer-events: none;
     }

@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, Pipe, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewChecked, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, Pipe, SimpleChanges, ViewChild } from '@angular/core';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { FileChooseModalComponent } from '../components/file-choose-modal/file-choose-modal.component';
@@ -35,7 +35,7 @@ export interface SaveAssemblyData {
   templateUrl: './custom-assembly.component.html',
   styleUrls: ['./custom-assembly.component.scss']
 })
-export class CustomAssemblyComponent implements OnInit, OnDestroy {
+export class CustomAssemblyComponent implements OnInit, OnDestroy, AfterViewChecked {
   public displayedColumns: string[] = ['sn', 'image', 'component', 'tag', 'phase', 'qty', 'uom'];
   public componentDataSource: any;
   @Input() public selectedComponent: any;
@@ -72,6 +72,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
   @Output() removedComponent = new EventEmitter();
   @ViewChild('table') table: MatTable<any>;
   @ViewChild('table',{read: ElementRef}) pdfTable: ElementRef;
+  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
   private saveAssemblyData: SaveAssemblyData = {
     id: '',
     name: '',
@@ -89,7 +90,8 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     public sanitizer: DomSanitizer,
-    private sessionService: SessionService
+    private sessionService: SessionService,
+    private cdref: ChangeDetectorRef
   ) {
     this.imag64BitUrl = '';
     this.imageObj = [];
@@ -860,4 +862,16 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy {
     });
     // doc.save('export.pdf');
   }
+
+  ngAfterViewChecked() {        
+    this.scrollToBottom();
+    this.cdref.detectChanges();        
+  } 
+
+  public scrollToBottom(): void {
+    try {
+      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch (err) { }
+  }
+
 }

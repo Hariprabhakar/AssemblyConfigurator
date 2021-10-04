@@ -101,7 +101,7 @@ const ELEMENT_DATA: any = [
 export class CreateTemplateModalComponent implements OnInit {
 
   // public displayedColumns: string[] = [ 'image', 'asslemblyName', 'group', 'system', 'connectionType', 'latestUpdate'];
-  public displayedColumns: string[] = [ 'image', 'asslemblyName', 'group', 'latestUpdate'];
+  public displayedColumns: string[] = [ 'image', 'asslemblyName', 'group', 'latestUpdate', 'timeZone'];
   public dataSource: any;
   public dataSourceDuplicate: any;
   public dataSourceOriginal: any;
@@ -114,6 +114,7 @@ export class CreateTemplateModalComponent implements OnInit {
   public selectedSort: string;
   public baseUrl: string = '';
   public showLoader: boolean = false;
+  public templateNameError: boolean = false;
 
   constructor(public dialogRef: MatDialogRef<CreateTemplateModalComponent>, private configuratorService: ConfiguratorService,
     private toastService: ToastService) { }
@@ -133,6 +134,7 @@ private getAssemblies() {
     this.dataSource = new MatTableDataSource<any>(res);
     this.dataSourceDuplicate = res;
     this.dataSourceOriginal = res;
+    this.onSortChange('Latest');
     this.totalAssemblies = res.length;
     this.showLoader = false;
   },
@@ -157,7 +159,14 @@ private getAssemblies() {
   }
 
   public selectRow(row: any) {
-    this.selection.toggle(row);
+    if (this.templateName) {
+      this.selection.toggle(row);
+      this.templateNameError = false;
+    } else {
+      this.templateNameError = true;
+      console.log('please provide template name');  
+    }
+    
   }
 
   public close() {
@@ -189,28 +198,52 @@ private getAssemblies() {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  public ongroupChange(value: any) {
+  public onTemplateNameChange() {
+    if(this.templateName) {
+      this.templateNameError = false;
+    }
+  }
+
+  // public ongroupChange(value: any) {
+  //   if(value !== 0) {
+  //     this.showLoader = true;
+  //     this.configuratorService.getAllAssemblies(this.configuratorService.companyId, value).subscribe((res: any) => {
+  //       this.totalAssemblies = res.length;
+  //       this.dataSourceDuplicate = res;
+  //       this.dataSource = new MatTableDataSource<any>(res);
+  //       this.showLoader = false;
+  //       this.selection.clear();
+  //     },
+  //       (error: any) => {
+  //         this.toastService.openSnackBar(error);
+  //         this.showLoader = false;
+  //       }
+  //     );
+  //   } else {
+  //     this.dataSource = new MatTableDataSource<any>(this.dataSourceOriginal);
+  //     this.totalAssemblies = this.dataSourceOriginal.length;
+  //     this.selection.clear();
+  //   }
+    
+  // }
+
+  public ongroupChange(value: any){
+    let data: any;
     if(value !== 0) {
-      this.showLoader = true;
-      this.configuratorService.getAllAssemblies(this.configuratorService.companyId, value).subscribe((res: any) => {
-        this.totalAssemblies = res.length;
-        this.dataSourceDuplicate = res;
-        this.dataSource = new MatTableDataSource<any>(res);
-        this.showLoader = false;
-        this.selection.clear();
-      },
-        (error: any) => {
-          this.toastService.openSnackBar(error);
-          this.showLoader = false;
+      data = this.dataSourceDuplicate.filter((ele: any)=>{
+        if(ele.familyId) {
+          return ele.familyId === value;
+        } else{
+          return false;
         }
-      );
+        
+      });
     } else {
-      this.dataSource = new MatTableDataSource<any>(this.dataSourceOriginal);
-      this.totalAssemblies = this.dataSourceOriginal.length;
-      this.selection.clear();
+      data = this.dataSourceDuplicate;
     }
     
-    
+    this.dataSource = new MatTableDataSource<any>(data);
+    this.totalAssemblies = data.length;
   }
 
   public validate(){

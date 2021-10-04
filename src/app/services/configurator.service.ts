@@ -20,6 +20,10 @@ export class ConfiguratorService {
   public groups: any;
   private assemblyFormValue: any;
   public families: any;
+  public selectedCategory: any = {
+    id: '',
+    name: ''
+  }
   public cancelRouteValues: any = {
     familyId: '',
     assemblyId: ''

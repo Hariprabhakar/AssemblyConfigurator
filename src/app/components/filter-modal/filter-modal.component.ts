@@ -24,6 +24,7 @@ export class FilterModalComponent implements OnInit {
   private element: any;
   public filterValue: any;
   public showLoader: boolean;
+  public isReset: boolean = false;
   constructor(
     public dialModalRef: MatDialogRef<FilterModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -118,6 +119,9 @@ export class FilterModalComponent implements OnInit {
         checkbox._checked = false;
       });
     }
+    if (this.selectedFilter.filters.length > 0) {
+      this.isReset = true;
+    }
     this.selectedFilter.filters = [];
   }
 
@@ -132,4 +136,21 @@ export class FilterModalComponent implements OnInit {
     }
     return checked;
   }
+
+  public getFilterBadgeCount(filterName: string, values: any) {
+    let count = 0;
+    this.selectedFilter.filters.some((filter) => {
+      if (filter.name == filterName) {
+        count = filter.values ? filter.values.length : 0;
+        return true;
+      }
+    });
+    return count;
+    
+    // values.forEach(element => {
+      
+    // });
+  }
+
 }
+

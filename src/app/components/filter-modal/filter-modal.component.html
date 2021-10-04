@@ -19,7 +19,7 @@
                 <ng-container *ngFor="let filter of filterValue.filters">
                     <mat-tab>
                         <ng-template mat-tab-label>
-                            {{filter.name}}
+                            {{filter.name}}  <span class="badge" *ngIf="getFilterBadgeCount(filter.name, filter.values) > 0">{{getFilterBadgeCount(filter.name, filter.values)}}</span>
                         </ng-template>
                         <div>
                             <mat-list>                       
@@ -42,7 +42,7 @@
                 <button mat-flat-button color="primary" (click)="reset()">RESET</button>
               </div>
               <div class="apply-filter">
-                <button mat-flat-button color="primary" [disabled]="selectedFilter?.filters?.length == 0" (click)="applyFilter()" >APPLY</button>
+                <button mat-flat-button color="primary" [disabled]="isReset ? false : selectedFilter?.filters?.length == 0" (click)="applyFilter()" >APPLY</button>
               </div>
         </div>
     </div>

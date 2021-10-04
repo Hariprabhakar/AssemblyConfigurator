@@ -5,7 +5,8 @@
   <div class="create-hdr-wrap">
     <div class="header-lbl">Create Template</div>
     <div class="ac-input">
-      <input type="text" [(ngModel)]="templateName" placeholder="Template Name" />
+      <input type="text" [(ngModel)]="templateName" (keyup)="onTemplateNameChange()" placeholder="Template Name" />
+      <div *ngIf="templateNameError" class="error-msg">Please provide Template Name</div>
   </div>
   </div>
   <div class="sort-group">
@@ -87,6 +88,11 @@
       <ng-container matColumnDef="latestUpdate">
         <th mat-header-cell *matHeaderCellDef> Latest Update </th>
         <td mat-cell *matCellDef="let element"> {{element.updatedDate | date: 'MM/dd/yyyy hh:mm a'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="timeZone">
+        <th mat-header-cell *matHeaderCellDef> Time Zone </th>
+        <td mat-cell *matCellDef="let element"><div *ngIf="element.updatedDate">PT</div>  </td>
       </ng-container>
     
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

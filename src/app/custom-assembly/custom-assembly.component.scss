@@ -655,3 +655,14 @@
         height: 625px;
     }
 }
+
+.custom-assembly-wrap.read-only .component-section .table table .mat-column-qty{
+    background-color: transparent;
+    border: none;
+    border-right: 1px solid #4a4a4a;
+    border-bottom: 1px solid #4a4a4a;
+    width: 40px !important;
+    .ac-input input{
+        color: #787878;
+    }
+}

@@ -141,3 +141,16 @@ mat-tab-body {
     }
   }
 } 
+
+.badge{
+  position: absolute;
+    right: 20px;
+    display: inline-block;
+    width: 16px;
+    height: 18px;
+    font-size: 10px;
+    background-color: #f34040;
+    color: #fff;
+    border-radius: 10px;
+    margin-left: 10px;
+}

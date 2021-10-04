@@ -13,6 +13,7 @@
                 <div class="upload-img-btn secondary-btn" *ngIf="assemblyDetailsReadOnly">
                     <img src="assets/images/maximize.png" (click)="openZoomImg()" class="img-max-btn" />
                     <img class="preview-img" *ngIf="imag64BitUrl" src="{{ imag64BitUrl }}" alt="Profile" />
+                    <img class="preview-img" *ngIf="!imag64BitUrl" src="assets/images/placeholder.png" alt="Profile" />
                 </div>
             </div>
             <div class="assembly-info">
@@ -88,7 +89,7 @@
             </div>
         </div>
         <div class="component-section">
-            <div class="table" [class.editable]="!assemblyDetailsReadOnly" *ngIf="!gridViewFlag">
+            <div class="table" #scrollMe [scrollTop]="scrollMe.scrollHeight" [class.editable]="!assemblyDetailsReadOnly" *ngIf="!gridViewFlag">
                 <table mat-table #table [dataSource]="componentTableData" cdkDropList [cdkDropListData]="componentTableData" (cdkDropListDropped)="dropTable($event)">
                     <ng-container matColumnDef="sn">
                         <th mat-header-cell *matHeaderCellDef>SN</th>
@@ -108,8 +109,8 @@
                                 <div class="jbox-system" *ngIf="assemblyDetailsReadOnly ? !checkArrayEmpty(element.systems) : true">
                                     <div class="label">Sys:</div>
                                     <div class="chip">
-                                        <span *ngIf="checkArray(element.systems)">{{ element.systems[0] }} <span *ngIf="element.systems?.length > 1"> + {{ element.systems.length - 1 }}</span></span>
-                                        <span *ngIf="!checkArray(element.systems)">{{ element.systems }}</span>
+                                        <span [matTooltip]="element.systems.join(', ')" *ngIf="checkArray(element.systems)">{{ element.systems[0] }} <span *ngIf="element.systems?.length > 1"> + {{ element.systems.length - 1 }}</span></span>
+                                        <span [matTooltip]="element.systems" *ngIf="!checkArray(element.systems)">{{ element.systems }}</span>
                                         <div class="action-icons" *ngIf="!assemblyDetailsReadOnly">
                                             <span inline="true" (click)="!assemblyDetailsReadOnly && editConnectionSystem(element)" class="material-icons-outlined edit-icon"> border_color </span>
                                             <!-- <span inline="true" (click)="!assemblyDetailsReadOnly && deleteConnectionSystem(element, 'systems')" class="material-icons-outlined delete-icon">delete</span> -->
@@ -119,8 +120,8 @@
                                 <div class="jbox-connector" *ngIf="assemblyDetailsReadOnly ? !checkArrayEmpty(element.connectionTypes) : true">
                                     <div class="label">Conn:</div>
                                     <div class="chip">
-                                        <span *ngIf="checkArray(element.connectionTypes)">{{ element.connectionTypes[0] }} <span *ngIf="element.connectionTypes?.length > 1">+ {{ element.connectionTypes.length - 1 }}</span></span>
-                                        <span *ngIf="!checkArray(element.connectionTypes)">{{ element.connectionTypes }}</span>
+                                        <span [matTooltip]="element.connectionTypes.join(', ')" *ngIf="checkArray(element.connectionTypes)">{{ element.connectionTypes[0] }} <span *ngIf="element.connectionTypes?.length > 1">+ {{ element.connectionTypes.length - 1 }}</span></span>
+                                        <span [matTooltip]="element.connectionTypes" *ngIf="!checkArray(element.connectionTypes)">{{ element.connectionTypes }}</span>
                                         <div class="action-icons" *ngIf="!assemblyDetailsReadOnly">
                                             <span class="edit-icon" (click)="!assemblyDetailsReadOnly && editConnectionSystem(element)" inline="true" class="material-icons-outlined edit-icon">
                         border_color
