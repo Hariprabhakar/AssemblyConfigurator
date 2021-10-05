@@ -92,18 +92,26 @@ export class RequestNewComponent implements OnInit {
   }
 
   public addAttributes() {
+    if(this.attributes.status.toLowerCase() == 'valid') {
 
-    this.attributes.push(this.formBuilder.group({
-      name: ['', null],
-      value: ['', null],
-    }));
+      this.attributes.push(this.formBuilder.group({
+        name: ['', Validators.required],
+        value: ['', Validators.required],
+      }));
 
+    } else {
+      this.toastService.openSnackBar('Please fill the existing attribute fields to add new attributes')
+    }
   }
 
   public addPreferredManuf() {
-    this.preferredManufacturers.push(this.formBuilder.group({
-      preferredName: ['', Validators.required]
-    }))
+    if (this.preferredManufacturers.status.toLowerCase() == 'valid') {
+      this.preferredManufacturers.push(this.formBuilder.group({
+        preferredName: ['', Validators.required]
+      }))
+    } else {
+      this.toastService.openSnackBar('Please fill the existing  Preferred Manufacturer field to add new Preferred Manufacturer ')
+    }
   }
 
   public deleteAttrVal() {

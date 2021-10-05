@@ -30,7 +30,7 @@
         <div class="attribute">
           <div>
             <ng-container *ngFor="let attr of attributeFormGroups">
-              <div class="attributeFields" >
+              <div class="attributeFields field-split" >
                 <div class="attributeName" [formGroup]="attr">
                   <label>Attribute Name</label>
                   <input type="text" formControlName="name" class="attrName">
@@ -45,9 +45,10 @@
           
           
           <div class="flex-cont">
-            <div class="addButton"> <button class="fab-icon" mat-mini-fab color="primary" (click)="addAttributes()">
-              <mat-icon [inline]="true">add</mat-icon>
-            </button>
+            <div class="addButton"> <div class="fab-icon" (click)="addAttributes()">
+              <!-- <mat-icon [inline]="true">add</mat-icon> -->
+              <img src="assets/images/add.svg" />
+            </div>
 
           </div>
           <div class="delButton" *ngIf="attributes.length > 1">
@@ -60,32 +61,42 @@
         </div>
 
         <div class="preferred">
-          <div class="preferredFields" *ngFor="let prefVal of preferredManufacturerGroup">
-            <div class="preferedValue" [formGroup]="prefVal">
-              <label>Preferred Manufacturer</label>
-              <input type="text" formControlName="preferredName" class="preferrVal">
-
-            </div>
+          <div>
+            <ng-container *ngFor="let prefVal of preferredManufacturerGroup">
+              <div class="preferredFields field-split" >
+                <div class="preferedValue" [formGroup]="prefVal">
+                  <label>Preferred Manufacturer</label>
+                  <input type="text" formControlName="preferredName" class="preferrVal">
+    
+                </div>
+              </div>
+            </ng-container>
           </div>
-          <button class="fab-icon pref-icon-add" mat-mini-fab color="primary" (click)="addPreferredManuf()">
-            <mat-icon [inline]="true">add</mat-icon>
-          </button>
-          <button *ngIf="preferredManufacturers.length > 1"  mat-icon-button class="fab-icon pref-icon-del" (click)="deleteprefVal()" color="primary">
-            <span class="material-icons-outlined">delete_outline</span>
-          </button>
+          
+          <div class="flex-cont">
+            <div class="fab-icon pref-icon-add" (click)="addPreferredManuf()">
+              <!-- <mat-icon [inline]="true">add</mat-icon> -->
+              <img src="assets/images/add.svg" />
+            </div>
+            <button *ngIf="preferredManufacturers.length > 1"  mat-icon-button class="fab-icon pref-icon-del" (click)="deleteprefVal()" color="primary">
+              <span class="material-icons-outlined">delete_outline</span>
+            </button>
+          </div>
+
         </div>
         <div class="images">
           <label class="uploadImg">Add Image
             <input type="file" class="inpFile" (change)="uploadedFile($event)">
 
-            <mat-icon [inline]="true" class="addIcon imgAdd">add</mat-icon>
+            <!-- <mat-icon [inline]="true"  [class.add-icon-move]="imgValue" class="addIcon imgAdd">add</mat-icon> -->
+            <img  [class.add-icon-move]="imgValue" class="addIcon imgAdd" src="assets/images/add.svg" />
           </label>
-          <button  mat-icon-button class="fab-icon" *ngIf="imgValue" (click)="deleteImg()" color="primary">
-            <span class="material-icons-outlined">delete_outline</span>
-          </button>
           <span *ngIf="imgValue">
             <input type="image" src="{{imgValue}}" alt="" formControlName="images" class="inputImg">
           </span>
+          <button  mat-icon-button class="fab-icon img-delete-icon" *ngIf="imgValue" (click)="deleteImg()" color="primary">
+            <span class="material-icons-outlined">delete_outline</span>
+          </button>
         </div>
         <div class="remarks">
           <textarea  formControlName="remarks" class="inpRemarks" placeholder="Remarks"></textarea>

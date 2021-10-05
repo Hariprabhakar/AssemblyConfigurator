@@ -103,7 +103,7 @@ label{
     padding: 10px;
     display: flex;
     width:425px;
-    align-items: center;
+    align-items: baseline;
     flex-wrap: wrap;
     justify-content: space-between;
 }
@@ -111,10 +111,6 @@ label{
 .attrName {
     margin-bottom: 12px;
     margin-left: 12px !important;
-}
-
-.attributeValue{
-    border-bottom: 1px solid #424242;
 }
 
 .attributeName{
@@ -151,14 +147,17 @@ label{
 }
 
 .request-new-component .fab-icon {
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     line-height: 14px;
     font-size: 15px;
+    cursor: pointer;
     &::ng-deep .mat-button-wrapper {
         font-size: 22px;
-        line-height: 14px;
+        line-height: 22px;
         padding: 0;
+        width: 22px;
+        height: 23px;
         .mat-icon {
             padding-right: 1px;
         }
@@ -176,19 +175,17 @@ label{
   display: none;
 }
 .addIcon{
-    width: 25px;
-    height: 25px;
+    width: 32px;
+    height: 32px;
+    vertical-align: bottom;
     font-size: 19px;
-    background: #ffc400;
     color: #000;
     font-weight: 500;
-    padding: 3px;
     border-radius: 25px;
-    transform: translate(305px, 4px);
 }
 
 .imgAdd{
-    transform: translate(306px,5px);
+    transform: translate(301px,5px);
 }
 .inputImg{
     width: 26px;
@@ -244,4 +241,26 @@ label{
 
 .flex-cont{
     display: flex;
+}
+
+.img-delete-icon{
+    transform: translate(254px, 2px);
+}
+
+.add-icon-move{
+    transform: translate(279px,5px);
+}
+
+.field-split + .field-split{
+    border-top: 2px solid #424242;
+}
+
+.preferredFields{
+    padding-top: 10px;
+}
+
+.preferedValue{
+    input{
+        width: 150px;
+    }
 }

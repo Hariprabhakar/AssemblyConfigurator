@@ -201,6 +201,10 @@ a {
     input[type=number]::-webkit-outer-spin-button {
         opacity: 1;
     }
+    input[type=number]::-webkit-inner-spin-button {  
+        width: 24px;
+        height: 30px;
+    }
 }
 
 .contact-us-modal {
