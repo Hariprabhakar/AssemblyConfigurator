@@ -25,7 +25,7 @@
         Contact Us</button>
     </mat-menu>
     <mat-menu #account="matMenu">
-      <button mat-menu-item class="menu-icon">
+      <button mat-menu-item class="menu-icon" (click)="profile()">
         <span class="material-icons">settings</span>
         Profile</button>
       <button mat-menu-item (click)="closeTab()" class="menu-icon">

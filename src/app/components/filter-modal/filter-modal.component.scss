@@ -3,11 +3,11 @@
   .header {
     position: relative;
     display: flex;
-    color: #ffc400;
+    color: var(--primary-color);
     height: 46px;
     line-height: 46px;
     padding: 0px 20px;
-    border-bottom: 1px dashed #ffc400;
+    border-bottom: 1px dashed var(--primary-color);
     .filter-icon {
       font-size: 24px;
       padding-right: 10px;
@@ -25,7 +25,7 @@
   .footer{
     display: flex;
     justify-content: flex-end;
-    background-color: #222122;
+    background-color: var(--popup-bg-4);
     padding: 12px;
     .reset-filter{
       padding-right: 10px;
@@ -38,8 +38,8 @@
     }
     .reset-filter{
       button{
-        background-color: #42433B;
-        color: #ffc400;
+        background-color: var(--popup-btn-1);
+        color: var(--primary-color);
       }     
     }
   }
@@ -55,7 +55,7 @@
   .mat-tab-label{
     justify-content: start;
     margin: 3px 0;
-    background-color: #373737;
+    background-color: var(--popup-bg-3);
   }
 }
 
@@ -83,8 +83,8 @@ mat-tab-body {
 
 /* Styles for the active tab label */
 :host ::ng-deep.mat-tab-label.mat-tab-label-active {
-  background-color: #212121;
-  color: #ffc400;
+  background-color: var(--popup-bg-2);
+  color: var(--primary-color);
 }
 /* Styles for the active tab label */
 :host ::ng-deep.mat-tab-label {
@@ -98,14 +98,14 @@ mat-tab-body {
 
 ::ng-deep .filter-modalbox .mat-dialog-container{
   padding: 0;
-  background: #303030;
+  background: var(--popup-bg-1);
 }
 
 ::ng-deep app-filter-modal {
   .mat-tab-nav-bar, .mat-tab-header{
     border: none;
     min-height: 325px;
-    border-right: 1px dashed #ffc400;
+    border-right: 1px dashed var(--primary-color);
     padding-top: 8px;
   }
   .mat-tab-body{
@@ -137,7 +137,7 @@ mat-tab-body {
      
     &::-webkit-scrollbar-thumb {
       border-radius: 5px;
-      background-color: #4f4f4f;
+      background-color: var(--bg-color-2);
     }
   }
 } 

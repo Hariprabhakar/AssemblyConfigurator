@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   padding: 10px 24px;
+  background-color: var(--header-color);
 
   .logo-title-wrap {
     display: flex;
@@ -10,7 +11,7 @@
     .logo-container {
       display: inline-block;
       padding: 5px 8px;
-      background-color: #212121;
+      background-color: var(--header-logo-bg);
       border-radius: 4px;
 
       .logo {
@@ -24,14 +25,16 @@
       padding-left: 13px;
       font-size: 14px;
       text-transform: uppercase;
+      color: var(--header-font-color);
     }
   }
 
   .user-action {
-    background: #212121;
+    background: var(--header-logo-bg);
     border-radius: 4px;
     margin-right: 22px;
     padding: 0 14px;
+    color: var(--header-icon-color);
   }
 }
 .menu-icon{
@@ -39,13 +42,13 @@
     vertical-align: middle;
   }
   .material-icons{
-    color: #ffc400;
+    color: var(--primary-color);
   }
 }
 
 .download-manual{
   a{
-    color: #ffffff;
+    color: var(--color-text-4);
     text-decoration: none;
     padding: 15px 0px;
   }

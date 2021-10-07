@@ -9,7 +9,7 @@
 </mat-dialog-actions>
 <div class="clearfix"></div>
 <form autocomplete="off">
-<mat-dialog-content [class.preview]="imageSrc" class="mat-typography">
+<mat-dialog-content [class.preview]="imageSrc" class="mat-typography assem-icon-wrap">
   <div class="valid"></div>
   
     <div class="create-assembly">
@@ -25,7 +25,7 @@
               <div class="clearfix"></div>
               <div class="choose-existing-wrap">
                 <div class="select-existing-icon">
-                  <mat-form-field class="select-group assem-grp exist-assem" [class.read-only]="!enableExistingField" appearance="outline" style="background-color: #282828">
+                  <mat-form-field class="select-group assem-grp exist-assem" [class.read-only]="!enableExistingField" appearance="outline">
                     <mat-label class="matLable">Choose from existing Assembly</mat-label>
                     <mat-select name="existingAssemblyName"  panelClass="icon-select" [(ngModel)]="existingAssembly">
                       <mat-select-trigger>{{ getExistingAssemblyName(existingAssembly) }}</mat-select-trigger>
@@ -57,7 +57,7 @@
               </div>
               <div class="sym-shape">
                 <label>Symbol Shape</label>
-                <mat-form-field class="select-group assem-grp exist-assem" [class.read-only]="!enableCustomField" appearance="outline" style="background-color: #282828">
+                <mat-form-field class="select-group assem-grp exist-assem" [class.read-only]="!enableCustomField" appearance="outline">
                   <mat-label class="matLable">Select Shape</mat-label>
                   <mat-select name="shape" [(ngModel)]="selectedShape">
                     <mat-option *ngFor="let iconImage of iconImages" [value]="iconImage.value">

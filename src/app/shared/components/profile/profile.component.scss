@@ -1,0 +1,25 @@
+
+.profile-wrap{
+    .title{
+        color: var(--primary-color);
+        font-size: 20px;
+        padding-bottom: 20px;
+    }
+    .dark-lable {
+      vertical-align: top;
+      display: inline-block;
+      line-height: 24px;
+      padding-right: 15px;
+    }
+
+    .header{
+        position: relative;
+        .close-icon{
+            position: absolute;
+            right: 4px;
+            cursor: pointer;
+            top: 0px;
+        }
+    }
+}
+

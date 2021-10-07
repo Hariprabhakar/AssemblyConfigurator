@@ -36,7 +36,7 @@
             .primary-img {
                 width: 193px;
                 height: 181px;
-                background-color: #818181;
+                background-color: var(--bg-color-6);
                 position: relative;
                 flex: 0 0 180px;
                 margin-right: 8px;
@@ -47,8 +47,8 @@
                     left: 50%;
                     width: 150px;
                     font-size: 11px;
-                    border: 1px solid #ffc400 !important;
-                    color: #ffc400 !important;
+                    border: 1px solid var(--primary-color) !important;
+                    color: var(--primary-color) !important;
                 }
             }
             .icon {
@@ -73,7 +73,7 @@
                             height: 34px;
                             width: 34px;
                             border-radius: 20px;
-                            border: 2px solid #454545;
+                            border: 2px solid var(--border-color-1);
                             float: left;
                             margin: 0 auto;
                         }
@@ -84,10 +84,10 @@
                     width: 71px;
                     height: 71px;
                     margin: 6px;
-                    background-color: #262626;
+                    background-color: var(--bg-color-7);
                     .icon-text {
                         font-size: 9px;
-                        color: #787878;
+                        color: var(--color-text-2);
                         text-align: center;
                         line-height: 10px;
                         padding: 5px 5px;
@@ -97,7 +97,7 @@
                     min-height: 136px;
                     float: left;
                     font-size: 14px;
-                    color: #787878;
+                    color: var(--color-text-2);
                     padding: 8px 13px;
                     &>div {
                         padding: 2px 0;
@@ -111,7 +111,7 @@
                     height: 26px;
                     padding-left: 3px;
                     display: flex;
-                    border: 1px solid #4a4a4a;
+                    border: 1px solid var(--border-color);
                     border-bottom: none;
                     justify-content: flex-end;
                     .view-select {
@@ -120,13 +120,13 @@
                         justify-content: flex-end;
                         display: flex;
                         padding: 0 10px;
-                        color: #ffc400;
+                        color: var(--primary-color);
                     }
                     .component-search {
                         width: 50%;
                         position: relative;
                         display: flex;
-                        border-left: 1px solid #4a4a4a;
+                        border-left: 1px solid var(--border-color);
                         input {
                             width: 100%;
                             padding-right: 36px;
@@ -204,11 +204,11 @@
             }
             &::-webkit-scrollbar-thumb {
                 border-radius: 5px;
-                background-color: #4f4f4f;
+                background-color: var(--bg-color-2);
             }
             table {
                 width: 100%;
-                border: 2px solid #4a4a4a;
+                border: 2px solid var(--border-color);
                 border-right: none;
                 border-bottom: 1px;
                 border-left: 1px;
@@ -221,11 +221,11 @@
                     &-uom,
                     &-qty,
                     &-sn {
-                        border-right: 1px solid #4a4a4a;
+                        border-right: 1px solid var(--border-color);
                         padding: 0 8px;
                         text-align: justify;
                         font-size: 12px;
-                        color: #787878;
+                        color: var(--color-text-2);
                     }
                     &-sn{
                         text-align: center;
@@ -240,8 +240,8 @@
                     &-qty {
                         width: 50px !important;
                         padding-left: 5px;
-                        background-color: #4a4a4a;
-                        border: 1px solid #2b2b2b;
+                        background-color: var(--table-bg-1);
+                        border: 1px solid var(--table-bg);
                         input {
                             width: 40px;
                         }
@@ -274,7 +274,7 @@
         .footer {
             position: absolute;
             height: 40px;
-            background-color: #1f1f1f;
+            background-color: var(--bg-color-4);
             width: 100%;
             bottom: 0;
             padding-right: 15px;
@@ -289,8 +289,8 @@
                     padding-right: 10px;
                     button {
                         line-height: 30px;
-                        color: #ffc400;
-                        border: 1px solid #ffc400;
+                        color: var(--primary-color);
+                        border: 1px solid var(--primary-color);
                         border-radius: 20px;
                     }
                 }
@@ -307,11 +307,11 @@
 }
 
 .mat-table {
-    background-color: #2b2b2b;
+    background-color: var(--table-bg);
 }
 
 .mat-header-cell {
-    background: #151515 !important;
+    background: var(--bg-color-1) !important;
 }
 
 .jbox-action {
@@ -325,7 +325,7 @@
             padding-right: 5px;
         }
         .action-icons {
-            color: #ffc400;
+            color: var(--primary-color);
             padding: 0 3px;
             display: flex;
             span {
@@ -333,7 +333,7 @@
             }
         }
         .chip {
-            background-color: #151515;
+            background-color: var(--bg-color-1);
             border-radius: 20px;
             padding: 1px 5px;
             display: flex;
@@ -361,8 +361,8 @@
 }
 
 .borderHighlighter {
-    border: 1px solid #ffc400 !important;
-    color: #ffc400 !important;
+    border: 1px solid var(--primary-color) !important;
+    color: var(--primary-color) !important;
 }
 
 .img-max-btn {
@@ -515,8 +515,8 @@
 .cdk-drag-preview {
     box-sizing: border-box;
     border-radius: 4px;
-    background-color: #2B2B2B;
-    color: #787878 !important;
+    background-color: var(--table-bg);
+    color: var(--color-text-2) !important;
     display: table;
     box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
@@ -535,7 +535,7 @@
 
 .cdk-overlay-backdrop {
     /* your css needs */
-    background: #0000007d !important;
+    background: var(--background-color) !important;
 }
 
 .grid-view {
@@ -543,7 +543,7 @@
 }
 
 .gridViewTag {
-    border-top: 2px solid #4a4a4a;
+    border-top: 2px solid var(--border-color);
     display: flex;
     flex-wrap: wrap;
     width: 100%;
@@ -558,12 +558,12 @@
     }
     &::-webkit-scrollbar-thumb {
         border-radius: 5px;
-        background-color: #4f4f4f;
+        background-color: var(--bg-color-2);
     }
 }
 
 .box {
-    border: 1px solid #4A4A4A;
+    border: 1px solid var(--border-color);
     width: 222.5px;
     height: 129px;
     padding: 4px;
@@ -572,7 +572,7 @@
 .img {
     width: 90px;
     height: 95px;
-    background-color: #818181;
+    background-color: var(--bg-color-6);
     float: left;
     margin-top: 10px;
     margin-left: 6px;
@@ -663,8 +663,8 @@
 .custom-assembly-wrap.read-only .component-section .table table .mat-column-qty{
     background-color: transparent;
     border: none;
-    border-right: 1px solid #4a4a4a;
-    border-bottom: 1px solid #4a4a4a;
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
     width: 40px !important;
     .ac-input input{
         color: #787878;

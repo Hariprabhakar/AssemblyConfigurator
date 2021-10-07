@@ -1,4 +1,5 @@
 @import "./theme.scss";
+@import "./variable";
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
@@ -26,12 +27,88 @@
 // @include mat.all-component-themes($dark-theme);
 
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --background-color: #{$dark-bg-color};
+    --color-text: #{$dark-font-color};
+    --header-color: #{$dark-header-color};
+    --bg-color-1: #{$dark-bg-color-1};
+    --bg-color-2: #{$dark-bg-color-2};
+    --bg-color-3: #{$dark-bg-color-3};
+    --bg-color-4: #{$dark-bg-color-4};
+    --bg-color-5: #{$dark-bg-color-5};
+    --border-color: #{$dark-border-color};
+    --border-color-1: #{$dark-border-color-1};
+    --color-text-1: #{$dark-font-color-1};
+    --color-text-2: #{$dark-font-color-2};
+    --primary-color: #{$dark-primary-color};
+    --bg-color-6: #{$dark-bg-color-6};
+    --bg-color-7: #{$dark-bg-color-7}; 
+    --bg-color-8: #{$dark-bg-color-8};
+    --bg-color-9: #{$dark-bg-color-9};
+    --header-logo-bg: #{$dark-header-bg-logo};
+    --header-icon-color: #{$dark-header-icon-color};
+    --table-bg: #{$dark-table-bg};
+    --table-bg-1: #{$dark-table-bg-1};
+    --header-font-color: #{$dark-font-color-3};
+    --color-text-4: #{$dark-font-color-4};
+    --color-text-5: #{$dark-font-color-5};
+    --footer-bg-color: #{$dark-footer-color};
+    --popup-bg: #{$dark-popup-color};
+    --popup-bg-1: #{$dark-popup-color-1};
+    --popup-bg-2: #{$dark-popup-color-2};
+    --popup-bg-3: #{$dark-popup-color-3};
+    --popup-bg-4: #{$dark-popup-color-4};
+    --popup-bg-5: #{$dark-popup-color-5};
+    --popup-btn-1: #{$dark-btn-bg-1};
+    --popup-bg-6: #{$dark-popup-color-6};
+    --popup-bg-7: #{$dark-popup-color-7};
+    --popup-bg-8: #{$dark-popup-color-8};
+    
+  }
+
+  :root .light{
+    --background-color: #{$light-bg-color};
+    --color-text: #{$light-font-color};
+    --header-color: #{$light-header-color};
+    --bg-color-1: #{$light-bg-color-1};
+    --bg-color-2: #{$light-bg-color-2};
+    --bg-color-3: #{$light-bg-color-3};
+    --bg-color-4: #{$light-bg-color-4};
+    --bg-color-5: #{$light-bg-color-5};
+    --border-color: #{$light-border-color};
+    --border-color-1: #{$light-border-color-1};
+    --color-text-1: #{$light-font-color-1};
+    --color-text-2: #{$light-font-color-2};
+    --primary-color: #{$light-primary-color};
+    --bg-color-6: #{$light-bg-color-6};
+    --bg-color-7: #{$light-bg-color-7};
+    --bg-color-8: #{$light-bg-color-8};
+    --bg-color-9: #{$light-bg-color-9};
+    --header-logo-bg: #{$light-header-bg-logo};
+    --header-icon-color: #{$light-header-icon-color};
+    --table-bg: #{$light-table-bg};
+    --table-bg-1: #{$light-table-bg-1};
+    --header-font-color: #{$light-font-color-3};
+    --color-text-4: #{$light-font-color-4};
+    --color-text-5: #{$light-font-color-5};
+    --footer-bg-color: #{$light-footer-color};
+    --popup-bg: #{$light-popup-color};
+    --popup-bg-1: #{$light-popup-color-1};
+    --popup-bg-2: #{$light-popup-color-2};
+    --popup-bg-3: #{$light-popup-color-3};
+    --popup-bg-4: #{$light-popup-color-4};
+    --popup-bg-5: #{$light-popup-color-5};
+    --popup-bg-6: #{$light-popup-color-6};
+    --popup-bg-7: #{$light-popup-color-6};
+    --popup-bg-8: #{$light-popup-color-6};
+    --popup-btn-1: #{$light-btn-bg-1};
+  }
 
 html,
 body {
     height: 100vh;
-    background-color: #000000;
-    color: #d8d8d8;
+    background-color: var(--background-color);
+    color: var( --color-text);
     padding: 0;
     margin: -1px 0 0 0;
 }
@@ -44,7 +121,7 @@ body {
     input {
         background: transparent;
         border: none;
-        color: #fff;
+        color: var(--color-text-4);
         min-height: 17px;
         font-size: 14px;
         &:focus-visible {
@@ -54,7 +131,7 @@ body {
 }
 
 a {
-    color: #ffc100;
+    color: var(--primary-color);
 }
 
 * {
@@ -72,7 +149,7 @@ a {
     }
     &::-webkit-scrollbar-thumb {
         border-radius: 5px;
-        background-color: #4f4f4f;
+        background-color: var(--bg-color-2);
     }
 }
 
@@ -117,26 +194,26 @@ a {
     width: 50%;
     padding-right: 11px;
     .right-container {
-        background-color: #151515;
+        background-color: var(--bg-color-1);
         width: 100%;
         height: 100%;
-        border: 1px solid #4a4a4a;
+        border: 1px solid var(--border-color);
     }
 }
 
 .error-snackbar {
     word-break: break-word;
     // background-color: #ff4e4e;
-    background-color: #262626;
-    color: #fff;
+    background-color: var(--bg-color-7);
+    color: var(--color-text-4);
     white-space: pre-line;
 }
 
 .warning-snackbar {
     word-break: break-word;
     // background-color: #ff4e4e;
-    background-color: #262626;
-    color: #fff;
+    background-color: var(--bg-color-7);
+    color: var(--color-text-4);
     white-space: pre-line;
 }
 
@@ -144,7 +221,7 @@ a {
     word-break: break-word;
     // background-color: #14dd6f;
     background-color: #262626;
-    color: #fff;
+    color: var(--color-text-4);
     white-space: pre-line;
 }
 
@@ -156,7 +233,7 @@ a {
 }
 
 .sym-txt .mat-form-field-flex {
-    background-color: #282828;
+    background-color: var(--bg-color-8);
 }
 
 .mat-form-field-appearance-outline .mat-form-field-outline-start,
@@ -182,17 +259,17 @@ a {
 }
 
 .my-panel .mat-dialog-container {
-    background-color: #282828;
+    background-color: var(--bg-color-8);
 }
 
 .my-panel1 .mat-dialog-container {
-    background-color: #323232;
+    background-color: var(--popup-bg);
     padding: 0px 24px;
 }
 
 .filechoose .mat-dialog-container {
     padding: 0px 24px;
-    background-color: #323232;
+    background-color: var(--popup-bg);
 }
 
 // .assmbly-title{margin-bottom: 10px;}
@@ -230,7 +307,7 @@ a {
     width: 100%;
     top: 0;
     left: 0;
-    background: #000;
+    background: var(--background-color);
     z-index: 1;
 }
 
@@ -241,7 +318,7 @@ a {
 
 .create-template-modal .mat-dialog-container{
     padding: 10px;
-    background-color: #282828;
+    background-color: var(--bg-color-8);
 }
 
 .request-dialog .mat-dialog-container{

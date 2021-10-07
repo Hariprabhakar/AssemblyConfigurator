@@ -22,6 +22,41 @@
 // );
 // @include mat.all-component-themes($assemblyconfig-theme);
 
+
+$bv-brand: (
+    50: #295779,
+    100: #295779,
+    200: #295779,
+    300: #295779,
+    400: #295779,
+    500: #295779,
+    600: #295779,
+    700: #295779,
+    800: #295779,
+    900: #295779,
+    A100: #295779,
+    A200: #295779,
+    A400: #295779,
+    A700: #295779,
+    contrast: (
+        50: #ffffff,
+        100: #ffffff,
+        200: #ffffff,
+        300: #ffffff,
+        400: #ffffff,
+        500: white,
+        600: white,
+        700: white,
+        800: white,
+        900: white,
+        A100: #ffffff,
+        A200: #ffffff,
+        A400: #ffffff,
+        A700: white,
+    )
+);
+
+
 $dark-primary: mat.define-palette(mat.$amber-palette, A400);
 $dark-accent: mat.define-palette(mat.$amber-palette, A200, A100, A400);
 $dark-warn: mat.define-palette(mat.$deep-orange-palette);
@@ -34,4 +69,23 @@ $dark-theme: mat.define-dark-theme(
     ),
   )
 );
+
+
+$light-primary: mat.define-palette($bv-brand, A400);
+$light-accent: mat.define-palette($bv-brand, A200, A100, A400);
+$light-warn: mat.define-palette($bv-brand);
+$light-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $light-primary,
+      accent: $light-accent,
+      warn: $light-warn,
+    ),
+  )
+);
+
 @include mat.all-component-themes($dark-theme);
+
+.light {
+  @include mat.all-component-themes($light-theme);
+ }

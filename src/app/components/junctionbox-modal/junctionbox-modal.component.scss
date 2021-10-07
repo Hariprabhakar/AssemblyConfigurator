@@ -97,8 +97,8 @@ label{
     
     }
     .mat-flat-button.mat-primary.mat-button-disabled {
-      background-color: #ffc400;
-      color: #000;
+      background-color: var(--primary-color);
+      color: var(--color-text);
       opacity: 0.4;
     }
     .suggestion{
@@ -126,7 +126,7 @@ label{
   .cdk-overlay-pane{width: 610px !important;}
   ::ng-deep .jb-select .mat-form-field-appearance-outline .mat-form-field-outline {
     background-color: 
-    #282828
+    var(--bg-color-8);
   }
   .mat-typography{height: 180px; width: 415px;}
   .select-picklist{width: 100%}

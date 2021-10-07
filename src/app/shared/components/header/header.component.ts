@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, startWith } from 'rxjs/operators';
 import { ContactUsComponent } from '../contact-us/contact-us.component';
+import { ProfileComponent } from '../profile/profile.component';
 
 @Component({
   selector: 'app-header',
@@ -45,6 +46,14 @@ export class HeaderComponent implements OnInit {
       height: '400px',
       width: '800px',
       panelClass: 'contact-us-modal'
+    });
+  }
+
+  public profile(){
+    this.dialog.open(ProfileComponent,{
+      height: '400px',
+      width: '800px',
+      panelClass: 'profile-modal'
     });
   }
 

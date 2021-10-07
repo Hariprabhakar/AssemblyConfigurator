@@ -1,7 +1,7 @@
 .zooming-img{
     text-align: center;
     max-height: 445px; margin-top: 35px; max-height: 360px;
-    img{max-width: 100%; /*height: 100%;*/background: #818181; max-height: 360px;}
+    img{max-width: 100%; /*height: 100%;*/background: var(--bg-color-6); max-height: 360px;}
 }
 .clearfix{float: none; clear: both;}
 
@@ -53,8 +53,8 @@
         height: 445px;
     }
     .mat-flat-button.mat-primary.mat-button-disabled {
-      background-color: #ffc400;
-      color: #000;
+      background-color: var(--primary-color);
+      color: var(--color-text);
       opacity: 0.4;
     }
 
@@ -68,7 +68,7 @@
   .cdk-overlay-pane{width: 610px !important;}
   ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
     background-color: 
-    #282828
+    var(--bg-color-8);
   }
   ::ng-deep .mat-form-field-wrapper{padding:0 !important}
   .mat-typography{height: auto; width: 415px;}
@@ -89,8 +89,8 @@
 .maxfileerror, .primaryImgNotSet {    margin-top: 10px;
   color: #e84c4c;}
 
-  .maxfileinfo{color: #ffc400; margin-top:5px;}
-  .maxfileinfo1{color: #ffc400; margin-top:15px; margin-bottom: 10px;}
+  .maxfileinfo{color: var(--primary-color); margin-top:5px;}
+  .maxfileinfo1{color: var(--primary-color); margin-top:15px; margin-bottom: 10px;}
 
   .group-new {background: #585757;
     padding: 10px;}
@@ -163,7 +163,7 @@ float: left;
 .file-input {
   display: none;
 }
-.upload-btn{background-color: #fff;
+.upload-btn{background-color: var(--color-text-4);
   width: auto;
   border-radius: 0;
   padding: 0 10px;
@@ -172,7 +172,7 @@ float: left;
   .file-name-primary{float: left;
     line-height: 3.5;
     font-weight: 500;
-    color: #ffc400;    }
+    color: var(--primary-color);    }
   .edit-icon-fun{float: right; width:100%; line-height: 1; height: 20px;}
   .edit-icon{font-size: 18px; float: left;}
   .select-primary{float:left; line-height: 1.8; height: auto; width: auto; font-size: 12px;}

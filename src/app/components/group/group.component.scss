@@ -1,6 +1,6 @@
 .list-wrap {
   width: 184px;
-  background-color: #151515;
+  background-color: var(--bg-color-1);
   position: relative;
 }
 
@@ -26,7 +26,7 @@
 .category-lists {
   height: calc(100vh - 226px);
   overflow: hidden auto;
-  background-color: #242424;
+  background-color: var(--bg-color-3);
 
   &::-webkit-scrollbar {
     width: 10px;
@@ -38,15 +38,15 @@
 
   &::-webkit-scrollbar-thumb {
     border-radius: 5px;
-    background-color: #4f4f4f;
+    background-color: var(--bg-color-2);
   }
 }
 
 .mat-list-base .mat-list-item,
 .mat-list-base .mat-list-option {
-  border: 1px solid #4a4a4a;
+  border: 1px solid var(--border-color);
   border-left: none;
-  color: #b5b5b5;
+  color: var(--color-text-1);
   height: 44px;
   font-size: 12px;
 }
@@ -57,18 +57,18 @@
 
 mat-list-option[aria-selected="true"],
 mat-list-option:hover {
-  background: #151515;
+  background: var(--bg-color-1);
 }
 
 .create-btn-wrapper {
-  background: #1f1f1f;
-  border: 1px solid #4a4a4a;
+  background: var(--bg-color-4);
+  border: 1px solid var(--border-color);
   padding: 10px 10px;
   .secondary-btn{
     button{
       background: transparent !important;
-      border: 1px solid #ffc400 !important;
-      color: #ffc400 !important;
+      border: 1px solid var(--primary-color) !important;
+      color: var(--primary-color) !important;
       border-radius: 20px;
       height: 30px;
     }

@@ -1,5 +1,5 @@
 app-category-components {
-    background-color: #151515;
+    background-color: var(--bg-color-1);
 }
 
 .table {
@@ -13,11 +13,11 @@ app-category-components {
     }
     &::-webkit-scrollbar-thumb {
         border-radius: 5px;
-        background-color: #4f4f4f;
+        background-color: var(--bg-color-2);
     }
     table {
         width: 100%;
-        border: 2px solid #4a4a4a;
+        border: 2px solid var(--border-color);
         border-right: none;
         border-bottom: 1px;
         border-left: 1px;
@@ -62,9 +62,9 @@ app-category-components {
         position: fixed;
         width: 196px;
         height: 250px;
-        background: #000;
+        background: var(--background-color);
         .tag-field {
-            border-bottom: 1px solid #4a4a4a;
+            border-bottom: 1px solid var(--border-color);
             display: flex;
             align-items: center;
             .clear-icon {
@@ -102,11 +102,11 @@ app-category-components {
     &-phase,
     &-uom,
     &-add {
-        border-right: 1px solid #4a4a4a;
+        border-right: 1px solid var(--border-color);
         padding: 0 8px;
         text-align: justify;
         font-size: 12px;
-        color: #787878;
+        color: var(--color-text-2);
     }
     &-uom {
         width: 50px !important;
@@ -124,32 +124,32 @@ app-category-components {
     &-phase,
     &-tag {
         padding-left: 5px;
-        background-color: #4a4a4a;
-        border: 1px solid #2b2b2b;
+        background-color: var(--table-bg-1);
+        // border: 1px solid var(--border-color);
         span,
          ::placeholder {
-            color: #b5b5b5;
+            color: var(--color-text-1);
         }
     }
 }
 
 .mat-table {
-    background-color: #2b2b2b;
+    background-color: var(--table-bg);
 }
 
 .mat-header-cell {
-    background: #151515;
+    background: var(--bg-color-1);
 }
 
 .list-components {
     position: relative;
     .req-component {
         padding: 7px 10px;
-        background-color: #151515;
-        border: 2px solid #4a4a4a;
+        background-color: var(--bg-color-1);
+        border: 2px solid var(--border-color);
         border-right: none;
         border-top: none;
-        color: #bbb7b4;
+        color: var(--color-text-5);
         font-size: 13px;
         border-left: none;
         text-align: right;
@@ -161,7 +161,7 @@ app-category-components {
     justify-content: flex-end;
     .label {
         padding: 11.5px;
-        color: #ffc400;
+        color: var(--primary-color);
         display: flex;
         cursor: pointer;
         .filter-icon {
@@ -169,10 +169,10 @@ app-category-components {
         }
     }
     .label.disable{
-        color: #787878;
+        color: var(--color-text-2);
     }
     .clear-filter-icon {
-        color: #ffc400;
+        color: var(--primary-color);
         padding: 11.5px;
         display: flex;
         cursor: pointer;
@@ -181,7 +181,7 @@ app-category-components {
         }
     }
     input {
-        border: 1px solid #4a4a4a;
+        border: 1px solid var(--border-color);
         min-height: 30px;
         padding-left: 5px;
         width: 280px;
@@ -207,7 +207,7 @@ app-category-components {
     text-overflow: ellipsis;
     input {
         width: 100%;
-        color: #b5b5b5;
+        color: var(--color-text-1);
         font-size: 12px;
         padding: 0;
     }
@@ -221,7 +221,7 @@ app-category-components {
 
 .backdropBackground {
     /* your css needs */
-    background-color: #000!important;
+    background-color: var(--background-color) !important;
 }
 
 @media screen and (max-width: 1145px) {
@@ -270,5 +270,5 @@ app-category-components {
     }
 }
 .disableBtn {
-    background: #4a4a4a;
+    background: var(--border-color);
 }

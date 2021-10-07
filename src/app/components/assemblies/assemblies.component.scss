@@ -2,12 +2,12 @@
   position: relative;
   .req-component {
     padding: 15px 10px;
-    background-color: #151515;
+    background-color: var(--bg-color-1);
     border: 2px solid #3a3a3a;
     border-top: none;
   }
   ::ng-deep .mat-list-item-content:hover {
-    background-color: #2a2a2a;
+    background-color: var(--bg-color-5);
   }
 }
 
@@ -16,7 +16,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 5px 10px;
-  border: 1px solid #4a4a4a;
+  border: 1px solid var(--border-color);
   border-top: none;
   border-right: none;
 
@@ -67,7 +67,7 @@
 
   &::-webkit-scrollbar-thumb {
     border-radius: 5px;
-    background-color: #4f4f4f;
+    background-color: var(--bg-color-2);
   }
   .assembly-list-wrap {
     display: flex;
@@ -77,7 +77,7 @@
     border-bottom: 1px dashed #383838;
     padding: 12px 0;
     &:hover {
-      background-color: #2a2a2a;
+      background-color: var(--bg-color-5);
       border: 1px #2e2e2e;
     }
     .img-cont {
@@ -95,7 +95,7 @@
         }
       }
       .assembly-image.no-img {
-        background-color: #818181;
+        background-color: #dbdbdb;
       }
       .assembly-icon {
         width: 27px;
@@ -104,11 +104,11 @@
         align-items: center;
         .default-icon {
           font-size: 12px;
-          color: #787878;
+          color: var(--color-text-2);
           width: 27px;
           height: 27px;
           line-height: 27px;
-          border: 2px solid #454545;
+          border: 2px solid var(--border-color-1);
           border-radius: 20px;
           text-align: center;
         }
@@ -121,7 +121,7 @@
       }
     }
     .assembly-name {
-      color: #787878;
+      color: var(--color-text-2);
     }
     .action-btn {
       margin-left: auto;
@@ -159,4 +159,10 @@
   .assembly-lists {
     height: calc(100vh - 195px);
   }
+}
+
+::ng-deep .light .mat-list-single-selected-option,
+::ng-deep .light .mat-list-single-selected-option:hover,
+::ng-deep .light .mat-list-single-selected-option:focus{
+  background-color: var(--bg-color-2);
 }

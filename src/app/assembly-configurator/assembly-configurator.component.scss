@@ -7,10 +7,10 @@
     width: 50%;
     .assembly-config-wrap{
       display: flex;
-      border: 1px solid #4a4a4a;
+      border: 1px solid var(--border-color);
     }
     .right-pane{
-        background-color: #151515;
+        background-color: var(--bg-color-1);
         flex-grow: 100;
     }
 }

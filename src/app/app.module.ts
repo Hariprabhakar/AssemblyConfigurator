@@ -32,6 +32,8 @@ import { FilterModalComponent } from './components/filter-modal/filter-modal.com
 import { MatListModule } from '@angular/material/list';
 import { RequestNewComponent } from './shared/components/request-new-comp/request-new-comp.component';
 import { CreateTemplateModalComponent } from './assembly-configurator/create-template-modal/create-template-modal.component';
+import { ProfileComponent } from './shared/components/profile/profile.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 export function initializeApp(appInitService: ConfiguratorInitService) {
   return (): Promise<any> => { 
@@ -52,7 +54,8 @@ export function initializeApp(appInitService: ConfiguratorInitService) {
     ConfirmationModalComponent,
     MessageModalComponent, 
     ContactUsComponent, ToastComponent, FilterModalComponent, RequestNewComponent,
-    CreateTemplateModalComponent
+    CreateTemplateModalComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +72,8 @@ export function initializeApp(appInitService: ConfiguratorInitService) {
     NgxDropzoneModule,
     MatMenuModule,
     MatTabsModule,
-    MatListModule
+    MatListModule,
+    MatSlideToggleModule
   ],
   providers: [/*{provide: LocationStrategy, useClass: HashLocationStrategy},*/ ToastService, 
     ConfiguratorInitService,

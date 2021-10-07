@@ -23,7 +23,7 @@
 
       &::-webkit-scrollbar-thumb {
         border-radius: 5px;
-        background-color: #4f4f4f;
+        background-color: var(--bg-color-2);
       }
 }
 .submit{
@@ -32,11 +32,10 @@
 .images{
     margin-top: 25px;
     width: 425px;
-    background: #323232;
     // padding: 10px;
     padding-bottom: 26px;
     padding-left: 13px;
-    background: #323232;
+    background: var(--popup-bg);
     padding-top: 22px;
 }
 
@@ -47,7 +46,7 @@
 }
 
 ::ng-deep .request-new-component .mat-form-field-appearance-outline .mat-form-field-infix {
-    background: #282828 !important;
+    background: var(--bg-color-8) !important;
     padding: 5px 10px;
     width: 300px;
     height: 44px;
@@ -64,9 +63,9 @@
 
 input, textarea {
     padding: 8px;
-    background: #282828;
+    background: var(--bg-color-8);
     border: none;
-    color: #fff;
+    color: var(--color-text-4);
     margin-left: 45px;
 }
 
@@ -85,11 +84,11 @@ label{
 }
 
 .otherGrpName{
-    background: #2828287a;
+    background: var(--bg-color-8);
 }
 
 .disableColor{
-    color: #ffffff7a;
+    color: --var(--color-text-4);
 
 }
 
@@ -99,7 +98,7 @@ label{
 
 .attribute {
     margin-top: 25px;
-    background: #323232;
+    background: var(--popup-bg);
     padding: 10px;
     display: flex;
     width:425px;
@@ -122,7 +121,7 @@ label{
     margin-bottom: 12px;
 }
 .preferred{
-    background: #323232;
+    background: var(--popup-bg);
         padding-top: 16px;
         padding-bottom: 6px;
         padding-left: 11px;
@@ -179,7 +178,8 @@ label{
     height: 32px;
     vertical-align: bottom;
     font-size: 19px;
-    color: #000;
+    background: var(--primary-color);
+    color: var(--color-text);
     font-weight: 500;
     border-radius: 25px;
 }
@@ -209,7 +209,7 @@ label{
     width: 100%;
     padding: 18px !important;
     margin-left: 0 !important;
-    color: #fff !important;
+    color: var(--color-text-4) !important;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -252,7 +252,7 @@ label{
 }
 
 .field-split + .field-split{
-    border-top: 2px solid #424242;
+    border-top: 2px solid var(--popup-bg-7);
 }
 
 .preferredFields{

@@ -16,14 +16,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MessageModalComponent } from '../components/message-modal/message-modal.component';
 import { SessionService } from '../shared/services/session.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-// import {jsPDF} from 'jspdf';
-// import {pdfmake} from 'pdfmake';
-// import { html2canvas } from 'html2canvas';
-// import html2canvas from 'html2canvas';
-//import * as html2pdf from 'html2pdf.js';
-//const html2pdf = require('html2pdf.js');
 import jsPDF from 'jspdf';
-// import  html2canvas  from 'html2canvas';
 const html2canvas = require('html2canvas');
 
 
@@ -81,7 +74,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy, AfterViewChec
   public gridViewFlag: boolean = false;
   @Output() removedComponent = new EventEmitter();
   @ViewChild('table') table: MatTable<any>;
-  @ViewChild('table',{read: ElementRef}) pdfTable: ElementRef;
+  @ViewChild('pdfData',{read: ElementRef}) pdfTable: ElementRef;
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
   private saveAssemblyData: SaveAssemblyData = {
     id: '',
@@ -855,25 +848,25 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy, AfterViewChec
     }
   }
 
-  public  exportPdf(){
+  public exportPdf() {
 
     this.isVisible = true;
 
-  let DATA = document.getElementById('assembly-pdf');
+    let DATA = document.getElementById('assembly-pdf');
 
-html2canvas(DATA).then((canvas: any) => {
+    html2canvas(DATA).then((canvas: any) => {
 
-    let fileWidth = 208;
-    let fileHeight = canvas.height * fileWidth / canvas.width;
+      let fileWidth = 208;
+      let fileHeight = canvas.height * fileWidth / canvas.width;
 
-    const FILEURI = canvas.toDataURL('image/png')
-    let PDF = new jsPDF('p', 'mm', 'a4');
-    let position = 0;
-    PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight)
-
-    PDF.save('assembly.pdf');
-    this.isVisible = false;
-});
+      const FILEURI = canvas.toDataURL('image/png')
+      let PDF = new jsPDF('p', 'mm', 'a4');
+      let position = 0;
+      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight)
+      const name = this.assemblydata ? this.assemblydata.name : 'assembly';
+      PDF.save(name +'.pdf');
+      this.isVisible = false;
+    });
   }
 
   ngAfterViewChecked() {
