@@ -16,7 +16,16 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MessageModalComponent } from '../components/message-modal/message-modal.component';
 import { SessionService } from '../shared/services/session.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import {jsPDF} from 'jspdf';
+// import {jsPDF} from 'jspdf';
+// import {pdfmake} from 'pdfmake';
+// import { html2canvas } from 'html2canvas';
+// import html2canvas from 'html2canvas';
+//import * as html2pdf from 'html2pdf.js';
+//const html2pdf = require('html2pdf.js');
+import jsPDF from 'jspdf';
+// import  html2canvas  from 'html2canvas';
+const html2canvas = require('html2canvas');
+
 
 
 export interface SaveAssemblyData {
@@ -48,6 +57,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy, AfterViewChec
   public abbreviation: any;
   public imag64BitUrl: any;
   public imageObj: any;
+  public isVisible: boolean = false;
   public imageThubList: any;
   public selectedItem: any;
   public iconSrc: any;
@@ -315,8 +325,8 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy, AfterViewChec
 
   openAssembly() {
     // Can be moved to right place
-    const dialogRef = this.dialog.open(AssemblyIconModalComponent, { 
-      panelClass: 'my-panel', 
+    const dialogRef = this.dialog.open(AssemblyIconModalComponent, {
+      panelClass: 'my-panel',
       backdropClass: 'backdropBackground',
       data: {
         icon: this.iconSrc
@@ -847,26 +857,29 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy, AfterViewChec
 
   public  exportPdf(){
 
-    const doc = new jsPDF('l','pt',[920,720]);
+    this.isVisible = true;
 
+  let DATA = document.getElementById('assembly-pdf');
 
+html2canvas(DATA).then((canvas: any) => {
 
-    const generatePdf = this.pdfTable.nativeElement;
-    doc.html(generatePdf,{
-    callback:(doc)=>{
+    let fileWidth = 208;
+    let fileHeight = canvas.height * fileWidth / canvas.width;
 
-      doc.setFont("helvetica");
-      doc.setFontSize(9);
+    const FILEURI = canvas.toDataURL('image/png')
+    let PDF = new jsPDF('p', 'mm', 'a4');
+    let position = 0;
+    PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight)
 
-      doc.save('export.pdf')}
-    });
-    // doc.save('export.pdf');
+    PDF.save('assembly.pdf');
+    this.isVisible = false;
+});
   }
 
-  ngAfterViewChecked() {        
+  ngAfterViewChecked() {
     this.scrollToBottom();
-    this.cdref.detectChanges();        
-  } 
+    this.cdref.detectChanges();
+  }
 
   public scrollToBottom(): void {
     try {
@@ -875,3 +888,7 @@ export class CustomAssemblyComponent implements OnInit, OnDestroy, AfterViewChec
   }
 
 }
+function canvas(canvas: any, arg1: (any: any) => void) {
+  throw new Error('Function not implemented.');
+}
+
