@@ -2,7 +2,8 @@
     <div class="ac-loader" *ngIf="showLoader || saveLoader">
         <mat-spinner [diameter]="40"></mat-spinner>
     </div>
-    <div class="assembly-section">
+    <!-- <div class= "pdf" id="assembly-pdf"></div> -->
+    <div class="assembly-section" id="assembly-pdf">
         <div class="assembly-detail-section">
             <div class="primary-img">
                 <div class="upload-img-btn secondary-btn" *ngIf="!assemblyDetailsReadOnly">
@@ -90,7 +91,7 @@
         </div>
         <div class="component-section">
             <div class="table" #scrollMe [scrollTop]="scrollMe.scrollHeight" [class.editable]="!assemblyDetailsReadOnly" *ngIf="!gridViewFlag">
-                <table mat-table #table [dataSource]="componentTableData" cdkDropList [cdkDropListData]="componentTableData" (cdkDropListDropped)="dropTable($event)">
+                <table mat-table #table  [dataSource]="componentTableData" cdkDropList [cdkDropListData]="componentTableData" (cdkDropListDropped)="dropTable($event)">
                     <ng-container matColumnDef="sn">
                         <th mat-header-cell *matHeaderCellDef>SN</th>
                         <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
@@ -182,6 +183,7 @@
                 </table>
             </div>
 
+
             <div class="gridViewTag" *ngIf="gridViewFlag">
                 <div class="box" *ngFor="let component of componentsData">
 
@@ -197,7 +199,9 @@
 
                 </div>
             </div>
-            <div class="footer">
+
+
+            <div class="footer" *ngIf="!isVisible">
                 <div class="save-btn-wrap">
                     <div class="reset-btn">
                         <button mat-button color="primary" *ngIf="!assemblyDetailsReadOnly" (click)="resetAssembly()">
@@ -205,8 +209,11 @@
               RESET
             </button>
                     </div>
-                    <!-- <div class="export-btn"><button mat-flat-button color="primary" [disabled]="!enableEdit" (click)="exportPdf()">EXPORT</button></div> -->
+                     <!-- <div class="export-btn" ><button mat-flat-button color="primary"  (click)="exportPdf()">EXPORT</button></div> -->
 
+                     <div class="create-template secondary-btn export-btn" *ngIf="enableEdit">
+                        <button mat-flat-button color="primary" [disabled]="!enableEdit" (click)="exportPdf()">EXPORT</button>
+                      </div>
                     <div class="right-side-ctrl">
 
                         <button mat-flat-button color="primary" *ngIf="assemblyDetailsReadOnly" [disabled]="!enableEdit" (click)="editAssembly()">EDIT</button>
