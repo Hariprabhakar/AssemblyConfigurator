@@ -75,6 +75,7 @@ export class CategoryComponentsComponent implements OnInit {
   openDialog(element: any) {
     const dialogRef = this.dialog.open(JunctionboxModalComponent, {
       backdropClass: 'backdropBackground',
+      height: '290px',
       data: {
         componentName: element.name,
         isJunctionBox: this.isJunctionBox,
