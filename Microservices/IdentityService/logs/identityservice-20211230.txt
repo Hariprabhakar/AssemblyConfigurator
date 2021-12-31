@@ -1,0 +1,78 @@
+2021-12-30 08:48:16.238 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-30 08:48:20.353 +05:30 [INF] Applying migrations (IdentityService)...
+2021-12-30 08:48:21.004 +05:30 [INF] Migrating database associated with context PersistedGrantDbContext
+2021-12-30 08:48:27.777 +05:30 [INF] Migrated database associated with context PersistedGrantDbContext
+2021-12-30 08:48:27.792 +05:30 [INF] Migrating database associated with context ApplicationDbContext
+2021-12-30 08:50:17.436 +05:30 [INF] Migrated database associated with context ApplicationDbContext
+2021-12-30 08:50:17.443 +05:30 [INF] Migrating database associated with context ConfigurationDbContext
+2021-12-30 08:50:23.578 +05:30 [INF] Migrated database associated with context ConfigurationDbContext
+2021-12-30 08:50:23.587 +05:30 [INF] Starting web host (IdentityService)...
+2021-12-30 08:50:23.665 +05:30 [INF] Starting IdentityServer4 version 3.1.4.0
+2021-12-30 08:50:23.680 +05:30 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2021-12-30 08:51:17.096 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-30 08:51:19.145 +05:30 [INF] Applying migrations (IdentityService)...
+2021-12-30 08:51:19.625 +05:30 [INF] Migrating database associated with context PersistedGrantDbContext
+2021-12-30 08:51:25.987 +05:30 [INF] Migrated database associated with context PersistedGrantDbContext
+2021-12-30 08:51:26.003 +05:30 [INF] Migrating database associated with context ApplicationDbContext
+2021-12-30 08:51:40.711 +05:30 [INF] Migrated database associated with context ApplicationDbContext
+2021-12-30 08:51:40.723 +05:30 [INF] Migrating database associated with context ConfigurationDbContext
+2021-12-30 08:51:45.624 +05:30 [INF] Migrated database associated with context ConfigurationDbContext
+2021-12-30 08:51:45.627 +05:30 [INF] Starting web host (IdentityService)...
+2021-12-30 08:51:45.716 +05:30 [INF] Starting IdentityServer4 version 3.1.4.0
+2021-12-30 08:51:45.734 +05:30 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2021-12-30 08:51:55.522 +05:30 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.TokenEndpoint for /connect/token
+2021-12-30 08:52:03.088 +05:30 [INF] Credentials validated for username: admin@sanveo.com
+2021-12-30 08:52:03.134 +05:30 [INF] Token request validation success, {"ClientId":"apigateway","ClientName":null,"GrantType":"password","Scopes":"apigateway offline_access","AuthorizationCode":null,"RefreshToken":null,"UserName":"admin@sanveo.com","AuthenticationContextReferenceClasses":null,"Tenant":null,"IdP":null,"Raw":{"client_id":"apigateway","client_secret":"***REDACTED***","grant_type":"password","scope":"apigateway offline_access","username":"admin@sanveo.com","password":"***REDACTED***"},"$type":"TokenRequestValidationLog"}
+2021-12-30 08:52:25.405 +05:30 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2021-12-30 08:52:28.167 +05:30 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryKeyEndpoint for /.well-known/openid-configuration/jwks
+2021-12-30 08:53:46.076 +05:30 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2021-12-30 08:54:08.640 +05:30 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryKeyEndpoint for /.well-known/openid-configuration/jwks
+2021-12-30 08:55:09.787 +05:30 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.TokenEndpoint for /connect/token
+2021-12-30 08:55:12.241 +05:30 [WRN] Invalid refresh token
+2021-12-30 08:55:12.245 +05:30 [WRN] Refresh token validation failed. aborting, {"ClientId":"apigateway","ClientName":null,"GrantType":"refresh_token","Scopes":null,"AuthorizationCode":null,"RefreshToken":null,"UserName":null,"AuthenticationContextReferenceClasses":null,"Tenant":null,"IdP":null,"Raw":{"client_id":"apigateway","client_secret":"***REDACTED***","grant_type":"refresh_token","refresh_token":"***REDACTED***"},"$type":"TokenRequestValidationLog"}
+2021-12-30 08:55:30.291 +05:30 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.TokenEndpoint for /connect/token
+2021-12-30 08:55:33.109 +05:30 [INF] Token request validation success, {"ClientId":"apigateway","ClientName":null,"GrantType":"refresh_token","Scopes":null,"AuthorizationCode":null,"RefreshToken":"Esk3HGrn5nVtDz16B1S3T4DErMtZD5ehH3rzpv130cY","UserName":null,"AuthenticationContextReferenceClasses":null,"Tenant":null,"IdP":null,"Raw":{"client_id":"apigateway","client_secret":"***REDACTED***","grant_type":"refresh_token","refresh_token":"***REDACTED***"},"$type":"TokenRequestValidationLog"}
+2021-12-30 09:01:30.439 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-30 09:01:32.529 +05:30 [INF] Applying migrations (IdentityService)...
+2021-12-30 09:01:33.074 +05:30 [INF] Migrating database associated with context PersistedGrantDbContext
+2021-12-30 09:01:39.197 +05:30 [INF] Migrated database associated with context PersistedGrantDbContext
+2021-12-30 09:01:39.212 +05:30 [INF] Migrating database associated with context ApplicationDbContext
+2021-12-30 09:01:43.615 +05:30 [INF] Migrated database associated with context ApplicationDbContext
+2021-12-30 09:01:43.628 +05:30 [INF] Migrating database associated with context ConfigurationDbContext
+2021-12-30 09:01:48.643 +05:30 [INF] Migrated database associated with context ConfigurationDbContext
+2021-12-30 09:01:48.648 +05:30 [INF] Starting web host (IdentityService)...
+2021-12-30 09:01:48.723 +05:30 [INF] Starting IdentityServer4 version 3.1.4.0
+2021-12-30 09:01:48.739 +05:30 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2021-12-30 09:01:55.957 +05:30 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2021-12-30 09:01:58.824 +05:30 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryKeyEndpoint for /.well-known/openid-configuration/jwks
+2021-12-30 09:02:09.667 +05:30 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.TokenEndpoint for /connect/token
+2021-12-30 09:02:16.310 +05:30 [INF] Credentials validated for username: admin@sanveo.com
+2021-12-30 09:02:16.345 +05:30 [INF] Token request validation success, {"ClientId":"apigateway","ClientName":null,"GrantType":"password","Scopes":"apigateway offline_access","AuthorizationCode":null,"RefreshToken":null,"UserName":"admin@sanveo.com","AuthenticationContextReferenceClasses":null,"Tenant":null,"IdP":null,"Raw":{"client_id":"apigateway","client_secret":"***REDACTED***","grant_type":"password","scope":"apigateway offline_access","username":"admin@sanveo.com","password":"***REDACTED***"},"$type":"TokenRequestValidationLog"}
+2021-12-30 09:02:39.526 +05:30 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.TokenEndpoint for /connect/token
+2021-12-30 09:02:42.124 +05:30 [WRN] Invalid refresh token
+2021-12-30 09:02:42.131 +05:30 [WRN] Refresh token validation failed. aborting, {"ClientId":"apigateway","ClientName":null,"GrantType":"refresh_token","Scopes":null,"AuthorizationCode":null,"RefreshToken":null,"UserName":null,"AuthenticationContextReferenceClasses":null,"Tenant":null,"IdP":null,"Raw":{"client_id":"apigateway","client_secret":"***REDACTED***","grant_type":"refresh_token","refresh_token":"***REDACTED***"},"$type":"TokenRequestValidationLog"}
+2021-12-30 09:03:04.146 +05:30 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.TokenEndpoint for /connect/token
+2021-12-30 09:03:06.880 +05:30 [INF] Token request validation success, {"ClientId":"apigateway","ClientName":null,"GrantType":"refresh_token","Scopes":null,"AuthorizationCode":null,"RefreshToken":"myfMTKbATlGesjfu-Ill8j8CH0ejirsWbeSTKgHP8qI","UserName":null,"AuthenticationContextReferenceClasses":null,"Tenant":null,"IdP":null,"Raw":{"client_id":"apigateway","client_secret":"***REDACTED***","grant_type":"refresh_token","refresh_token":"***REDACTED***"},"$type":"TokenRequestValidationLog"}
+2021-12-30 09:03:30.137 +05:30 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryKeyEndpoint for /.well-known/openid-configuration/jwks
+2021-12-30 10:30:41.273 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-30 10:30:43.149 +05:30 [INF] Applying migrations (IdentityService)...
+2021-12-30 10:30:43.503 +05:30 [INF] Migrating database associated with context PersistedGrantDbContext
+2021-12-30 10:30:55.094 +05:30 [INF] Migrated database associated with context PersistedGrantDbContext
+2021-12-30 10:30:55.110 +05:30 [INF] Migrating database associated with context ApplicationDbContext
+2021-12-30 10:31:00.139 +05:30 [INF] Migrated database associated with context ApplicationDbContext
+2021-12-30 10:31:00.152 +05:30 [INF] Migrating database associated with context ConfigurationDbContext
+2021-12-30 10:31:11.035 +05:30 [INF] Migrated database associated with context ConfigurationDbContext
+2021-12-30 10:31:11.040 +05:30 [INF] Starting web host (IdentityService)...
+2021-12-30 10:31:11.198 +05:30 [INF] Starting IdentityServer4 version 3.1.4.0
+2021-12-30 10:31:11.237 +05:30 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2021-12-30 10:31:47.632 +05:30 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryKeyEndpoint for /.well-known/openid-configuration/jwks
+2021-12-30 10:31:56.842 +05:30 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2021-12-30 10:31:59.807 +05:30 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryKeyEndpoint for /.well-known/openid-configuration/jwks
+2021-12-30 10:32:06.315 +05:30 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.TokenEndpoint for /connect/token
+2021-12-30 10:32:09.241 +05:30 [WRN] Invalid refresh token
+2021-12-30 10:32:09.267 +05:30 [WRN] Refresh token validation failed. aborting, {"ClientId":"apigateway","ClientName":null,"GrantType":"refresh_token","Scopes":null,"AuthorizationCode":null,"RefreshToken":null,"UserName":null,"AuthenticationContextReferenceClasses":null,"Tenant":null,"IdP":null,"Raw":{"client_id":"apigateway","client_secret":"***REDACTED***","grant_type":"refresh_token","refresh_token":"***REDACTED***"},"$type":"TokenRequestValidationLog"}
+2021-12-30 10:32:13.205 +05:30 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.TokenEndpoint for /connect/token
+2021-12-30 10:32:19.073 +05:30 [INF] Credentials validated for username: admin@sanveo.com
+2021-12-30 10:32:19.102 +05:30 [INF] Token request validation success, {"ClientId":"apigateway","ClientName":null,"GrantType":"password","Scopes":"apigateway offline_access","AuthorizationCode":null,"RefreshToken":null,"UserName":"admin@sanveo.com","AuthenticationContextReferenceClasses":null,"Tenant":null,"IdP":null,"Raw":{"client_id":"apigateway","client_secret":"***REDACTED***","grant_type":"password","scope":"apigateway offline_access","username":"admin@sanveo.com","password":"***REDACTED***"},"$type":"TokenRequestValidationLog"}
+2021-12-30 10:32:49.678 +05:30 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.TokenEndpoint for /connect/token
+2021-12-30 10:32:52.439 +05:30 [INF] Token request validation success, {"ClientId":"apigateway","ClientName":null,"GrantType":"refresh_token","Scopes":null,"AuthorizationCode":null,"RefreshToken":"N0Eb-9QIbjpcsUn18vqJ1aWZp9lngK1s9OuztjWw4b0","UserName":null,"AuthenticationContextReferenceClasses":null,"Tenant":null,"IdP":null,"Raw":{"client_id":"apigateway","client_secret":"***REDACTED***","grant_type":"refresh_token","refresh_token":"***REDACTED***"},"$type":"TokenRequestValidationLog"}

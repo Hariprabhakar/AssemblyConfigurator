@@ -1,0 +1,68 @@
+2021-12-28 16:54:32.087 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-28 16:54:34.497 +05:30 [INF] Applying migrations (IdentityService)...
+2021-12-28 16:54:34.855 +05:30 [INF] Migrating database associated with context PersistedGrantDbContext
+2021-12-28 16:54:41.066 +05:30 [INF] Migrated database associated with context PersistedGrantDbContext
+2021-12-28 16:54:41.082 +05:30 [INF] Migrating database associated with context ApplicationDbContext
+2021-12-28 16:54:45.939 +05:30 [INF] Migrated database associated with context ApplicationDbContext
+2021-12-28 16:54:45.946 +05:30 [INF] Migrating database associated with context ConfigurationDbContext
+2021-12-28 16:54:50.937 +05:30 [INF] Migrated database associated with context ConfigurationDbContext
+2021-12-28 16:54:50.943 +05:30 [INF] Starting web host (IdentityService)...
+2021-12-28 16:54:51.028 +05:30 [INF] Starting IdentityServer4 version 3.1.4.0
+2021-12-28 16:54:51.048 +05:30 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2021-12-28 17:13:10.134 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-28 17:13:12.783 +05:30 [INF] Applying migrations (IdentityService)...
+2021-12-28 17:13:13.007 +05:30 [INF] Migrating database associated with context PersistedGrantDbContext
+2021-12-28 17:13:21.955 +05:30 [INF] Migrated database associated with context PersistedGrantDbContext
+2021-12-28 17:13:21.981 +05:30 [INF] Migrating database associated with context ApplicationDbContext
+2021-12-28 17:13:29.515 +05:30 [INF] Migrated database associated with context ApplicationDbContext
+2021-12-28 17:13:29.624 +05:30 [INF] Migrating database associated with context ConfigurationDbContext
+2021-12-28 17:13:38.940 +05:30 [INF] Migrated database associated with context ConfigurationDbContext
+2021-12-28 17:13:38.942 +05:30 [INF] Starting web host (IdentityService)...
+2021-12-28 17:13:39.036 +05:30 [INF] Starting IdentityServer4 version 3.1.4.0
+2021-12-28 17:13:39.056 +05:30 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2021-12-28 17:16:38.569 +05:30 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.TokenEndpoint for /connect/token
+2021-12-28 17:16:46.915 +05:30 [INF] Credentials validated for username: admin@sanveo.com
+2021-12-28 17:16:46.959 +05:30 [INF] Token request validation success, {"ClientId":"apigateway","ClientName":null,"GrantType":"password","Scopes":"apigateway offline_access","AuthorizationCode":null,"RefreshToken":null,"UserName":"admin@sanveo.com","AuthenticationContextReferenceClasses":null,"Tenant":null,"IdP":null,"Raw":{"client_id":"apigateway","client_secret":"***REDACTED***","grant_type":"password","scope":"apigateway offline_access","username":"admin@sanveo.com","password":"***REDACTED***"},"$type":"TokenRequestValidationLog"}
+2021-12-28 17:17:20.982 +05:30 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2021-12-28 17:17:23.719 +05:30 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryKeyEndpoint for /.well-known/openid-configuration/jwks
+2021-12-28 17:19:25.147 +05:30 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.TokenEndpoint for /connect/token
+2021-12-28 17:19:32.441 +05:30 [INF] Token request validation success, {"ClientId":"apigateway","ClientName":null,"GrantType":"refresh_token","Scopes":null,"AuthorizationCode":null,"RefreshToken":"s1s1qs06By-zYv2dCkwcszn1OWQi32zDK6DQ7h_M0SQ","UserName":null,"AuthenticationContextReferenceClasses":null,"Tenant":null,"IdP":null,"Raw":{"client_id":"apigateway","client_secret":"***REDACTED***","grant_type":"refresh_token","refresh_token":"***REDACTED***"},"$type":"TokenRequestValidationLog"}
+2021-12-28 17:27:51.397 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-28 17:27:52.625 +05:30 [INF] Applying migrations (IdentityService)...
+2021-12-28 17:27:52.792 +05:30 [INF] Migrating database associated with context PersistedGrantDbContext
+2021-12-28 17:28:22.883 +05:30 [WRN] [TContext] Exception NpgsqlException with message Exception while reading from stream detected on attempt 1 of 10
+Npgsql.NpgsqlException (0x80004005): Exception while reading from stream
+ ---> System.TimeoutException: Timeout during reading attempt
+   at Npgsql.Internal.NpgsqlReadBuffer.<Ensure>g__EnsureLong|41_0(NpgsqlReadBuffer buffer, Int32 count, Boolean async, Boolean readingNotifications)
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|213_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.PostgresDatabaseInfo.LoadBackendTypes(NpgsqlConnector conn, NpgsqlTimeout timeout, Boolean async)
+   at Npgsql.PostgresDatabaseInfo.LoadPostgresInfo(NpgsqlConnector conn, NpgsqlTimeout timeout, Boolean async)
+   at Npgsql.PostgresDatabaseInfoFactory.Load(NpgsqlConnector conn, NpgsqlTimeout timeout, Boolean async)
+   at Npgsql.Internal.NpgsqlDatabaseInfo.Load(NpgsqlConnector conn, NpgsqlTimeout timeout, Boolean async)
+   at Npgsql.Internal.NpgsqlConnector.LoadDatabaseInfo(Boolean forceReload, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.UnpooledConnectorSource.Get(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.Open()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternal(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlDatabaseCreator.Exists(Boolean async, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlDatabaseCreator.Exists(Boolean async, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlDatabaseCreator.Exists()
+   at Microsoft.EntityFrameworkCore.Migrations.HistoryRepository.Exists()
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.Migrate(String targetMigration)
+   at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.Migrate(DatabaseFacade databaseFacade)
+   at IdentityService.IWebHostExtensions.InvokeSeeder[TContext](Action`2 seeder, TContext context, IServiceProvider services) in D:\Projects\aecinspire-microservices\Microservices\IdentityService\IWebHostExtensions.cs:line 77
+   at IdentityService.IWebHostExtensions.<>c__DisplayClass1_1`1.<MigrateDbContext>b__2() in D:\Projects\aecinspire-microservices\Microservices\IdentityService\IWebHostExtensions.cs:line 54
+   at Polly.Policy.<>c__DisplayClass108_0.<Execute>b__0(Context ctx, CancellationToken ct)
+   at Polly.Policy.<>c__DisplayClass138_0.<Implementation>b__0(Context ctx, CancellationToken token)
+   at Polly.Retry.RetryEngine.Implementation[TResult](Func`3 action, Context context, CancellationToken cancellationToken, ExceptionPredicates shouldRetryExceptionPredicates, ResultPredicates`1 shouldRetryResultPredicates, Action`4 onRetry, Int32 permittedRetryCount, IEnumerable`1 sleepDurationsEnumerable, Func`4 sleepDurationProvider)
+2021-12-28 17:28:30.539 +05:30 [INF] Migrated database associated with context PersistedGrantDbContext
+2021-12-28 17:28:30.560 +05:30 [INF] Migrating database associated with context ApplicationDbContext
+2021-12-28 17:28:35.479 +05:30 [INF] Migrated database associated with context ApplicationDbContext
+2021-12-28 17:28:35.491 +05:30 [INF] Migrating database associated with context ConfigurationDbContext
+2021-12-28 17:28:40.385 +05:30 [INF] Migrated database associated with context ConfigurationDbContext
+2021-12-28 17:28:40.391 +05:30 [INF] Starting web host (IdentityService)...
+2021-12-28 17:28:40.477 +05:30 [INF] Starting IdentityServer4 version 3.1.4.0
+2021-12-28 17:28:40.495 +05:30 [INF] Using the default authentication scheme Identity.Application for IdentityServer

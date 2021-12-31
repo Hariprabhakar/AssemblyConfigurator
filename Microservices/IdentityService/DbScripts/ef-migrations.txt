@@ -1,0 +1,11 @@
+dotnet ef migrations add InitialCreate --context ApplicationDbContext
+dotnet ef migrations add InitialCreate --context ConfigurationDbContext -o Migrations/ConfigurationDb
+dotnet ef migrations add InitialCreate --context PersistedGrantDbContext -o Migrations/PersistedGrantDb
+
+dotnet ef migrations script -c ApplicationDbContext -o DbScripts\ApplicationTables.sql
+dotnet ef migrations script -c ConfigurationDbContext -o DbScripts\ConfigurationTables.sql
+dotnet ef migrations script -c PersistedGrantDbContext -o DbScripts\PersistedGrantTables.sql
+
+dotnet ef database update -c ApplicationDbContext
+dotnet ef database update -c ConfigurationDbContext
+dotnet ef database update -c PersistedGrantDbContext

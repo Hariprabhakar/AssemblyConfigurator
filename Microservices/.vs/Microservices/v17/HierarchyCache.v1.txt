@@ -1,0 +1,594 @@
+﻿++Solution 'Microservices' ‎(1 of 1 project)
+i:{00000000-0000-0000-0000-000000000000}:Microservices.sln
+++IdentityService
+i:{00000000-0000-0000-0000-000000000000}:IdentityService
+++Connected Services 
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>537
+++Dependencies
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>536
+++Properties
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\properties\
+++Certificate
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\certificate\
+++Configuration
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\configuration\
+++Controllers
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\controllers\
+++Data
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\data\
+++Devspaces
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\devspaces\
+++Extensions
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\extensions\
+++LinqSelectExtensions.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\extensions\linqselectextensions.cs
+++Factories
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\factories\
+++Models
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\models\
+++Services
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\services\
+++Setup
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\setup\
+++Views
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\views\
+++AppSettings.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\appsettings.cs
+++appsettings.json
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\appsettings.json
+++bundleconfig.json
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\bundleconfig.json
+++Dockerfile
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\dockerfile
+++GlobalUsings.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\globalusings.cs
+++IWebHostExtensions.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\iwebhostextensions.cs
+++libman.json
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\libman.json
+++Program.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\program.cs
+++Startup.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\startup.cs
+++No service dependencies discovered
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>538
+++Analyzers
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:analyzers
+++Frameworks
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:frameworks
+++Packages
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:packages
+++launchSettings.json
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\properties\launchsettings.json
+++Certificate.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\certificate\certificate.cs
+++idsrv3test.pfx
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\certificate\idsrv3test.pfx
+++Config.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\configuration\config.cs
+++AccountController.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\controllers\accountcontroller.cs
+++ConsentController.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\controllers\consentcontroller.cs
+++HomeController.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\controllers\homecontroller.cs
+++ApplicationDbContext.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\data\applicationdbcontext.cs
+++ApplicationDbContextSeed.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\data\applicationdbcontextseed.cs
+++ConfigurationDbContextSeed.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\data\configurationdbcontextseed.cs
+++DevspacesRedirectUriValidator.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\devspaces\devspacesredirecturivalidator.cs
+++IdentityDevspacesBuilderExtensions.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\devspaces\identitydevspacesbuilderextensions.cs
+++ApplicationDbContextFactory.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\factories\applicationdbcontextfactory.cs
+++ConfigurationDbContextFactory.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\factories\configurationdbcontextfactory.cs
+++PersistedGrantDbContextFactory.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\factories\persistedgrantdbcontextfactory.cs
+++AccountViewModels
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\models\accountviewmodels\
+++ManageViewModels
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\models\manageviewmodels\
+++ApplicationUser.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\models\applicationuser.cs
+++ErrorViewModel.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\models\errorviewmodel.cs
+++EFLoginService.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\services\efloginservice.cs
+++ILoginService.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\services\iloginservice.cs
+++IRedirectService.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\services\iredirectservice.cs
+++ProfileService.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\services\profileservice.cs
+++RedirectService.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\services\redirectservice.cs
+++images.zip
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\setup\images.zip
+++Users.csv
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\setup\users.csv
+++Account
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\views\account\
+++Consent
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\views\consent\
+++Home
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\views\home\
+++Shared
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\views\shared\
+++_ViewImports.cshtml
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\views\_viewimports.cshtml
+++_ViewStart.cshtml
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\views\_viewstart.cshtml
+++appsettings.Development.json
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\appsettings.development.json
+++.dockerignore
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\.dockerignore
+++Dockerfile.develop
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\dockerfile.develop
+++Microsoft.AspNetCore.Analyzers
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.analyzers.dll
+++Microsoft.AspNetCore.App.Analyzers
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.0\analyzers\dotnet\cs\microsoft.aspnetcore.app.analyzers.dll
+++Microsoft.AspNetCore.App.CodeFixes
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.0\analyzers\dotnet\cs\microsoft.aspnetcore.app.codefixes.dll
+++Microsoft.AspNetCore.Components.Analyzers
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.components.analyzers.dll
+++Microsoft.AspNetCore.Mvc.Analyzers
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.mvc.analyzers.dll
+++Microsoft.AspNetCore.Razor.Internal.SourceGenerator.Transport
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk.razor\source-generators\microsoft.aspnetcore.razor.internal.sourcegenerator.transport.dll
+++Microsoft.CodeAnalysis.Analyzers
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:c:\users\sanveo-balamurugan\.nuget\packages\microsoft.codeanalysis.analyzers\1.1.0\analyzers\dotnet\cs\microsoft.codeanalysis.analyzers.dll
+++Microsoft.CodeAnalysis.CSharp.Analyzers
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:c:\users\sanveo-balamurugan\.nuget\packages\microsoft.codeanalysis.analyzers\1.1.0\analyzers\dotnet\cs\microsoft.codeanalysis.csharp.analyzers.dll
+++Microsoft.CodeAnalysis.CSharp.NetAnalyzers
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+++Microsoft.CodeAnalysis.NetAnalyzers
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+++Microsoft.EntityFrameworkCore.Analyzers
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:c:\users\sanveo-balamurugan\.nuget\packages\microsoft.entityframeworkcore.analyzers\6.0.1\analyzers\dotnet\cs\microsoft.entityframeworkcore.analyzers.dll
+++Microsoft.Extensions.Logging.Generators
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.0\analyzers\dotnet\roslyn4.0\cs\microsoft.extensions.logging.generators.dll
+++Microsoft.NET.Sdk.Razor.SourceGenerators
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk.razor\source-generators\microsoft.net.sdk.razor.sourcegenerators.dll
+++System.Text.Json.SourceGeneration
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.1\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+++Microsoft.AspNetCore.App
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\microsoft.aspnetcore.app
+++Microsoft.NETCore.App
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\microsoft.netcore.app
+++AspNetCore.HealthChecks.NpgSql (5.0.2)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>593
+++AspNetCore.HealthChecks.UI.Client (5.0.1)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>558
+++Autofac.Extensions.DependencyInjection (7.2.0)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>562
+++Dapper (2.0.123)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>572
+++IdentityServer4 (3.1.4)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>590
+++IdentityServer4.AspNetIdentity (3.1.4)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>569
+++IdentityServer4.EntityFramework (3.1.4)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>575
+++IdentityServer4.EntityFramework.Storage (3.1.4)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>560
+++IdentityServer4.Storage (3.1.4)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>565
+++Microsoft.ApplicationInsights.AspNetCore (2.20.0)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>573
+++Microsoft.ApplicationInsights.DependencyCollector (2.20.0)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>583
+++Microsoft.ApplicationInsights.Kubernetes (2.0.1)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>584
+++Microsoft.AspNetCore.DataProtection.StackExchangeRedis (6.0.1)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>574
+++Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore (6.0.1)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>570
+++Microsoft.AspNetCore.Diagnostics.HealthChecks (2.2.0)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>585
+++Microsoft.AspNetCore.HealthChecks (1.0.0)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>589
+++Microsoft.AspNetCore.Http.Features (5.0.13)
+++Microsoft.AspNetCore.Identity.EntityFrameworkCore (6.0.1)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>576
+++Microsoft.EntityFrameworkCore.Design (6.0.1)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>563
+++Microsoft.EntityFrameworkCore.Relational (6.0.1)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>578
+++Microsoft.Extensions.Caching.StackExchangeRedis (6.0.1)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>588
+++Microsoft.Extensions.Configuration (6.0.0)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>582
+++Microsoft.Extensions.Diagnostics.HealthChecks (6.0.1)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>561
+++Npgsql (6.0.2)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>587
+++Npgsql.EntityFrameworkCore.PostgreSQL (6.0.2)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>591
+++Npgsql.EntityFrameworkCore.PostgreSQL.Design (1.1.0)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>592
+++Polly (7.2.2)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>580
+++Serilog.AspNetCore (4.1.0)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>566
+++Serilog.Enrichers.AssemblyName (1.0.9)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>567
+++Serilog.Enrichers.Environment (2.2.0)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>581
+++Serilog.Enrichers.Process (2.0.2)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>571
+++Serilog.Settings.Configuration (3.3.0)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>586
+++Serilog.Sinks.Console (4.0.1)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>579
+++Serilog.Sinks.Http (7.2.0)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>577
+++Serilog.Sinks.Seq (5.1.0)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>559
+++Swashbuckle.AspNetCore (6.2.3)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>564
+++Swashbuckle.AspNetCore.Newtonsoft (6.2.3)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>568
+++ConsentInputModel.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\models\accountviewmodels\consentinputmodel.cs
+++ConsentViewModel.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\models\accountviewmodels\consentviewmodel.cs
+++ForgotPasswordViewModel.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\models\accountviewmodels\forgotpasswordviewmodel.cs
+++LoggedOutViewModel.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\models\accountviewmodels\loggedoutviewmodel.cs
+++LoginViewModel.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\models\accountviewmodels\loginviewmodel.cs
+++LogoutViewModel.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\models\accountviewmodels\logoutviewmodel.cs
+++RegisterViewModel.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\models\accountviewmodels\registerviewmodel.cs
+++ResetPasswordViewModel.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\models\accountviewmodels\resetpasswordviewmodel.cs
+++SendCodeViewModel.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\models\accountviewmodels\sendcodeviewmodel.cs
+++VerifyCodeViewModel.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\models\accountviewmodels\verifycodeviewmodel.cs
+++AddPhoneNumberViewModel.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\models\manageviewmodels\addphonenumberviewmodel.cs
+++ChangePasswordViewModel.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\models\manageviewmodels\changepasswordviewmodel.cs
+++ConfigureTwoFactorViewModel.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\models\manageviewmodels\configuretwofactorviewmodel.cs
+++FactorViewModel.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\models\manageviewmodels\factorviewmodel.cs
+++IndexViewModel.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\models\manageviewmodels\indexviewmodel.cs
+++SetPasswordViewModel.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\models\manageviewmodels\setpasswordviewmodel.cs
+++VerifyPhoneNumberViewModel.cs
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\models\manageviewmodels\verifyphonenumberviewmodel.cs
+++_LoginPartial-MVC.cshtml
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\views\account\_loginpartial-mvc.cshtml
+++_LoginPartial-SPA.cshtml
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\views\account\_loginpartial-spa.cshtml
+++_RegisterPartial-MVC.cshtml
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\views\account\_registerpartial-mvc.cshtml
+++_RegisterPartial-SPA.cshtml
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\views\account\_registerpartial-spa.cshtml
+++LoggedOut.cshtml
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\views\account\loggedout.cshtml
+++Login.cshtml
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\views\account\login.cshtml
+++Logout.cshtml
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\views\account\logout.cshtml
+++Redirecting.cshtml
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\views\account\redirecting.cshtml
+++Register.cshtml
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\views\account\register.cshtml
+++_ScopeListItem.cshtml
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\views\consent\_scopelistitem.cshtml
+++Index.cshtml
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\views\consent\index.cshtml
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\views\home\index.cshtml
+++_Layout.cshtml
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\views\shared\_layout.cshtml
+++_Layout-SPA.cshtml
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\views\shared\_layout-spa.cshtml
+++_LoginPartial.cshtml
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\views\shared\_loginpartial.cshtml
+++_ValidationScriptsPartial.cshtml
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\views\shared\_validationscriptspartial.cshtml
+++_ValidationSummary.cshtml
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\views\shared\_validationsummary.cshtml
+++Error.cshtml
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:d:\projects\aecinspire-microservices\microservices\identityservice\views\shared\error.cshtml
+++Microsoft.AspNetCore.Http.Abstractions (2.2.0)
+++_RegisterPartial-SPA.cshtml~RF2c0a3b.TMP
+++bin
+++Debug
+++net6.0
+++ref
+++runtimes
+++Autofac.dll
+++Autofac.Extensions.DependencyInjection.dll
+++AutoMapper.dll
+++Dapper.dll
+++HealthChecks.NpgSql.dll
+++HealthChecks.UI.Client.dll
+++HealthChecks.UI.Core.dll
+++Humanizer.dll
+++IdentityModel.dll
+++IdentityServer4.AspNetIdentity.dll
+++IdentityServer4.dll
+++IdentityServer4.EntityFramework.dll
+++IdentityServer4.EntityFramework.Storage.dll
+++IdentityServer4.Storage.dll
+++IdentityService.deps.json
+++IdentityService.dll
+++IdentityService.exe
+++IdentityService.pdb
+++IdentityService.runtimeconfig.json
+++Microsoft.AI.DependencyCollector.dll
+++Microsoft.AI.EventCounterCollector.dll
+++Microsoft.AI.PerfCounterCollector.dll
+++Microsoft.AI.ServerTelemetryChannel.dll
+++Microsoft.AI.WindowsServer.dll
+++Microsoft.ApplicationInsights.AspNetCore.dll
+++Microsoft.ApplicationInsights.dll
+++Microsoft.ApplicationInsights.Kubernetes.dll
+++Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
+++Microsoft.AspNetCore.Cryptography.Internal.dll
+++Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+++Microsoft.AspNetCore.DataProtection.Abstractions.dll
+++Microsoft.AspNetCore.DataProtection.dll
+++Microsoft.AspNetCore.DataProtection.StackExchangeRedis.dll
+++Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
+++Microsoft.AspNetCore.HealthChecks.dll
+++Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+++Microsoft.AspNetCore.JsonPatch.dll
+++Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+++Microsoft.CodeAnalysis.CSharp.dll
+++Microsoft.CodeAnalysis.dll
+++Microsoft.CodeAnalysis.VisualBasic.dll
+++Microsoft.EntityFrameworkCore.Abstractions.dll
+++Microsoft.EntityFrameworkCore.Design.dll
+++Microsoft.EntityFrameworkCore.dll
+++Microsoft.EntityFrameworkCore.Relational.Design.dll
+++Microsoft.EntityFrameworkCore.Relational.dll
+++Microsoft.Extensions.Caching.StackExchangeRedis.dll
+++Microsoft.Extensions.DependencyModel.dll
+++Microsoft.Extensions.DiagnosticAdapter.dll
+++Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll
+++Microsoft.Extensions.Diagnostics.HealthChecks.dll
+++Microsoft.Extensions.HealthChecks.dll
+++Microsoft.Extensions.Identity.Core.dll
+++Microsoft.Extensions.Identity.Stores.dll
+++Microsoft.Extensions.Logging.ApplicationInsights.dll
+++Microsoft.IdentityModel.JsonWebTokens.dll
+++Microsoft.IdentityModel.Logging.dll
+++Microsoft.IdentityModel.Protocols.dll
+++Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+++Microsoft.IdentityModel.Tokens.dll
+++Microsoft.OpenApi.dll
+++Microsoft.VisualBasic.dll
+++Microsoft.Win32.SystemEvents.dll
+++Newtonsoft.Json.Bson.dll
+++Newtonsoft.Json.dll
+++Npgsql.dll
+++Npgsql.EntityFrameworkCore.PostgreSQL.Design.dll
+++Npgsql.EntityFrameworkCore.PostgreSQL.dll
+++Pipelines.Sockets.Unofficial.dll
+++Polly.dll
+++Serilog.AspNetCore.dll
+++Serilog.dll
+++Serilog.Enrichers.AssemblyName.dll
+++Serilog.Enrichers.Environment.dll
+++Serilog.Enrichers.Process.dll
+++Serilog.Extensions.Hosting.dll
+++Serilog.Extensions.Logging.dll
+++Serilog.Formatting.Compact.dll
+++Serilog.Settings.Configuration.dll
+++Serilog.Sinks.Console.dll
+++Serilog.Sinks.Debug.dll
+++Serilog.Sinks.File.dll
+++Serilog.Sinks.Http.dll
+++Serilog.Sinks.PeriodicBatching.dll
+++Serilog.Sinks.RollingFile.dll
+++Serilog.Sinks.Seq.dll
+++StackExchange.Redis.dll
+++Swashbuckle.AspNetCore.Newtonsoft.dll
+++Swashbuckle.AspNetCore.Swagger.dll
+++Swashbuckle.AspNetCore.SwaggerGen.dll
+++Swashbuckle.AspNetCore.SwaggerUI.dll
+++System.Configuration.ConfigurationManager.dll
+++System.Diagnostics.PerformanceCounter.dll
+++System.Drawing.Common.dll
+++System.IdentityModel.Tokens.Jwt.dll
+++System.Security.Cryptography.ProtectedData.dll
+++System.Security.Permissions.dll
+++System.Windows.Extensions.dll
+++debian-x64
+++fedora-x64
+++opensuse-x64
+++osx
+++rhel-x64
+++unix
+++win
+++win7-arm
+++win7-x64
+++win7-x86
+++native
+++lib
+++libuv.so
+++libuv.dylib
+++netcoreapp3.0
+++netcoreapp2.0
+++netstandard2.0
+++libuv.dll
+++obj
+++IdentityService.csproj.nuget.dgspec.json
+++IdentityService.csproj.nuget.g.props
+++IdentityService.csproj.nuget.g.targets
+++project.assets.json
+++project.nuget.cache
+++staticwebassets.pack.sentinel
+++staticwebassets
+++.NETCoreApp,Version=v6.0.AssemblyAttributes.cs
+++apphost.exe
+++IdentityService.AssemblyInfo.cs
+++IdentityService.AssemblyInfoInputs.cache
+++IdentityService.assets.cache
+++IdentityService.csproj.AssemblyReference.cache
+++IdentityService.csproj.CopyComplete
+++IdentityService.csproj.CoreCompileInputs.cache
+++IdentityService.csproj.FileListAbsolute.txt
+++IdentityService.GeneratedMSBuildEditorConfig.editorconfig
+++IdentityService.genruntimeconfig.cache
+++IdentityService.GlobalUsings.g.cs
+++IdentityService.MvcApplicationPartsAssemblyInfo.cache
+++IdentityService.MvcApplicationPartsAssemblyInfo.cs
+++IdentityService.RazorAssemblyInfo.cache
+++IdentityService.RazorAssemblyInfo.cs
+++project.razor.json
+++staticwebassets.build.json
+++Imports
+++Sdk.props
+++Sdk.targets
+++Sdk.props (C:\Program Files\dotnet\sdk\6.0.101\Sdks\Microsoft.NET.Sdk\Sdk)
+++Sdk.props (C:\Program Files\dotnet\sdk\6.0.101\Sdks\Microsoft.NET.Sdk.Razor\Sdk)
+++Sdk.props (C:\Program Files\dotnet\sdk\6.0.101\Sdks\Microsoft.NET.Sdk.Web.ProjectSystem\Sdk)
+++Sdk.props (C:\Program Files\dotnet\sdk\6.0.101\Sdks\Microsoft.NET.Sdk.Publish\Sdk)
+++Sdk.targets (C:\Program Files\dotnet\sdk\6.0.101\Sdks\Microsoft.NET.Sdk\Sdk)
+++Sdk.targets (C:\Program Files\dotnet\sdk\6.0.101\Sdks\Microsoft.NET.Sdk.Razor\Sdk)
+++Sdk.targets (C:\Program Files\dotnet\sdk\6.0.101\Sdks\Microsoft.NET.Sdk.Web.ProjectSystem\Sdk)
+++Sdk.targets (C:\Program Files\dotnet\sdk\6.0.101\Sdks\Microsoft.NET.Sdk.Publish\Sdk)
+++Microsoft.Common.props
+++Microsoft.NET.Sdk.props
+++Sdk.Razor.CurrentVersion.props
+++Microsoft.NET.Sdk.Web.ProjectSystem.props
+++Microsoft.NET.Sdk.Publish.props
+++Microsoft.NET.Sdk.BeforeCommon.targets
+++Microsoft.CSharp.targets
+++Microsoft.NET.Sdk.targets
+++Microsoft.NET.Compatibility.targets
+++NuGet.Build.Tasks.Pack.targets
+++Sdk.Razor.CurrentVersion.targets
+++Microsoft.NET.Sdk.Web.ProjectSystem.targets
+++Microsoft.NET.Sdk.Publish.targets
+++Microsoft.NuGet.ImportBefore.props
+++NuGet.props
+++Microsoft.NET.Sdk.DefaultItems.props
+++Microsoft.NET.Sdk.ImportWorkloads.props
+++Microsoft.NET.SupportedTargetFrameworks.props
+++Microsoft.NET.SupportedPlatforms.props
+++Microsoft.NET.WindowsSdkSupportedTargetPlatforms.props
+++Microsoft.NET.Sdk.CSharp.props
+++Microsoft.NET.ILLink.props
+++Microsoft.NET.Compatibility.props
+++Microsoft.NET.PackTool.props
+++Microsoft.NET.PackProjectTool.props
+++Microsoft.NET.Sdk.WindowsDesktop.props
+++Microsoft.NET.Windows.props
+++Sdk.Razor.StaticAssets.ProjectSystem.props
+++Microsoft.TypeScript.Default.props
+++Microsoft.NET.Sdk.Web.DefaultItems.props
+++Microsoft.NET.DefaultAssemblyInfo.targets
+++Microsoft.NET.DefaultOutputPaths.targets
+++Microsoft.NET.Sdk.ImportPublishProfile.targets
+++Microsoft.NET.TargetFrameworkInference.targets
+++Microsoft.NET.Sdk.Razor.BeforeCommon.targets
+++Microsoft.NET.Sdk.ImportWorkloads.targets
+++Microsoft.NET.RuntimeIdentifierInference.targets
+++Microsoft.NET.EolTargetFrameworks.targets
+++Microsoft.NET.NuGetOfflineCache.targets
+++Microsoft.Managed.Before.targets
+++Microsoft.CSharp.CurrentVersion.targets
+++Microsoft.Managed.After.targets
+++Microsoft.NET.Sdk.Common.targets
+++Microsoft.PackageDependencyResolution.targets
+++Microsoft.NET.Sdk.DefaultItems.targets
+++Microsoft.NET.Sdk.FrameworkReferenceResolution.targets
+++Microsoft.NET.Sdk.Shared.targets
+++Microsoft.NET.DisableStandardFrameworkResolution.targets
+++Microsoft.NET.DesignerSupport.targets
+++Microsoft.NET.GenerateAssemblyInfo.targets
+++Microsoft.NET.GenerateGlobalUsings.targets
+++Microsoft.NET.GenerateSupportedRuntime.targets
+++Microsoft.NET.ComposeStore.targets
+++Microsoft.NET.CrossGen.targets
+++Microsoft.NET.ObsoleteReferences.targets
+++Microsoft.NET.Publish.targets
+++Microsoft.NET.PackTool.targets
+++Microsoft.NET.PackProjectTool.targets
+++Microsoft.NET.PreserveCompilationContext.targets
+++Microsoft.NET.ConflictResolution.targets
+++Microsoft.NET.Sdk.CSharp.targets
+++Microsoft.NET.ILLink.targets
+++Microsoft.NET.Sdk.Analyzers.targets
+++Microsoft.NET.Compatibility.Common.targets
+++Microsoft.NET.Sdk.Razor.Configuration.targets
+++Microsoft.NET.Sdk.Razor.CodeGeneration.targets
+++Microsoft.NET.Sdk.Razor.SourceGenerators.targets
+++Microsoft.NET.Sdk.Razor.StaticWebAssets.targets
+++Microsoft.NET.Sdk.Razor.ScopedCss.targets
+++Microsoft.NET.Sdk.Razor.JSModules.targets
+++Microsoft.NET.Sdk.Razor.GenerateAssemblyInfo.targets
+++Microsoft.NET.Sdk.Razor.MvcApplicationPartsDiscovery.targets
+++Microsoft.NET.Sdk.Razor.DesignTime.targets
+++Microsoft.TypeScript.targets
+++Microsoft.TypeScript.DotNetCore.targets
+++Microsoft.Web.Designtime.targets
+++Default.pubxml
+++Microsoft.NET.Sdk.Publish.ComputeFiles.targets
+++Microsoft.NET.Sdk.Publish.FilterFiles.targets
+++Microsoft.NET.Sdk.Publish.CopyFiles.targets
+++Microsoft.NET.Sdk.Publish.TransformFiles.targets
+++Microsoft.NET.Sdk.Publish.FileSystem.targets
+++Microsoft.NET.Sdk.DotNetCLITool.targets
+++Microsoft.Extensions.ApiDescription.Server.props
+++Swashbuckle.AspNetCore.props
+++Microsoft.EntityFrameworkCore.Design.props
+++Microsoft.NuGet.props
+++Microsoft.NETCoreSdk.BundledVersions.props
+++Microsoft.NET.Sdk.WindowsDesktop.WindowsForms.props
+++Microsoft.NET.Sdk.WindowsDesktop.WPF.props
+++WorkloadManifest.targets (C:\Program Files\dotnet\sdk-manifests\6.0.100\microsoft.net.sdk.android)
+++WorkloadManifest.targets (C:\Program Files\dotnet\sdk-manifests\6.0.100\microsoft.net.sdk.ios)
+++WorkloadManifest.targets (C:\Program Files\dotnet\sdk-manifests\6.0.100\microsoft.net.sdk.maccatalyst)
+++WorkloadManifest.targets (C:\Program Files\dotnet\sdk-manifests\6.0.100\microsoft.net.sdk.macos)
+++WorkloadManifest.targets (C:\Program Files\dotnet\sdk-manifests\6.0.100\microsoft.net.sdk.maui)
+++WorkloadManifest.targets (C:\Program Files\dotnet\sdk-manifests\6.0.100\microsoft.net.sdk.tvos)
+++WorkloadManifest.targets (C:\Program Files\dotnet\sdk-manifests\6.0.100\microsoft.net.workload.emscripten)
+++WorkloadManifest.targets (C:\Program Files\dotnet\sdk-manifests\6.0.100\microsoft.net.workload.mono.toolchain)
+++Microsoft.CSharp.Core.targets
+++Microsoft.CSharp.DesignTime.targets
+++Microsoft.Common.targets
+++Microsoft.ServiceModel.targets
+++Microsoft.NET.Sdk.DefaultItems.Shared.targets
+++Microsoft.NETCoreSdk.BundledCliTools.props
+++Microsoft.NET.DefaultPackageConflictOverrides.targets
+++Microsoft.CodeAnalysis.NetAnalyzers.props
+++Microsoft.CodeAnalysis.NetAnalyzers.targets
+++Microsoft.NET.ILLink.Tasks.props
+++System.Windows.Forms.Analyzers.props
+++Microsoft.Managed.Core.targets
+++Microsoft.Managed.DesignTime.targets
+++Microsoft.Common.CurrentVersion.targets
+++Microsoft.Managed.Core.CurrentVersions.targets
+++IdentityService.csproj.user
+++Microsoft.NET.props
+++Microsoft.CodeAnalysis.targets
+++Microsoft.Xaml.targets
+++Microsoft.WorkflowBuildExtensions.targets
+++Microsoft.TeamTest.targets
+++NuGet.targets
+++Microsoft.Docker.ImportAfter.targets
+++Microsoft.NET.Build.Extensions.targets
+++Microsoft.NuGet.ImportAfter.targets
+++Microsoft.Web.ImportAfter.targets
+++Microsoft.Extensions.ApiDescription.Server.targets
+++Microsoft.ApplicationInsights.DependencyCollector.targets
+++Microsoft.Docker.targets
+++Microsoft.Web.IISSupport.targets
+++Microsoft.EntityFrameworkCore.Tools (6.0.1)
+i:{078f8c0c-e738-472a-b813-4831fc8ce101}:>907

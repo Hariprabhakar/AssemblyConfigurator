@@ -1,0 +1,1166 @@
+2021-12-31 17:56:05.811 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-31 17:56:06.158 +05:30 [FTL] Program terminated unexpectedly (IdentityService)!
+System.ArgumentException: GenericArguments[1], 'Microsoft.AspNetCore.Identity.IdentityRole', on 'Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore`9[TUser,TRole,TContext,TKey,TUserClaim,TUserRole,TUserLogin,TUserToken,TRoleClaim]' violates the constraint of type 'TRole'.
+ ---> System.TypeLoadException: GenericArguments[1], 'Microsoft.AspNetCore.Identity.IdentityRole', on 'Microsoft.AspNetCore.Identity.UserStoreBase`8[TUser,TRole,TKey,TUserClaim,TUserRole,TUserLogin,TUserToken,TRoleClaim]' violates the constraint of type parameter 'TRole'.
+   at System.RuntimeTypeHandle.Instantiate(Type[] inst)
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   --- End of inner exception stack trace ---
+   at System.RuntimeType.ValidateGenericArguments(MemberInfo definition, RuntimeType[] genericArguments, Exception e)
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions.AddStores(IServiceCollection services, Type userType, Type roleType, Type contextType)
+   at Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions.AddEntityFrameworkStores[TContext](IdentityBuilder builder)
+   at IdentityService.Startup.ConfigureServices(IServiceCollection services) in D:\Projects\aecinspire-microservices\Microservices\IdentityService\Startup.cs:line 36
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Span`1& arguments, Signature sig, Boolean constructor, Boolean wrapExceptions)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.AspNetCore.Hosting.ConfigureServicesBuilder.InvokeCore(Object instance, IServiceCollection services)
+   at Microsoft.AspNetCore.Hosting.ConfigureServicesBuilder.<>c__DisplayClass9_0.<Invoke>g__Startup|0(IServiceCollection serviceCollection)
+   at Microsoft.AspNetCore.Hosting.StartupLoader.ConfigureServicesDelegateBuilder`1.<>c__DisplayClass15_0.<BuildStartupServicesFilterPipeline>g__RunPipeline|0(IServiceCollection services)
+   at Microsoft.AspNetCore.Hosting.ConfigureServicesBuilder.Invoke(Object instance, IServiceCollection services)
+   at Microsoft.AspNetCore.Hosting.ConfigureServicesBuilder.<>c__DisplayClass8_0.<Build>b__0(IServiceCollection services)
+   at Microsoft.AspNetCore.Hosting.StartupLoader.ConfigureServicesDelegateBuilder`1.<>c__DisplayClass14_0.<ConfigureServices>g__ConfigureServicesWithContainerConfiguration|0(IServiceCollection services)
+   at Microsoft.AspNetCore.Hosting.ConventionBasedStartup.ConfigureServices(IServiceCollection services)
+   at Microsoft.AspNetCore.Hosting.WebHost.EnsureApplicationServices()
+   at Microsoft.AspNetCore.Hosting.WebHost.Initialize()
+   at Microsoft.AspNetCore.Hosting.WebHostBuilder.Build()
+   at Program.<<Main>$>g__BuildWebHost|0_0(IConfiguration configuration, String[] args) in D:\Projects\aecinspire-microservices\Microservices\IdentityService\Program.cs:line 49
+   at Program.<Main>$(String[] args) in D:\Projects\aecinspire-microservices\Microservices\IdentityService\Program.cs:line 10
+2021-12-31 17:58:08.830 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-31 17:58:09.360 +05:30 [INF] Starting web host (IdentityService)...
+2021-12-31 17:58:09.425 +05:30 [INF] Starting IdentityServer4 version 3.1.4.0
+2021-12-31 17:58:09.560 +05:30 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2021-12-31 17:58:09.682 +05:30 [FTL] Application startup exception
+Autofac.Core.DependencyResolutionException: An exception was thrown while activating Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionEndpointDataSourceFactory -> Microsoft.AspNetCore.Mvc.Routing.ActionEndpointFactory -> λ:Microsoft.AspNetCore.Mvc.Routing.IRequestDelegateFactory[] -> Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageRequestDelegateFactory -> Microsoft.AspNetCore.Mvc.ViewFeatures.TempDataDictionaryFactory -> Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider -> λ:Microsoft.AspNetCore.DataProtection.IDataProtectionProvider -> Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider -> Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager.
+ ---> Autofac.Core.DependencyResolutionException: An exception was thrown while invoking the constructor 'Void .ctor(Microsoft.Extensions.Options.IOptions`1[Microsoft.AspNetCore.DataProtection.KeyManagement.KeyManagementOptions], Microsoft.AspNetCore.DataProtection.Internal.IActivator, Microsoft.Extensions.Logging.ILoggerFactory)' on type 'XmlKeyManager'.
+ ---> System.ArgumentOutOfRangeException: The new key lifetime must be at least one week. For more information go to http://aka.ms/dataprotectionwarning (Parameter 'value')
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyManagementOptions.set_NewKeyLifetime(TimeSpan value)
+   at Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.<>c__DisplayClass15_0.<SetDefaultKeyLifetime>b__0(KeyManagementOptions options)
+   at Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at Microsoft.Extensions.Options.UnnamedOptionsManager`1.get_Value()
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager..ctor(IOptions`1 keyManagementOptions, IActivator activator, ILoggerFactory loggerFactory, IDefaultKeyStorageDirectories keyStorageDirectories)
+   at lambda_method331(Closure , Object[] )
+   at Autofac.Core.Activators.Reflection.BoundConstructor.Instantiate()
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Activators.Reflection.BoundConstructor.Instantiate()
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.<ConfigurePipeline>b__11_0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.DisposalTrackingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.RegistrationPipelineInvokeMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.<>c__DisplayClass5_0.<Execute>b__0()
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid id, Func`1 creator)
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid primaryId, Nullable`1 qualifyingId, Func`1 creator)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.CircularDependencyDetectorMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.ExecuteOperation(ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.Execute(ResolveRequest request)
+   at Autofac.Core.Lifetime.LifetimeScope.ResolveComponent(ResolveRequest request)
+   at Autofac.Core.Container.ResolveComponent(ResolveRequest request)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType)
+   at Autofac.Extensions.DependencyInjection.AutofacServiceProvider.GetRequiredService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.GetOrCreateDataSource(IEndpointRouteBuilder endpoints)
+   at Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute(IEndpointRouteBuilder endpoints)
+   at IdentityService.Startup.<>c.<Configure>b__5_1(IEndpointRouteBuilder endpoints) in D:\Projects\aecinspire-microservices\Microservices\IdentityService\Startup.cs:line 195
+   at Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints(IApplicationBuilder builder, Action`1 configure)
+   at IdentityService.Startup.Configure(IApplicationBuilder app, IWebHostEnvironment env) in D:\Projects\aecinspire-microservices\Microservices\IdentityService\Startup.cs:line 193
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Span`1& arguments, Signature sig, Boolean constructor, Boolean wrapExceptions)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.AspNetCore.Hosting.ConfigureBuilder.Invoke(Object instance, IApplicationBuilder builder)
+   at Microsoft.AspNetCore.Hosting.ConfigureBuilder.<>c__DisplayClass4_0.<Build>b__0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.Hosting.ConventionBasedStartup.Configure(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Mvc.Filters.MiddlewareFilterBuilderStartupFilter.<>c__DisplayClass0_0.<Configure>g__MiddlewareFilterBuilder|0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.HostFilteringStartupFilter.<>c__DisplayClass0_0.<Configure>b__0(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Hosting.WebHost.BuildApplication()
+2021-12-31 17:58:09.705 +05:30 [FTL] Program terminated unexpectedly (IdentityService)!
+Autofac.Core.DependencyResolutionException: An exception was thrown while activating Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionEndpointDataSourceFactory -> Microsoft.AspNetCore.Mvc.Routing.ActionEndpointFactory -> λ:Microsoft.AspNetCore.Mvc.Routing.IRequestDelegateFactory[] -> Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageRequestDelegateFactory -> Microsoft.AspNetCore.Mvc.ViewFeatures.TempDataDictionaryFactory -> Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider -> λ:Microsoft.AspNetCore.DataProtection.IDataProtectionProvider -> Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider -> Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager.
+ ---> Autofac.Core.DependencyResolutionException: An exception was thrown while invoking the constructor 'Void .ctor(Microsoft.Extensions.Options.IOptions`1[Microsoft.AspNetCore.DataProtection.KeyManagement.KeyManagementOptions], Microsoft.AspNetCore.DataProtection.Internal.IActivator, Microsoft.Extensions.Logging.ILoggerFactory)' on type 'XmlKeyManager'.
+ ---> System.ArgumentOutOfRangeException: The new key lifetime must be at least one week. For more information go to http://aka.ms/dataprotectionwarning (Parameter 'value')
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyManagementOptions.set_NewKeyLifetime(TimeSpan value)
+   at Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.<>c__DisplayClass15_0.<SetDefaultKeyLifetime>b__0(KeyManagementOptions options)
+   at Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at Microsoft.Extensions.Options.UnnamedOptionsManager`1.get_Value()
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager..ctor(IOptions`1 keyManagementOptions, IActivator activator, ILoggerFactory loggerFactory, IDefaultKeyStorageDirectories keyStorageDirectories)
+   at lambda_method331(Closure , Object[] )
+   at Autofac.Core.Activators.Reflection.BoundConstructor.Instantiate()
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Activators.Reflection.BoundConstructor.Instantiate()
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.<ConfigurePipeline>b__11_0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.DisposalTrackingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.RegistrationPipelineInvokeMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.<>c__DisplayClass5_0.<Execute>b__0()
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid id, Func`1 creator)
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid primaryId, Nullable`1 qualifyingId, Func`1 creator)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.CircularDependencyDetectorMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.ExecuteOperation(ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.Execute(ResolveRequest request)
+   at Autofac.Core.Lifetime.LifetimeScope.ResolveComponent(ResolveRequest request)
+   at Autofac.Core.Container.ResolveComponent(ResolveRequest request)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType)
+   at Autofac.Extensions.DependencyInjection.AutofacServiceProvider.GetRequiredService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.GetOrCreateDataSource(IEndpointRouteBuilder endpoints)
+   at Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute(IEndpointRouteBuilder endpoints)
+   at IdentityService.Startup.<>c.<Configure>b__5_1(IEndpointRouteBuilder endpoints) in D:\Projects\aecinspire-microservices\Microservices\IdentityService\Startup.cs:line 195
+   at Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints(IApplicationBuilder builder, Action`1 configure)
+   at IdentityService.Startup.Configure(IApplicationBuilder app, IWebHostEnvironment env) in D:\Projects\aecinspire-microservices\Microservices\IdentityService\Startup.cs:line 193
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Span`1& arguments, Signature sig, Boolean constructor, Boolean wrapExceptions)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.AspNetCore.Hosting.ConfigureBuilder.Invoke(Object instance, IApplicationBuilder builder)
+   at Microsoft.AspNetCore.Hosting.ConfigureBuilder.<>c__DisplayClass4_0.<Build>b__0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.Hosting.ConventionBasedStartup.Configure(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Mvc.Filters.MiddlewareFilterBuilderStartupFilter.<>c__DisplayClass0_0.<Configure>g__MiddlewareFilterBuilder|0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.HostFilteringStartupFilter.<>c__DisplayClass0_0.<Configure>b__0(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Hosting.WebHost.BuildApplication()
+   at Microsoft.AspNetCore.Hosting.WebHost.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.WebHostExtensions.RunAsync(IWebHost host, CancellationToken token, String startupMessage)
+   at Microsoft.AspNetCore.Hosting.WebHostExtensions.RunAsync(IWebHost host, CancellationToken token, String startupMessage)
+   at Microsoft.AspNetCore.Hosting.WebHostExtensions.RunAsync(IWebHost host, CancellationToken token)
+   at Microsoft.AspNetCore.Hosting.WebHostExtensions.Run(IWebHost host)
+   at Program.<Main>$(String[] args) in D:\Projects\aecinspire-microservices\Microservices\IdentityService\Program.cs:line 34
+2021-12-31 17:59:23.985 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-31 17:59:24.391 +05:30 [INF] Starting web host (IdentityService)...
+2021-12-31 17:59:24.425 +05:30 [INF] Starting IdentityServer4 version 3.1.4.0
+2021-12-31 17:59:24.563 +05:30 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2021-12-31 17:59:24.650 +05:30 [FTL] Application startup exception
+Autofac.Core.DependencyResolutionException: An exception was thrown while activating Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionEndpointDataSourceFactory -> Microsoft.AspNetCore.Mvc.Routing.ActionEndpointFactory -> λ:Microsoft.AspNetCore.Mvc.Routing.IRequestDelegateFactory[] -> Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageRequestDelegateFactory -> Microsoft.AspNetCore.Mvc.ViewFeatures.TempDataDictionaryFactory -> Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider -> λ:Microsoft.AspNetCore.DataProtection.IDataProtectionProvider -> Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider -> Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager.
+ ---> Autofac.Core.DependencyResolutionException: An exception was thrown while invoking the constructor 'Void .ctor(Microsoft.Extensions.Options.IOptions`1[Microsoft.AspNetCore.DataProtection.KeyManagement.KeyManagementOptions], Microsoft.AspNetCore.DataProtection.Internal.IActivator, Microsoft.Extensions.Logging.ILoggerFactory)' on type 'XmlKeyManager'.
+ ---> System.ArgumentOutOfRangeException: The new key lifetime must be at least one week. For more information go to http://aka.ms/dataprotectionwarning (Parameter 'value')
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyManagementOptions.set_NewKeyLifetime(TimeSpan value)
+   at Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.<>c__DisplayClass15_0.<SetDefaultKeyLifetime>b__0(KeyManagementOptions options)
+   at Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at Microsoft.Extensions.Options.UnnamedOptionsManager`1.get_Value()
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager..ctor(IOptions`1 keyManagementOptions, IActivator activator, ILoggerFactory loggerFactory, IDefaultKeyStorageDirectories keyStorageDirectories)
+   at lambda_method331(Closure , Object[] )
+   at Autofac.Core.Activators.Reflection.BoundConstructor.Instantiate()
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Activators.Reflection.BoundConstructor.Instantiate()
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.<ConfigurePipeline>b__11_0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.DisposalTrackingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.RegistrationPipelineInvokeMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.<>c__DisplayClass5_0.<Execute>b__0()
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid id, Func`1 creator)
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid primaryId, Nullable`1 qualifyingId, Func`1 creator)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.CircularDependencyDetectorMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.ExecuteOperation(ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.Execute(ResolveRequest request)
+   at Autofac.Core.Lifetime.LifetimeScope.ResolveComponent(ResolveRequest request)
+   at Autofac.Core.Container.ResolveComponent(ResolveRequest request)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType)
+   at Autofac.Extensions.DependencyInjection.AutofacServiceProvider.GetRequiredService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.GetOrCreateDataSource(IEndpointRouteBuilder endpoints)
+   at Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute(IEndpointRouteBuilder endpoints)
+   at IdentityService.Startup.<>c.<Configure>b__5_1(IEndpointRouteBuilder endpoints) in D:\Projects\aecinspire-microservices\Microservices\IdentityService\Startup.cs:line 195
+   at Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints(IApplicationBuilder builder, Action`1 configure)
+   at IdentityService.Startup.Configure(IApplicationBuilder app, IWebHostEnvironment env) in D:\Projects\aecinspire-microservices\Microservices\IdentityService\Startup.cs:line 193
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Span`1& arguments, Signature sig, Boolean constructor, Boolean wrapExceptions)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.AspNetCore.Hosting.ConfigureBuilder.Invoke(Object instance, IApplicationBuilder builder)
+   at Microsoft.AspNetCore.Hosting.ConfigureBuilder.<>c__DisplayClass4_0.<Build>b__0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.Hosting.ConventionBasedStartup.Configure(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Mvc.Filters.MiddlewareFilterBuilderStartupFilter.<>c__DisplayClass0_0.<Configure>g__MiddlewareFilterBuilder|0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.HostFilteringStartupFilter.<>c__DisplayClass0_0.<Configure>b__0(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Hosting.WebHost.BuildApplication()
+2021-12-31 17:59:24.673 +05:30 [FTL] Program terminated unexpectedly (IdentityService)!
+Autofac.Core.DependencyResolutionException: An exception was thrown while activating Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionEndpointDataSourceFactory -> Microsoft.AspNetCore.Mvc.Routing.ActionEndpointFactory -> λ:Microsoft.AspNetCore.Mvc.Routing.IRequestDelegateFactory[] -> Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageRequestDelegateFactory -> Microsoft.AspNetCore.Mvc.ViewFeatures.TempDataDictionaryFactory -> Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider -> λ:Microsoft.AspNetCore.DataProtection.IDataProtectionProvider -> Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider -> Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager.
+ ---> Autofac.Core.DependencyResolutionException: An exception was thrown while invoking the constructor 'Void .ctor(Microsoft.Extensions.Options.IOptions`1[Microsoft.AspNetCore.DataProtection.KeyManagement.KeyManagementOptions], Microsoft.AspNetCore.DataProtection.Internal.IActivator, Microsoft.Extensions.Logging.ILoggerFactory)' on type 'XmlKeyManager'.
+ ---> System.ArgumentOutOfRangeException: The new key lifetime must be at least one week. For more information go to http://aka.ms/dataprotectionwarning (Parameter 'value')
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyManagementOptions.set_NewKeyLifetime(TimeSpan value)
+   at Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.<>c__DisplayClass15_0.<SetDefaultKeyLifetime>b__0(KeyManagementOptions options)
+   at Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at Microsoft.Extensions.Options.UnnamedOptionsManager`1.get_Value()
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager..ctor(IOptions`1 keyManagementOptions, IActivator activator, ILoggerFactory loggerFactory, IDefaultKeyStorageDirectories keyStorageDirectories)
+   at lambda_method331(Closure , Object[] )
+   at Autofac.Core.Activators.Reflection.BoundConstructor.Instantiate()
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Activators.Reflection.BoundConstructor.Instantiate()
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.<ConfigurePipeline>b__11_0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.DisposalTrackingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.RegistrationPipelineInvokeMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.<>c__DisplayClass5_0.<Execute>b__0()
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid id, Func`1 creator)
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid primaryId, Nullable`1 qualifyingId, Func`1 creator)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.CircularDependencyDetectorMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.ExecuteOperation(ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.Execute(ResolveRequest request)
+   at Autofac.Core.Lifetime.LifetimeScope.ResolveComponent(ResolveRequest request)
+   at Autofac.Core.Container.ResolveComponent(ResolveRequest request)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType)
+   at Autofac.Extensions.DependencyInjection.AutofacServiceProvider.GetRequiredService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.GetOrCreateDataSource(IEndpointRouteBuilder endpoints)
+   at Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute(IEndpointRouteBuilder endpoints)
+   at IdentityService.Startup.<>c.<Configure>b__5_1(IEndpointRouteBuilder endpoints) in D:\Projects\aecinspire-microservices\Microservices\IdentityService\Startup.cs:line 195
+   at Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints(IApplicationBuilder builder, Action`1 configure)
+   at IdentityService.Startup.Configure(IApplicationBuilder app, IWebHostEnvironment env) in D:\Projects\aecinspire-microservices\Microservices\IdentityService\Startup.cs:line 193
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Span`1& arguments, Signature sig, Boolean constructor, Boolean wrapExceptions)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.AspNetCore.Hosting.ConfigureBuilder.Invoke(Object instance, IApplicationBuilder builder)
+   at Microsoft.AspNetCore.Hosting.ConfigureBuilder.<>c__DisplayClass4_0.<Build>b__0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.Hosting.ConventionBasedStartup.Configure(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Mvc.Filters.MiddlewareFilterBuilderStartupFilter.<>c__DisplayClass0_0.<Configure>g__MiddlewareFilterBuilder|0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.HostFilteringStartupFilter.<>c__DisplayClass0_0.<Configure>b__0(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Hosting.WebHost.BuildApplication()
+   at Microsoft.AspNetCore.Hosting.WebHost.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.WebHostExtensions.RunAsync(IWebHost host, CancellationToken token, String startupMessage)
+   at Microsoft.AspNetCore.Hosting.WebHostExtensions.RunAsync(IWebHost host, CancellationToken token, String startupMessage)
+   at Microsoft.AspNetCore.Hosting.WebHostExtensions.RunAsync(IWebHost host, CancellationToken token)
+   at Microsoft.AspNetCore.Hosting.WebHostExtensions.Run(IWebHost host)
+   at Program.<Main>$(String[] args) in D:\Projects\aecinspire-microservices\Microservices\IdentityService\Program.cs:line 34
+2021-12-31 18:00:01.708 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-31 18:00:02.125 +05:30 [INF] Starting web host (IdentityService)...
+2021-12-31 18:00:02.157 +05:30 [INF] Starting IdentityServer4 version 3.1.4.0
+2021-12-31 18:00:02.285 +05:30 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2021-12-31 18:00:02.371 +05:30 [FTL] Application startup exception
+Autofac.Core.DependencyResolutionException: An exception was thrown while activating Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionEndpointDataSourceFactory -> Microsoft.AspNetCore.Mvc.Routing.ActionEndpointFactory -> λ:Microsoft.AspNetCore.Mvc.Routing.IRequestDelegateFactory[] -> Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageRequestDelegateFactory -> Microsoft.AspNetCore.Mvc.ViewFeatures.TempDataDictionaryFactory -> Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider -> λ:Microsoft.AspNetCore.DataProtection.IDataProtectionProvider -> Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider -> Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager.
+ ---> Autofac.Core.DependencyResolutionException: An exception was thrown while invoking the constructor 'Void .ctor(Microsoft.Extensions.Options.IOptions`1[Microsoft.AspNetCore.DataProtection.KeyManagement.KeyManagementOptions], Microsoft.AspNetCore.DataProtection.Internal.IActivator, Microsoft.Extensions.Logging.ILoggerFactory)' on type 'XmlKeyManager'.
+ ---> System.ArgumentOutOfRangeException: The new key lifetime must be at least one week. For more information go to http://aka.ms/dataprotectionwarning (Parameter 'value')
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyManagementOptions.set_NewKeyLifetime(TimeSpan value)
+   at Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.<>c__DisplayClass15_0.<SetDefaultKeyLifetime>b__0(KeyManagementOptions options)
+   at Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at Microsoft.Extensions.Options.UnnamedOptionsManager`1.get_Value()
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager..ctor(IOptions`1 keyManagementOptions, IActivator activator, ILoggerFactory loggerFactory, IDefaultKeyStorageDirectories keyStorageDirectories)
+   at lambda_method331(Closure , Object[] )
+   at Autofac.Core.Activators.Reflection.BoundConstructor.Instantiate()
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Activators.Reflection.BoundConstructor.Instantiate()
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.<ConfigurePipeline>b__11_0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.DisposalTrackingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.RegistrationPipelineInvokeMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.<>c__DisplayClass5_0.<Execute>b__0()
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid id, Func`1 creator)
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid primaryId, Nullable`1 qualifyingId, Func`1 creator)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.CircularDependencyDetectorMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.ExecuteOperation(ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.Execute(ResolveRequest request)
+   at Autofac.Core.Lifetime.LifetimeScope.ResolveComponent(ResolveRequest request)
+   at Autofac.Core.Container.ResolveComponent(ResolveRequest request)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType)
+   at Autofac.Extensions.DependencyInjection.AutofacServiceProvider.GetRequiredService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.GetOrCreateDataSource(IEndpointRouteBuilder endpoints)
+   at Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute(IEndpointRouteBuilder endpoints)
+   at IdentityService.Startup.<>c.<Configure>b__5_1(IEndpointRouteBuilder endpoints) in D:\Projects\aecinspire-microservices\Microservices\IdentityService\Startup.cs:line 195
+   at Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints(IApplicationBuilder builder, Action`1 configure)
+   at IdentityService.Startup.Configure(IApplicationBuilder app, IWebHostEnvironment env) in D:\Projects\aecinspire-microservices\Microservices\IdentityService\Startup.cs:line 193
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Span`1& arguments, Signature sig, Boolean constructor, Boolean wrapExceptions)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.AspNetCore.Hosting.ConfigureBuilder.Invoke(Object instance, IApplicationBuilder builder)
+   at Microsoft.AspNetCore.Hosting.ConfigureBuilder.<>c__DisplayClass4_0.<Build>b__0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.Hosting.ConventionBasedStartup.Configure(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Mvc.Filters.MiddlewareFilterBuilderStartupFilter.<>c__DisplayClass0_0.<Configure>g__MiddlewareFilterBuilder|0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.HostFilteringStartupFilter.<>c__DisplayClass0_0.<Configure>b__0(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Hosting.WebHost.BuildApplication()
+2021-12-31 18:00:02.394 +05:30 [FTL] Program terminated unexpectedly (IdentityService)!
+Autofac.Core.DependencyResolutionException: An exception was thrown while activating Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionEndpointDataSourceFactory -> Microsoft.AspNetCore.Mvc.Routing.ActionEndpointFactory -> λ:Microsoft.AspNetCore.Mvc.Routing.IRequestDelegateFactory[] -> Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageRequestDelegateFactory -> Microsoft.AspNetCore.Mvc.ViewFeatures.TempDataDictionaryFactory -> Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider -> λ:Microsoft.AspNetCore.DataProtection.IDataProtectionProvider -> Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider -> Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager.
+ ---> Autofac.Core.DependencyResolutionException: An exception was thrown while invoking the constructor 'Void .ctor(Microsoft.Extensions.Options.IOptions`1[Microsoft.AspNetCore.DataProtection.KeyManagement.KeyManagementOptions], Microsoft.AspNetCore.DataProtection.Internal.IActivator, Microsoft.Extensions.Logging.ILoggerFactory)' on type 'XmlKeyManager'.
+ ---> System.ArgumentOutOfRangeException: The new key lifetime must be at least one week. For more information go to http://aka.ms/dataprotectionwarning (Parameter 'value')
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyManagementOptions.set_NewKeyLifetime(TimeSpan value)
+   at Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.<>c__DisplayClass15_0.<SetDefaultKeyLifetime>b__0(KeyManagementOptions options)
+   at Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at Microsoft.Extensions.Options.UnnamedOptionsManager`1.get_Value()
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager..ctor(IOptions`1 keyManagementOptions, IActivator activator, ILoggerFactory loggerFactory, IDefaultKeyStorageDirectories keyStorageDirectories)
+   at lambda_method331(Closure , Object[] )
+   at Autofac.Core.Activators.Reflection.BoundConstructor.Instantiate()
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Activators.Reflection.BoundConstructor.Instantiate()
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.<ConfigurePipeline>b__11_0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.DisposalTrackingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.RegistrationPipelineInvokeMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.<>c__DisplayClass5_0.<Execute>b__0()
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid id, Func`1 creator)
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid primaryId, Nullable`1 qualifyingId, Func`1 creator)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.CircularDependencyDetectorMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.ExecuteOperation(ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.Execute(ResolveRequest request)
+   at Autofac.Core.Lifetime.LifetimeScope.ResolveComponent(ResolveRequest request)
+   at Autofac.Core.Container.ResolveComponent(ResolveRequest request)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType)
+   at Autofac.Extensions.DependencyInjection.AutofacServiceProvider.GetRequiredService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.GetOrCreateDataSource(IEndpointRouteBuilder endpoints)
+   at Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute(IEndpointRouteBuilder endpoints)
+   at IdentityService.Startup.<>c.<Configure>b__5_1(IEndpointRouteBuilder endpoints) in D:\Projects\aecinspire-microservices\Microservices\IdentityService\Startup.cs:line 195
+   at Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints(IApplicationBuilder builder, Action`1 configure)
+   at IdentityService.Startup.Configure(IApplicationBuilder app, IWebHostEnvironment env) in D:\Projects\aecinspire-microservices\Microservices\IdentityService\Startup.cs:line 193
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Span`1& arguments, Signature sig, Boolean constructor, Boolean wrapExceptions)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.AspNetCore.Hosting.ConfigureBuilder.Invoke(Object instance, IApplicationBuilder builder)
+   at Microsoft.AspNetCore.Hosting.ConfigureBuilder.<>c__DisplayClass4_0.<Build>b__0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.Hosting.ConventionBasedStartup.Configure(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Mvc.Filters.MiddlewareFilterBuilderStartupFilter.<>c__DisplayClass0_0.<Configure>g__MiddlewareFilterBuilder|0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.HostFilteringStartupFilter.<>c__DisplayClass0_0.<Configure>b__0(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Hosting.WebHost.BuildApplication()
+   at Microsoft.AspNetCore.Hosting.WebHost.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.WebHostExtensions.RunAsync(IWebHost host, CancellationToken token, String startupMessage)
+   at Microsoft.AspNetCore.Hosting.WebHostExtensions.RunAsync(IWebHost host, CancellationToken token, String startupMessage)
+   at Microsoft.AspNetCore.Hosting.WebHostExtensions.RunAsync(IWebHost host, CancellationToken token)
+   at Microsoft.AspNetCore.Hosting.WebHostExtensions.Run(IWebHost host)
+   at Program.<Main>$(String[] args) in D:\Projects\aecinspire-microservices\Microservices\IdentityService\Program.cs:line 34
+2021-12-31 18:02:26.256 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-31 18:02:26.670 +05:30 [INF] Starting web host (IdentityService)...
+2021-12-31 18:02:26.703 +05:30 [INF] Starting IdentityServer4 version 3.1.4.0
+2021-12-31 18:02:26.834 +05:30 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2021-12-31 18:02:29.851 +05:30 [ERR] Failed executing DbCommand (259ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT d.id, d.friendly_name, d.xml
+FROM data_protection_keys AS d
+2021-12-31 18:02:29.879 +05:30 [ERR] An exception occurred while iterating over the results of a query for context type 'IdentityService.Data.ApplicationDbContext'.
+Npgsql.PostgresException (0x80004005): 42P01: relation "data_protection_keys" does not exist
+
+POSITION: 43
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|213_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__20_0(DbContext _, Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass31_0`2.<Execute>b__0(DbContext context, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementation[TState,TResult](Func`3 operation, Func`3 verifySucceeded, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "data_protection_keys" does not exist
+    Position: 43
+    File: parse_relation.c
+    Line: 1373
+    Routine: parserOpenTable
+Npgsql.PostgresException (0x80004005): 42P01: relation "data_protection_keys" does not exist
+
+POSITION: 43
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|213_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__20_0(DbContext _, Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass31_0`2.<Execute>b__0(DbContext context, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementation[TState,TResult](Func`3 operation, Func`3 verifySucceeded, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "data_protection_keys" does not exist
+    Position: 43
+    File: parse_relation.c
+    Line: 1373
+    Routine: parserOpenTable
+2021-12-31 18:02:29.898 +05:30 [ERR] An error occurred while reading the key ring.
+Npgsql.PostgresException (0x80004005): 42P01: relation "data_protection_keys" does not exist
+
+POSITION: 43
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|213_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__20_0(DbContext _, Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass31_0`2.<Execute>b__0(DbContext context, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementation[TState,TResult](Func`3 operation, Func`3 verifySucceeded, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.AspNetCore.DataProtection.EntityFrameworkCore.EntityFrameworkCoreXmlRepository`1.<GetAllElements>g__GetAllElementsCore|3_0()+MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Microsoft.AspNetCore.DataProtection.EntityFrameworkCore.EntityFrameworkCoreXmlRepository`1.GetAllElements()
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager.GetAllKeys()
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider.CreateCacheableKeyRingCore(DateTimeOffset now, IKey keyJustAdded)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider.Microsoft.AspNetCore.DataProtection.KeyManagement.Internal.ICacheableKeyRingProvider.GetCacheableKeyRing(DateTimeOffset now)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider.GetCurrentKeyRingCore(DateTime utcNow, Boolean forceRefresh)
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "data_protection_keys" does not exist
+    Position: 43
+    File: parse_relation.c
+    Line: 1373
+    Routine: parserOpenTable
+2021-12-31 18:03:38.207 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-31 18:03:38.619 +05:30 [INF] Starting web host (IdentityService)...
+2021-12-31 18:03:38.652 +05:30 [INF] Starting IdentityServer4 version 3.1.4.0
+2021-12-31 18:03:38.782 +05:30 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2021-12-31 18:03:41.665 +05:30 [ERR] Failed executing DbCommand (252ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT d.id, d.friendly_name, d.xml
+FROM data_protection_keys AS d
+2021-12-31 18:03:41.692 +05:30 [ERR] An exception occurred while iterating over the results of a query for context type 'IdentityService.Data.ApplicationDbContext'.
+Npgsql.PostgresException (0x80004005): 42P01: relation "data_protection_keys" does not exist
+
+POSITION: 43
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|213_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__20_0(DbContext _, Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass31_0`2.<Execute>b__0(DbContext context, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementation[TState,TResult](Func`3 operation, Func`3 verifySucceeded, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "data_protection_keys" does not exist
+    Position: 43
+    File: parse_relation.c
+    Line: 1373
+    Routine: parserOpenTable
+Npgsql.PostgresException (0x80004005): 42P01: relation "data_protection_keys" does not exist
+
+POSITION: 43
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|213_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__20_0(DbContext _, Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass31_0`2.<Execute>b__0(DbContext context, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementation[TState,TResult](Func`3 operation, Func`3 verifySucceeded, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "data_protection_keys" does not exist
+    Position: 43
+    File: parse_relation.c
+    Line: 1373
+    Routine: parserOpenTable
+2021-12-31 18:03:41.710 +05:30 [ERR] An error occurred while reading the key ring.
+Npgsql.PostgresException (0x80004005): 42P01: relation "data_protection_keys" does not exist
+
+POSITION: 43
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|213_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__20_0(DbContext _, Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass31_0`2.<Execute>b__0(DbContext context, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementation[TState,TResult](Func`3 operation, Func`3 verifySucceeded, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.AspNetCore.DataProtection.EntityFrameworkCore.EntityFrameworkCoreXmlRepository`1.<GetAllElements>g__GetAllElementsCore|3_0()+MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Microsoft.AspNetCore.DataProtection.EntityFrameworkCore.EntityFrameworkCoreXmlRepository`1.GetAllElements()
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager.GetAllKeys()
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider.CreateCacheableKeyRingCore(DateTimeOffset now, IKey keyJustAdded)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider.Microsoft.AspNetCore.DataProtection.KeyManagement.Internal.ICacheableKeyRingProvider.GetCacheableKeyRing(DateTimeOffset now)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider.GetCurrentKeyRingCore(DateTime utcNow, Boolean forceRefresh)
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "data_protection_keys" does not exist
+    Position: 43
+    File: parse_relation.c
+    Line: 1373
+    Routine: parserOpenTable
+2021-12-31 18:04:13.136 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-31 18:04:13.610 +05:30 [INF] Starting web host (IdentityService)...
+2021-12-31 18:04:13.649 +05:30 [INF] Starting IdentityServer4 version 3.1.4.0
+2021-12-31 18:04:13.826 +05:30 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2021-12-31 18:04:16.994 +05:30 [ERR] Failed executing DbCommand (259ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT d.id, d.friendly_name, d.xml
+FROM data_protection_keys AS d
+2021-12-31 18:04:17.016 +05:30 [ERR] An exception occurred while iterating over the results of a query for context type 'IdentityService.Data.ApplicationDbContext'.
+Npgsql.PostgresException (0x80004005): 42P01: relation "data_protection_keys" does not exist
+
+POSITION: 43
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|213_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__20_0(DbContext _, Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass31_0`2.<Execute>b__0(DbContext context, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementation[TState,TResult](Func`3 operation, Func`3 verifySucceeded, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "data_protection_keys" does not exist
+    Position: 43
+    File: parse_relation.c
+    Line: 1373
+    Routine: parserOpenTable
+Npgsql.PostgresException (0x80004005): 42P01: relation "data_protection_keys" does not exist
+
+POSITION: 43
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|213_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__20_0(DbContext _, Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass31_0`2.<Execute>b__0(DbContext context, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementation[TState,TResult](Func`3 operation, Func`3 verifySucceeded, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "data_protection_keys" does not exist
+    Position: 43
+    File: parse_relation.c
+    Line: 1373
+    Routine: parserOpenTable
+2021-12-31 18:04:17.035 +05:30 [ERR] An error occurred while reading the key ring.
+Npgsql.PostgresException (0x80004005): 42P01: relation "data_protection_keys" does not exist
+
+POSITION: 43
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|213_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__20_0(DbContext _, Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass31_0`2.<Execute>b__0(DbContext context, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementation[TState,TResult](Func`3 operation, Func`3 verifySucceeded, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.AspNetCore.DataProtection.EntityFrameworkCore.EntityFrameworkCoreXmlRepository`1.<GetAllElements>g__GetAllElementsCore|3_0()+MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Microsoft.AspNetCore.DataProtection.EntityFrameworkCore.EntityFrameworkCoreXmlRepository`1.GetAllElements()
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager.GetAllKeys()
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider.CreateCacheableKeyRingCore(DateTimeOffset now, IKey keyJustAdded)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider.Microsoft.AspNetCore.DataProtection.KeyManagement.Internal.ICacheableKeyRingProvider.GetCacheableKeyRing(DateTimeOffset now)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider.GetCurrentKeyRingCore(DateTime utcNow, Boolean forceRefresh)
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "data_protection_keys" does not exist
+    Position: 43
+    File: parse_relation.c
+    Line: 1373
+    Routine: parserOpenTable
+2021-12-31 18:05:26.999 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-31 18:05:27.412 +05:30 [INF] Starting web host (IdentityService)...
+2021-12-31 18:05:27.448 +05:30 [INF] Starting IdentityServer4 version 3.1.4.0
+2021-12-31 18:05:27.577 +05:30 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2021-12-31 18:05:30.469 +05:30 [ERR] Failed executing DbCommand (259ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT d.id, d.friendly_name, d.xml
+FROM data_protection_keys AS d
+2021-12-31 18:05:30.495 +05:30 [ERR] An exception occurred while iterating over the results of a query for context type 'IdentityService.Data.ApplicationDbContext'.
+Npgsql.PostgresException (0x80004005): 42P01: relation "data_protection_keys" does not exist
+
+POSITION: 43
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|213_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__20_0(DbContext _, Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass31_0`2.<Execute>b__0(DbContext context, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementation[TState,TResult](Func`3 operation, Func`3 verifySucceeded, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "data_protection_keys" does not exist
+    Position: 43
+    File: parse_relation.c
+    Line: 1373
+    Routine: parserOpenTable
+Npgsql.PostgresException (0x80004005): 42P01: relation "data_protection_keys" does not exist
+
+POSITION: 43
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|213_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__20_0(DbContext _, Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass31_0`2.<Execute>b__0(DbContext context, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementation[TState,TResult](Func`3 operation, Func`3 verifySucceeded, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "data_protection_keys" does not exist
+    Position: 43
+    File: parse_relation.c
+    Line: 1373
+    Routine: parserOpenTable
+2021-12-31 18:05:30.532 +05:30 [ERR] An error occurred while reading the key ring.
+Npgsql.PostgresException (0x80004005): 42P01: relation "data_protection_keys" does not exist
+
+POSITION: 43
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|213_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__20_0(DbContext _, Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass31_0`2.<Execute>b__0(DbContext context, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementation[TState,TResult](Func`3 operation, Func`3 verifySucceeded, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.AspNetCore.DataProtection.EntityFrameworkCore.EntityFrameworkCoreXmlRepository`1.<GetAllElements>g__GetAllElementsCore|3_0()+MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Microsoft.AspNetCore.DataProtection.EntityFrameworkCore.EntityFrameworkCoreXmlRepository`1.GetAllElements()
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager.GetAllKeys()
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider.CreateCacheableKeyRingCore(DateTimeOffset now, IKey keyJustAdded)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider.Microsoft.AspNetCore.DataProtection.KeyManagement.Internal.ICacheableKeyRingProvider.GetCacheableKeyRing(DateTimeOffset now)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider.GetCurrentKeyRingCore(DateTime utcNow, Boolean forceRefresh)
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "data_protection_keys" does not exist
+    Position: 43
+    File: parse_relation.c
+    Line: 1373
+    Routine: parserOpenTable
+2021-12-31 18:06:06.548 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-31 18:06:06.942 +05:30 [INF] Starting web host (IdentityService)...
+2021-12-31 18:06:06.981 +05:30 [INF] Starting IdentityServer4 version 3.1.4.0
+2021-12-31 18:06:07.117 +05:30 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2021-12-31 18:06:10.121 +05:30 [ERR] Failed executing DbCommand (257ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT d.id, d.friendly_name, d.xml
+FROM data_protection_keys AS d
+2021-12-31 18:06:10.151 +05:30 [ERR] An exception occurred while iterating over the results of a query for context type 'IdentityService.Data.ApplicationDbContext'.
+Npgsql.PostgresException (0x80004005): 42P01: relation "data_protection_keys" does not exist
+
+POSITION: 43
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|213_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__20_0(DbContext _, Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass31_0`2.<Execute>b__0(DbContext context, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementation[TState,TResult](Func`3 operation, Func`3 verifySucceeded, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "data_protection_keys" does not exist
+    Position: 43
+    File: parse_relation.c
+    Line: 1373
+    Routine: parserOpenTable
+Npgsql.PostgresException (0x80004005): 42P01: relation "data_protection_keys" does not exist
+
+POSITION: 43
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|213_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__20_0(DbContext _, Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass31_0`2.<Execute>b__0(DbContext context, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementation[TState,TResult](Func`3 operation, Func`3 verifySucceeded, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "data_protection_keys" does not exist
+    Position: 43
+    File: parse_relation.c
+    Line: 1373
+    Routine: parserOpenTable
+2021-12-31 18:06:10.170 +05:30 [ERR] An error occurred while reading the key ring.
+Npgsql.PostgresException (0x80004005): 42P01: relation "data_protection_keys" does not exist
+
+POSITION: 43
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|213_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__20_0(DbContext _, Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass31_0`2.<Execute>b__0(DbContext context, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementation[TState,TResult](Func`3 operation, Func`3 verifySucceeded, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.AspNetCore.DataProtection.EntityFrameworkCore.EntityFrameworkCoreXmlRepository`1.<GetAllElements>g__GetAllElementsCore|3_0()+MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Microsoft.AspNetCore.DataProtection.EntityFrameworkCore.EntityFrameworkCoreXmlRepository`1.GetAllElements()
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager.GetAllKeys()
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider.CreateCacheableKeyRingCore(DateTimeOffset now, IKey keyJustAdded)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider.Microsoft.AspNetCore.DataProtection.KeyManagement.Internal.ICacheableKeyRingProvider.GetCacheableKeyRing(DateTimeOffset now)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider.GetCurrentKeyRingCore(DateTime utcNow, Boolean forceRefresh)
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "data_protection_keys" does not exist
+    Position: 43
+    File: parse_relation.c
+    Line: 1373
+    Routine: parserOpenTable
+2021-12-31 18:06:38.095 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-31 18:06:38.538 +05:30 [INF] Starting web host (IdentityService)...
+2021-12-31 18:06:38.577 +05:30 [INF] Starting IdentityServer4 version 3.1.4.0
+2021-12-31 18:06:38.712 +05:30 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2021-12-31 18:06:41.658 +05:30 [ERR] Failed executing DbCommand (254ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT d.id, d.friendly_name, d.xml
+FROM data_protection_keys AS d
+2021-12-31 18:06:41.683 +05:30 [ERR] An exception occurred while iterating over the results of a query for context type 'IdentityService.Data.ApplicationDbContext'.
+Npgsql.PostgresException (0x80004005): 42P01: relation "data_protection_keys" does not exist
+
+POSITION: 43
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|213_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__20_0(DbContext _, Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass31_0`2.<Execute>b__0(DbContext context, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementation[TState,TResult](Func`3 operation, Func`3 verifySucceeded, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "data_protection_keys" does not exist
+    Position: 43
+    File: parse_relation.c
+    Line: 1373
+    Routine: parserOpenTable
+Npgsql.PostgresException (0x80004005): 42P01: relation "data_protection_keys" does not exist
+
+POSITION: 43
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|213_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__20_0(DbContext _, Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass31_0`2.<Execute>b__0(DbContext context, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementation[TState,TResult](Func`3 operation, Func`3 verifySucceeded, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "data_protection_keys" does not exist
+    Position: 43
+    File: parse_relation.c
+    Line: 1373
+    Routine: parserOpenTable
+2021-12-31 18:06:41.702 +05:30 [ERR] An error occurred while reading the key ring.
+Npgsql.PostgresException (0x80004005): 42P01: relation "data_protection_keys" does not exist
+
+POSITION: 43
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|213_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__20_0(DbContext _, Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass31_0`2.<Execute>b__0(DbContext context, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementation[TState,TResult](Func`3 operation, Func`3 verifySucceeded, TState state)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.AspNetCore.DataProtection.EntityFrameworkCore.EntityFrameworkCoreXmlRepository`1.<GetAllElements>g__GetAllElementsCore|3_0()+MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Microsoft.AspNetCore.DataProtection.EntityFrameworkCore.EntityFrameworkCoreXmlRepository`1.GetAllElements()
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager.GetAllKeys()
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider.CreateCacheableKeyRingCore(DateTimeOffset now, IKey keyJustAdded)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider.Microsoft.AspNetCore.DataProtection.KeyManagement.Internal.ICacheableKeyRingProvider.GetCacheableKeyRing(DateTimeOffset now)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider.GetCurrentKeyRingCore(DateTime utcNow, Boolean forceRefresh)
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "data_protection_keys" does not exist
+    Position: 43
+    File: parse_relation.c
+    Line: 1373
+    Routine: parserOpenTable
+2021-12-31 18:07:24.761 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-31 18:07:25.186 +05:30 [INF] Starting web host (IdentityService)...
+2021-12-31 18:07:25.220 +05:30 [INF] Starting IdentityServer4 version 3.1.4.0
+2021-12-31 18:07:25.350 +05:30 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2021-12-31 18:07:28.318 +05:30 [WRN] No XML encryptor configured. Key {63a3f38f-9c25-4445-90cb-6e02c3f03670} may be persisted to storage in unencrypted form.
+2021-12-31 18:08:16.264 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-31 18:08:16.656 +05:30 [INF] Starting web host (IdentityService)...
+2021-12-31 18:08:16.688 +05:30 [INF] Starting IdentityServer4 version 3.1.4.0
+2021-12-31 18:08:16.810 +05:30 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2021-12-31 18:09:30.057 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-31 18:09:31.692 +05:30 [INF] Applying migrations (IdentityService)...
+2021-12-31 18:09:31.909 +05:30 [INF] Migrating database associated with context PersistedGrantDbContext
+2021-12-31 18:09:38.908 +05:30 [INF] Migrated database associated with context PersistedGrantDbContext
+2021-12-31 18:09:38.923 +05:30 [INF] Migrating database associated with context ApplicationDbContext
+2021-12-31 18:09:46.113 +05:30 [INF] Migrated database associated with context ApplicationDbContext
+2021-12-31 18:09:46.120 +05:30 [INF] Migrating database associated with context ConfigurationDbContext
+2021-12-31 18:09:53.159 +05:30 [INF] Migrated database associated with context ConfigurationDbContext
+2021-12-31 18:09:53.163 +05:30 [INF] Starting web host (IdentityService)...
+2021-12-31 18:09:53.262 +05:30 [INF] Starting IdentityServer4 version 3.1.4.0
+2021-12-31 18:09:53.282 +05:30 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2021-12-31 18:44:38.975 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-31 18:44:39.397 +05:30 [INF] Applying migrations (IdentityService)...
+2021-12-31 18:44:39.514 +05:30 [INF] Migrating database associated with context PersistedGrantDbContext
+2021-12-31 18:44:45.214 +05:30 [INF] Migrated database associated with context PersistedGrantDbContext
+2021-12-31 18:44:45.232 +05:30 [INF] Migrating database associated with context ApplicationDbContext
+2021-12-31 18:44:49.326 +05:30 [INF] Migrated database associated with context ApplicationDbContext
+2021-12-31 18:44:49.335 +05:30 [INF] Migrating database associated with context ConfigurationDbContext
+2021-12-31 18:44:54.102 +05:30 [INF] Migrated database associated with context ConfigurationDbContext
+2021-12-31 18:44:54.108 +05:30 [INF] Starting web host (IdentityService)...
+2021-12-31 18:44:54.124 +05:30 [INF] Starting IdentityServer4 version 3.1.4.0
+2021-12-31 18:44:54.145 +05:30 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2021-12-31 18:45:39.316 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-31 18:45:39.775 +05:30 [INF] Applying migrations (IdentityService)...
+2021-12-31 18:45:39.905 +05:30 [INF] Migrating database associated with context PersistedGrantDbContext
+2021-12-31 18:45:45.605 +05:30 [INF] Migrated database associated with context PersistedGrantDbContext
+2021-12-31 18:45:45.622 +05:30 [INF] Migrating database associated with context ApplicationDbContext
+2021-12-31 18:45:49.770 +05:30 [INF] Migrated database associated with context ApplicationDbContext
+2021-12-31 18:45:49.778 +05:30 [INF] Migrating database associated with context ConfigurationDbContext
+2021-12-31 18:45:54.604 +05:30 [INF] Migrated database associated with context ConfigurationDbContext
+2021-12-31 18:45:54.610 +05:30 [INF] Starting web host (IdentityService)...
+2021-12-31 18:45:54.627 +05:30 [INF] Starting IdentityServer4 version 3.1.4.0
+2021-12-31 18:45:54.651 +05:30 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2021-12-31 18:46:25.767 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-31 18:46:26.173 +05:30 [INF] Applying migrations (IdentityService)...
+2021-12-31 18:46:26.296 +05:30 [INF] Migrating database associated with context PersistedGrantDbContext
+2021-12-31 18:46:31.984 +05:30 [INF] Migrated database associated with context PersistedGrantDbContext
+2021-12-31 18:46:32.002 +05:30 [INF] Migrating database associated with context ApplicationDbContext
+2021-12-31 18:46:36.066 +05:30 [INF] Migrated database associated with context ApplicationDbContext
+2021-12-31 18:46:36.075 +05:30 [INF] Migrating database associated with context ConfigurationDbContext
+2021-12-31 18:46:40.917 +05:30 [INF] Migrated database associated with context ConfigurationDbContext
+2021-12-31 18:46:40.922 +05:30 [INF] Starting web host (IdentityService)...
+2021-12-31 18:46:40.940 +05:30 [INF] Starting IdentityServer4 version 3.1.4.0
+2021-12-31 18:46:40.960 +05:30 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2021-12-31 19:48:33.434 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-31 19:49:28.733 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-31 19:59:23.846 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-31 20:00:49.060 +05:30 [INF] Applying migrations (IdentityService)...
+2021-12-31 20:00:49.424 +05:30 [INF] Migrating database associated with context PersistedGrantDbContext
+2021-12-31 20:00:56.156 +05:30 [INF] Migrated database associated with context PersistedGrantDbContext
+2021-12-31 20:00:56.176 +05:30 [INF] Migrating database associated with context ApplicationDbContext
+2021-12-31 20:01:00.374 +05:30 [INF] Migrated database associated with context ApplicationDbContext
+2021-12-31 20:01:00.388 +05:30 [INF] Migrating database associated with context ConfigurationDbContext
+2021-12-31 20:01:05.304 +05:30 [INF] Migrated database associated with context ConfigurationDbContext
+2021-12-31 20:01:05.308 +05:30 [INF] Starting web host (IdentityService)...
+2021-12-31 20:01:05.393 +05:30 [INF] Starting IdentityServer4 version 3.1.4.0
+2021-12-31 20:01:05.412 +05:30 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2021-12-31 20:01:32.757 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Unable to resolve service for type 'Swashbuckle.AspNetCore.Swagger.ISwaggerProvider' while attempting to Invoke middleware 'Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware'.
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.GetService(IServiceProvider sp, Type type, Type middleware)
+   at lambda_method953(Closure , Object , HttpContext , IServiceProvider )
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.<>c__DisplayClass5_1.<UseMiddleware>b__2(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2021-12-31 20:01:33.295 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Unable to resolve service for type 'Swashbuckle.AspNetCore.Swagger.ISwaggerProvider' while attempting to Invoke middleware 'Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware'.
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.GetService(IServiceProvider sp, Type type, Type middleware)
+   at lambda_method953(Closure , Object , HttpContext , IServiceProvider )
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.<>c__DisplayClass5_1.<UseMiddleware>b__2(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2021-12-31 20:02:05.361 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-31 20:02:14.528 +05:30 [INF] Applying migrations (IdentityService)...
+2021-12-31 20:02:14.710 +05:30 [INF] Migrating database associated with context PersistedGrantDbContext
+2021-12-31 20:02:20.658 +05:30 [INF] Migrated database associated with context PersistedGrantDbContext
+2021-12-31 20:02:20.675 +05:30 [INF] Migrating database associated with context ApplicationDbContext
+2021-12-31 20:02:24.830 +05:30 [INF] Migrated database associated with context ApplicationDbContext
+2021-12-31 20:02:24.845 +05:30 [INF] Migrating database associated with context ConfigurationDbContext
+2021-12-31 20:02:29.671 +05:30 [INF] Migrated database associated with context ConfigurationDbContext
+2021-12-31 20:02:29.677 +05:30 [INF] Starting web host (IdentityService)...
+2021-12-31 20:02:29.776 +05:30 [INF] Starting IdentityServer4 version 3.1.4.0
+2021-12-31 20:02:29.797 +05:30 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2021-12-31 20:02:35.673 +05:30 [INF] HTTP GET / responded 307 in 2.3112 ms
+2021-12-31 20:02:35.785 +05:30 [INF] HTTP GET / responded 404 in 17.9008 ms
+2021-12-31 20:07:31.999 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-31 20:07:34.031 +05:30 [INF] Applying migrations (IdentityService)...
+2021-12-31 20:07:34.327 +05:30 [INF] Migrating database associated with context PersistedGrantDbContext
+2021-12-31 20:07:40.584 +05:30 [INF] Migrated database associated with context PersistedGrantDbContext
+2021-12-31 20:07:40.599 +05:30 [INF] Migrating database associated with context ApplicationDbContext
+2021-12-31 20:07:44.684 +05:30 [INF] Migrated database associated with context ApplicationDbContext
+2021-12-31 20:07:44.695 +05:30 [INF] Migrating database associated with context ConfigurationDbContext
+2021-12-31 20:07:49.541 +05:30 [INF] Migrated database associated with context ConfigurationDbContext
+2021-12-31 20:07:49.546 +05:30 [INF] Starting web host (IdentityService)...
+2021-12-31 20:07:49.649 +05:30 [INF] Starting IdentityServer4 version 3.1.4.0
+2021-12-31 20:07:49.666 +05:30 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2021-12-31 20:10:01.265 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-31 20:10:03.112 +05:30 [INF] Applying migrations (IdentityService)...
+2021-12-31 20:10:03.357 +05:30 [INF] Migrating database associated with context PersistedGrantDbContext
+2021-12-31 20:10:09.295 +05:30 [INF] Migrated database associated with context PersistedGrantDbContext
+2021-12-31 20:10:09.312 +05:30 [INF] Migrating database associated with context ApplicationDbContext
+2021-12-31 20:10:13.493 +05:30 [INF] Migrated database associated with context ApplicationDbContext
+2021-12-31 20:10:13.507 +05:30 [INF] Migrating database associated with context ConfigurationDbContext
+2021-12-31 20:10:18.348 +05:30 [INF] Migrated database associated with context ConfigurationDbContext
+2021-12-31 20:10:18.352 +05:30 [INF] Starting web host (IdentityService)...
+2021-12-31 20:10:18.452 +05:30 [INF] Starting IdentityServer4 version 3.1.4.0
+2021-12-31 20:10:18.472 +05:30 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2021-12-31 21:37:52.991 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-31 21:37:53.373 +05:30 [INF] Applying migrations (IdentityService)...
+2021-12-31 21:37:53.499 +05:30 [INF] Migrating database associated with context PersistedGrantDbContext
+2021-12-31 21:37:59.133 +05:30 [INF] Migrated database associated with context PersistedGrantDbContext
+2021-12-31 21:37:59.150 +05:30 [INF] Migrating database associated with context ApplicationDbContext
+2021-12-31 21:38:03.304 +05:30 [INF] Migrated database associated with context ApplicationDbContext
+2021-12-31 21:38:03.311 +05:30 [INF] Migrating database associated with context ConfigurationDbContext
+2021-12-31 21:38:08.139 +05:30 [INF] Migrated database associated with context ConfigurationDbContext
+2021-12-31 21:38:08.145 +05:30 [INF] Starting web host (IdentityService)...
+2021-12-31 21:38:08.171 +05:30 [INF] Starting IdentityServer4 version 3.1.4.0
+2021-12-31 21:38:08.190 +05:30 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2021-12-31 21:41:01.696 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-31 21:41:02.227 +05:30 [INF] Applying migrations (IdentityService)...
+2021-12-31 21:41:02.358 +05:30 [INF] Migrating database associated with context PersistedGrantDbContext
+2021-12-31 21:41:08.088 +05:30 [INF] Migrated database associated with context PersistedGrantDbContext
+2021-12-31 21:41:08.106 +05:30 [INF] Migrating database associated with context ApplicationDbContext
+2021-12-31 21:41:13.413 +05:30 [INF] Migrated database associated with context ApplicationDbContext
+2021-12-31 21:41:13.421 +05:30 [INF] Migrating database associated with context ConfigurationDbContext
+2021-12-31 21:41:18.222 +05:30 [INF] Migrated database associated with context ConfigurationDbContext
+2021-12-31 21:41:18.228 +05:30 [INF] Starting web host (IdentityService)...
+2021-12-31 21:41:18.257 +05:30 [INF] Starting IdentityServer4 version 3.1.4.0
+2021-12-31 21:41:18.277 +05:30 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2021-12-31 21:42:51.712 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-31 21:42:52.100 +05:30 [INF] Applying migrations (IdentityService)...
+2021-12-31 21:42:52.219 +05:30 [INF] Migrating database associated with context PersistedGrantDbContext
+2021-12-31 21:42:57.827 +05:30 [INF] Migrated database associated with context PersistedGrantDbContext
+2021-12-31 21:42:57.844 +05:30 [INF] Migrating database associated with context ApplicationDbContext
+2021-12-31 21:43:03.350 +05:30 [ERR] EXCEPTION ERROR while migrating ApplicationDbContext
+System.ArgumentNullException: Value cannot be null. (Parameter 'user')
+   at Microsoft.AspNetCore.Identity.UserManager`1.AddToRolesAsync(TUser user, IEnumerable`1 roles)
+   at IdentityService.Data.ApplicationDbContextSeed.AssignRoles(IServiceProvider services, String email, String[] roles) in D:\Projects\aecinspire-microservices\Microservices\IdentityService\Data\ApplicationDbContextSeed.cs:line 102
+   at IdentityService.Data.ApplicationDbContextSeed.SeedAsync(IServiceProvider services, ApplicationDbContext context, IWebHostEnvironment env, ILogger`1 logger, IOptions`1 settings, Nullable`1 retry) in D:\Projects\aecinspire-microservices\Microservices\IdentityService\Data\ApplicationDbContextSeed.cs:line 29
+2021-12-31 21:43:03.808 +05:30 [INF] Migrated database associated with context ApplicationDbContext
+2021-12-31 21:43:03.819 +05:30 [INF] Migrating database associated with context ConfigurationDbContext
+2021-12-31 21:43:08.518 +05:30 [INF] Migrated database associated with context ConfigurationDbContext
+2021-12-31 21:43:08.524 +05:30 [INF] Starting web host (IdentityService)...
+2021-12-31 21:43:08.550 +05:30 [INF] Starting IdentityServer4 version 3.1.4.0
+2021-12-31 21:43:08.571 +05:30 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2021-12-31 21:55:04.104 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-31 21:55:04.526 +05:30 [INF] Applying migrations (IdentityService)...
+2021-12-31 21:55:04.661 +05:30 [INF] Migrating database associated with context PersistedGrantDbContext
+2021-12-31 21:55:10.525 +05:30 [INF] Migrated database associated with context PersistedGrantDbContext
+2021-12-31 21:55:10.541 +05:30 [INF] Migrating database associated with context ApplicationDbContext
+2021-12-31 21:55:16.077 +05:30 [ERR] EXCEPTION ERROR while migrating ApplicationDbContext
+System.ArgumentNullException: Value cannot be null. (Parameter 'user')
+   at Microsoft.AspNetCore.Identity.UserManager`1.AddToRolesAsync(TUser user, IEnumerable`1 roles)
+   at IdentityService.Data.ApplicationDbContextSeed.AssignRoles(IServiceProvider services, String email, String[] roles) in D:\Projects\aecinspire-microservices\Microservices\IdentityService\Data\ApplicationDbContextSeed.cs:line 102
+   at IdentityService.Data.ApplicationDbContextSeed.SeedAsync(IServiceProvider services, ApplicationDbContext context, IWebHostEnvironment env, ILogger`1 logger, IOptions`1 settings, Nullable`1 retry) in D:\Projects\aecinspire-microservices\Microservices\IdentityService\Data\ApplicationDbContextSeed.cs:line 29
+2021-12-31 21:55:16.526 +05:30 [INF] Migrated database associated with context ApplicationDbContext
+2021-12-31 21:55:16.539 +05:30 [INF] Migrating database associated with context ConfigurationDbContext
+2021-12-31 21:57:32.543 +05:30 [INF] Configuring web host (IdentityService)...
+2021-12-31 21:57:33.029 +05:30 [INF] Applying migrations (IdentityService)...
+2021-12-31 21:57:33.166 +05:30 [INF] Migrating database associated with context PersistedGrantDbContext
+2021-12-31 21:57:38.847 +05:30 [INF] Migrated database associated with context PersistedGrantDbContext
+2021-12-31 21:57:38.864 +05:30 [INF] Migrating database associated with context ApplicationDbContext
+2021-12-31 21:57:45.986 +05:30 [INF] Migrated database associated with context ApplicationDbContext
+2021-12-31 21:57:45.994 +05:30 [INF] Migrating database associated with context ConfigurationDbContext
+2021-12-31 21:57:50.686 +05:30 [INF] Migrated database associated with context ConfigurationDbContext
+2021-12-31 21:57:50.691 +05:30 [INF] Starting web host (IdentityService)...
+2021-12-31 21:57:50.712 +05:30 [INF] Starting IdentityServer4 version 3.1.4.0
+2021-12-31 21:57:50.729 +05:30 [INF] Using the default authentication scheme Identity.Application for IdentityServer
